@@ -1,0 +1,47 @@
+[
+    {
+        "uuid" : "14dd40d2-476b-4239-8fa9-1c09c4b5c86e",
+        "username" : "hwells",
+        "firstName" : "Hannah",
+        "lastName" : "Wells",
+        "location" : "",
+        "phone_number" : "000-867-5309",
+        "address" : "468 Glenwood Blvd.",
+        "password" : "topS$cr$t",
+        "shelter" : "",
+        "skills" : ["SHELTER_STAFF","LANGUAGE_FLUENCY"],
+        "has_pet" : false,
+        "family_members" : ["Joshua Wells","Jesus Christ Himself"]
+
+    },
+
+    {
+        "uuid" : "531452be-95eb-4b2f-8450-7208fb0787ba",
+        "username" : "kyled",
+        "firstName" : "Kyle",
+        "lastName" : "Donaldson",
+        "location" : "",
+        "phone_number" : "000-9035-768",
+        "address" : "2301 High St.",
+        "password" : "892EijL0Ws",
+        "shelter" : null,
+        "skills" : ["FIRST_RESPONDER", "HEAVY_LIFTER"],
+        "has_pet" : false,
+        "family_members": null
+    },
+
+    {
+        "uuid" : "1a1b7554-1c8b-48e0-9962-5c7c6599ca3b",
+        "username" : "katKane",
+        "firstName" : "Katrina",
+        "lastName" : "Kane",
+        "location" : "",
+        "phone_number" : "000-835-4628",
+        "address" : "1234 Generic Ave.",
+        "password" : "brutus51",
+        "shelter" : "",
+        "skills" : ["CAN_COOK"],
+        "has_pet" : true,
+        "family_members" : ["Alex Kane", "Rachel Kane", "Gretchen Kane"]
+    }
+]
