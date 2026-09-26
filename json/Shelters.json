@@ -1,0 +1,25 @@
+[
+    {
+        "uuid" : "e522496a-9539-4c1e-b8a5-992aa48dde8c",
+        "name" : "Caldwell Elementary School",
+        "availability" : true,
+        "resources" : ["WATER","FOOD","FIRST_AID","CHARGERS"],
+        "medical_supples" : "",
+        "location" : "",
+        "shelter_type" : "DISABILITY_ACCOMMODATING",
+        "occupancy" : 207,
+        "capacity" : 250
+    },
+    {
+        "uuid" : "68b7087c-d6ee-4c2b-8706-7a90ac62e5f5",
+        "name" : "Saint Jude's Church",
+        "availability" : false,
+        "resources" : ["WATER", "FOOD", "FIREWOOD", "CLOTHES"],
+        "medical_supples" : "",
+        "location" : "",
+        "shelter_type" : "PET_FRIENDLY",
+        "occupany" : 115,
+        "capacity" : 115
+    }
+
+]
