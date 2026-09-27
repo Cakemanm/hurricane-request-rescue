@@ -12,7 +12,7 @@
         "status" : "PENDING",
         "location" : "bdc1366f-ba6e-4b7d-9c73-009770b70d0b",
         "comments" : ["The Caldwell Elementary Shelter is requesting more clothing donations.", "Many of our residents weren't able to bring extra clothes with them."],
-        "request_types" : ["PENDING"],
+        "request_types" : ["RESOURCE"],
         "requester" : "14dd40d2-476b-4239-8fa9-1c09c4b5c86e"
     },
     {
