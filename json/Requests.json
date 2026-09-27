@@ -2,7 +2,7 @@
     {
         "request_priority" : 4,
         "status" : "COMPLETED",
-        "location" : "",
+        "location" : "baa5f8b6-2e90-4084-8376-50e9e3b6ac6f",
         "comments" : ["A few minor bone fratures from a fall.","The hospital is backed up and not necessary, but someone with some medical experience is preferred.","We have very few medical supplies, so a first aid kit would be appreciated."],
         "request_types" : ["BROKEN_BONE", "RESOURCE"],
         "requester" : "1a1b7554-1c8b-48e0-9962-5c7c6599ca3b"
@@ -10,7 +10,7 @@
     {
         "request_priority" : 3,
         "status" : "PENDING",
-        "location" : "",
+        "location" : "bdc1366f-ba6e-4b7d-9c73-009770b70d0b",
         "comments" : ["The Caldwell Elementary Shelter is requesting more clothing donations.", "Many of our residents weren't able to bring extra clothes with them."],
         "request_types" : ["PENDING"],
         "requester" : "14dd40d2-476b-4239-8fa9-1c09c4b5c86e"
@@ -18,7 +18,7 @@
     {
         "request_priority" : 2,
         "status" : "HELP_ON_THE_WAY",
-        "location" : "",
+        "location" : "baa5f8b6-2e90-4084-8376-50e9e3b6ac6f",
         "comments" : ["A fallen tree has blocked off a section of a road","There are available detours, so it isn't a significant threat","Heavy lifters needed"],
         "request_types" : ["FALLEN_TREE", "ROADBLOCK"],
         "requester" : "531452be-95eb-4b2f-8450-7208fb0787ba"
