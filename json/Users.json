@@ -1,6 +1,6 @@
 [
     {
-        "uuid" : "14dd40d2-476b-4239-8fa9-1c09c4b5c86e",
+        "id" : "14dd40d2-476b-4239-8fa9-1c09c4b5c86e",
         "username" : "hwells",
         "first_name" : "Hannah",
         "last_name" : "Wells",
@@ -16,7 +16,7 @@
     },
 
     {
-        "uuid" : "531452be-95eb-4b2f-8450-7208fb0787ba",
+        "id" : "531452be-95eb-4b2f-8450-7208fb0787ba",
         "username" : "kyled",
         "first_name" : "Kyle",
         "last_name" : "Donaldson",
@@ -31,7 +31,7 @@
     },
 
     {
-        "uuid" : "1a1b7554-1c8b-48e0-9962-5c7c6599ca3b",
+        "id" : "1a1b7554-1c8b-48e0-9962-5c7c6599ca3b",
         "username" : "katKane",
         "first_name" : "Katrina",
         "last_name" : "Kane",
