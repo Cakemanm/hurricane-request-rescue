@@ -8,13 +8,13 @@
 - [Project Board](https://github.com/users/Cakemanm/projects/2)
 
 ## Basic Description
-Users will be able to submit requests detailing where they are, what they need, and how severe of an issue they have. Users with relevant resources and skills receive notifications with the pertinent information about a request that they can accept if they wish to fulfill it. Users can also request to sign up for shelters where they receive additional aid. Users with relevant privileges can edit shelter information. The app will provide live information on the area listing nearby hazards including the hurricane.
+Users will be able to submit requests detailing where they are, what they need, and how severe of an issue they have. Users with relevant resources and skills receive notifications with the pertinent information about a request that they can accept if they wish to fulfill it. Users can also request to sign up for shelters where they receive additional aid. Users with relevant privileges can edit shelter information. The app will provide live information on the area, listing nearby hazards and the path of the hurricane.
 
 ## Features
-- **User accounts:** Users log in and out with username and password
-- **Submit a request:** Victims submit a request with their location, what they need, and any additional comments
-- **Request priority:** The app calculates a priorty for each request based on its severity
-- **Alerts to helpers:** Users with matching resources are notified of new requests and can choose to accept them
+- **User accounts:** Users log in and out with username and password.
+- **Submit a request:** Victims submit a request with their location, what they need, and any additional comments.
+- **Request priority:** The app calculates a priorty for each request based on its severity.
+- **Alerts to helpers:** Users with matching resources are notified of new requests and can choose to accept them.
 - **Shelter Listings:** Users can view up-to-date information on shelters, including their availability and resources.
 - **Shelter sign-up:** Victims can sign up for a shelter at their preferred location.
 - **Live area information:** The app shows nearby hazards, including the hurricane.
@@ -27,7 +27,7 @@ Users will be able to submit requests detailing where they are, what they need, 
 ```
 2. Open the project in VS code.
 3. Make sure Java is installed and download **Extension Pack for Java** in VS Code.
-4. Run the code
+4. Run the code.
 5. Run the driver file.
 
 ## Usage
