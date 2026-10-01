@@ -2,7 +2,7 @@
 
 ## Links
 - [Requirements Document](https://docs.google.com/document/d/1WIrbc9mHSYCiDB_Sj0xbDY3cdjM3nx4hT9wjiY03AKg/edit?tab=t.0)
-- [Requirements Spreadsheet](https://docs.google.com/spreadsheets/d/10Ai5sXdx2hde9nkmZnAxegUNTkSBRXcf6JlMPbn1Mc0/edit?usp=sharing)tab=t.0#heading=h.ri1zizlkybet)
+- [Requirements Spreadsheet](https://docs.google.com/spreadsheets/d/10Ai5sXdx2hde9nkmZnAxegUNTkSBRXcf6JlMPbn1Mc0/edit?usp=sharing)
 - [UML Class Diagram](https://lucid.app/lucidchart/26b0b567-dcb1-4b89-845d-eb5197a0b59a/edit?viewport_loc=-4553%2C-2677%2C4254%2C2624%2C0_0&invitationId=inv_f11adca8-4ddb-4a6c-820d-bb17aeac7592)
 - [UML Sequence Diagrams](https://lucid.app/lucidchart/808a17b2-5e93-4811-9cc9-4797bbfe1285/edit?viewport_loc=-627%2C139%2C3945%2C2433%2C0_0&invitationId=inv_43e80926-9eb2-4646-88ca-4afda046c4a0)
 - [Project Board](https://github.com/users/Cakemanm/projects/2)
