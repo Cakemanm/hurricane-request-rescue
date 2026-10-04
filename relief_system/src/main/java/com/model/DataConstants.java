@@ -1,4 +1,4 @@
-package relief_system.target.classes.com.model;
+package com.model;
 
 public class DataConstants {
     //User constants
