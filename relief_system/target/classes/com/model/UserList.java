@@ -7,9 +7,10 @@ public class UserList {
     private ArrayList<User> users;
 
     private UserList(){
-
+        userList = DataLoader.getUsers();
     }
     public static UserList getInstance(){
 
     }
+
 }

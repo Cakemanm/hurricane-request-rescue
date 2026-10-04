@@ -2,7 +2,7 @@ package relief_system.target.classes.com.model;
 
 public class DataConstants {
     //User constants
-    protected static final String USER_FILE_NAME = "";
+    protected static final String USER_FILE_NAME = "json\\Users.json";
     protected static final String USER_ID = "uuid";
     protected static final String USER_USERNAME = "username";
     protected static final String USER_FIRST_NAME = "firstName";
