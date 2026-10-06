@@ -11,11 +11,11 @@ public class DataWriter extends DataConstants {
         JSONArray peopleJSON = new JSONArray();
         for(User user : users){
             JSONObject personJSON = new JSONObject();
-            personJSON.put(USER_ID, user.getId().toString());
+            personJSON.put(USER_ID, user.getID().toString());
             personJSON.put(USER_USERNAME, user.getUsername());
             personJSON.put(USER_FIRST_NAME, user.getFirstName());
             personJSON.put(USER_LAST_NAME, user.getLastName());
-            personJSON.put(USER_LOCATION, user.getLocation().getId().toString());
+            personJSON.put(USER_LOCATION, user.getLocation());
             personJSON.put(USER_PHONE_NUMBER, user.getPhoneNumber());
             personJSON.put(USER_ADDRESS, user.getAddress());
             personJSON.put(USER_PASSWORD, user.getPassword());
