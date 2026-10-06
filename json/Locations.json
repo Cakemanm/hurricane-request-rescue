@@ -1,14 +1,14 @@
 [
     {
         "id" : "bdc1366f-ba6e-4b7d-9c73-009770b70d0b",
-        "State" : "MS",
-        "City" : "Gulfport",
-        "Zipcode" : 39507
+        "state" : "MS",
+        "city" : "Gulfport",
+        "zipcode" : 39507
     },
     {
         "id" : "baa5f8b6-2e90-4084-8376-50e9e3b6ac6f",
-        "State" : "MS",
-        "City" : "Gulfport",
-        "Zipcode" : 39503
+        "state" : "MS",
+        "city" : "Gulfport",
+        "zipcode" : 39503
     }
 ]

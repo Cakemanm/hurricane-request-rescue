@@ -6,6 +6,7 @@
         "comments" : ["A few minor bone fratures from a fall.","The hospital is backed up and not necessary, but someone with some medical experience is preferred.","We have very few medical supplies, so a first aid kit would be appreciated."],
         "requestTypes" : ["BROKEN_BONE", "RESOURCE"],
         "requester" : "1a1b7554-1c8b-48e0-9962-5c7c6599ca3b",
+        "responder" : null,
         "id" : "88eb85df-d238-4a83-a0f5-e5aa5948d6ff"
     },
     {
@@ -15,6 +16,7 @@
         "comments" : ["The Caldwell Elementary Shelter is requesting more clothing donations.", "Many of our residents weren't able to bring extra clothes with them."],
         "requestTypes" : ["RESOURCE"],
         "requester" : "14dd40d2-476b-4239-8fa9-1c09c4b5c86e",
+        "responder" : null,
         "id" : "bf0584fd-deca-41f3-93d5-c82d31336762"
     },
     {
@@ -24,6 +26,7 @@
         "comments" : ["A fallen tree has blocked off a section of a road","There are available detours, so it isn't a significant threat","Heavy lifters needed"],
         "requestTypes" : ["FALLEN_TREE", "ROADBLOCK"],
         "requester" : "531452be-95eb-4b2f-8450-7208fb0787ba",
+        "responder" : null,
         "id" : "a2170593-1814-427f-9ef6-7e52966a8238"
     }
 ]
