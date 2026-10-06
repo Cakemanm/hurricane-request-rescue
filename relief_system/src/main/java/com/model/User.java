@@ -26,10 +26,26 @@ public class User {
             this.phoneNumber = phoneNumber;
             this.address = address;
             this.password = password;
+            this.familyMembers = familyMembers;
         }
 
+    public User(UUID id, String username, String firstName, String lastName, 
+        Location location, String phoneNumber, String address, String password, UUID shelter, 
+        ArrayList<String> familyMembers){
+            this.id = id;
+            this.username = username;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.location = location;
+            this.phoneNumber = phoneNumber;
+            this.address = address;
+            this.password = password;
+            this.shelter = shelter;
+            this.familyMembers = familyMembers;
+        }
+    
     public boolean isMatch(String username, String password){
-        return 
+        return this.username.equals(username) && this.password.equals(password);
     }
 
     public UUID getID(){
