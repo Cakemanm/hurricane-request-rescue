@@ -1,17 +1,6 @@
 package com.model;
 
 public class Resource {
-<<<<<<< HEAD
-    private ResourceType resourceType;
-    private int quantity;
-
-    public void updateQuantity(int amount){
-
-    }
-
-    public String toString(){
-        
-=======
     
     private ResourceType resourcetype;
     private int quantity;
@@ -27,6 +16,5 @@ public class Resource {
 
     public String toString(){
         return "Resource: " + this.resourcetype + "\tQuantity: " + this.quantity;
->>>>>>> carter-branch
     }
 }
