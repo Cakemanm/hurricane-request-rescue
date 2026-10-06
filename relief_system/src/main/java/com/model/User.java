@@ -17,10 +17,6 @@ public class User {
     private boolean hasPet = false;
     private ArrayList<String> familyMembers;
 
-    public User(String username, String password){
-
-    }
-
     public User(String username, String firstName, String lastName, 
         Location location, String phoneNumber, String address, String password){
             this.username = username;
@@ -32,19 +28,55 @@ public class User {
             this.password = password;
         }
 
-    public void updateProfile(){
-
-    }
-
-    public void downloadOfflineMap(){
-
-    }
-
-    public void sendMessage(String recipient, String message){
-
-    }
-
     public boolean isMatch(String username, String password){
-        
+        return 
+    }
+
+    public UUID getID(){
+        return this.id;
+    }
+
+    public String getUsername(){
+        return this.username;
+    }
+
+    public String getFirstName(){
+        return this.firstName;
+    }
+
+    public String getLastName(){
+        return this.lastName;
+    }
+
+    public Location getLocation(){
+        return this.location;
+    }
+
+    public String getPhoneNumber(){
+        return this.phoneNumber;
+    }
+
+    public String getAddress(){
+        return this.address;
+    }
+
+    public String getPassword(){
+        return this.password;
+    }
+
+    public UUID getShelter(){
+        return this.shelter;
+    }
+
+    public ArrayList<Skill> getSkills(){
+        return this.skills;
+    }
+
+    public boolean hasPet(){
+        return hasPet;
+    }
+
+    public ArrayList<String> getFamilyMembers(){
+        return this.familyMembers;
     }
 }
