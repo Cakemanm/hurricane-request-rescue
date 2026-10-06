@@ -29,7 +29,7 @@ public class User {
         }
 
     public boolean isMatch(String username, String password){
-        return 
+        return this.username.equals(username) && this.password.equals(password);
     }
 
     public UUID getID(){
