@@ -3,14 +3,14 @@ package com.model;
 import java.util.UUID;
 
 public class Location {
-
+    private UUID id;
     private String state;
     private String city;
-    private int zipcode;
-    
-    public Location(String state, String city, int zipcode){
+    private int zipCode;
+
+    public Location(String state, String city, int zipCode) {
         this.state = state;
         this.city = city;
-        this.zipcode = zipcode;
+        this.zipCode = zipCode;
     }
 }
