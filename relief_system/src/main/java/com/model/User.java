@@ -22,7 +22,7 @@ public class User {
     }
 
     public User(String username, String firstName, String lastName, 
-        Location location, String phoneNumber, String address, String password){
+        Location location, String phoneNumber, String address, String password, ArrayList<String> familyMembers){
             this.username = username;
             this.firstName = firstName;
             this.lastName = lastName;

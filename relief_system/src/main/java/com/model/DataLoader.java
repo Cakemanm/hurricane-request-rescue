@@ -42,6 +42,9 @@ public class DataLoader extends DataConstants{
             for(Object member : familyJSON){
                 familyMembers.add((String) member);
             }
+
+            users.add(new User(username, firstName, lastName, null, phoneNumber, address, password, familyMembers));
+
         }
 
     }   catch (Exception e){
@@ -49,5 +52,7 @@ public class DataLoader extends DataConstants{
     }
     return users;
     }
+
+    public static ArrayList<Shelter> shelters = new ArrayList();
 
 }
