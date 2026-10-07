@@ -7,7 +7,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class DataWriter extends DataConstants {
-    public static void writeUsers(ArrayList<User> users){
+
+    public static void writeUsers(ArrayList<User> users) {
         JSONArray peopleJSON = new JSONArray();
         for(User user : users){
             JSONObject personJSON = new JSONObject();
@@ -46,5 +47,4 @@ public class DataWriter extends DataConstants {
             e.printStackTrace();
         }
     }
-    
 }
