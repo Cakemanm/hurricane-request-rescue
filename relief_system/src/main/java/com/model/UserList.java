@@ -22,4 +22,13 @@ public class UserList {
         return null;
     }
 
+    public User getUser(String username, String password){
+        for(User user : users){
+            if(username.equals(user.getUsername()) && password.equals(user.getPassword()))
+                return user;
+        }
+        System.out.println("Your username or password is incorrect");
+        return null;
+    }
+
 }

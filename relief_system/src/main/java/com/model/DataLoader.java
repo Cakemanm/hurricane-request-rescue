@@ -56,5 +56,14 @@ public class DataLoader extends DataConstants {
     }
 
     public static ArrayList<Shelter> shelters = new ArrayList();
+    public static ArrayList<Shelter> getShelters(){
+        ArrayList<Shelter> shelters = new ArrayList<Shelter>();
+        try{
+
+        }   catch (Exception e){
+        e.printStackTrace();
+        }
+        return shelters;
+    }
 
 }
