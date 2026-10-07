@@ -3,6 +3,7 @@ package com.model;
 public class ReliefFacade {
     private Hurricane hurricane;
     private User currentUser;
+    private Request request;
 
     public ReliefFacade() {
         // TODO: implement later
@@ -13,18 +14,16 @@ public class ReliefFacade {
         // TODO: implement later
     }
 
-    public Shelter signUpVictimForShelter(Victim victim,
-            Location preferredLocation) {
+    public Shelter signUpVictimForShelter(User user) {
         // TODO: implement later
         return null;
     }
 
-    public void dispatchVolunteer(Volunteer volunteer, Request request) {
+    public void dispatchVolunteer(User user) {
         // TODO: implement later
     }
 
-    public void restockShelter(Admin admin, Shelter shelter,
-            ResourceType type, int quantity) {
+    public void restockShelter(User user) {
         // TODO: implement later
     }
 
