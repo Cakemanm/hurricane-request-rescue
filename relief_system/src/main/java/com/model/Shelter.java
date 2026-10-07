@@ -22,7 +22,10 @@ public class Shelter {
     }
 
     public void updateAvailability(){
-        availability ? this.availability = false : this.availability = true;
+        if(availability)
+            this.availability = false;
+        else
+            this.availability = true;
     }
 
     public void listResource(){
@@ -31,18 +34,6 @@ public class Shelter {
     }
 
     public void updateSupplyLevel(){
-
-    }
-
-    public void updateEquipment(){
-
-    }
-
-    public void updateMedicalStaff(){
-
-    }
-
-    public void postAnnouncement(String announcement){
 
     }
 
