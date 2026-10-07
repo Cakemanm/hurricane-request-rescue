@@ -43,6 +43,7 @@ public class ReliefFacade {
         User user = userList.getUser(username, password);
         if (user!=null){
             currentUser = user;
+            System.out.println("Login successful");
         }
     }
 
@@ -56,6 +57,11 @@ public class ReliefFacade {
     }
 
     public void logout() {
-        // TODO: implement later
+        currentUser = null;
+        System.out.println("Logout successful");
+    }
+
+    public User getCurrentUser(){
+        return currentUser;
     }
 }
