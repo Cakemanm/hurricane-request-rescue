@@ -1,9 +1,10 @@
 package com.model;
 
+import java.util.ArrayList;
+
 public class ReliefFacade {
     private Hurricane hurricane;
     private User currentUser;
-    private Request request;
 
     public ReliefFacade() {
         // TODO: implement later
@@ -48,10 +49,10 @@ public class ReliefFacade {
 
     public void createAccount(String username, String firstName,
         String lastName, Location location, String phoneNumber,
-        String address, String password){
-            UserList userList = UserList.getInstance();
-            userList.addUser(username,firstName, lastName, location, phoneNumber, address, password);
-            login(username, password);
+        String address, String password, ArrayList<String> familyMembers){
+        UserList userList = UserList.getInstance();
+        userList.addUser(username,firstName, lastName, location, phoneNumber, address, password, familyMembers);
+        login(username, password);
        
     }
 

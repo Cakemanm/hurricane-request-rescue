@@ -31,4 +31,9 @@ public class UserList {
         return null;
     }
 
+    public void addUser(String username, String firstName, String lastName, 
+        Location location, String phoneNumber, String address, String password, ArrayList<String> familyMembers){
+            users.add(new User(username, firstName, lastName, location, phoneNumber, address, password, familyMembers));
+        }
+
 }
