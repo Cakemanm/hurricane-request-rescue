@@ -1,9 +1,20 @@
-{
-    "name": "Hurricane",
+[
+    {
+    "name": "Katrina",
     "category": 5,
     "windSpeed": 157,
     "location": "baa5f8b6-2e90-4084-8376-50e9e3b6ac6f",
     "expectedConditions": "Severe damage to buildings, uprooted trees, and widespread power outages. Flooding and storm surge expected.",
     "size": 300.0,
     "isActive": true
+    },
+    {
+    "name": "Shelby",
+    "category": 3,
+    "windSpeed": 125,
+    "location": "bdc1366f-ba6e-4b7d-9c73-009770b70d0b",
+    "expectedConditions": "Flying debris, howling winds, structural damage, uprooted trees and powerlines.",
+    "size": 200.0,
+    "isActive": true
 }
+]
