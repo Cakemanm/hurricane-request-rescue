@@ -1,7 +1,7 @@
 package relief_system.target.classes.com.model;
 import java.util.ArrayList;
 
-public abstract class Request {
+public class Request {
     private int requestPriority;
     private RequestStatus status;
     private Location location;
@@ -21,7 +21,9 @@ public abstract class Request {
         this.responder = responder;
         this.id = id;
     }
-        public abstract int calcPriority();
+        public int calcPriority()(
+
+        )
 
         public void sendAlerts(){
 
