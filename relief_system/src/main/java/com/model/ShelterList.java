@@ -1,3 +1,5 @@
+package com.model;
+
 import java.util.ArrayList;
 
 public class ShelterList {
@@ -8,7 +10,7 @@ private ArrayList<Shelter> shelters;
 
 private ShelterList(){
 
-    shelters= new ArrayList<Shelter>()
+    shelters= new ArrayList<Shelter>();
 }
 
 public static ShelterList getInstance() {
@@ -19,7 +21,7 @@ public static ShelterList getInstance() {
 }
 
 public void addShelter(String name, boolean availability, ArrayList<Resource> resources, Location location, ShelterType type, int occupancy, int capacity) {
-                Shelter shelter = new shelter(name, availability, resources, location, type, occupancy, capacity);
+    Shelter shelter = new Shelter(name, location, type, occupancy, capacity);
                 shelters.add(shelter);
             }
             public Shelter getShelter(String name) {
