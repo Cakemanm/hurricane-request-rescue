@@ -22,7 +22,7 @@ public class Shelter {
     }
 
     public void updateAvailability(){
-        availability ? this.availability = false : this.availability = true;
+        availability = availability ? false : true;
     }
 
     public void listResource(){
@@ -48,5 +48,9 @@ public class Shelter {
 
     public void addResource(Resource resource){
 
+    }
+
+    public String getName() {
+        return this.name;
     }
 }

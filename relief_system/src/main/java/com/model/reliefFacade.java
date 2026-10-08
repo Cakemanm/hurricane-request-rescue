@@ -33,18 +33,16 @@ public class ReliefFacade{
         return null;
     }
 
-    public RequestFeed browseRequests() {
-        // TODO: implement later
-        return null;
-    }
 
-    public void login(String username, String password) {
+    public boolean login(String username, String password) {
         UserList userList = UserList.getInstance();
         User user = userList.getUser(username, password);
         if (user!=null){
             currentUser = user;
-            System.out.println("Login successful");
+            return true;
         }
+        else
+            return false;
     }
 
     public void createAccount(String username, String firstName,
