@@ -13,7 +13,7 @@ public class Shelter {
     private int capacity;
     private UUID id;
 
-    public Shelter(String name, Location location, ShelterType shelterType, int occupancy, int capacity){
+    public Shelter(String name, Location location, ArrayList<Resource> resources, ArrayList<ShelterType> shelterTypes, int occupancy, int capacity){
         this.name = name;
         this.location = location;
         this.shelterType = shelterType;

@@ -40,8 +40,8 @@ public class DataLoader extends DataConstants {
             JSONArray familyJSON = (JSONArray)personJSON.get(USER_FAMILY_MEMBERS);
             ArrayList<String> familyMembers = new ArrayList<>();
             if(familyJSON != null){
-              for(Object member : familyJSON){
-                familyMembers.add((String) member);
+                for(Object member : familyJSON){
+                    familyMembers.add((String) member);
                 }
             }
             
@@ -59,11 +59,50 @@ public class DataLoader extends DataConstants {
     public static ArrayList<Shelter> getShelters(){
         ArrayList<Shelter> shelters = new ArrayList<Shelter>();
         try{
+            FileReader reader = new FileReader(SHELTER_FILE_NAME);
+            JSONArray placesJSON = (JSONArray) new JSONParser().parse(reader);
+            for(int i = 0; i < placesJSON.size(); i++){
+                JSONObject placeJSON = (JSONObject)placesJSON.get(i);
+                String id = (String)placeJSON.get(SHELTER_ID);
+                String name = (String)placeJSON.get(SHELTER_NAME);
+                String availability = (String)placeJSON.get(SHELTER_AVAILABILITY);
+                //String location = (String)placeJSON.get(SHELTER_LOCATION);
+                int occupancy = (int)placeJSON.get(SHELTER_OCCUPANCY);
+                int capacity = (int)placeJSON.get(SHELTER_CAPACITY);
+                
+                //String shelterType = (String)placeJSON.get(SHELTER_SHELTER_TYPE);
+                //String resources = (String)placeJSON.get(SHELTER_RESOURCES);
+
+                JSONArray shelterTypesJSON = (JSONArray)placeJSON.get(SHELTER_SHELTER_TYPES);
+                ArrayList<ShelterType> shelterTypes = new ArrayList<>();
+                for(Object type : shelterTypesJSON){
+                    shelterTypes.add((ShelterType) type);
+                }
+
+                JSONArray resourcesJSON = (JSONArray)placeJSON.get(SHELTER_RESOURCES);
+                ArrayList<Resource> resources = new ArrayList<>();
+                if(resourcesJSON != null){
+                    for(Object resource : resourcesJSON)
+                        resources.add((Resource) resource);
+                }
+
+                shelters.add(new Shelter(name, null, resources, shelterTypes, occupancy, capacity));
+            }
+
 
         }   catch (Exception e){
         e.printStackTrace();
         }
         return shelters;
     }
+    /*protected static final String SHELTER_FILE_NAME = "json\\Shelters.json";
+    protected static final String SHELTER_ID = "id";
+    protected static final String SHELTER_NAME = "name";
+    protected static final String SHELTER_AVAILABILITY = "availability";
+    protected static final String SHELTER_RESOURCES = "resources";
+    protected static final String SHELTER_LOCATION = "location";
+    protected static final String SHELTER_SHELTER_TYPE = "shelterType";
+    protected static final String SHELTER_OCCUPANCY = "occupancy";
+    protected static final String SHELTER_ = "capacity"; */
 
 }
