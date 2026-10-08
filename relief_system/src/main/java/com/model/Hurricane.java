@@ -48,12 +48,4 @@ public class Hurricane {
     public boolean getActive() {
         return this.isActive;
     }
-
-    public void getUpdates() {
-
-    }
-
-    public void trackPath() {
-        
-    }
 }
