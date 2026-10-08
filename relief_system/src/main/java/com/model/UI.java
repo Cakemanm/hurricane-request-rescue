@@ -11,8 +11,8 @@ public class UI {
     }
 
     public void run() {
-        scenerio1();
-        scenerio2();
+        scenario1();
+        scenario2();
     }
 
     public void scenario1() {
@@ -25,9 +25,9 @@ public class UI {
         System.out.println("Hannah Wells is now logged in!");
     }
 
-    public void scenerio2() {
+    public void scenario2() {
         System.out.println();
-        if(!releifFacade.login("kyled","892EijL0Ws")) {
+        if(!reliefFacade.login("kyled","892EijL0Ws")) {
             System.out.println("Sorry, we couldn;t log you in.");
             return;
         }
