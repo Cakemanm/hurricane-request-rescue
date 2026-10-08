@@ -6,7 +6,9 @@ public class UserList {
     private static UserList USER_LIST;
     private ArrayList<User> users = DataLoader.getUsers();
 
-    private UserList(){}
+    private UserList(){
+        users = DataLoader.getUsers();
+    }
 
     public static UserList getInstance(){
         if(USER_LIST == null)
