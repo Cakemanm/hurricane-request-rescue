@@ -1,4 +1,4 @@
-public interface ReliefRequester {
+public interface reliefRequester {
 
     
     void createReleifRequest(Request request);
