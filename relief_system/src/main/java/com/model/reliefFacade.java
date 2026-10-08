@@ -2,7 +2,7 @@ package com.model;
 
 import java.util.ArrayList;
 
-public class ReliefFacade {
+public class ReliefFacade{
     private Hurricane hurricane;
     private User currentUser;
 
