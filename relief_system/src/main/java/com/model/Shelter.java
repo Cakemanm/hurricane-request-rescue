@@ -21,6 +21,26 @@ public class Shelter {
         this.capacity = capacity;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
+    public Location getLocation() {
+        return this.location;
+    }
+
+    public ShelterType getShelterType() {
+        return this.shelterType;
+    }
+
+    public int getOccupancy() {
+        return this.occupancy;
+    }
+
+    public int getCapacity() {
+        return this.capacity;
+    }
+
     public void updateAvailability(){
         availability = availability ? false : true;
     }
@@ -48,9 +68,5 @@ public class Shelter {
 
     public void addResource(Resource resource){
 
-    }
-
-    public String getName() {
-        return this.name;
     }
 }
