@@ -10,8 +10,7 @@ private ArrayList<Shelter> shelters;
 
 
 private ShelterList(){
-
-    shelters= new ArrayList<Shelter>();
+    shelters = DataLoader.getShelters();
 }
 
 public static ShelterList getInstance() {

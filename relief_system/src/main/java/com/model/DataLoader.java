@@ -30,10 +30,10 @@ public class DataLoader extends DataConstants {
             boolean hasPet = (boolean)personJSON.get(USER_HAS_PET);
 
             UUID locationId = UUID.fromString((String)personJSON.get(USER_LOCATION));
+            Location location = (locationId == null ? null : LocationList.getInstance().getLocationById(locationId));
             
             UUID shelterId = UUID.fromString((String)personJSON.get(USER_SHELTER));
-            if(shelterId != null)
-                ShelterList.getInstance().getShelterById(shelterId);
+            Shelter shelter = (shelterId == null ? null : ShelterList.getInstance().getShelterById(shelterId));
 
             JSONArray skillsJSON = (JSONArray)personJSON.get(USER_SKILLS);
             ArrayList<String> skills = new ArrayList<>();
@@ -49,7 +49,7 @@ public class DataLoader extends DataConstants {
                 }
             }
             
-            users.add(new User(username, firstName, lastName, null, phoneNumber, address, password, familyMembers));
+            users.add(new User(username, firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers));
 
         }
 
@@ -67,15 +67,15 @@ public class DataLoader extends DataConstants {
             for(int i = 0; i < placesJSON.size(); i++){
                 JSONObject placeJSON = (JSONObject)placesJSON.get(i);
 
-                UUID id = UUID.fromString((String)placeJSON.get(USER_ID));
+                UUID id = UUID.fromString((String)placeJSON.get(SHELTER_ID));
                 String name = (String)placeJSON.get(SHELTER_NAME);
                 Boolean availability = (Boolean)placeJSON.get(SHELTER_AVAILABILITY);
-                //String location = (String)placeJSON.get(SHELTER_LOCATION);
                 int occupancy = (int)placeJSON.get(SHELTER_OCCUPANCY);
                 int capacity = (int)placeJSON.get(SHELTER_CAPACITY);
+
+                UUID locationId = UUID.fromString((String)placeJSON.get(SHELTER_LOCATION));
                 
-                //String shelterType = (String)placeJSON.get(SHELTER_SHELTER_TYPE);
-                //String resources = (String)placeJSON.get(SHELTER_RESOURCES);
+                Location location = (locationId == null ? null : LocationList.getInstance().getLocationById(locationId));
 
                 JSONArray shelterTypesJSON = (JSONArray)placeJSON.get(SHELTER_SHELTER_TYPES);
                 ArrayList<ShelterType> shelterTypes = new ArrayList<>();
@@ -90,7 +90,7 @@ public class DataLoader extends DataConstants {
                         resources.add((Resource) resource);
                 }
 
-                shelters.add(new Shelter(name, availability, null, resources, shelterTypes, occupancy, capacity, id));
+                shelters.add(new Shelter(name, availability, location, resources, shelterTypes, occupancy, capacity, id));
             }
 
 
@@ -123,11 +123,5 @@ public class DataLoader extends DataConstants {
 
     }
 
-
-    /*protected static final String LOCATION_FILE_NAME = "json\\Locations.json";
-    protected static final String LOCATION_ID = "id";
-    protected static final String LOCATION_STATE = "state";
-    protected static final String LOCATION_CITY = "city";
-    protected static final String LOCATION_ZIPCODE = "zipcode";*/
 
 }

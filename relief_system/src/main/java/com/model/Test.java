@@ -16,5 +16,11 @@ public class Test {
         ArrayList<String> fm = new ArrayList<>();
         reliefFacade.createAccount("hello","hell","o",null,"82983","unknown","jeniwde",fm);
         System.out.println(reliefFacade.getCurrentUser().getFirstName());
+
+        ShelterList shelterList = ShelterList.getInstance();
+        System.out.println(shelterList.getShelter("Caldwell Elementary School").getCapacity());
+
+        Location loc = shelterList.getShelter("Saint Jude's Church").getLocation();
+        System.out.println(loc.getState());
     }
 }
