@@ -1,5 +1,0 @@
-public interface reliefRequester {
-
-    
-    void createReleifRequest(Request request);
-}
