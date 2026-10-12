@@ -2,10 +2,10 @@ package com.model;
 
 import java.util.Scanner;
 
-public class UI {
+public class ReliefUI {
     private ReliefFacade reliefFacade;
 
-    public UI() {
+    public ReliefUI() {
         reliefFacade = new ReliefFacade();
     
     }
@@ -28,7 +28,7 @@ public class UI {
     public void scenario2() {
         System.out.println();
         if(!reliefFacade.login("kyled","892EijL0Ws")) {
-            System.out.println("Sorry, we couldn;t log you in.");
+            System.out.println("Sorry, we couldn't log you in.");
             return;
         }
         System.out.println("Kyle Donaldson is now logged in!");
@@ -36,7 +36,7 @@ public class UI {
 
     public static void main(String[] args)
 {
-    RReliefFacade facadeInterface = new ReliefFacade();
+    ReliefUI facadeInterface = new ReliefUI();
     facadeInterface.run();
 }    
 }

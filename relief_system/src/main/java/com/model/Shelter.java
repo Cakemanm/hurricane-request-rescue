@@ -48,14 +48,10 @@ public class Shelter {
     }
 
     public void updateAvailability(){
-<<<<<<< HEAD
         if(availability)
             this.availability = false;
         else
             this.availability = true;
-=======
-        availability = availability ? false : true;
->>>>>>> main
     }
 
     public void listResource(){

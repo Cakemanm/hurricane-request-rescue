@@ -49,7 +49,7 @@ public class DataLoader extends DataConstants {
                 }
             }
             
-            users.add(new User(username, firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers));
+            users.add(new User(username, firstName, lastName, location, phoneNumber, address, password, familyMembers));
 
         }
 
