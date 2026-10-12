@@ -37,7 +37,7 @@ public class Hurricane {
         return this.location;
     }
 
-    public String getCoditions() {
+    public String getConditions() {
         return this.expectedConditions;
     }
 
