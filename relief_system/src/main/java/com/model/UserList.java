@@ -1,6 +1,7 @@
 package com.model;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class UserList {
     private static UserList USER_LIST;
@@ -26,16 +27,20 @@ public class UserList {
 
     public User getUser(String username, String password){
         for(User user : users){
-            if(username.equals(user.getUsername()) && password.equals(user.getPassword()))
+            if(user.isMatch(username, password))
                 return user;
         }
         System.out.println("Your username or password is incorrect");
         return null;
     }
 
-    public void addUser(String username, String firstName, String lastName, 
-        Location location, String phoneNumber, String address, String password, ArrayList<String> familyMembers){
-            users.add(new User(username, firstName, lastName, location, phoneNumber, address, password, familyMembers));
-        }
+    public void addUser(UUID id, String username, String firstName, String lastName, Location location, 
+        String phoneNumber, String address, String password, Shelter shelter, ArrayList<String> familyMembers){
+            users.add(new User(id,username, firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers));
+    }
 
+    public void addUser(String username, String firstName, String lastName, Location location, 
+        String phoneNumber, String address, String password, Shelter shelter, ArrayList<String> familyMembers){
+            users.add(new User(UUID.randomUUID(),username, firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers));
+    }
 }

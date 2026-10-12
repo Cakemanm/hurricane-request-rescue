@@ -3,7 +3,7 @@ package com.model;
 public class DataConstants {
     //User constants
     protected static final String USER_FILE_NAME = "json\\Users.json";
-    protected static final String USER_ID = "uuid";
+    protected static final String USER_ID = "id";
     protected static final String USER_USERNAME = "username";
     protected static final String USER_FIRST_NAME = "firstName";
     protected static final String USER_LAST_NAME = "lastName";
@@ -24,9 +24,9 @@ public class DataConstants {
     protected static final String SHELTER_AVAILABILITY = "availability";
     protected static final String SHELTER_RESOURCES = "resources";
     protected static final String SHELTER_LOCATION = "location";
-    protected static final String SHELTER_SHELTER_TYPE = "shelterType";
+    protected static final String SHELTER_SHELTER_TYPES = "shelterType";
     protected static final String SHELTER_OCCUPANCY = "occupancy";
-    protected static final String SHELTER_ = "capacity";
+    protected static final String SHELTER_CAPACITY = "capacity";
 
     //Request constants
     protected static final String REQUEST_FILE_NAME = "json\\Requests.json";

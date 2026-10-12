@@ -12,7 +12,7 @@ public class User {
     private String phoneNumber;
     private String address;
     private String password;
-    private UUID shelter = null;
+    private Shelter shelter = null;
     private ArrayList<Skill> skills;
     private boolean hasPet = false;
     private ArrayList<String> familyMembers;
@@ -30,7 +30,7 @@ public class User {
         }
 
     public User(UUID id, String username, String firstName, String lastName, 
-        Location location, String phoneNumber, String address, String password, UUID shelter, 
+        Location location, String phoneNumber, String address, String password, Shelter shelter, 
         ArrayList<String> familyMembers){
             this.id = id;
             this.username = username;
@@ -80,7 +80,7 @@ public class User {
         return this.password;
     }
 
-    public UUID getShelter(){
+    public Shelter getShelter(){
         return this.shelter;
     }
 
