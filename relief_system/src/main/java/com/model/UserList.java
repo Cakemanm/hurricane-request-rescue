@@ -26,7 +26,7 @@ public class UserList {
 
     public User getUser(String username, String password){
         for(User user : users){
-            if(username.equals(user.getUsername()) && password.equals(user.getPassword()))
+            if(user.isMatch(username, password))
                 return user;
         }
         System.out.println("Your username or password is incorrect");

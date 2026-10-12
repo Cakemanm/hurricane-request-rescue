@@ -32,8 +32,11 @@ public class DataLoader extends DataConstants {
             UUID locationId = UUID.fromString((String)personJSON.get(USER_LOCATION));
             Location location = (locationId == null ? null : LocationList.getInstance().getLocationById(locationId));
             
-            UUID shelterId = UUID.fromString((String)personJSON.get(USER_SHELTER));
-            Shelter shelter = (shelterId == null ? null : ShelterList.getInstance().getShelterById(shelterId));
+            String shelterIdString = (String) personJSON.get(USER_SHELTER);
+
+            UUID shelterId = shelterIdString == null ? null : UUID.fromString(shelterIdString);
+
+            Shelter shelter = shelterId == null ? null : ShelterList.getInstance().getShelterById(shelterId);
 
             JSONArray skillsJSON = (JSONArray)personJSON.get(USER_SKILLS);
             ArrayList<String> skills = new ArrayList<>();
