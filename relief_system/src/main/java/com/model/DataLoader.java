@@ -170,6 +170,36 @@ public class DataLoader extends DataConstants {
         return locations;
 
     }
+    
+    public static Hurricane getHurricane(){
+        Hurricane hurricane = null;
+        try{
+            FileReader reader = new FileReader(HURRICANE_FILE_NAME);
+            JSONArray stormArrayJSON = (JSONArray) new JSONParser().parse(reader);
+            JSONObject stormJSON = (JSONObject)stormArrayJSON.get(0);
+
+            UUID id = UUID.fromString((String)stormJSON.get(HURRICANE_ID));
+            String name = (String)stormJSON.get(HURRICANE_NAME);
+            int category = Integer.parseInt(stormJSON.get(HURRICANE_CATEGORY).toString());
+            int windSpeed = Integer.parseInt(stormJSON.get(HURRICANE_WIND_SPEED).toString());
+
+            JSONArray areasJSON = (JSONArray)stormJSON.get(HURRICANE_AFFECTED_AREAS);
+            ArrayList<Integer> areas = new ArrayList();
+            for(Object zipcode : areasJSON)
+                areas.add(Integer.parseInt((String)zipcode));
+
+            String conditions = (String)stormJSON.get(HURRICANE_EXPECTED_CONDITIONS);
+            double size = Double.parseDouble((String)HURRICANE_SIZE);
+            boolean isActive = (boolean)stormJSON.get(HURRICANE_IS_ACTIVE);
+
+            hurricane = new Hurricane(id, name, category, windSpeed, areas, conditions, size, isActive);
+
+        }   catch (Exception e){
+        e.printStackTrace();
+        }
+        return hurricane;
+
+    }
 
 
 }

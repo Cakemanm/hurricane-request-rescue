@@ -47,14 +47,14 @@ public class DataConstants {
     protected static final String LOCATION_ZIPCODE = "zipcode";
 
     //Hurricane constants
-    
-    /*
-    private String name;
-    private int category;
-    private int windSpeed;
-    private Location location;
-    private String expectedConditions;
-    private double size;
-    private boolean isActive; */
+    protected static final String HURRICANE_FILE_NAME = "json\\Hurricane.json";
+    protected static final String HURRICANE_ID = "id";
+    protected static final String HURRICANE_NAME = "name";
+    protected static final String HURRICANE_CATEGORY = "category";
+    protected static final String HURRICANE_WIND_SPEED = "windSpeed";
+    protected static final String HURRICANE_AFFECTED_AREAS = "affectedAreas";
+    protected static final String HURRICANE_EXPECTED_CONDITIONS = "expectedConditions";
+    protected static final String HURRICANE_SIZE = "size";
+    protected static final String HURRICANE_IS_ACTIVE = "isActive";
 
 }
