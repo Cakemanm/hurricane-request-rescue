@@ -36,7 +36,7 @@ public class UI {
 
     public static void main(String[] args)
 {
-    ReliefFacadeUI facadeInterface = new ReliefFacadeUI();
+    ReliefFacade facadeInterface = new ReliefFacade();
     facadeInterface.run();
 }    
 }
