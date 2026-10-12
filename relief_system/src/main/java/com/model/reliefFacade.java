@@ -1,4 +1,8 @@
-public class ReliefFacade {
+package com.model;
+
+import java.util.ArrayList;
+
+public class ReliefFacade{
     private Hurricane hurricane;
     private User currentUser;
 
@@ -11,18 +15,16 @@ public class ReliefFacade {
         // TODO: implement later
     }
 
-    public Shelter signUpVictimForShelter(Victim victim,
-            Location preferredLocation) {
+    public Shelter signUpVictimForShelter(User user) {
         // TODO: implement later
         return null;
     }
 
-    public void dispatchVolunteer(Volunteer volunteer, Request request) {
+    public void dispatchVolunteer(User user) {
         // TODO: implement later
     }
 
-    public void restockShelter(Admin admin, Shelter shelter,
-            ResourceType type, int quantity) {
+    public void restockShelter(User user) {
         // TODO: implement later
     }
 
@@ -31,29 +33,40 @@ public class ReliefFacade {
         return null;
     }
 
-    public RequestFeed browseRequests() {
-        // TODO: implement later
-        return null;
-    }
 
-    public void login(String username, String password) {
+    public boolean login(String username, String password) {
         UserList userList = UserList.getInstance();
         User user = userList.getUser(username, password);
         if (user!=null){
             currentUser = user;
+            return true;
         }
+        else
+            return false;
     }
 
     public void createAccount(String username, String firstName,
         String lastName, Location location, String phoneNumber,
+<<<<<<< HEAD
         String address, String password){
             UserList userList = UserList.getInstance();
             userList.addUser(username,firstName, lastName, location, phoneNumber, address, password);
             login(username, password);
+=======
+        String address, String password, ArrayList<String> familyMembers){
+        UserList userList = UserList.getInstance();
+        userList.addUser(username,firstName, lastName, location, phoneNumber, address, password, familyMembers);
+        login(username, password);
+>>>>>>> main
        
     }
 
     public void logout() {
-        // TODO: implement later
+        currentUser = null;
+        System.out.println("Logout successful");
+    }
+
+    public User getCurrentUser(){
+        return currentUser;
     }
 }

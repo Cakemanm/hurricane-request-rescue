@@ -1,7 +1,8 @@
-package relief_system.target.classes.com.model;
+package com.model;
 import java.util.ArrayList;
+import java.util.UUID;
 
-public abstract class Request {
+public class Request {
     private int requestPriority;
     private RequestStatus status;
     private Location location;
@@ -19,9 +20,11 @@ public abstract class Request {
         this.comments = comments;
         this.requester = requester;
         this.responder = responder;
-        this.id = id;
+        this.id = UUID.randomUUID();
     }
-        public abstract int calcPriority();
+        public int calcPriority(){
+            return 0;
+        }
 
         public void sendAlerts(){
 

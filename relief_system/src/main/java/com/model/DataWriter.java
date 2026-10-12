@@ -5,9 +5,11 @@ import java.util.ArrayList;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.junit.runner.Request;
 
 public class DataWriter extends DataConstants {
-    public static void writeUsers(ArrayList<User> users){
+
+    public static void saveUsers(ArrayList<User> users) {
         JSONArray peopleJSON = new JSONArray();
         for(User user : users){
             JSONObject personJSON = new JSONObject();
@@ -46,5 +48,24 @@ public class DataWriter extends DataConstants {
             e.printStackTrace();
         }
     }
-    
+
+    public static void saveShelters(ArrayList<Shelter> shelter) {
+
+    }
+
+    public static void saveRequests(ArrayList<Request> request) {
+
+    }
+
+    public static void saveHurricane(Hurricane hurricane) {
+        if (hurricane == null) return;
+        JSONObject hurricaneJSON = new JSONObject();
+        hurricaneJSON.put(HURRICANE_NAME, hurricane.getName());
+        hurricaneJSON.put(HURRICANE_CATEGORY, hurricane.getCategory());
+        hurricaneJSON.put(HURRICANE_WINDSPEED, hurricane.getWindSpeed());
+        hurricaneJSON.put(HURRICANE_LOCATION, hurricane.getLocation());
+        hurricaneJSON.put(HURRICANE_CONDITIONS, hurricane.getCoditions());
+        hurricaneJSON.put(HURRICANE_SIZE, hurricane.getSize());
+        hurricaneJSON.put(HURRICANE_ACTIVE, hurricane.getActive());
+    }
 }

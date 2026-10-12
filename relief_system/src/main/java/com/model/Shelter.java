@@ -13,19 +13,49 @@ public class Shelter {
     private int capacity;
     private UUID id;
 
-    public Shelter(String name, Location location, ShelterType shelterType, int occupancy, int capacity){
+    public Shelter(String name, boolean availability, Location location, ArrayList<Resource> resources, ArrayList<ShelterType> shelterTypes, int occupancy, int capacity, UUID id){
         this.name = name;
+        this.availability = availability;
         this.location = location;
         this.shelterType = shelterType;
         this.occupancy = occupancy;
         this.capacity = capacity;
+        this.id = id;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public Location getLocation() {
+        return this.location;
+    }
+
+    public ShelterType getShelterType() {
+        return this.shelterType;
+    }
+
+    public int getOccupancy() {
+        return this.occupancy;
+    }
+
+    public int getCapacity() {
+        return this.capacity;
+    }
+
+    public UUID getId(){
+        return this.id;
     }
 
     public void updateAvailability(){
+<<<<<<< HEAD
         if(availability)
             this.availability = false;
         else
             this.availability = true;
+=======
+        availability = availability ? false : true;
+>>>>>>> main
     }
 
     public void listResource(){
