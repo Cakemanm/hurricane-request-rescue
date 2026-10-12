@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "Test",
+            "request": "launch",
+            "mainClass": "com.relief/com.model.Test",
+            "projectName": "relief_system"
+        },
+        {
             "type": "editor-browser",
             "request": "launch",
             "name": "Open 01.html",
