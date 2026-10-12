@@ -47,17 +47,10 @@ public class ReliefFacade{
 
     public void createAccount(String username, String firstName,
         String lastName, Location location, String phoneNumber,
-<<<<<<< HEAD
-        String address, String password){
-            UserList userList = UserList.getInstance();
-            userList.addUser(username,firstName, lastName, location, phoneNumber, address, password);
-            login(username, password);
-=======
         String address, String password, ArrayList<String> familyMembers){
-        UserList userList = UserList.getInstance();
-        userList.addUser(username,firstName, lastName, location, phoneNumber, address, password, familyMembers);
-        login(username, password);
->>>>>>> main
+            UserList userList = UserList.getInstance();
+            userList.addUser(username,firstName, lastName, location, phoneNumber, address, password, null);
+            login(username, password);
        
     }
 

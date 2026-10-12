@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class UI {
     private ReliefFacade reliefFacade;
 
-    UI() {
+    public UI() {
         reliefFacade = new ReliefFacade();
     
     }
@@ -36,7 +36,7 @@ public class UI {
 
     public static void main(String[] args)
 {
-    ReliefFacadeUI facadeInterface = new ReliefFacadeUI();
+    RReliefFacade facadeInterface = new ReliefFacade();
     facadeInterface.run();
 }    
 }
