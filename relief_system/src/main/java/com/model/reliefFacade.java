@@ -48,7 +48,7 @@ public class ReliefFacade {
         String lastName, Location location, String phoneNumber,
         String address, String password){
             UserList userList = UserList.getInstance();
-            userList.addUser(usernmae,firstnmae, lastName, location, phoneNumber, address, password);
+            userList.addUser(username,firstName, lastName, location, phoneNumber, address, password);
             login(username, password);
        
     }
