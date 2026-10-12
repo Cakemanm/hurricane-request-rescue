@@ -12,15 +12,15 @@ public class Request {
     private User responder;
     private UUID id;
 
-    public Request(int priority, RequestStatus status, Location location, 
-        ArrayList<String> comments, User requester, User responder, RequestType requestType){
+    public Request(UUID id, int priority, RequestStatus status, Location location, 
+        ArrayList<String> comments, User requester, User responder, ArrayList<RequestType> requestTypes){
         this.requestPriority = priority;
         this.status = status;
         this.location = location;
         this.comments = comments;
         this.requester = requester;
         this.responder = responder;
-        this.id = UUID.randomUUID();
+        this.id = (id == null ? UUID.randomUUID() : id);
     }
         public int calcPriority(){
             return 0;
@@ -33,4 +33,54 @@ public class Request {
         public void updateStatus(RequestStatus status){
             
         }
+        public int getRequestPriority() {
+            return requestPriority;
+        }
+        public void setRequestPriority(int requestPriority) {
+            this.requestPriority = requestPriority;
+        }
+        public RequestStatus getStatus() {
+            return status;
+        }
+        public void setStatus(RequestStatus status) {
+            this.status = status;
+        }
+        public Location getLocation() {
+            return location;
+        }
+        public void setLocation(Location location) {
+            this.location = location;
+        }
+        public ArrayList<String> getComments() {
+            return comments;
+        }
+        public void setComments(ArrayList<String> comments) {
+            this.comments = comments;
+        }
+        public ArrayList<RequestType> getRequestTypes() {
+            return requestTypes;
+        }
+        public void setRequestTypes(ArrayList<RequestType> requestTypes) {
+            this.requestTypes = requestTypes;
+        }
+        public User getRequester() {
+            return requester;
+        }
+        public void setRequester(User requester) {
+            this.requester = requester;
+        }
+        public User getResponder() {
+            return responder;
+        }
+        public void setResponder(User responder) {
+            this.responder = responder;
+        }
+        public UUID getId() {
+            return id;
+        }
+        public void setId(UUID id) {
+            this.id = id;
+        }
+
+        
 }

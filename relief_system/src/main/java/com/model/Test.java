@@ -5,6 +5,7 @@ public class Test {
     public static void main(String[] args) {
         ReliefFacade reliefFacade = new ReliefFacade();
         ShelterList shelterList = ShelterList.getInstance();
+        RequestFeed requestList = RequestFeed.getInstance();
         UserList userList = UserList.getInstance();
         System.out.println(userList.getUser("kyled").getAddress());
 
@@ -19,6 +20,8 @@ public class Test {
         System.out.println(shelterList.getShelter("Caldwell Elementary School").getCapacity());
 
         System.out.println(reliefFacade.getCurrentUser().getShelter().getName());
+
+        System
 
         reliefFacade.logout();
 

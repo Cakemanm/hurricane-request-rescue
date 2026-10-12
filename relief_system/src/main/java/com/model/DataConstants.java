@@ -30,6 +30,7 @@ public class DataConstants {
 
     //Request constants
     protected static final String REQUEST_FILE_NAME = "json\\Requests.json";
+    protected static final String REQUEST_PRIORITY = "requestPriority";
     protected static final String REQUEST_STATUS = "status";
     protected static final String REQUEST_LOCATION = "location";
     protected static final String REQUEST_COMMENTS = "comments";
@@ -44,5 +45,16 @@ public class DataConstants {
     protected static final String LOCATION_STATE = "state";
     protected static final String LOCATION_CITY = "city";
     protected static final String LOCATION_ZIPCODE = "zipcode";
+
+    //Hurricane constants
+    
+    /*
+    private String name;
+    private int category;
+    private int windSpeed;
+    private Location location;
+    private String expectedConditions;
+    private double size;
+    private boolean isActive; */
 
 }

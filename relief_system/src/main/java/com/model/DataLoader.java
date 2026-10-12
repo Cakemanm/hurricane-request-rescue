@@ -104,6 +104,50 @@ public class DataLoader extends DataConstants {
         return shelters;
     }
 
+    public static ArrayList<Request> requests = new ArrayList();
+    public static ArrayList<Request> getRequests(){
+        try{
+            FileReader reader = new FileReader(REQUEST_FILE_NAME);
+            JSONArray objectsJSON = (JSONArray) new JSONParser().parse(reader);
+            for(int i = 0; i < objectsJSON.size(); i++){
+                JSONObject objectJSON = (JSONObject)objectsJSON.get(i);
+                UUID id = UUID.fromString((String)objectJSON.get(REQUEST_ID));
+                int priority = Integer.parseInt(objectJSON.get(REQUEST_PRIORITY).toString());
+                RequestStatus status = RequestStatus.valueOf((String)objectJSON.get(REQUEST_STATUS));
+
+                UUID locationId = UUID.fromString((String)objectJSON.get(REQUEST_LOCATION));
+                Location location = (locationId == null ? null : LocationList.getInstance().getLocationById(locationId));
+
+                JSONArray commentsJSON = (JSONArray)objectJSON.get(REQUEST_COMMENTS);
+                ArrayList<String> comments = new ArrayList<>();
+                if(commentsJSON != null){
+                    for(Object comment : commentsJSON){
+                        comments.add((String) comment);
+                    }
+                }
+
+                JSONArray typesJSON = (JSONArray)objectJSON.get(REQUEST_REQUEST_TYPES);
+                ArrayList<RequestType> types = new ArrayList<>();
+                for(Object type : typesJSON)
+                    types.add(RequestType.valueOf((String)type));
+
+                UUID requesterId = UUID.fromString((String)objectJSON.get(REQUEST_REQUESTER));
+                User requester = UserList.getInstance().getUserById(requesterId);
+
+                UUID responderId = UUID.fromString((String)objectJSON.get(REQUEST_REQUESTER));
+                User responder = UserList.getInstance().getUserById(responderId);
+        
+
+                requests.add(new Request(id, priority, status, location,comments, requester, responder, types));
+
+            }
+
+        }   catch (Exception e){
+            e.printStackTrace();
+        }
+        return requests;
+    }
+
 
     public static ArrayList<Location> locations = new ArrayList();
     public static ArrayList<Location> getLocations(){
