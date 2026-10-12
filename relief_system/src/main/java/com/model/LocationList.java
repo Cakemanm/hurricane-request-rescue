@@ -6,7 +6,9 @@ import java.util.UUID;
 public class LocationList {
     private static LocationList locationList;
     private ArrayList<Location> locations;
-    private LocationList(){};
+    private LocationList(){
+        locations = DataLoader.getLocations();
+    };
 
     public static LocationList getInstance(){
         if(locationList == null)
@@ -20,7 +22,7 @@ public class LocationList {
 
     public Location getLocationById(UUID id){
         for(Location location : locations){
-            if(location.getId() == id)
+            if(location.getId().equals(id))
                 return location;
         }
         return null;

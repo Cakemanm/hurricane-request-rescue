@@ -6,7 +6,7 @@ import java.util.UUID;
 public class ShelterList {
 
 private static ShelterList shelterList;
-private ArrayList<Shelter> shelters;
+private ArrayList<Shelter> shelters = DataLoader.getShelters();
 
 
 private ShelterList(){
@@ -26,9 +26,15 @@ public void addShelter(String name, boolean availability, Location location, Arr
     shelters.add(shelter);
 }
 
+public void addShelter(String name, boolean availability, Location location, ArrayList<Resource> resources, 
+    ArrayList<ShelterType> type, int occupancy, int capacity) {
+    Shelter shelter = new Shelter(name, availability, location, resources, type, occupancy, capacity, UUID.randomUUID());
+    shelters.add(shelter);
+}
+
 public Shelter getShelter(String name) {
     for (Shelter shelter : shelters) {
-        if(shelter.getName().equalsIgnoreCase(name)){
+        if(name.equalsIgnoreCase(shelter.getName())){
             return shelter;
         }
     }
@@ -37,7 +43,7 @@ public Shelter getShelter(String name) {
 
 public Shelter getShelterById(UUID id){
     for (Shelter shelter : shelters){
-        if(shelter.getId() == id)
+        if(shelter.getId().equals(id))
             return shelter;
     }
     return null;

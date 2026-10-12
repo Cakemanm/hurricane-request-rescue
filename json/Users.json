@@ -9,7 +9,7 @@
         "address" : "468 Glenwood Blvd.",
         "password" : "topS$cr$t",
         "shelter" : "e522496a-9539-4c1e-b8a5-992aa48dde8c",
-        "skills" : ["SHELTER_STAFF","LANGUAGE_FLUENCY"],
+        "skills" : ["SHELTER_STAFF","LANGUAGE_TRANSLATOR"],
         "hasPet" : false,
         "familyMembers" : ["Joshua Wells"]
 

@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class UI {
     private ReliefFacade reliefFacade;
 
-    UI() {
+    ReliefFacadeUI() {
         reliefFacade = new ReliefFacade();
     
     }

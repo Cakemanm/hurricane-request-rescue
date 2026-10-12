@@ -12,7 +12,7 @@ public class DataLoader extends DataConstants {
     public static ArrayList<User> users = new ArrayList<User>();
 
     public static ArrayList<User> getUsers(){
-        ArrayList<User> users = new ArrayList<User>();
+    ArrayList<User> users = new ArrayList<User>();
     try{
         FileReader reader = new FileReader(USER_FILE_NAME);
         JSONArray peopleJSON = (JSONArray) new JSONParser().parse(reader);
@@ -20,7 +20,9 @@ public class DataLoader extends DataConstants {
         for(int i = 0; i < peopleJSON.size(); i++){
             JSONObject personJSON = (JSONObject)peopleJSON.get(i);
 
-            UUID id = UUID.fromString((String)personJSON.get(USER_ID));
+            String idString = (String)personJSON.get(USER_ID);
+            UUID userId = idString == null ? null : UUID.fromString((String)personJSON.get(USER_ID));
+
             String username = (String)personJSON.get(USER_USERNAME);
             String firstName = (String)personJSON.get(USER_FIRST_NAME);
             String lastName = (String)personJSON.get(USER_LAST_NAME);
@@ -32,13 +34,13 @@ public class DataLoader extends DataConstants {
             UUID locationId = UUID.fromString((String)personJSON.get(USER_LOCATION));
             Location location = (locationId == null ? null : LocationList.getInstance().getLocationById(locationId));
             
-            UUID shelterId = UUID.fromString((String)personJSON.get(USER_SHELTER));
+            UUID shelterId = ((String)personJSON.get(USER_SHELTER) == null ? null : UUID.fromString((String)personJSON.get(USER_SHELTER)));
             Shelter shelter = (shelterId == null ? null : ShelterList.getInstance().getShelterById(shelterId));
 
             JSONArray skillsJSON = (JSONArray)personJSON.get(USER_SKILLS);
-            ArrayList<String> skills = new ArrayList<>();
+            ArrayList<Skill> skills = new ArrayList<>();
             for(Object skill : skillsJSON){
-                skills.add((String) skill);
+                skills.add(Skill.valueOf((String) skill));
             }
 
             JSONArray familyJSON = (JSONArray)personJSON.get(USER_FAMILY_MEMBERS);
@@ -49,7 +51,7 @@ public class DataLoader extends DataConstants {
                 }
             }
             
-            users.add(new User(username, firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers));
+            users.add(new User(userId, username, firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers));
 
         }
 
@@ -69,25 +71,27 @@ public class DataLoader extends DataConstants {
 
                 UUID id = UUID.fromString((String)placeJSON.get(SHELTER_ID));
                 String name = (String)placeJSON.get(SHELTER_NAME);
+                System.out.println(name);
                 Boolean availability = (Boolean)placeJSON.get(SHELTER_AVAILABILITY);
-                int occupancy = (int)placeJSON.get(SHELTER_OCCUPANCY);
-                int capacity = (int)placeJSON.get(SHELTER_CAPACITY);
+                int occupancy = Integer.parseInt(placeJSON.get(SHELTER_OCCUPANCY).toString());
+                int capacity = Integer.parseInt(placeJSON.get(SHELTER_CAPACITY).toString());
 
                 UUID locationId = UUID.fromString((String)placeJSON.get(SHELTER_LOCATION));
-                
                 Location location = (locationId == null ? null : LocationList.getInstance().getLocationById(locationId));
 
                 JSONArray shelterTypesJSON = (JSONArray)placeJSON.get(SHELTER_SHELTER_TYPES);
                 ArrayList<ShelterType> shelterTypes = new ArrayList<>();
                 for(Object type : shelterTypesJSON){
-                    shelterTypes.add((ShelterType) type);
+                    shelterTypes.add(ShelterType.valueOf((String)type));
                 }
 
                 JSONArray resourcesJSON = (JSONArray)placeJSON.get(SHELTER_RESOURCES);
                 ArrayList<Resource> resources = new ArrayList<>();
                 if(resourcesJSON != null){
                     for(Object resource : resourcesJSON)
-                        resources.add((Resource) resource);
+                        resources.add(null);
+                        //resources.add((Resource) resource);
+                        //TODO: figure out converting resource type to resource
                 }
 
                 shelters.add(new Shelter(name, availability, location, resources, shelterTypes, occupancy, capacity, id));
@@ -111,7 +115,7 @@ public class DataLoader extends DataConstants {
                 UUID id = UUID.fromString((String)placeJSON.get(LOCATION_ID));
                 String state = (String)placeJSON.get(LOCATION_STATE);
                 String city = (String)placeJSON.get(LOCATION_CITY);
-                int zipcode = (int)placeJSON.get(LOCATION_ZIPCODE);
+                int zipcode = Integer.parseInt(placeJSON.get(LOCATION_ZIPCODE).toString());
 
                 locations.add(new Location(id, state, city, zipcode));
             }
