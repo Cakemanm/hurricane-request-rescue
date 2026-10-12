@@ -54,7 +54,7 @@ public class DataLoader extends DataConstants {
                 }
             }
             
-            users.add(new User(username, firstName, lastName, location, phoneNumber, address, password, familyMembers));
+            users.add(new User(userId, username, firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers));
 
         }
 
@@ -74,7 +74,6 @@ public class DataLoader extends DataConstants {
 
                 UUID id = UUID.fromString((String)placeJSON.get(SHELTER_ID));
                 String name = (String)placeJSON.get(SHELTER_NAME);
-                System.out.println(name);
                 Boolean availability = (Boolean)placeJSON.get(SHELTER_AVAILABILITY);
                 int occupancy = Integer.parseInt(placeJSON.get(SHELTER_OCCUPANCY).toString());
                 int capacity = Integer.parseInt(placeJSON.get(SHELTER_CAPACITY).toString());
@@ -174,8 +173,8 @@ public class DataLoader extends DataConstants {
 
     }
     
-    public static Hurricane getHurricane(){
-        Hurricane hurricane = null;
+    public static ArrayList<Hurricane> hurricanes = new ArrayList();
+    public static ArrayList<Hurricane> getHurricanes(){
         try{
             FileReader reader = new FileReader(HURRICANE_FILE_NAME);
             JSONArray stormArrayJSON = (JSONArray) new JSONParser().parse(reader);
@@ -187,20 +186,20 @@ public class DataLoader extends DataConstants {
             int windSpeed = Integer.parseInt(stormJSON.get(HURRICANE_WIND_SPEED).toString());
 
             JSONArray areasJSON = (JSONArray)stormJSON.get(HURRICANE_AFFECTED_AREAS);
-            ArrayList<Integer> areas = new ArrayList();
+            ArrayList<Integer> areas = new ArrayList<>();
             for(Object zipcode : areasJSON)
-                areas.add(Integer.parseInt((String)zipcode));
+                areas.add(Integer.parseInt(zipcode.toString()));
 
             String conditions = (String)stormJSON.get(HURRICANE_EXPECTED_CONDITIONS);
-            double size = Double.parseDouble((String)HURRICANE_SIZE);
+            double size = Double.parseDouble(stormJSON.get(HURRICANE_SIZE).toString());
             boolean isActive = (boolean)stormJSON.get(HURRICANE_IS_ACTIVE);
 
-            hurricane = new Hurricane(id, name, category, windSpeed, areas, conditions, size, isActive);
+            hurricanes.add(new Hurricane(id, name, category, windSpeed, areas, conditions, size, isActive));
 
         }   catch (Exception e){
         e.printStackTrace();
         }
-        return hurricane;
+        return hurricanes;
 
     }
 

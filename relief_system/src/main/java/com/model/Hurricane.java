@@ -12,6 +12,7 @@ public class Hurricane {
     private String expectedConditions;
     private double size;
     private boolean isActive;
+    
 
     public Hurricane(UUID id, String name, int category, int windSpeed, ArrayList<Integer> affectedAreas,
         String conditions, double size, boolean active) {
@@ -45,7 +46,7 @@ public class Hurricane {
         return this.affectedAreas;
     }
 
-    public String getCoditions() {
+    public String getConditions() {
         return this.expectedConditions;
     }
 

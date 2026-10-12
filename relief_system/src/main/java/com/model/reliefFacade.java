@@ -33,6 +33,9 @@ public class ReliefFacade{
         return null;
     }
 
+    public Hurricane getHurricane(){
+        return hurricane;
+    }
 
     public boolean login(String username, String password) {
         UserList userList = UserList.getInstance();

@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "UUIDGenerator",
+            "request": "launch",
+            "mainClass": "com.relief/json.UUIDGenerator",
+            "projectName": "hurricane-request-rescue_94594c8"
+        },
+        {
+            "type": "java",
             "name": "ReliefUI",
             "request": "launch",
             "mainClass": "com.relief/com.model.ReliefUI",
