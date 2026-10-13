@@ -42,9 +42,30 @@ public class Request {
 
         }
         
-        public void updateStatus(RequestStatus status){
-            
+        public void updateStatus(RequestStatus status, User responder){  
+            this.status = status;
+            if(status == RequestStatus.HELP_ON_THE_WAY || status == RequestStatus.AT_SITE || status == RequestStatus.COMPLETED)
+                this.responder = responder;
+            else
+                this.responder = null;
         }
+
+        public void updateStatus(RequestStatus status){
+            updateStatus(status, null);
+        }
+
+        public String toString(){
+            String returnString = "";
+            returnString += "Request for help with: ";
+            for(RequestType type: requestTypes)
+                returnString += type.label + (requestTypes.indexOf(type) < requestTypes.size()-1 ? ", " : "");
+            returnString += "\nPriority Level: " + requestPriority + " \nRequested by: " + requester.getFullName() + " at " + address + " " + location.toString() + "\n";
+            for(String comment : comments)
+                returnString += comment + " ";
+            returnString += "\nRequest Status " + status + (responder == null ? "Currently Unfulfilled" : " | Responder: "+ responder.getFullName());
+            return returnString;
+        }
+
         public int getRequestPriority() {
             return requestPriority;
         }
@@ -94,6 +115,7 @@ public class Request {
             this.id = id;
         }
 
+<<<<<<< HEAD
         public String toString(){
             String returnString = "";
             returnString += "Request for help with: ";
@@ -106,5 +128,7 @@ public class Request {
             return returnString;
         }
 
+=======
+>>>>>>> main
         
 }

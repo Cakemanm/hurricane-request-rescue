@@ -30,24 +30,4 @@ public class HurricaneHandler {
             hurricanes.add(new Hurricane(id, name, category, windSpeed, affectedAreas, conditions, size, active));
         }
 
-/*
-    public static RequestFeed getInstance(){
-        if(requestFeed == null) {
-        requestFeed = new RequestFeed();
-    }
-        return requestFeed;
-    }
-
-    public Request getRequest(UUID id){
-        for(Request request : requests){
-            if(request.getId().equals(id))
-                return request;
-        }
-        return null;
-    }
-
-    public void addRequest(UUID id, int priority, RequestStatus status, Location location, 
-        ArrayList<String> comments, User requester, User responder, ArrayList<RequestType> requestTypes){
-            requests.add(new Request(id, priority, status, location, comments, requester, responder, requestTypes));
-        } */
 }

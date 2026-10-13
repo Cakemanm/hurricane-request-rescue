@@ -30,5 +30,26 @@ public class RequestFeed {
         ArrayList<String> comments, User requester, User responder, ArrayList<RequestType> requestTypes){
             requests.add(new Request(id, status, location, address, reportedUrgency, comments, requester, responder, requestTypes));
         }
+
+    public ArrayList<Request> getRequests(){
+        return requests;
+    }
+
+    public ArrayList<Request> searchRequests(String key){
+        ArrayList<Request> results = new ArrayList<>();
+        for(Request request : requests){
+            for(RequestType type : request.getRequestTypes()){
+                if(type.label.toLowerCase().contains(key.toLowerCase()))
+                    results.add(request);
+            }
+            for(String comment : request.getComments()){
+                if(comment.toLowerCase().contains(key.toLowerCase()))
+                    results.add(request);
+            }
+        }
+        if(results.size() == 0)
+            return null;
+        return results;
+    }
     
 }

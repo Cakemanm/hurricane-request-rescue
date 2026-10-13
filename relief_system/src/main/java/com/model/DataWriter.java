@@ -2,7 +2,6 @@ package com.model;
 
 import java.io.FileWriter;
 import java.util.ArrayList;
-import java.util.UUID;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -94,13 +93,19 @@ public class DataWriter extends DataConstants {
             JSONArray resourcesJSON = new JSONArray();
             for (Resource resource : shelter.getResources()) {
                 JSONObject resourceJSON = new JSONObject();
+<<<<<<< HEAD
                 resourceJSON.put(SHELTER_RESOURCE_TYPE, resource.getResourceType().toString());
                 resourceJSON.put(SHELTER_RESOURCE_QUANTITY, resource.getQuantity());
                 resourceJSON.add(resourceJSON);
+=======
+                resourceJSON.put(SHELTER_RESOURCES_TYPE, resource.getResourceType().toString());
+                resourceJSON.put(SHELTER_RESOURCES_QUANTITY, resource.getQuantity());
+                resourcesJSON.add(resourceJSON);
+>>>>>>> main
             }
-            shelterJSON.put(SHELTER_RESOURCES, resourceJSON);
+            shelterJSON.put(SHELTER_RESOURCES, resourcesJSON);
 
-            shelterJSON.add(shelterJSON);
+            sheltersJSON.add(shelterJSON);
         }
         writeFile(SHELTER_FILE_NAME, sheltersJSON);
     }
@@ -137,13 +142,13 @@ public class DataWriter extends DataConstants {
         JSONArray hurricanesJSON = new JSONArray();
         for (Hurricane hurricane : hurricanes) {
             JSONObject hurricaneJSON = new JSONObject();
-            hurricanesJSON.put(HURRICANE_NAME, hurricane.getName());
-            hurricanesJSON.put(HURRICANE_CATEGORY, hurricane.getCategory());
-            hurricanesJSON.put(HURRICANE_WIND_SPEED, hurricane.getWindSpeed());
-            hurricanesJSON.put(HURRICANE_AFFECTED_AREAS, hurricane.getAffectedAreas());
-            hurricanesJSON.put(HURRICANE_EXPECTED_CONDITIONS, hurricane.getConditions());
-            hurricanesJSON.put(HURRICANE_SIZE, hurricane.getSize());
-            hurricanesJSON.put(HURRICANE_IS_ACTIVE, hurricane.getActive());
+            hurricaneJSON.put(HURRICANE_NAME, hurricane.getName());
+            hurricaneJSON.put(HURRICANE_CATEGORY, hurricane.getCategory());
+            hurricaneJSON.put(HURRICANE_WIND_SPEED, hurricane.getWindSpeed());
+            hurricaneJSON.put(HURRICANE_AFFECTED_AREAS, hurricane.getAffectedAreas());
+            hurricaneJSON.put(HURRICANE_EXPECTED_CONDITIONS, hurricane.getConditions());
+            hurricaneJSON.put(HURRICANE_SIZE, hurricane.getSize());
+            hurricaneJSON.put(HURRICANE_IS_ACTIVE, hurricane.getActive());
             hurricanesJSON.add(hurricaneJSON);
         }
         writeFile(HURRICANE_FILE_NAME, hurricanesJSON);
