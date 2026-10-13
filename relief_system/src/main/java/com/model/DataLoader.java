@@ -114,8 +114,9 @@ public class DataLoader extends DataConstants {
             for(int i = 0; i < objectsJSON.size(); i++){
                 JSONObject objectJSON = (JSONObject)objectsJSON.get(i);
                 UUID id = UUID.fromString((String)objectJSON.get(REQUEST_ID));
-                int priority = Integer.parseInt(objectJSON.get(REQUEST_PRIORITY).toString());
+                //int priority = Integer.parseInt(objectJSON.get(REQUEST_PRIORITY).toString());
                 RequestStatus status = RequestStatus.valueOf((String)objectJSON.get(REQUEST_STATUS));
+                int reportedUrgency = Integer.parseInt(objectJSON.get(REQUEST_REPORTED_URGENCY).toString());
 
                 UUID locationId = UUID.fromString((String)objectJSON.get(REQUEST_LOCATION));
                 Location location = (locationId == null ? null : LocationList.getInstance().getLocationById(locationId));
@@ -140,7 +141,7 @@ public class DataLoader extends DataConstants {
                 User responder = UserList.getInstance().getUserById(responderId);
         
 
-                requests.add(new Request(id, priority, status, location,comments, requester, responder, types));
+                requests.add(new Request(id, status, location, reportedUrgency, comments, requester, responder, types));
 
             }
 

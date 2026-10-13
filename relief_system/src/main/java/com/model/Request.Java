@@ -6,24 +6,34 @@ public class Request {
     private int requestPriority;
     private RequestStatus status;
     private Location location;
+    private int reportedUrgency;
     private ArrayList<String> comments;
     private ArrayList<RequestType> requestTypes;
     private User requester;
     private User responder;
     private UUID id;
 
-    public Request(UUID id, int priority, RequestStatus status, Location location, 
+    public Request(UUID id, RequestStatus status, Location location, int reportedUrgency,
         ArrayList<String> comments, User requester, User responder, ArrayList<RequestType> requestTypes){
-        this.requestPriority = priority;
+        //this.requestPriority = priority;
         this.status = status;
         this.location = location;
+        this.reportedUrgency = reportedUrgency;
         this.comments = comments;
         this.requester = requester;
         this.responder = responder;
+        this.requestTypes = requestTypes;
         this.id = (id == null ? UUID.randomUUID() : id);
     }
         public int calcPriority(){
-            return 0;
+            double averageOfTypes = 0;
+            int count = 0;
+            for(RequestType type : requestTypes){
+                averageOfTypes += type.urgency;
+                count++;
+            }
+            requestPriority = (int)Math.round(((averageOfTypes/count) + reportedUrgency)/2);
+            return requestPriority;
         }
 
         public void sendAlerts(){
