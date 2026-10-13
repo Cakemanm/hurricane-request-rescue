@@ -22,13 +22,7 @@ public static ShelterList getInstance() {
 
 public void addShelter(String name, boolean availability, Location location, ArrayList<Resource> resources, 
     ArrayList<ShelterType> type, int occupancy, int capacity, UUID id) {
-    Shelter shelter = new Shelter(name, availability, location, resources, type, occupancy, capacity, id);
-    shelters.add(shelter);
-}
-
-public void addShelter(String name, boolean availability, Location location, ArrayList<Resource> resources, 
-    ArrayList<ShelterType> type, int occupancy, int capacity) {
-    Shelter shelter = new Shelter(name, availability, location, resources, type, occupancy, capacity, UUID.randomUUID());
+    Shelter shelter = new Shelter(name, availability, location, resources, type, occupancy, capacity, (id == null ? UUID.randomUUID() : id));
     shelters.add(shelter);
 }
 

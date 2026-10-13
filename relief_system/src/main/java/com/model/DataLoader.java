@@ -29,7 +29,6 @@ public class DataLoader extends DataConstants {
             String phoneNumber = (String)personJSON.get(USER_PHONE_NUMBER);
             String address = (String)personJSON.get(USER_ADDRESS);
             String password = (String)personJSON.get(USER_PASSWORD);
-            boolean hasPet = (boolean)personJSON.get(USER_HAS_PET);
 
             UUID locationId = UUID.fromString((String)personJSON.get(USER_LOCATION));
             Location location = (locationId == null ? null : LocationList.getInstance().getLocationById(locationId));

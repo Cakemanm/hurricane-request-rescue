@@ -2,6 +2,7 @@ package com.model;
 
 import java.util.ArrayList;
 import java.util.UUID;
+import java.util.Optional;
 
 public class UserList {
     private static UserList USER_LIST;
@@ -44,11 +45,7 @@ public class UserList {
 
     public void addUser(UUID id, String username, String firstName, String lastName, Location location, 
         String phoneNumber, String address, String password, Shelter shelter, ArrayList<String> familyMembers){
-            users.add(new User(id,username, firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers));
-    }
-
-    public void addUser(String username, String firstName, String lastName, Location location, 
-        String phoneNumber, String address, String password, Shelter shelter, ArrayList<String> familyMembers){
-            users.add(new User(UUID.randomUUID(),username, firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers));
+            UUID idFinal = (id == null ? UUID.randomUUID() : id);
+            users.add(new User(idFinal,username, firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers));
     }
 }

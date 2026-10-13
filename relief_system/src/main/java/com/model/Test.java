@@ -42,5 +42,7 @@ public class Test {
         System.out.println(userList.getUser("hwells").getLocation().getCity());
         Location loc = shelterList.getShelter("Saint Jude's Church").getLocation();
         System.out.println(loc.getState());
+
+        reliefFacade.searchRequests("broken");
     }
 }
