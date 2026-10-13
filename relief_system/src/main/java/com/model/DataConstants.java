@@ -30,8 +30,10 @@ public class DataConstants {
 
     //Request constants
     protected static final String REQUEST_FILE_NAME = "json\\Requests.json";
+    protected static final String REQUEST_PRIORITY = "requestPriority";
     protected static final String REQUEST_STATUS = "status";
     protected static final String REQUEST_LOCATION = "location";
+    protected static final String REQUEST_REPORTED_URGENCY = "reportedUrgency";
     protected static final String REQUEST_COMMENTS = "comments";
     protected static final String REQUEST_REQUEST_TYPES = "requestTypes";
     protected static final String REQUEST_REQUESTER = "requester";
@@ -47,6 +49,7 @@ public class DataConstants {
 
     //Hurricane constants
     protected static final String HURRICANE_FILE_NAME = "json\\Hurricane.json";
+<<<<<<< HEAD
     protected static final String HURRICANE_NAME = "name";
     protected static final String HURRICANE_CATEGORY = "category";
     protected static final String HURRICANE_WINDSPEED = "windSpeed";
@@ -54,4 +57,15 @@ public class DataConstants {
     protected static final String HURRICANE_CONDITIONS = "expectedConditions";
     protected static final String HURRICANE_SIZE = "size";
     protected static final String HURRICANE_ACTIVE = "isActive";
+=======
+    protected static final String HURRICANE_ID = "id";
+    protected static final String HURRICANE_NAME = "name";
+    protected static final String HURRICANE_CATEGORY = "category";
+    protected static final String HURRICANE_WIND_SPEED = "windSpeed";
+    protected static final String HURRICANE_AFFECTED_AREAS = "affectedAreas";
+    protected static final String HURRICANE_EXPECTED_CONDITIONS = "expectedConditions";
+    protected static final String HURRICANE_SIZE = "size";
+    protected static final String HURRICANE_IS_ACTIVE = "isActive";
+
+>>>>>>> main
 }

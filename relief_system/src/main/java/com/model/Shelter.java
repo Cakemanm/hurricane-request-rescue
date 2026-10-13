@@ -6,7 +6,7 @@ public class Shelter {
 
     private String name;
     private boolean availability = true;
-    private static ArrayList<Resource> resources;
+    private ArrayList<Resource> resources;
     private Location location;
     private ShelterType shelterType;
     private int occupancy;
@@ -47,6 +47,10 @@ public class Shelter {
         return this.id;
     }
 
+    public ArrayList<Resource> getResources(){
+        return resources;
+    }
+
     public void updateAvailability(){
         if(availability)
             this.availability = false;
@@ -56,7 +60,7 @@ public class Shelter {
 
     public void listResource(){
         for( Resource resource : resources)
-            System.out.println(resources);
+            System.out.println(resource);
     }
 
     public void updateSupplyLevel(){
