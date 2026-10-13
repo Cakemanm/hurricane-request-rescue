@@ -64,6 +64,10 @@ public class User {
         return this.lastName;
     }
 
+    public String getFullName(){
+        return this.firstName + " " + this.lastName;
+    }
+
     public Location getLocation(){
         return this.location;
     }

@@ -6,13 +6,13 @@ public class Location {
     private UUID id;
     private String state;
     private String city;
-    private int zipCode;
+    private int zipcode;
 
     public Location(UUID id, String state, String city, int zipCode) {
         this.id = id;
         this.state = state;
         this.city = city;
-        this.zipCode = zipCode;
+        this.zipcode = zipCode;
     }
 
     public UUID getId() {
@@ -40,11 +40,15 @@ public class Location {
     }
 
     public int getZipCode() {
-        return zipCode;
+        return zipcode;
     }
 
     public void setZipCode(int zipCode) {
-        this.zipCode = zipCode;
+        this.zipcode = zipCode;
+    }
+
+    public String toString(){
+        return city + ", " + state + ", " + zipcode;
     }
     
 }
