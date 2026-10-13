@@ -1,24 +1,33 @@
 package com.model;
+import java.util.ArrayList;
+import java.util.UUID;
 
 public class Hurricane {
     
+    private UUID id;
     private String name;
     private int category;
     private int windSpeed;
-    private Location location;
+    private ArrayList<Integer> affectedAreas;
     private String expectedConditions;
     private double size;
     private boolean isActive;
+    
 
-    public Hurricane(String name, int category, int windSpeed, Location location,
+    public Hurricane(UUID id, String name, int category, int windSpeed, ArrayList<Integer> affectedAreas,
         String conditions, double size, boolean active) {
+            this.id = id;
             this.category = category;
             this.windSpeed = windSpeed;
-            this.location = location;
+            this.affectedAreas = affectedAreas;
             this.expectedConditions = conditions;
             this.name = name;
             this.size = size;
             this.isActive = active;
+    }
+
+    public UUID getId(){
+        return this.id;
     }
 
     public String getName() {
@@ -33,11 +42,11 @@ public class Hurricane {
         return this.windSpeed;
     }
 
-    public Location getLocation() {
-        return this.location;
+    public ArrayList<Integer> getAffectedAreas() {
+        return this.affectedAreas;
     }
 
-    public String getCoditions() {
+    public String getConditions() {
         return this.expectedConditions;
     }
 
