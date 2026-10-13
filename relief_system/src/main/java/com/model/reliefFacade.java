@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 
-import org.junit.runner.Request;
-
 
 public class ReliefFacade {
     private Hurricane hurricane;
