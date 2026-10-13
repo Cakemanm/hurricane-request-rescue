@@ -85,17 +85,17 @@ public class DataWriter extends DataConstants {
             JSONObject shelterJSON = new JSONObject();
             shelterJSON.put(SHELTER_ID, shelter.getId());
             shelterJSON.put(SHELTER_NAME, shelter.getName());
-            shelterJSON.put(SHELTER_AVAILABILITY, shelter.getAvailability());
+            shelterJSON.put(SHELTER_AVAILABILITY, shelter.getAvailability(shelter.getOccupancy(), shelter.getCapacity()));
             shelterJSON.put(SHELTER_LOCATION, shelter.getLocation());
-            shelterJSON.put(SHELTER_SHELTER_TYPE, shelter.getShelterType());
+            shelterJSON.put(SHELTER_SHELTERTYPE, shelter.getShelterType());
             shelterJSON.put(SHELTER_OCCUPANCY, shelter.getOccupancy());
             shelterJSON.put(SHELTER_CAPACITY, shelter.getCapacity());
 
-            JSONArray resourceJSON = new JSONArray();
+            JSONArray resourcesJSON = new JSONArray();
             for (Resource resource : shelter.getResources()) {
                 JSONObject resourceJSON = new JSONObject();
-                resourceJSON.put(SHELTER_RESOURCE_TYPE, resource.getResourceType().toString());
-                resourceJSON.put(SHELTER_RESOURCE_QUANTITY, resource.getQuantity());
+                resourceJSON.put(SHELTER_RESOURCETYPE, resource.getResourceType().toString());
+                resourceJSON.put(SHELTER_RESOURCEQUANTITY, resource.getQuantity());
                 resourceJSON.add(resourceJSON);
             }
             shelterJSON.put(SHELTER_RESOURCES, resourceJSON);
