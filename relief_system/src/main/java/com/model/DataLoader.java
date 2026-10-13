@@ -54,7 +54,7 @@ public class DataLoader extends DataConstants {
                 }
             }
             
-            users.add(new User(username, firstName, lastName, location, phoneNumber, address, password, familyMembers));
+            users.add(new User(userId, username, firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers));
 
         }
 
@@ -74,7 +74,6 @@ public class DataLoader extends DataConstants {
 
                 UUID id = UUID.fromString((String)placeJSON.get(SHELTER_ID));
                 String name = (String)placeJSON.get(SHELTER_NAME);
-                System.out.println(name);
                 Boolean availability = (Boolean)placeJSON.get(SHELTER_AVAILABILITY);
                 int occupancy = Integer.parseInt(placeJSON.get(SHELTER_OCCUPANCY).toString());
                 int capacity = Integer.parseInt(placeJSON.get(SHELTER_CAPACITY).toString());
@@ -107,6 +106,51 @@ public class DataLoader extends DataConstants {
         return shelters;
     }
 
+    public static ArrayList<Request> requests = new ArrayList();
+    public static ArrayList<Request> getRequests(){
+        try{
+            FileReader reader = new FileReader(REQUEST_FILE_NAME);
+            JSONArray objectsJSON = (JSONArray) new JSONParser().parse(reader);
+            for(int i = 0; i < objectsJSON.size(); i++){
+                JSONObject objectJSON = (JSONObject)objectsJSON.get(i);
+                UUID id = UUID.fromString((String)objectJSON.get(REQUEST_ID));
+                //int priority = Integer.parseInt(objectJSON.get(REQUEST_PRIORITY).toString());
+                RequestStatus status = RequestStatus.valueOf((String)objectJSON.get(REQUEST_STATUS));
+                int reportedUrgency = Integer.parseInt(objectJSON.get(REQUEST_REPORTED_URGENCY).toString());
+
+                UUID locationId = UUID.fromString((String)objectJSON.get(REQUEST_LOCATION));
+                Location location = (locationId == null ? null : LocationList.getInstance().getLocationById(locationId));
+
+                JSONArray commentsJSON = (JSONArray)objectJSON.get(REQUEST_COMMENTS);
+                ArrayList<String> comments = new ArrayList<>();
+                if(commentsJSON != null){
+                    for(Object comment : commentsJSON){
+                        comments.add((String) comment);
+                    }
+                }
+
+                JSONArray typesJSON = (JSONArray)objectJSON.get(REQUEST_REQUEST_TYPES);
+                ArrayList<RequestType> types = new ArrayList<>();
+                for(Object type : typesJSON)
+                    types.add(RequestType.valueOf((String)type));
+
+                UUID requesterId = UUID.fromString((String)objectJSON.get(REQUEST_REQUESTER));
+                User requester = UserList.getInstance().getUserById(requesterId);
+
+                UUID responderId = UUID.fromString((String)objectJSON.get(REQUEST_REQUESTER));
+                User responder = UserList.getInstance().getUserById(responderId);
+        
+
+                requests.add(new Request(id, status, location, reportedUrgency, comments, requester, responder, types));
+
+            }
+
+        }   catch (Exception e){
+            e.printStackTrace();
+        }
+        return requests;
+    }
+
 
     public static ArrayList<Location> locations = new ArrayList();
     public static ArrayList<Location> getLocations(){
@@ -127,6 +171,36 @@ public class DataLoader extends DataConstants {
         e.printStackTrace();
         }
         return locations;
+
+    }
+    
+    public static ArrayList<Hurricane> hurricanes = new ArrayList();
+    public static ArrayList<Hurricane> getHurricanes(){
+        try{
+            FileReader reader = new FileReader(HURRICANE_FILE_NAME);
+            JSONArray stormArrayJSON = (JSONArray) new JSONParser().parse(reader);
+            JSONObject stormJSON = (JSONObject)stormArrayJSON.get(0);
+
+            UUID id = UUID.fromString((String)stormJSON.get(HURRICANE_ID));
+            String name = (String)stormJSON.get(HURRICANE_NAME);
+            int category = Integer.parseInt(stormJSON.get(HURRICANE_CATEGORY).toString());
+            int windSpeed = Integer.parseInt(stormJSON.get(HURRICANE_WIND_SPEED).toString());
+
+            JSONArray areasJSON = (JSONArray)stormJSON.get(HURRICANE_AFFECTED_AREAS);
+            ArrayList<Integer> areas = new ArrayList<>();
+            for(Object zipcode : areasJSON)
+                areas.add(Integer.parseInt(zipcode.toString()));
+
+            String conditions = (String)stormJSON.get(HURRICANE_EXPECTED_CONDITIONS);
+            double size = Double.parseDouble(stormJSON.get(HURRICANE_SIZE).toString());
+            boolean isActive = (boolean)stormJSON.get(HURRICANE_IS_ACTIVE);
+
+            hurricanes.add(new Hurricane(id, name, category, windSpeed, areas, conditions, size, isActive));
+
+        }   catch (Exception e){
+        e.printStackTrace();
+        }
+        return hurricanes;
 
     }
 

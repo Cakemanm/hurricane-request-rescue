@@ -34,6 +34,14 @@ public class UserList {
         return null;
     }
 
+    public User getUserById(UUID id){
+        for(User user : users){
+            if(user.getID().equals(id))
+                return user;
+        }
+        return null;
+    }
+
     public void addUser(UUID id, String username, String firstName, String lastName, Location location, 
         String phoneNumber, String address, String password, Shelter shelter, ArrayList<String> familyMembers){
             users.add(new User(id,username, firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers));
