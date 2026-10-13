@@ -10,7 +10,6 @@
         "password" : "topS$cr$t",
         "shelter" : "e522496a-9539-4c1e-b8a5-992aa48dde8c",
         "skills" : ["SHELTER_STAFF","LANGUAGE_TRANSLATOR"],
-        "hasPet" : false,
         "familyMembers" : ["Joshua Wells"]
 
     },
@@ -26,7 +25,6 @@
         "password" : "892EijL0Ws",
         "shelter" : null,
         "skills" : ["FIRST_RESPONDER", "HEAVY_LIFTER"],
-        "hasPet" : false,
         "familyMembers": null
     },
 
@@ -41,7 +39,6 @@
         "password" : "brutus51",
         "shelter" : "68b7087c-d6ee-4c2b-8706-7a90ac62e5f5",
         "skills" : ["CAN_COOK"],
-        "hasPet" : true,
         "familyMembers" : ["Alex Kane", "Rachel Kane", "Gretchen Kane"]
     }
 ]

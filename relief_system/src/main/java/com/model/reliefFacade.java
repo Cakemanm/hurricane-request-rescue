@@ -1,6 +1,7 @@
 package com.model;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class ReliefFacade{
     private Hurricane hurricane;
@@ -52,7 +53,7 @@ public class ReliefFacade{
         String lastName, Location location, String phoneNumber,
     String address, String password, Shelter shelter, ArrayList<String> familyMembers){
             UserList userList = UserList.getInstance();
-            userList.addUser(username,firstName, lastName, location, phoneNumber, address, password, shelter, null);
+            userList.addUser(null,username,firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers);
             login(username, password);
        
     }
@@ -64,5 +65,14 @@ public class ReliefFacade{
 
     public User getCurrentUser(){
         return currentUser;
+    }
+
+    public ArrayList<Request> searchRequests(String key){
+        System.out.println("Search results for: " + key);
+        RequestFeed feed = RequestFeed.getInstance();
+        ArrayList<Request> requests = feed.searchRequests(key);
+        for(Request request: requests)
+            System.out.println(request.toString() + "\n");
+        return requests;
     }
 }
