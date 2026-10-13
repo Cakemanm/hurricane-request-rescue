@@ -110,7 +110,7 @@ public class DataWriter extends DataConstants {
         for (Request request : requests) {
             JSONObject requestJSON = new JSONObject();
             requestJSON.put(REQUEST_ID, request.getId());
-            requestJSON.put(REQUEST_PRIORITY, request.getRequestPrioity());
+            requestJSON.put(REQUEST_PRIORITY, request.getRequestPriority());
             requestJSON.put(REQUEST_STATUS, request.getStatus());
             requestJSON.put(REQUEST_LOCATION, request.getLocation());
             requestJSON.put(REQUEST_REQUESTER, request.getRequester());
@@ -141,7 +141,7 @@ public class DataWriter extends DataConstants {
             hurricanesJSON.put(HURRICANE_CATEGORY, hurricane.getCategory());
             hurricanesJSON.put(HURRICANE_WINDSPEED, hurricane.getWindSpeed());
             hurricanesJSON.put(HURRICANE_LOCATION, hurricane.getLocation());
-            hurricanesJSON.put(HURRICANE_CONDITIONS, hurricane.getCoditions());
+            hurricanesJSON.put(HURRICANE_CONDITIONS, hurricane.getConditions());
             hurricanesJSON.put(HURRICANE_SIZE, hurricane.getSize());
             hurricanesJSON.put(HURRICANE_ACTIVE, hurricane.getActive());
             hurricanesJSON.add(hurricaneJSON);
