@@ -6,6 +6,8 @@
     "configurations": [
         {
             "type": "java",
+<<<<<<< HEAD
+=======
             "name": "UUIDGenerator",
             "request": "launch",
             "mainClass": "com.relief/json.UUIDGenerator",
@@ -13,6 +15,7 @@
         },
         {
             "type": "java",
+>>>>>>> 1bf3563e1981bf10b13e97167309016a40969c49
             "name": "ReliefUI",
             "request": "launch",
             "mainClass": "com.relief/com.model.ReliefUI",

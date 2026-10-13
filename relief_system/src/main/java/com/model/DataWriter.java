@@ -64,7 +64,7 @@ public class DataWriter extends DataConstants {
         hurricaneJSON.put(HURRICANE_CATEGORY, hurricane.getCategory());
         hurricaneJSON.put(HURRICANE_WINDSPEED, hurricane.getWindSpeed());
         hurricaneJSON.put(HURRICANE_LOCATION, hurricane.getLocation());
-        hurricaneJSON.put(HURRICANE_CONDITIONS, hurricane.getCoditions());
+        hurricaneJSON.put(HURRICANE_CONDITIONS, hurricane.getConditions());
         hurricaneJSON.put(HURRICANE_SIZE, hurricane.getSize());
         hurricaneJSON.put(HURRICANE_ACTIVE, hurricane.getActive());
     }
