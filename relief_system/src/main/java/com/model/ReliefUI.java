@@ -27,7 +27,12 @@ public class ReliefUI {
 
     public void scenario2() {
         System.out.println();
-        if(!reliefFacade.login("kyled","892EijL0Ws")) {
+        Scanner key = new Scanner(System.in);
+        System.out.println("Please enter a username: ");
+        String username = key.nextLine();
+        System.out.println("Please enter your password: ");
+        String password = key.nextLine();
+        if(!reliefFacade.login(username, password)) {
             System.out.println("Sorry, we couldn't log you in.");
             return;
         }

@@ -8,7 +8,7 @@ public class Shelter {
     private boolean availability = true;
     private ArrayList<Resource> resources;
     private Location location;
-    private ShelterType shelterType;
+    private ArrayList<ShelterType> shelterTypes;
     private int occupancy;
     private int capacity;
     private UUID id;
@@ -17,7 +17,7 @@ public class Shelter {
         this.name = name;
         this.availability = availability;
         this.location = location;
-        this.shelterType = shelterType;
+        this.shelterTypes = shelterTypes;
         this.occupancy = occupancy;
         this.capacity = capacity;
         this.id = id;
@@ -31,8 +31,8 @@ public class Shelter {
         return this.location;
     }
 
-    public ShelterType getShelterType() {
-        return this.shelterType;
+    public ArrayList<ShelterType> getShelterType() {
+        return this.shelterTypes;
     }
 
     public int getOccupancy() {
@@ -63,11 +63,7 @@ public class Shelter {
             System.out.println(resource);
     }
 
-    public void updateSupplyLevel(){
-
-    }
-
     public void addResource(Resource resource){
-
+        resources.add(resource);
     }
 }
