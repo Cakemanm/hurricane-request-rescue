@@ -94,8 +94,8 @@ public class DataWriter extends DataConstants {
             JSONArray resourcesJSON = new JSONArray();
             for (Resource resource : shelter.getResources()) {
                 JSONObject resourceJSON = new JSONObject();
-                resourceJSON.put(SHELTER_RESOURCETYPE, resource.getResourceType().toString());
-                resourceJSON.put(SHELTER_RESOURCEQUANTITY, resource.getQuantity());
+                resourceJSON.put(SHELTER_RESOURCE_TYPE, resource.getResourceType().toString());
+                resourceJSON.put(SHELTER_RESOURCE_QUANTITY, resource.getQuantity());
                 resourceJSON.add(resourceJSON);
             }
             shelterJSON.put(SHELTER_RESOURCES, resourceJSON);
