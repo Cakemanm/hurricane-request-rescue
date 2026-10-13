@@ -5,7 +5,7 @@ import java.util.UUID;
 public class Shelter {
 
     private String name;
-    private boolean availability = true;
+    private boolean availability;
     private ArrayList<Resource> resources;
     private Location location;
     private ShelterType shelterType;
@@ -25,6 +25,11 @@ public class Shelter {
 
     public String getName() {
         return this.name;
+    }
+
+    public boolean getAvailability(int occupancy, int capacity) {
+        if (capacity >= occupancy) return false;
+        return true;
     }
 
     public Location getLocation() {

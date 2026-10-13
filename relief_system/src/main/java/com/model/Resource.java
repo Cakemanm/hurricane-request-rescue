@@ -10,6 +10,14 @@ public class Resource {
         this.quantity = quantity;
     }
 
+    public ResourceType getResourceType() {
+        return this.resourcetype;
+    }
+
+    public int getQuantity() {
+        return this.quantity;
+    }
+
     public void updateQuantity(int amount){
         this.quantity = amount;
     }

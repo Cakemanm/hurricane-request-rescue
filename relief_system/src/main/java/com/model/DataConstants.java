@@ -24,7 +24,7 @@ public class DataConstants {
     protected static final String SHELTER_AVAILABILITY = "availability";
     protected static final String SHELTER_RESOURCES = "resources";
     protected static final String SHELTER_LOCATION = "location";
-    protected static final String SHELTER_SHELTER_TYPES = "shelterType";
+    protected static final String SHELTER_SHELTER_TYPE = "shelterType";
     protected static final String SHELTER_OCCUPANCY = "occupancy";
     protected static final String SHELTER_CAPACITY = "capacity";
 
@@ -33,6 +33,7 @@ public class DataConstants {
     protected static final String REQUEST_PRIORITY = "requestPriority";
     protected static final String REQUEST_STATUS = "status";
     protected static final String REQUEST_LOCATION = "location";
+    protected static final String REQUEST_ADDRESS = "address";
     protected static final String REQUEST_REPORTED_URGENCY = "reportedUrgency";
     protected static final String REQUEST_COMMENTS = "comments";
     protected static final String REQUEST_REQUEST_TYPES = "requestTypes";

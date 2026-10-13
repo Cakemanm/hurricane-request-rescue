@@ -6,6 +6,7 @@ public class Request {
     private int requestPriority;
     private RequestStatus status;
     private Location location;
+    private String address;
     private int reportedUrgency;
     private ArrayList<String> comments;
     private ArrayList<RequestType> requestTypes;
@@ -13,7 +14,7 @@ public class Request {
     private User responder;
     private UUID id;
 
-    public Request(UUID id, RequestStatus status, Location location, int reportedUrgency,
+    public Request(UUID id, RequestStatus status, Location location, String address, int reportedUrgency,
         ArrayList<String> comments, User requester, User responder, ArrayList<RequestType> requestTypes){
         //this.requestPriority = priority;
         this.status = status;
@@ -24,6 +25,7 @@ public class Request {
         this.responder = responder;
         this.requestTypes = requestTypes;
         this.id = (id == null ? UUID.randomUUID() : id);
+        this.address = (address == null ? requester.getAddress() : address);
     }
         public int calcPriority(){
             double averageOfTypes = 0;
@@ -93,13 +95,16 @@ public class Request {
         }
 
         public String toString(){
-            return "Request Type(s): " + this.requestTypes +
-                   "\nLocation: " + this.location +
-                   "\nUrgency: " + this.reportedUrgency + 
-                   "\nStatus: " + this.status + 
-                   "\nRequester: " + this.requester +
-                   "\nResponder: " + this.responder +
-                   "\nComments: " + this.comments;
+            String returnString = "";
+            returnString += "Request for help with: ";
+            for(RequestType type: requestTypes)
+                returnString += type.label + (requestTypes.indexOf(type) < requestTypes.size()-1 ? ", " : "");
+            returnString += "\nPriority Level: " + requestPriority + " \nRequested by: " + requester.getFullName() + " at " + address + " " + location.toString() + "\n";
+            for(String comment : comments)
+                returnString += comment + " ";
+            returnString += "\nRequest Status " + status + (responder == null ? "Currently Unfulfilled" : " | Responder: "+ responder.getFullName());
+            return returnString;
         }
+
         
 }
