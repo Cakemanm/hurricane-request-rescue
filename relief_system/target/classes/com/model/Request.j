@@ -92,5 +92,14 @@ public class Request {
             this.id = id;
         }
 
+        public String toString(){
+            return "Request Type(s): " + this.requestTypes +
+                   "\nLocation: " + this.location +
+                   "\nUrgency: " + this.reportedUrgency + 
+                   "\nStatus: " + this.status + 
+                   "\nRequester: " + this.requester +
+                   "\nResponder: " + this.responder +
+                   "\nComments: " + this.comments;
+        }
         
 }

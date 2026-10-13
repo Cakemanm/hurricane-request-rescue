@@ -49,15 +49,6 @@ public class DataConstants {
 
     //Hurricane constants
     protected static final String HURRICANE_FILE_NAME = "json\\Hurricane.json";
-<<<<<<< HEAD
-    protected static final String HURRICANE_NAME = "name";
-    protected static final String HURRICANE_CATEGORY = "category";
-    protected static final String HURRICANE_WINDSPEED = "windSpeed";
-    protected static final String HURRICANE_LOCATION = "location";
-    protected static final String HURRICANE_CONDITIONS = "expectedConditions";
-    protected static final String HURRICANE_SIZE = "size";
-    protected static final String HURRICANE_ACTIVE = "isActive";
-=======
     protected static final String HURRICANE_ID = "id";
     protected static final String HURRICANE_NAME = "name";
     protected static final String HURRICANE_CATEGORY = "category";
@@ -67,5 +58,4 @@ public class DataConstants {
     protected static final String HURRICANE_SIZE = "size";
     protected static final String HURRICANE_IS_ACTIVE = "isActive";
 
->>>>>>> main
 }
