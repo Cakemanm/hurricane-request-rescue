@@ -11,8 +11,7 @@ public class Hurricane {
     private ArrayList<Integer> affectedAreas;
     private String expectedConditions;
     private double size;
-    private boolean isActive;
-    
+    private boolean isActive;    
 
     public Hurricane(UUID id, String name, int category, int windSpeed, ArrayList<Integer> affectedAreas,
         String conditions, double size, boolean active) {
