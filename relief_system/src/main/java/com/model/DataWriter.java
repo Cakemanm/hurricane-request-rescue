@@ -87,7 +87,7 @@ public class DataWriter extends DataConstants {
             shelterJSON.put(SHELTER_NAME, shelter.getName());
             shelterJSON.put(SHELTER_AVAILABILITY, shelter.getAvailability(shelter.getOccupancy(), shelter.getCapacity()));
             shelterJSON.put(SHELTER_LOCATION, shelter.getLocation());
-            shelterJSON.put(SHELTER_SHELTERTYPE, shelter.getShelterType());
+            shelterJSON.put(SHELTER_SHELTER_TYPE, shelter.getShelterType());
             shelterJSON.put(SHELTER_OCCUPANCY, shelter.getOccupancy());
             shelterJSON.put(SHELTER_CAPACITY, shelter.getCapacity());
 
@@ -120,7 +120,7 @@ public class DataWriter extends DataConstants {
             for (String comment : request.getComments()) {
                 commentsJSON.add(comment);
             }
-            requestJSON.put(REQUEST_COMMENT, commentsJSON);
+            requestJSON.put(REQUEST_COMMENTS, commentsJSON);
 
             JSONArray typesJSON = new JSONArray();
             for (RequestType type : request.getRequestTypes()) {
@@ -139,11 +139,11 @@ public class DataWriter extends DataConstants {
             JSONObject hurricaneJSON = new JSONObject();
             hurricanesJSON.put(HURRICANE_NAME, hurricane.getName());
             hurricanesJSON.put(HURRICANE_CATEGORY, hurricane.getCategory());
-            hurricanesJSON.put(HURRICANE_WINDSPEED, hurricane.getWindSpeed());
-            hurricanesJSON.put(HURRICANE_LOCATION, hurricane.getLocation());
-            hurricanesJSON.put(HURRICANE_CONDITIONS, hurricane.getConditions());
+            hurricanesJSON.put(HURRICANE_WIND_SPEED, hurricane.getWindSpeed());
+            hurricanesJSON.put(HURRICANE_AFFECTED_AREAS, hurricane.getAffectedAreas());
+            hurricanesJSON.put(HURRICANE_EXPECTED_CONDITIONS, hurricane.getConditions());
             hurricanesJSON.put(HURRICANE_SIZE, hurricane.getSize());
-            hurricanesJSON.put(HURRICANE_ACTIVE, hurricane.getActive());
+            hurricanesJSON.put(HURRICANE_IS_ACTIVE, hurricane.getActive());
             hurricanesJSON.add(hurricaneJSON);
         }
         writeFile(HURRICANE_FILE_NAME, hurricanesJSON);

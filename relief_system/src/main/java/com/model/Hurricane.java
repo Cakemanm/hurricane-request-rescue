@@ -11,12 +11,10 @@ public class Hurricane {
     private ArrayList<Integer> affectedAreas;
     private String expectedConditions;
     private double size;
-    private boolean isActive;
-    private Location location;
-    
+    private boolean isActive;    
 
     public Hurricane(UUID id, String name, int category, int windSpeed, ArrayList<Integer> affectedAreas,
-        String conditions, double size, boolean active, Location location) {
+        String conditions, double size, boolean active) {
             this.id = id;
             this.category = category;
             this.windSpeed = windSpeed;
@@ -25,7 +23,6 @@ public class Hurricane {
             this.name = name;
             this.size = size;
             this.isActive = active;
-            this.location = location;
     }
 
     public UUID getId(){
@@ -50,10 +47,6 @@ public class Hurricane {
 
     public String getConditions() {
         return this.expectedConditions;
-    }
-
-    public Location getLocation() {
-        return this.location;
     }
 
     public double getSize() {
