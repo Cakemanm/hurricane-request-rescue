@@ -1,5 +1,7 @@
-package relief_system.target.classes.com.model;
+package com.model;
+
 import java.util.ArrayList;
+import java.util.UUID;
 
 public abstract class Request {
     private int requestPriority;
@@ -11,7 +13,7 @@ public abstract class Request {
     private User responder;
     private UUID id;
 
-    public Request(int priority, RequestStatus status, Location location, 
+    public Request(int priority, RequestStatus status, Location location,
         ArrayList<String> comments, User requester, User responder, RequestType requestType){
         this.requestPriority = priority;
         this.status = status;
@@ -19,15 +21,39 @@ public abstract class Request {
         this.comments = comments;
         this.requester = requester;
         this.responder = responder;
-        this.id = id;
+        this.id = UUID.randomUUID();
     }
-        public abstract int calcPriority();
+    public RequestStatus getStatus() {
+    return status;
+    }
 
-        public void sendAlerts(){
+    public void setResponder(User responder) {
+        this.responder = responder;
+    }
 
+    public abstract int calcPriority();
+
+    public void sendAlerts(){
+
+    }
+
+    public void updateStatus(RequestStatus status){
+        this.status = status;
+
+    }
+
+    public void setRequester(User requester) {
+        this.requester = requester;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public void addComment(String comment) {
+        if (comments == null) {
+            comments = new ArrayList<String>();
         }
-        
-        public void updateStatus(RequestStatus status){
-            
-        }
+        comments.add(comment);
+    }
 }

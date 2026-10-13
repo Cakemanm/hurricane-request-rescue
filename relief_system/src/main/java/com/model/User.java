@@ -1,7 +1,7 @@
 package com.model;
 
-import java.util.UUID;
 import java.util.ArrayList;
+import java.util.UUID;
 public class User {
     
     private UUID id;
@@ -82,6 +82,9 @@ public class User {
 
     public UUID getShelter(){
         return this.shelter;
+    }
+    public void setShelter(UUID shelter) {
+        this.shelter = shelter;
     }
 
     public ArrayList<Skill> getSkills(){
