@@ -35,6 +35,8 @@ public class Test {
 
         Request tempRequest = requestFeed.getRequest(UUID.fromString("88eb85df-d238-4a83-a0f5-e5aa5948d6ff"));
         System.out.println(tempRequest.getStatus().toString() + tempRequest.calcPriority());
+        System.out.println("\n \n \n" + tempRequest.toString() + "\n \n \n");
+
         System.out.println(hurricane.getConditions());
 
         System.out.println(userList.getUser("hwells").getLocation().getCity());

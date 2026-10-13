@@ -26,9 +26,9 @@ public class RequestFeed {
         return null;
     }
 
-    public void addRequest(UUID id, RequestStatus status, Location location, int reportedUrgency,
+    public void addRequest(UUID id, RequestStatus status, Location location, String address, int reportedUrgency,
         ArrayList<String> comments, User requester, User responder, ArrayList<RequestType> requestTypes){
-            requests.add(new Request(id, status, location, reportedUrgency, comments, requester, responder, requestTypes));
+            requests.add(new Request(id, status, location, address, reportedUrgency, comments, requester, responder, requestTypes));
         }
     
 }
