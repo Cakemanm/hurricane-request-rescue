@@ -52,4 +52,9 @@ public class RequestFeed {
         return results;
     }
     
+    public void printRequestFeed(){
+        for (Request request : requests){
+            System.out.println(request.toString());
+        }
+    }
 }

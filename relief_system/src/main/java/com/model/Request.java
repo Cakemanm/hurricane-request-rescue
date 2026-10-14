@@ -115,7 +115,6 @@ public class Request {
             this.id = id;
         }
 
-<<<<<<< HEAD
         public String toString(){
             String returnString = "";
             returnString += "Request for help with: ";
@@ -128,7 +127,5 @@ public class Request {
             return returnString;
         }
 
-=======
->>>>>>> main
         
 }
