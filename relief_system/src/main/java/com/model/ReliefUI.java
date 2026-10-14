@@ -20,7 +20,7 @@ public class ReliefUI {
 
         if(!reliefFacade.login("hwells", "topS$cr$t")) {
             System.out.println("Sorry, we couldn't log you in");
-        return;
+            return;
         }
         System.out.println("Hannah Wells is now logged in!");
     }

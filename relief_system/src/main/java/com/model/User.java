@@ -14,7 +14,6 @@ public class User {
     private String password;
     private Shelter shelter = null;
     private ArrayList<Skill> skills;
-    private boolean hasPet = false;
     private ArrayList<String> familyMembers;
 
     public User(String username, String firstName, String lastName, 
@@ -64,6 +63,10 @@ public class User {
         return this.lastName;
     }
 
+    public String getFullName(){
+        return this.firstName + " " + this.lastName;
+    }
+
     public Location getLocation(){
         return this.location;
     }
@@ -86,10 +89,6 @@ public class User {
 
     public ArrayList<Skill> getSkills(){
         return this.skills;
-    }
-
-    public boolean hasPet(){
-        return hasPet;
     }
 
     public ArrayList<String> getFamilyMembers(){

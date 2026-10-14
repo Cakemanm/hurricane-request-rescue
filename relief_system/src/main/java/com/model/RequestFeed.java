@@ -5,9 +5,9 @@ import java.util.UUID;
 
 public class RequestFeed {
     private static RequestFeed requestFeed;
-    private ArrayList<Request> requests;
+    private ArrayList<Request> requests = DataLoader.getRequests();
 
-    private RequestFeed() {
+    private RequestFeed(){
         requests = DataLoader.getRequests();
     }
 
@@ -27,11 +27,8 @@ public class RequestFeed {
     }
 
     public void addRequest(UUID id, RequestStatus status, Location location, int reportedUrgency,
-        ArrayList<String> comments, User requester, User responder, ArrayList<RequestType> requestTypes) {
+        ArrayList<String> comments, User requester, User responder, ArrayList<RequestType> requestTypes){
             requests.add(new Request(id, status, location, reportedUrgency, comments, requester, responder, requestTypes));
-    }
-
-    public String getRequestList() {
-        return "List of Current Requests: " + requests;
-    }
+        }
+    
 }

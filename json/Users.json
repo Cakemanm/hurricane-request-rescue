@@ -10,7 +10,6 @@
         "password" : "topS$cr$t",
         "shelter" : "e522496a-9539-4c1e-b8a5-992aa48dde8c",
         "skills" : ["SHELTER_STAFF","LANGUAGE_TRANSLATOR"],
-        "hasPet" : false,
         "familyMembers" : ["Joshua Wells"]
 
     },
@@ -26,14 +25,13 @@
         "password" : "892EijL0Ws",
         "shelter" : null,
         "skills" : ["FIRST_RESPONDER", "HEAVY_LIFTER"],
-        "hasPet" : false,
         "familyMembers": null
     },
 
     {
         "id" : "1a1b7554-1c8b-48e0-9962-5c7c6599ca3b",
         "username" : "katKane",
-        "first_name" : "Katrina",
+        "firstName" : "Katrina",
         "lastName" : "Kane",
         "location" : "baa5f8b6-2e90-4084-8376-50e9e3b6ac6f",
         "phoneNumber" : "000-835-4628",
@@ -41,7 +39,6 @@
         "password" : "brutus51",
         "shelter" : "68b7087c-d6ee-4c2b-8706-7a90ac62e5f5",
         "skills" : ["CAN_COOK"],
-        "hasPet" : true,
         "familyMembers" : ["Alex Kane", "Rachel Kane", "Gretchen Kane"]
     }
 ]

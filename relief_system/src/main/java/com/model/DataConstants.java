@@ -35,6 +35,7 @@ public class DataConstants {
     protected static final String REQUEST_PRIORITY = "requestPriority";
     protected static final String REQUEST_STATUS = "status";
     protected static final String REQUEST_LOCATION = "location";
+    protected static final String REQUEST_ADDRESS = "address";
     protected static final String REQUEST_REPORTED_URGENCY = "reportedUrgency";
     protected static final String REQUEST_COMMENTS = "comments";
     protected static final String REQUEST_REQUEST_TYPES = "requestTypes";
