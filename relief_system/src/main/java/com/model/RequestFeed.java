@@ -7,18 +7,18 @@ public class RequestFeed {
     private static RequestFeed requestFeed;
     private ArrayList<Request> requests;
 
-    private RequestFeed(){
+    private RequestFeed() {
         requests = DataLoader.getRequests();
     }
 
-    public static RequestFeed getInstance(){
+    public static RequestFeed getInstance() {
         if(requestFeed == null) {
         requestFeed = new RequestFeed();
     }
         return requestFeed;
     }
 
-    public Request getRequest(UUID id){
+    public Request getRequest(UUID id) {
         for(Request request : requests){
             if(request.getId().equals(id))
                 return request;
@@ -27,8 +27,11 @@ public class RequestFeed {
     }
 
     public void addRequest(UUID id, RequestStatus status, Location location, int reportedUrgency,
-        ArrayList<String> comments, User requester, User responder, ArrayList<RequestType> requestTypes){
+        ArrayList<String> comments, User requester, User responder, ArrayList<RequestType> requestTypes) {
             requests.add(new Request(id, status, location, reportedUrgency, comments, requester, responder, requestTypes));
-        }
-    
+    }
+
+    public String getRequestList() {
+        return "List of Current Requests: " + requests;
+    }
 }
