@@ -62,7 +62,7 @@ public class Request {
             returnString += "\nPriority Level: " + requestPriority + " \nRequested by: " + requester.getFullName() + " at " + address + " " + location.toString() + "\n";
             for(String comment : comments)
                 returnString += comment + " ";
-            returnString += "\nRequest Status " + status + (responder == null ? "Currently Unfulfilled" : " | Responder: "+ responder.getFullName());
+            returnString += "\nRequest Status " + status + (responder == null ?  " | Currently Unfulfilled" : " | Responder: "+ responder.getFullName());
             return returnString;
         }
 
