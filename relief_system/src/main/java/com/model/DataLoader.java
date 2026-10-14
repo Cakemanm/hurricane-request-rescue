@@ -80,7 +80,7 @@ public class DataLoader extends DataConstants {
                 UUID locationId = UUID.fromString((String)placeJSON.get(SHELTER_LOCATION));
                 Location location = (locationId == null ? null : LocationList.getInstance().getLocationById(locationId));
 
-                JSONArray shelterTypesJSON = (JSONArray)placeJSON.get(SHELTER_SHELTER_TYPES);
+                JSONArray shelterTypesJSON = (JSONArray)placeJSON.get(SHELTER_SHELTER_TYPE);
                 ArrayList<ShelterType> shelterTypes = new ArrayList<>();
                 for(Object type : shelterTypesJSON){
                     shelterTypes.add(ShelterType.valueOf((String)type));
@@ -137,8 +137,11 @@ public class DataLoader extends DataConstants {
                 UUID requesterId = UUID.fromString((String)objectJSON.get(REQUEST_REQUESTER));
                 User requester = UserList.getInstance().getUserById(requesterId);
 
+                User responder = null;
+                if(objectJSON.get(REQUEST_RESPONDER) != null){
                 UUID responderId = UUID.fromString((String)objectJSON.get(REQUEST_RESPONDER));
-                User responder = UserList.getInstance().getUserById(responderId);
+                responder = UserList.getInstance().getUserById(responderId);
+                }
         
 
                 requests.add(new Request(id, status, location, address, reportedUrgency, comments, requester, responder, types));
