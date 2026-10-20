@@ -61,15 +61,9 @@ public class ReliefFacade {
 
     }
 
-<<<<<<< HEAD
     public void createAccount(String username, String firstName, String lastName, 
         Location location, String phoneNumber, String address, String password,
         ArrayList<String> familyMembers){
-=======
-    public void createAccount(String username, String firstName,
-        String lastName, Location location, String phoneNumber,
-        String address, String password){
->>>>>>> 6108e671e23942fedac2a2a0daa4846bc516d992
             UserList userList = UserList.getInstance();
             userList.addUser(UUID.randomUUID(), username, firstName, lastName, location, phoneNumber, address, password, null, familyMembers);
             login(username, password);
