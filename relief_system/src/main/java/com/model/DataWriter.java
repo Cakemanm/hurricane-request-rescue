@@ -59,7 +59,6 @@ public class DataWriter extends DataConstants {
             personJSON.put(USER_ADDRESS, user.getAddress());
             personJSON.put(USER_PASSWORD, user.getPassword());
             personJSON.put(USER_SHELTER, user.getShelter().toString());
-            personJSON.put(USER_HAS_PET, user.hasPet());
 
             JSONArray skillsJSON = new JSONArray();
             for(Skill skill : user.getSkills()){

@@ -59,10 +59,10 @@ public class Request {
             returnString += "Request for help with: ";
             for(RequestType type: requestTypes)
                 returnString += type.label + (requestTypes.indexOf(type) < requestTypes.size()-1 ? ", " : "");
-            returnString += "\nPriority Level: " + requestPriority + " \nRequested by: " + requester.getFullName() + " at " + address + " " + location.toString() + "\n";
+            returnString += "\nPriority Level: " + this.calcPriority() + " \nRequested by: " + requester.getFullName() + " at " + address + " " + location.toString() + "\n";
             for(String comment : comments)
                 returnString += comment + " ";
-            returnString += "\nRequest Status " + status + (responder == null ?  " | Currently Unfulfilled" : " | Responder: "+ responder.getFullName());
+            returnString += "\nRequest Status " + status + (responder == null ? " | Currently Unfulfilled" : " | Responder: "+ responder.getFullName());
             return returnString;
         }
 

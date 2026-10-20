@@ -14,10 +14,8 @@ public class Test {
 
         reliefFacade.getUnfulfilledRequests();
         
-        /*Random stuff 
-        
         ShelterList shelterList = ShelterList.getInstance();
-        RequestFeed requestFeed = RequestFeed.getInstance();
+        //RequestFeed requestFeed = RequestFeed.getInstance();
         HurricaneHandler hurricaneHandler = HurricaneHandler.getInstance();
         Hurricane hurricane = hurricaneHandler.getHurricane("Katrina");
         UserList userList = UserList.getInstance();
@@ -43,6 +41,6 @@ public class Test {
 
         System.out.println(userList.getUser("hwells").getLocation().getCity());
         Location loc = shelterList.getShelter("Saint Jude's Church").getLocation();
-        System.out.println(loc.getState());*/
+        System.out.println(loc.getState());
     }
 }
