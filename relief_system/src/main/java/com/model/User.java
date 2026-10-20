@@ -15,23 +15,24 @@ public class User {
     private Shelter shelter = null;
     private ArrayList<Skill> skills;
     private ArrayList<String> familyMembers;
+    private boolean hasPet;
 
-    public User(String username, String firstName, String lastName, 
-        Location location, String phoneNumber, String address, String password, ArrayList<String> familyMembers){
-            this.username = username;
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.location = location;
-            this.phoneNumber = phoneNumber;
-            this.address = address;
-            this.password = password;
-            this.familyMembers = familyMembers;
-        }
+    // public User(String username, String firstName, String lastName, 
+    //     Location location, String phoneNumber, String address, String password, ArrayList<String> familyMembers){
+    //         this.username = username;
+    //         this.firstName = firstName;
+    //         this.lastName = lastName;
+    //         this.location = location;
+    //         this.phoneNumber = phoneNumber;
+    //         this.address = address;
+    //         this.password = password;
+    //         this.familyMembers = familyMembers;
+    //     }
 
     public User(UUID id, String username, String firstName, String lastName, 
         Location location, String phoneNumber, String address, String password, Shelter shelter, 
-        ArrayList<String> familyMembers){
-            this.id = id;
+        ArrayList<String> familyMembers, boolean hasPet) {
+            this.id = (id == null ? UUID.randomUUID() : id);
             this.username = username;
             this.firstName = firstName;
             this.lastName = lastName;
@@ -40,8 +41,18 @@ public class User {
             this.address = address;
             this.password = password;
             this.shelter = shelter;
-            this.familyMembers = familyMembers;
+            this.skills = (skills == null ? new ArrayList<>() : skills);
+            this.hasPet = hasPet;
+            this.familyMembers = (familyMembers == null ? new ArrayList<>() : familyMembers);
         }
+
+    public boolean hasPet() {
+        return hasPet;
+    }
+
+    public void setShelter(Shelter sheter) {
+        this.shelter = sheter;
+    }
     
     public boolean isMatch(String username, String password){
         return this.username.equals(username) && this.password.equals(password);

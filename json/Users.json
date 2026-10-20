@@ -41,4 +41,18 @@
         "skills" : ["CAN_COOK"],
         "familyMembers" : ["Alex Kane", "Rachel Kane", "Gretchen Kane"]
     }
+
+    {
+        "id" : "1a1b7554-1c8b-48e0-9962-5c7c6599ca3b",
+        "username" : "j-doe",
+        "firstName" : "Jane",
+        "lastName" : "Doe",
+        "location" : "baa5f8b6-2e90-4084-8376-50e9e3b6ac6f",
+        "phoneNumber" : "000-124-8103",
+        "address" : "1234 Low Circle.",
+        "password" : "mysterry404",
+        "shelter" : "68b7087c-d6ee-4c2b-8706-7a90ac62e5f5",
+        "skills" : ["CAN_COOK", "CAN_DRIVE", "BOAT_OPERATOR"],
+        "familyMembers" : ["Alex Kane", "Rachel Kane", "Gretchen Kane"]
+    }
 ]
