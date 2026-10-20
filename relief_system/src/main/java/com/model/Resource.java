@@ -2,16 +2,16 @@ package com.model;
 
 public class Resource {
     
-    private ResourceType resourcetype;
+    private ResourceType resourceType;
     private int quantity;
 
-    public Resource(ResourceType resourcetype, int quantity){
-        this.resourcetype = resourcetype;
+    public Resource(ResourceType resourceType, int quantity){
+        this.resourceType = resourceType;
         this.quantity = quantity;
     }
 
     public ResourceType getResourceType() {
-        return this.resourcetype;
+        return this.resourceType;
     }
 
     public int getQuantity() {
@@ -23,6 +23,6 @@ public class Resource {
     }
 
     public String toString(){
-        return "Resource: " + this.resourcetype + "\tQuantity: " + this.quantity;
+        return "Resource: " + this.resourceType + "\tQuantity: " + this.quantity;
     }
 }
