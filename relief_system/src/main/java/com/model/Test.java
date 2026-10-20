@@ -18,21 +18,30 @@ public class Test {
         //RequestFeed requestFeed = RequestFeed.getInstance();
         HurricaneHandler hurricaneHandler = HurricaneHandler.getInstance();
         Hurricane hurricane = hurricaneHandler.getHurricane("Katrina");
+
         UserList userList = UserList.getInstance();
         System.out.println(userList.getUser("kyled").getAddress());
+
         reliefFacade.login("katKane", "brutus51");
         System.out.println(reliefFacade.getCurrentUser().getUsername());
         ArrayList<String> family = reliefFacade.getCurrentUser().getFamilyMembers();
         for(String member : family)
             System.out.println(member);
+
         ArrayList<String> fm = new ArrayList<>();
         reliefFacade.createAccount("hello","hell","o",null,"82983","unknown","jeniwde",shelterList.getShelter("Caldwell Elementary School"),fm);
         System.out.println(reliefFacade.getCurrentUser().getFirstName());
+
         Shelter shelter = shelterList.getShelter("Caldwell Elementary School");
         System.out.println(shelter.getCapacity());
         ArrayList<Resource> resources = shelter.getResources();
+        //for(Resource resource : resources)
+          //  System.out.println(resource.toString());
+
         System.out.println(reliefFacade.getCurrentUser().getShelter().getName());
+
         reliefFacade.logout();
+
         Request tempRequest = requestFeed.getRequest(UUID.fromString("88eb85df-d238-4a83-a0f5-e5aa5948d6ff"));
         System.out.println(tempRequest.getStatus().toString() + tempRequest.calcPriority());
         System.out.println("\n \n \n" + tempRequest.toString() + "\n \n \n");

@@ -5,9 +5,11 @@ import java.util.UUID;
 
 public class RequestFeed {
     private static RequestFeed requestFeed;
-    private ArrayList<Request> requests = DataLoader.getRequests();
+    private ArrayList<Request> requests;
 
-    private RequestFeed(){}
+    private RequestFeed(){
+        requests = DataLoader.getRequests();
+    }
 
     public static RequestFeed getInstance(){
         if(requestFeed == null) {
@@ -16,9 +18,9 @@ public class RequestFeed {
         return requestFeed;
     }
 
-    public Request getRequest(UUID id){
+    public Request getRequest(Request request2){
         for(Request request : requests){
-            if(request.getId().equals(id))
+            if(request.getId().equals(request2))
                 return request;
         }
         return null;
@@ -37,10 +39,8 @@ public class RequestFeed {
         ArrayList<Request> results = new ArrayList<>();
         for(Request request : requests){
             for(RequestType type : request.getRequestTypes()){
-                if(type.label.toLowerCase().contains(key.toLowerCase())){
+                if(type.label.toLowerCase().contains(key.toLowerCase()))
                     results.add(request);
-                    break;
-                }
             }
             for(String comment : request.getComments()){
                 if(comment.toLowerCase().contains(key.toLowerCase()))
