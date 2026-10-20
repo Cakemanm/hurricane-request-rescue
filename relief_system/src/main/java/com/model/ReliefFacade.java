@@ -33,8 +33,9 @@ public class ReliefFacade {
 
 
     public void dispatchVolunteer(User user) {
-    ArrayList<Request> requests = RequestFeed.getInstance().getAllRequests();
-    for (Request request : requests) {
+
+        ArrayList<Request> requests = RequestFeed.getInstance().getRequests();   
+        for (Request request : requests) {
         if (request.getStatus() == RequestStatus.PENDING) {
             request.setResponder(user);
             request.updateStatus(RequestStatus.HELP_ON_THE_WAY);
@@ -43,8 +44,7 @@ public class ReliefFacade {
     }
 }
 
-    public void restockShelter(Admin admin, Shelter shelter,
-        ResourceType type, int quantity) {
+    public void restockShelter(Shelter shelter, ResourceType type, int quantity) {
     if (shelter != null) {
         shelter.restock(type, quantity);
     }
@@ -57,14 +57,6 @@ public class ReliefFacade {
     public RequestFeed browseRequests() {
         return RequestFeed.getInstance();
 
-    }
-
-    public void login(String username, String password) {
-        UserList userList = UserList.getInstance();
-        User user = userList.getUser(username, password);
-        if (user!=null){
-            currentUser = user;
-        }
     }
 
     public void createAccount(String username, String firstName,
