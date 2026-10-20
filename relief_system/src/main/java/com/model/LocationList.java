@@ -27,4 +27,27 @@ public class LocationList {
         return null;
     }
 
+    public void addLocation(Location location){
+        locations.add(location);
+    }
+
+
+    //matches a state, city, and zipcode combination to an existing location or creates a new one if there's no match
+    public Location locationUnknownID(String state, String city, int zipcode){
+        LocationList locations = LocationList.getInstance();
+        for(Location l : locations.getLocations()){
+            if(l.getState().equalsIgnoreCase(state) && l.getCity().equalsIgnoreCase(city) && l.getZipcode() == zipcode)
+                return l;
+        }
+        Location location = new Location(UUID.randomUUID(), state, city, zipcode);
+        locations.addLocation(location);
+        return location;
+    }
+
+    public ArrayList<Location> getLocations(){
+        return locations;
+    }
+
+    
+
 }

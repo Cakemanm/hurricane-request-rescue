@@ -1,10 +1,12 @@
 package com.model;
 import java.util.ArrayList;
+import java.util.UUID;
 
 
 public class ReliefFacade {
     private ArrayList<Hurricane> hurricane;
     private User currentUser;
+    private RequestFeed feed;
 
     public ReliefFacade() {
         hurricane = DataLoader.getHurricanes();
@@ -59,19 +61,11 @@ public class ReliefFacade {
 
     }
 
-    public void login(String username, String password) {
-        UserList userList = UserList.getInstance();
-        User user = userList.getUser(username, password);
-        if (user!=null){
-            currentUser = user;
-        }
-    }
-
-    public void createAccount(String username, String firstName,
-        String lastName, Location location, String phoneNumber,
-        String address, String password){
+    public void createAccount(String username, String firstName, String lastName, 
+        Location location, String phoneNumber, String address, String password,
+        ArrayList<String> familyMembers){
             UserList userList = UserList.getInstance();
-            userList.addUser(username,firstName, lastName, location, phoneNumber, address, password);
+            userList.addUser(UUID.randomUUID(), username, firstName, lastName, location, phoneNumber, address, password, null, familyMembers);
             login(username, password);
        
     }
@@ -84,14 +78,49 @@ public class ReliefFacade {
         return true;
     }
     return false;
-}
+    }
 
-public void logout() {
-    currentUser = null;
-    System.out.println("Logout successful");
-}
 
-public User getCurrentUser() {
-    return currentUser;
-}
+    public ArrayList<Request> searchRequests(String key){
+        System.out.println("\nSearch results for: " + key+"\n");
+        ArrayList<Request> requests = feed.searchRequests(key);
+        for(Request request: requests)
+            System.out.println(request.toString() + "\n");
+        return requests;
+    }
+
+    public void displayRequests(){
+        System.out.println("\n\nAll Requests:\n");
+        for(Request request : feed.getRequests())
+            System.out.println(request.toString() + "\n");
+    }
+
+    public void findRequestsByLocation(Location location){
+        System.out.println("\n\nRequests for: "+ location.toString() +"\n");
+        boolean match = false;
+        for(Request request : feed.getRequests()){
+            if(request.getLocation().getId() == location.getId()){
+                System.out.println(request.toString() + "\n");
+                match = true;
+            }
+        }
+        if(match) return;
+        System.out.println("There are no requests for your location. Try another zipcode.");
+    }
+
+    public void getUnfulfilledRequests(){
+        System.out.println("\n\nUnfulfilled Requests:\n");
+        for(Request request : feed.getRequests()){
+            if(request.getResponder() == null)
+                System.out.println(request.toString() + "\n");
+        }
+
+    public void logout() {
+        currentUser = null;
+        System.out.println("Logout successful");
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
 }

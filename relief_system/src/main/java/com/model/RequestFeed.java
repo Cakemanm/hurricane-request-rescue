@@ -18,9 +18,9 @@ public class RequestFeed {
         return requestFeed;
     }
 
-    public Request getRequest(Request request2){
+    public Request getRequest(UUID id){
         for(Request request : requests){
-            if(request.getId().equals(request2))
+            if(request.getId().equals(id))
                 return request;
         }
         return null;

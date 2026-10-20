@@ -39,16 +39,16 @@ public class Location {
         this.city = city;
     }
 
-    public int getZipCode() {
+    public int getZicode() {
         return zipcode;
     }
 
-    public void setZipCode(int zipCode) {
+    public void setZipcode(int zipCode) {
         this.zipcode = zipCode;
     }
 
     public String toString(){
-        return city + ", " + state + ", " + zipcode;
+        return city + ", " + state + " " + zipcode;
     }
     
 }
