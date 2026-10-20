@@ -1,71 +1,91 @@
 package com.model;
-
 import java.util.ArrayList;
+import java.util.UUID;
 
-public class ReliefFacade{
-    private Hurricane hurricane;
+
+public class ReliefFacade {
+    private ArrayList<Hurricane> hurricane;
     private User currentUser;
-    RequestFeed feed = RequestFeed.getInstance();
+    private RequestFeed feed;
 
     public ReliefFacade() {
-        // TODO: implement later
+        hurricane = DataLoader.getHurricanes();
+        currentUser = null;
     }
 
-    public void submitRequest(User requester, Request request,
-            Location loc, String comments) {
-        // TODO: implement later
+    public void submitRequest(User requester, Request request, Location loc, String comments) {
+        request.setRequester(requester);
+        request.setLocation(loc);
+        request.addComment(comments);
+        RequestFeed.getInstance().getRequest(request);
     }
+
 
     public Shelter signUpVictimForShelter(User user) {
-        // TODO: implement later
-        return null;
+    ArrayList<Shelter> shelters = ShelterList.getInstance().getShelters();
+    for (Shelter shelter : shelters) {
+        if (shelter.isAvailable() && shelter.getOccupancy() < shelter.getCapacity()) {
+            shelter.addOccupant();
+            user.setShelter(shelter.getId());
+            return shelter;
+        }
     }
+    return null;
+    }
+
 
     public void dispatchVolunteer(User user) {
-        // TODO: implement later
-    }
 
-    public void restockShelter(User user) {
-        // TODO: implement later
+        ArrayList<Request> requests = RequestFeed.getInstance().getRequests();   
+        for (Request request : requests) {
+        if (request.getStatus() == RequestStatus.PENDING) {
+            request.setResponder(user);
+            request.updateStatus(RequestStatus.HELP_ON_THE_WAY);
+            return;
+        }
     }
+}
 
-    public Hurricane getStormStatus() {
-        // TODO: implement later
-        return null;
+    public void restockShelter(Shelter shelter, ResourceType type, int quantity) {
+    if (shelter != null) {
+        shelter.restock(type, quantity);
     }
+}
 
-    public Hurricane getHurricane(){
+    public ArrayList<Hurricane> getStormStatus() {
         return hurricane;
     }
 
-    public boolean login(String username, String password) {
-        UserList userList = UserList.getInstance();
-        User user = userList.getUser(username, password);
-        if (user!=null){
-            currentUser = user;
-            return true;
-        }
-        else
-            return false;
+    public RequestFeed browseRequests() {
+        return RequestFeed.getInstance();
+
     }
 
+<<<<<<< HEAD
+    public void createAccount(String username, String firstName, String lastName, 
+        Location location, String phoneNumber, String address, String password,
+        ArrayList<String> familyMembers){
+=======
     public void createAccount(String username, String firstName,
         String lastName, Location location, String phoneNumber,
-    String address, String password, Shelter shelter, ArrayList<String> familyMembers){
+        String address, String password){
+>>>>>>> 6108e671e23942fedac2a2a0daa4846bc516d992
             UserList userList = UserList.getInstance();
-            userList.addUser(null,username,firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers);
+            userList.addUser(UUID.randomUUID(), username, firstName, lastName, location, phoneNumber, address, password, null, familyMembers);
             login(username, password);
        
     }
 
-    public void logout() {
-        currentUser = null;
-        System.out.println("Logout successful");
+    public boolean login(String username, String password) {
+    UserList userList = UserList.getInstance();
+    User user = userList.getUser(username, password);
+    if (user != null) {
+        currentUser = user;
+        return true;
+    }
+    return false;
     }
 
-    public User getCurrentUser(){
-        return currentUser;
-    }
 
     public ArrayList<Request> searchRequests(String key){
         System.out.println("\nSearch results for: " + key+"\n");
@@ -100,5 +120,13 @@ public class ReliefFacade{
             if(request.getResponder() == null)
                 System.out.println(request.toString() + "\n");
         }
+
+    public void logout() {
+        currentUser = null;
+        System.out.println("Logout successful");
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
     }
 }

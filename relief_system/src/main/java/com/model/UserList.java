@@ -43,8 +43,7 @@ public class UserList {
         return null;
     }
 
-    public void addUser(UUID id, String username, String firstName, String lastName, Location location, 
-        String phoneNumber, String address, String password, Shelter shelter, ArrayList<String> familyMembers){
+    public void addUser(UUID id, String username, String firstName, String lastName, Location location, String phoneNumber, String address, String password, Shelter shelter, ArrayList<String> familyMembers){
             UUID idFinal = (id == null ? UUID.randomUUID() : id);
             users.add(new User(idFinal,username, firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers));
     }

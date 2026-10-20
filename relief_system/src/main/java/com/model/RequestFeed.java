@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public class RequestFeed {
     private static RequestFeed requestFeed;
-    private ArrayList<Request> requests = DataLoader.getRequests();
+    private ArrayList<Request> requests;
 
     private RequestFeed(){
         requests = DataLoader.getRequests();
@@ -28,7 +28,28 @@ public class RequestFeed {
 
     public void addRequest(UUID id, RequestStatus status, Location location, int reportedUrgency,
         ArrayList<String> comments, User requester, User responder, ArrayList<RequestType> requestTypes){
-            requests.add(new Request(id, status, location, reportedUrgency, comments, requester, responder, requestTypes));
+            requests.add(new Request(id, status, location, address, reportedUrgency, comments, requester, responder, requestTypes));
         }
+
+    public ArrayList<Request> getRequests(){
+        return requests;
+    }
+
+    public ArrayList<Request> searchRequests(String key){
+        ArrayList<Request> results = new ArrayList<>();
+        for(Request request : requests){
+            for(RequestType type : request.getRequestTypes()){
+                if(type.label.toLowerCase().contains(key.toLowerCase()))
+                    results.add(request);
+            }
+            for(String comment : request.getComments()){
+                if(comment.toLowerCase().contains(key.toLowerCase()))
+                    results.add(request);
+            }
+        }
+        if(results.size() == 0)
+            return null;
+        return results;
+    }
     
 }

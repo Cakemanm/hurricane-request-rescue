@@ -39,7 +39,7 @@ public class Location {
         this.city = city;
     }
 
-    public int getZipcode() {
+    public int getZicode() {
         return zipcode;
     }
 
