@@ -51,5 +51,8 @@ public class Test {
         System.out.println(userList.getUser("hwells").getLocation().getCity());
         Location loc = shelterList.getShelter("Saint Jude's Church").getLocation();
         System.out.println(loc.getState());
+
+        System.out.println(shelterList.getShelter("Caldwell Elementary School").toString());
+        reliefFacade.browseShelters();
     }
 }

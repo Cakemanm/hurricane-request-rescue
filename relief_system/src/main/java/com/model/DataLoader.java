@@ -88,13 +88,13 @@ public class DataLoader extends DataConstants {
 
                 JSONArray resourcesJSON = (JSONArray)placeJSON.get(SHELTER_RESOURCES);
                 ArrayList<Resource> resources = new ArrayList<>();
-                if(resourcesJSON != null){
-                    for(Object resource : resourcesJSON)
-                        resources.add(null);
-                        //resources.add((Resource) resource);
-                        //TODO: figure out converting resource type to resource
+                for(Object resource : resourcesJSON){
+                    JSONObject resourceJSON = (JSONObject) resource;
+                    ResourceType type = ResourceType.valueOf((String)resourceJSON.get(SHELTER_RESOURCE_TYPE));
+                    int quantity = (Integer.parseInt(resourceJSON.get(SHELTER_RESOURCE_QUANTITY).toString()));
+                    resources.add(new Resource(type, quantity));
                 }
-
+    
                 shelters.add(new Shelter(name, availability, location, resources, shelterTypes, occupancy, capacity, id));
             }
 
@@ -137,8 +137,11 @@ public class DataLoader extends DataConstants {
                 UUID requesterId = UUID.fromString((String)objectJSON.get(REQUEST_REQUESTER));
                 User requester = UserList.getInstance().getUserById(requesterId);
 
-                UUID responderId = UUID.fromString((String)objectJSON.get(REQUEST_RESPONDER));
-                User responder = UserList.getInstance().getUserById(responderId);
+                User responder = null;
+                if(objectJSON.get(REQUEST_RESPONDER) != null){
+                    UUID responderId = UUID.fromString((String)objectJSON.get(REQUEST_RESPONDER));
+                    responder = UserList.getInstance().getUserById(responderId);
+                }
         
 
                 requests.add(new Request(id, status, location, address, reportedUrgency, comments, requester, responder, types));

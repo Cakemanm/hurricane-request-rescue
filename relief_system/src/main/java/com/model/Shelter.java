@@ -8,16 +8,17 @@ public class Shelter {
     private boolean availability;
     private ArrayList<Resource> resources;
     private Location location;
-    private ShelterType shelterType;
+    private ArrayList<ShelterType> shelterTypes;
     private int occupancy;
     private int capacity;
     private UUID id;
 
     public Shelter(String name, boolean availability, Location location, ArrayList<Resource> resources, ArrayList<ShelterType> shelterTypes, int occupancy, int capacity, UUID id){
         this.name = name;
+        this.resources = resources;
         this.availability = availability;
         this.location = location;
-        this.shelterType = shelterType;
+        this.shelterTypes = shelterTypes;
         this.occupancy = occupancy;
         this.capacity = capacity;
         this.id = id;
@@ -45,8 +46,8 @@ public void addOccupant() {
         return this.location;
     }
 
-    public ShelterType getShelterType() {
-        return this.shelterType;
+    public ArrayList<ShelterType> getShelterTypes() {
+        return this.shelterTypes;
     }
 
     public int getOccupancy() {
@@ -95,5 +96,17 @@ public void addOccupant() {
 
     public void addResource(Resource resource){
 
+    }
+
+    public String toString(){
+        String returnString = "";
+        returnString += this.name + "\nLocated in " + location.toString() + " with " + (this.availability ? (capacity-occupancy) + " open spots" : "no open spots");
+        returnString += "\nAvailable resources: ";
+        for(Resource resource : resources)
+            returnString += "\n" + resource.toString();
+        returnString += "\nShelter Types: ";
+        for(ShelterType type : shelterTypes)
+            returnString += type;
+        return returnString;
     }
 }

@@ -6,7 +6,7 @@ import java.util.UUID;
 public class ShelterList {
 
 private static ShelterList shelterList;
-private ArrayList<Shelter> shelters = DataLoader.getShelters();
+private ArrayList<Shelter> shelters;
 
 
 private ShelterList(){

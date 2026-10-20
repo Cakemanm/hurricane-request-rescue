@@ -22,7 +22,7 @@
             }
         ],
         "location" : "bdc1366f-ba6e-4b7d-9c73-009770b70d0b",
-        "shelterType" : ["DISABILITY_ACCESSIBLE"],
+        "shelterTypes" : ["DISABILITY_ACCESSIBLE"],
         "occupancy" : 207,
         "capacity" : 250
     },
@@ -40,7 +40,7 @@
                 "quantity" : 5
             },
             {
-                "type" : "FIRE_WOOD",
+                "type" : "FIREWOOD",
                 "quantity" : 5
             },
             {
@@ -49,7 +49,7 @@
             }
         ],
         "location" : "baa5f8b6-2e90-4084-8376-50e9e3b6ac6f",
-        "shelterType" : ["PET_FRIENDLY"],
+        "shelterTypes" : ["PET_FRIENDLY"],
         "occupancy" : 115,
         "capacity" : 115
     }

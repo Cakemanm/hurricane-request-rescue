@@ -85,7 +85,7 @@ public class DataWriter extends DataConstants {
             shelterJSON.put(SHELTER_NAME, shelter.getName());
             shelterJSON.put(SHELTER_AVAILABILITY, shelter.getAvailability(shelter.getOccupancy(), shelter.getCapacity()));
             shelterJSON.put(SHELTER_LOCATION, shelter.getLocation());
-            shelterJSON.put(SHELTER_SHELTER_TYPE, shelter.getShelterType());
+            shelterJSON.put(SHELTER_SHELTER_TYPES, shelter.getShelterTypes());
             shelterJSON.put(SHELTER_OCCUPANCY, shelter.getOccupancy());
             shelterJSON.put(SHELTER_CAPACITY, shelter.getCapacity());
 

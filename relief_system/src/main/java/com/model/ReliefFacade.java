@@ -6,7 +6,8 @@ import java.util.UUID;
 public class ReliefFacade {
     private ArrayList<Hurricane> hurricane;
     private User currentUser;
-    private RequestFeed feed;
+    private RequestFeed feed = RequestFeed.getInstance();
+    private ShelterList shelters = ShelterList.getInstance();
 
     public ReliefFacade() {
         hurricane = DataLoader.getHurricanes();
@@ -20,6 +21,12 @@ public class ReliefFacade {
         RequestFeed.getInstance().getRequest(request);
     }
 
+    public void browseShelters(){
+        System.out.println("Shelters: ");
+        for(Shelter shelter : shelters.getShelters()){
+            System.out.println(shelter.toString() + "\n");
+        }
+    }
 
     public Shelter signUpVictimForShelter(User user) {
     ArrayList<Shelter> shelters = ShelterList.getInstance().getShelters();
@@ -61,19 +68,20 @@ public class ReliefFacade {
 
     }
 
-<<<<<<< HEAD
     public void createAccount(String username, String firstName, String lastName, 
         Location location, String phoneNumber, String address, String password,
         ArrayList<String> familyMembers){
-=======
-    public void createAccount(String username, String firstName,
-        String lastName, Location location, String phoneNumber,
-        String address, String password){
->>>>>>> 6108e671e23942fedac2a2a0daa4846bc516d992
             UserList userList = UserList.getInstance();
             userList.addUser(UUID.randomUUID(), username, firstName, lastName, location, phoneNumber, address, password, null, familyMembers);
             login(username, password);
-       
+    }
+
+    public void createAccount(String username, String firstName, String lastName, 
+        Location location, String phoneNumber, String address, String password, Shelter shelter,
+        ArrayList<String> familyMembers){
+            UserList userList = UserList.getInstance();
+            userList.addUser(UUID.randomUUID(), username, firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers);
+            login(username, password);
     }
 
     public boolean login(String username, String password) {
@@ -120,6 +128,7 @@ public class ReliefFacade {
             if(request.getResponder() == null)
                 System.out.println(request.toString() + "\n");
         }
+    }
 
     public void logout() {
         currentUser = null;
