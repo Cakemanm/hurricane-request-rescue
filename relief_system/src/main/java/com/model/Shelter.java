@@ -32,6 +32,15 @@ public class Shelter {
         return true;
     }
 
+    public boolean isAvailable() {
+        return availability && occupancy < capacity;
+    }
+
+public void addOccupant() {
+    if (occupancy < capacity) {
+        occupancy++;
+    }
+}
     public Location getLocation() {
         return this.location;
     }
@@ -55,6 +64,18 @@ public class Shelter {
     public ArrayList<Resource> getResources(){
         return resources;
     }
+    public void restock(ResourceType type, int quantity) {
+    if (resources == null) {
+        resources = new ArrayList<>();
+    }
+    for (Resource resource : resources) {
+        if (resource.getResourceType() == type) {
+            resource.updateQuantity(resource.getQuantity() + quantity);
+            return;
+        }
+    }
+    resources.add(new Resource(type, quantity));
+}
 
     public void updateAvailability(){
         if(availability)

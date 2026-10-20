@@ -42,4 +42,8 @@ public Shelter getShelterById(UUID id){
     }
     return null;
 }
+
+public ArrayList<Shelter> getShelters() {
+    return shelters;
+}
 }
