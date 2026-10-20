@@ -1,10 +1,15 @@
 package com.model;
 
 public enum RequestStatus {
-    PENDING,
-    HELP_ON_THE_WAY,
-    AT_SITE,
-    BACKUP_REQUESTED,
-    COMPLETED,
-    CANCELED
+    PENDING("Pending"),
+    HELP_ON_THE_WAY("Help is on the way"),
+    AT_SITE("At site"),
+    BACKUP_REQUESTED("Backup requested"),
+    COMPLETED("Completed"),
+    CANCELED("Canceled");
+
+    public final String label;
+    private RequestStatus(String label){
+        this.label = label;
+    }
 }

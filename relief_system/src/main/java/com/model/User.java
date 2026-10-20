@@ -12,9 +12,8 @@ public class User {
     private String phoneNumber;
     private String address;
     private String password;
-    private UUID shelter = null;
+    private Shelter shelter = null;
     private ArrayList<Skill> skills;
-    private boolean hasPet = false;
     private ArrayList<String> familyMembers;
 
     public User(String username, String firstName, String lastName, 
@@ -30,7 +29,7 @@ public class User {
         }
 
     public User(UUID id, String username, String firstName, String lastName, 
-        Location location, String phoneNumber, String address, String password, UUID shelter, 
+        Location location, String phoneNumber, String address, String password, Shelter shelter, 
         ArrayList<String> familyMembers){
             this.id = id;
             this.username = username;
@@ -64,6 +63,10 @@ public class User {
         return this.lastName;
     }
 
+    public String getFullName(){
+        return this.firstName + " " + this.lastName;
+    }
+
     public Location getLocation(){
         return this.location;
     }
@@ -80,7 +83,7 @@ public class User {
         return this.password;
     }
 
-    public UUID getShelter(){
+    public Shelter getShelter(){
         return this.shelter;
     }
     public void setShelter(UUID shelter) {
@@ -89,10 +92,6 @@ public class User {
 
     public ArrayList<Skill> getSkills(){
         return this.skills;
-    }
-
-    public boolean hasPet(){
-        return hasPet;
     }
 
     public ArrayList<String> getFamilyMembers(){

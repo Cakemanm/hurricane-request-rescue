@@ -1,30 +1,59 @@
 package com.model;
+import java.util.ArrayList;
+import java.util.UUID;
 
 public class Hurricane {
     
+    private UUID id;
+    private String name;
     private int category;
     private int windSpeed;
-    private Location location;
+    private ArrayList<Integer> affectedAreas;
     private String expectedConditions;
-    private String name;
     private double size;
-    private boolean isActive = true;
+    private boolean isActive;    
 
-    public Hurricane(int category, int windSpeed, Location location, String conditions,
-        String name, double size){
+    public Hurricane(UUID id, String name, int category, int windSpeed, ArrayList<Integer> affectedAreas,
+        String conditions, double size, boolean active) {
+            this.id = id;
             this.category = category;
             this.windSpeed = windSpeed;
-            this.location = location;
+            this.affectedAreas = affectedAreas;
             this.expectedConditions = conditions;
             this.name = name;
             this.size = size;
+            this.isActive = active;
     }
 
-    public void getUpdates(){
-
+    public UUID getId(){
+        return this.id;
     }
 
-    public void trackPath(){
-        
+    public String getName() {
+        return this.name;
+    }
+
+    public int getCategory() {
+        return this.category;
+    }
+
+    public int getWindSpeed() {
+        return this.windSpeed;
+    }
+
+    public ArrayList<Integer> getAffectedAreas() {
+        return this.affectedAreas;
+    }
+
+    public String getConditions() {
+        return this.expectedConditions;
+    }
+
+    public double getSize() {
+        return this.size;
+    }
+
+    public boolean getActive() {
+        return this.isActive;
     }
 }
