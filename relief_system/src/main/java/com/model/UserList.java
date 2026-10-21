@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public class UserList {
     private static UserList USER_LIST;
-    private ArrayList<User> users = DataLoader.getUsers();
+    private ArrayList<User> users;
 
     private UserList(){
         users = DataLoader.getUsers();

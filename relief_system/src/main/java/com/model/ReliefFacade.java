@@ -36,8 +36,33 @@ public class ReliefFacade {
             user.setShelter(shelterList.getShelterById(shelter.getId()));
             return shelter;
         }
+    public ArrayList<Shelter> getShelters() {
+        return ShelterList.getInstance().getShelters();
     }
-    return null;
+
+
+    // public Shelter signUpVictimForShelter(User user) {
+    // ArrayList<Shelter> shelters = ShelterList.getInstance().getShelters();
+    // for (Shelter shelter : shelters) {
+    //     if (shelter.isAvailable() && shelter.getOccupancy() < shelter.getCapacity()) {
+    //         shelter.addOccupant();
+    //         user.setShelter(shelter.getId());
+    //         return shelter;
+    //     }
+    // }
+    // return null;
+    // }
+
+    public Shelter signUpForShelter(String shelterName) {
+        if (currentUser == null) return null;
+        Shelter shelter = ShelterList.getInstance().getShelter(shelterName);
+        if (shelter == null) return null;
+        if (shelter == currentUser.getShelter()) return shelter;
+        if (currentUser.getShelter() != null) {
+            currentUser.getShelter().removeOccupant();
+        }
+        currentUser.setShelter(shelter);
+        return shelter;
     }
 
 
@@ -96,6 +121,18 @@ public class ReliefFacade {
     return false;
     }
 
+    public Request createRequest(ArrayList<RequestType> requestTypes, Location location, String address,
+        int reportedUrgency, ArrayList<String> comments) {
+            if (currentUser == null || requestTypes == null || requestTypes.isEmpty()) {
+                return null;
+            }
+            Location where = (location == null ? currentUser.getLocation() : location);
+            Request request = new Request(null, RequestStatus.PENDING, where, address, reportedUrgency,
+                comments, currentUser, null, requestTypes);
+            request.calcPriority();
+            feed.addRequest(request);
+            return request;
+    }
 
     public ArrayList<Request> searchRequests(String key){
         System.out.println("\nSearch results for: " + key+"\n");

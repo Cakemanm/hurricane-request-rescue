@@ -22,6 +22,17 @@
         "id" : "bf0584fd-deca-41f3-93d5-c82d31336762"
     },
     {
+        "status" : "PENDING",
+        "location" : "bdc1366f-ba6e-4b7d-9c73-009770b70d0b",
+        "address" : "Times River Bridge",
+        "reportedUrgency" : 10,
+        "comments" : ["The Times River Bridge has collapsed and trapped a group inside their vehicle."],
+        "requestTypes" : ["FIRST_RESPONDER", "HEAVY_LIFTER", "CAN_DRIVE", "HEAVY_MACHINERY_OPERATOR"],
+        "requester" : "14dd40d2-476b-4239-8fa9-1c09c4b5c86e",
+        "responder" : null,
+        "id" : "bf0584fd-deca-41f3-93d5-c82d31336762"
+    },
+    {
         "status" : "BACKUP_REQUESTED",
         "location" : "baa5f8b6-2e90-4084-8376-50e9e3b6ac6f",
         "address" : "13 Quaker ave.",

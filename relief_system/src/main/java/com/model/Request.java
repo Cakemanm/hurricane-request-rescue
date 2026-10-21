@@ -26,19 +26,21 @@ public class Request {
         this.requestTypes = requestTypes;
         this.id = (id == null ? UUID.randomUUID() : id);
         this.address = (address == null ? requester.getAddress() : address);
+        calcPriority();
     }
-        public int calcPriority(){
-            double averageOfTypes = 0;
-            int count = 0;
-            for(RequestType type : requestTypes){
-                averageOfTypes += type.urgency;
-                count++;
-            }
-            requestPriority = (int)Math.round(((averageOfTypes/count) + reportedUrgency)/2);
-            return requestPriority;
+    
+    public int calcPriority() {
+        double averageOfTypes = 0;
+        int count = 0;
+        for(RequestType type : requestTypes){
+            averageOfTypes += type.urgency;
+            count++;
         }
+        requestPriority = (int)Math.round(((averageOfTypes/count) + reportedUrgency)/2);
+        return requestPriority;
+    }
 
-        public void sendAlerts(){
+    public void sendAlerts() {
 
         }
         

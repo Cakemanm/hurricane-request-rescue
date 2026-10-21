@@ -14,7 +14,9 @@ public enum RequestType {
     ROADBLOCK("Roadblock",2),
     FLOOD("Flood",6),
     LANDSLIDE("Landslide",7),
-    RESOURCE("Resource",5);
+    RESOURCE("Resource",5),
+    TRANSPORATION("Transporation", 8),
+    MEDICAL_ASSISTANCE("Medical Assistance", 9);
 
     public final String label;
     public final int urgency;
