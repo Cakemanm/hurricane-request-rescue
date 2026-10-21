@@ -20,6 +20,10 @@ public class ReliefFacade {
         RequestFeed.getInstance().getRequest(request);
     }
 
+    public ArrayList<Shelter> getShelters() {
+        return ShelterList.getInstance().getShelters();
+    }
+
 
     public Shelter signUpVictimForShelter(User user) {
     ArrayList<Shelter> shelters = ShelterList.getInstance().getShelters();
@@ -80,6 +84,18 @@ public class ReliefFacade {
     return false;
     }
 
+    public Request createRequest(ArrayList<RequestType> requestTypes, Location location, String address,
+        int reportedUrgency, ArrayList<String> comments) {
+            if (currentUser == null || requestTypes == null || requestTypes.isEmpty()) {
+                return null;
+            }
+            Location where = (location == null ? currentUser.getLocation() : location);
+            Request request = new Request(null, RequestStatus.PENDING, where, address, reportedUrgency,
+                comments, currentUser, null, requestTypes);
+            request.calcPriority();
+            feed.addRequest(request);
+            return request;
+    }
 
     public ArrayList<Request> searchRequests(String key){
         System.out.println("\nSearch results for: " + key+"\n");

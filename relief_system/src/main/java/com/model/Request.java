@@ -26,6 +26,7 @@ public class Request {
         this.requestTypes = requestTypes;
         this.id = (id == null ? UUID.randomUUID() : id);
         this.address = (address == null ? requester.getAddress() : address);
+        calcPriority();
     }
     
     public int calcPriority() {

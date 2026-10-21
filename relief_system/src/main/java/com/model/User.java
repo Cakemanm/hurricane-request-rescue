@@ -97,9 +97,6 @@ public class User {
     public Shelter getShelter(){
         return this.shelter;
     }
-    public void setShelter(Shelter shelter) {
-        this.shelter = shelter;
-    }
 
     public ArrayList<Skill> getSkills(){
         return this.skills;

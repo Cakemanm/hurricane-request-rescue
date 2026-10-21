@@ -1,6 +1,7 @@
 package com.model;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class ReliefUI {
     private ReliefFacade reliefFacade;

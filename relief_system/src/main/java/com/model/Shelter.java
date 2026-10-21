@@ -21,6 +21,7 @@ public class Shelter {
         this.occupancy = occupancy;
         this.capacity = capacity;
         this.id = id;
+        this.resources = resources;
     }
 
     public String getName() {
@@ -33,14 +34,13 @@ public class Shelter {
     }
 
     public boolean isAvailable() {
-        return availability && occupancy < capacity;
+        return occupancy < capacity;
     }
 
-public void addOccupant() {
-    if (occupancy < capacity) {
+    public void addOccupant() {
+        if (!isAvailable()) return;
         occupancy++;
     }
-}
     public Location getLocation() {
         return this.location;
     }

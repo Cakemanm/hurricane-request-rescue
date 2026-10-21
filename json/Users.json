@@ -40,8 +40,7 @@
         "shelter" : "68b7087c-d6ee-4c2b-8706-7a90ac62e5f5",
         "skills" : ["CAN_COOK"],
         "familyMembers" : ["Alex Kane", "Rachel Kane", "Gretchen Kane"]
-    }
-
+    },
     {
         "id" : "1a1b7554-1c8b-48e0-9962-5c7c6599ca3b",
         "username" : "j-doe",
@@ -53,6 +52,6 @@
         "password" : "mysterry404",
         "shelter" : "68b7087c-d6ee-4c2b-8706-7a90ac62e5f5",
         "skills" : ["CAN_COOK", "CAN_DRIVE", "BOAT_OPERATOR"],
-        "familyMembers" : ["Alex Kane", "Rachel Kane", "Gretchen Kane"]
+        "familyMembers" : []
     }
 ]

@@ -26,10 +26,16 @@ public class RequestFeed {
         return null;
     }
 
-    public void addRequest(UUID id, RequestStatus status, Location location, int reportedUrgency,
+    public void addRequest(UUID id, RequestStatus status, Location location, String address, int reportedUrgency,
         ArrayList<String> comments, User requester, User responder, ArrayList<RequestType> requestTypes){
             requests.add(new Request(id, status, location, address, reportedUrgency, comments, requester, responder, requestTypes));
         }
+    
+    public void addRequest(Request request) {
+        if (request != null) {
+            requests.add(request);
+        }
+    }
 
     public ArrayList<Request> getRequests(){
         return requests;
@@ -37,13 +43,14 @@ public class RequestFeed {
 
     public ArrayList<Request> searchRequests(String key){
         ArrayList<Request> results = new ArrayList<>();
+        String lower = key.toLowerCase();
         for(Request request : requests){
             for(RequestType type : request.getRequestTypes()){
-                if(type.label.toLowerCase().contains(key.toLowerCase()))
+                if(type.label.toLowerCase().contains(lower))
                     results.add(request);
             }
             for(String comment : request.getComments()){
-                if(comment.toLowerCase().contains(key.toLowerCase()))
+                if(comment.toLowerCase().contains(lower))
                     results.add(request);
             }
         }

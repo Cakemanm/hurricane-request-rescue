@@ -89,10 +89,15 @@ public class DataLoader extends DataConstants {
                 JSONArray resourcesJSON = (JSONArray)placeJSON.get(SHELTER_RESOURCES);
                 ArrayList<Resource> resources = new ArrayList<>();
                 if(resourcesJSON != null){
-                    for(Object resource : resourcesJSON)
-                        resources.add(null);
+                    for(Object resource : resourcesJSON) {
+                        // resources.add(null);
                         //resources.add((Resource) resource);
                         //TODO: figure out converting resource type to resource
+                        JSONObject resourceJSON = (JSONObject) resource;
+                        ResourceType type = ResourceType.valueOf((String) resourceJSON.get(SHELTER_RESOURCES_TYPE));
+                        int quantity = Integer.parseInt(resourceJSON.get(SHELTER_RESOURCES_QUANTITY).toString());
+                        resources.add(new Resource(type, quantity));
+                    }
                 }
 
                 shelters.add(new Shelter(name, availability, location, resources, shelterTypes, occupancy, capacity, id));
