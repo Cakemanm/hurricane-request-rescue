@@ -16,6 +16,7 @@ public class ReliefUI {
         scenario2();
     }
 
+    // login, view shelters, sign up for shelter, view shelter resources, create request
     public void scenario1() {
         System.out.println();
 

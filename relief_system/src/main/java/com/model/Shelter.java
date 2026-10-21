@@ -41,6 +41,11 @@ public class Shelter {
         if (!isAvailable()) return;
         occupancy++;
     }
+
+    public void removeOccupant() {
+        if (occupancy > 0) occupancy--;
+    }
+
     public Location getLocation() {
         return this.location;
     }
