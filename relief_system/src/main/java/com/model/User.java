@@ -16,6 +16,8 @@ public class User {
     private ArrayList<Skill> skills;
     private ArrayList<String> familyMembers;
     private boolean hasPet;
+    private int age;
+    private String petDescription;
 
     // public User(String username, String firstName, String lastName, 
     //     Location location, String phoneNumber, String address, String password, ArrayList<String> familyMembers){
@@ -31,11 +33,12 @@ public class User {
 
     public User(UUID id, String username, String firstName, String lastName, 
         Location location, String phoneNumber, String address, String password, Shelter shelter, 
-        ArrayList<String> familyMembers, boolean hasPet) {
+        ArrayList<String> familyMembers, boolean hasPet, int age, String petDescription) {
             this.id = (id == null ? UUID.randomUUID() : id);
             this.username = username;
             this.firstName = firstName;
             this.lastName = lastName;
+            this.age = age;
             this.location = location;
             this.phoneNumber = phoneNumber;
             this.address = address;
@@ -43,11 +46,30 @@ public class User {
             this.shelter = shelter;
             this.skills = (skills == null ? new ArrayList<>() : skills);
             this.hasPet = hasPet;
+            this.petDescription = petDescription;
             this.familyMembers = (familyMembers == null ? new ArrayList<>() : familyMembers);
         }
 
     public boolean hasPet() {
         return hasPet;
+    }
+
+    /* Get user's age
+    @return user's age */
+    public int getAge() {
+        return age;
+    }
+
+    /* Describe user's pet with a text description
+    @return pet description */
+    public String getPetDescription() {
+        return petDescription;
+    }
+
+    /* Counts number of people in house, family + self
+    @return number of people */
+    public int getHouseholdSize() {
+        return familyMembers.size() + 1;
     }
 
     public void setShelter(Shelter sheter) {
