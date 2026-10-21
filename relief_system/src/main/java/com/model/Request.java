@@ -26,7 +26,7 @@ public class Request {
         this.requestTypes = requestTypes;
         this.id = (id == null ? UUID.randomUUID() : id);
         this.address = (address == null ? requester.getAddress() : address);
-        calcPriority();
+        //calcPriority();
     }
     
     public int calcPriority() {
@@ -123,5 +123,23 @@ public class Request {
             this.id = id;
         }
 
-        
+        public String requestTypeSpecific(ArrayList<RequestType> types){
+            String finalString = this.toString();
+            for(RequestType type : types){
+                if(type == RequestType.NO_SHELTER){
+                    int groupSize = (this.getRequester().getFamilyMembers() == null ? 1 : 1+ this.getRequester().getFamilyMembers().size());
+                    boolean needMedicalStaff = false;
+                    for(RequestType typeTemp : types){
+                        if(typeTemp == RequestType.BLEEDING || typeTemp == RequestType.BROKEN_BONE || typeTemp == RequestType.MEDICAL_ASSISTANCE)
+                            needMedicalStaff = true;
+                    }
+                    finalString += "\nShelter Request Details:\n" + "Group size: " + groupSize + (needMedicalStaff ? " | Medical Assistance Needed" : "")
+                        + (this.getRequester().hasPet() ? " | Must Accomodate Pets" : "");
+                }
+                if(type == RequestType.MEDICAL_ASSISTANCE)
+                    finalString = "Medical Request\n" + finalString;
+            }
+            return finalString;
+        }
+
 }

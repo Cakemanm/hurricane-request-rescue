@@ -10,7 +10,9 @@
         "password" : "topS$cr$t",
         "shelter" : "e522496a-9539-4c1e-b8a5-992aa48dde8c",
         "skills" : ["SHELTER_STAFF","LANGUAGE_TRANSLATOR"],
-        "familyMembers" : [{"name" : "Joshua Wells", "age" : 32}]
+        "familyMembers" : [{"name" : "Joshua Wells", "age" : 32}],
+        "hasPet" : false,
+        "age" : 33
 
     },
 
@@ -24,8 +26,10 @@
         "address" : "2301 High St.",
         "password" : "892EijL0Ws",
         "shelter" : null,
-        "skills" : ["FIRST_RESPONDER", "HEAVY_LIFTER"],
-        "familyMembers": null
+        "skills" : ["CAN_PROVIDE_MEDICAL_ASSISTANCE", "HEAVY_LIFTER"],
+        "familyMembers": null,
+        "hasPet" : false,
+        "age" : 31
     },
 
     {
@@ -39,7 +43,9 @@
         "password" : "brutus51",
         "shelter" : "68b7087c-d6ee-4c2b-8706-7a90ac62e5f5",
         "skills" : ["CAN_COOK"],
-        "familyMembers" : [{"name" : "Alex Kane", "age" : 54}, {"name" : "Rachel Kane", "age" : 20}, {"name" : "Gretchen Kane", "age" : 23}]
+        "familyMembers" : [{"name" : "Alex Kane", "age" : 54}, {"name" : "Rachel Kane", "age" : 20}, {"name" : "Gretchen Kane", "age" : 23}],
+        "hasPet" : true,
+        "age" : 53
     },
     {
         "id" : "1a1b7554-1c8b-48e0-9962-5c7c6599ca3b",
@@ -52,6 +58,8 @@
         "password" : "mysterry404",
         "shelter" : "68b7087c-d6ee-4c2b-8706-7a90ac62e5f5",
         "skills" : ["CAN_COOK", "CAN_DRIVE", "BOAT_OPERATOR"],
-        "familyMembers" : []
+        "familyMembers" : [],
+        "hasPet" : false,
+        "age" : 31
     }
 ]

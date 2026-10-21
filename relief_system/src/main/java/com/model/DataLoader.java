@@ -42,20 +42,25 @@ public class DataLoader extends DataConstants {
             JSONArray skillsJSON = (JSONArray)personJSON.get(USER_SKILLS);
             ArrayList<Skill> skills = new ArrayList<>();
             for(Object skill : skillsJSON){
-                skills.add(Skill.valueOf((String) skill));
+                skills.add(Skill.valueOf((String)skill));
+                System.out.println(Skill.valueOf((String)skill));
             }
 
             JSONArray familyJSON = (JSONArray)personJSON.get(USER_FAMILY_MEMBERS);
             ArrayList<FamilyMember> familyMembers = new ArrayList<>();
             if(familyJSON != null){
                 for(Object member : familyJSON){
-                    String name = (String)personJSON.get(FAMILY_MEMBER_NAME);
-                    int age = Integer.parseInt(personJSON.get(FAMILY_MEMBER_AGE).toString());
+                    JSONObject memberJSON = (JSONObject) member;
+                    String name = (String)memberJSON.get(FAMILY_MEMBER_NAME);
+                    int age = Integer.parseInt(memberJSON.get(FAMILY_MEMBER_AGE).toString());
                     familyMembers.add(new FamilyMember(name, age));
                 }
             }
+
+            Boolean hasPet = (Boolean)personJSON.get(USER_HAS_PET);
+            int age = Integer.parseInt(personJSON.get(USER_AGE).toString());
             
-            users.add(new User(userId, username, firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers));
+            users.add(new User(userId, username, firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers, skills, hasPet, age));
 
         }
 
@@ -96,6 +101,8 @@ public class DataLoader extends DataConstants {
                     int quantity = (Integer.parseInt(resourceJSON.get(SHELTER_RESOURCE_QUANTITY).toString()));
                     resources.add(new Resource(type, quantity));
                 }
+
+
     
                 shelters.add(new Shelter(name, availability, location, resources, shelterTypes, occupancy, capacity, id));
             }

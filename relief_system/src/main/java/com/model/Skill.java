@@ -1,7 +1,6 @@
 package com.model;
 
 public enum Skill {
-    FIRST_RESPONDER,
     CAN_COOK,
     HAS_POWER_TOOLS,
     CAN_DRIVE,
@@ -12,5 +11,7 @@ public enum Skill {
     HEAVY_LIFTER,
     CAN_PROVIDE_MEDICAL_ASSISTANCE,
     LANGUAGE_TRANSLATOR,
-    TRANSPORTATION
+    TRANSPORTATION,
+    MECHANIC,
+    RESOURCE_SUPPLIER
 }

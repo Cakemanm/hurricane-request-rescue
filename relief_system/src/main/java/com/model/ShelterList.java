@@ -46,4 +46,34 @@ public Shelter getShelterById(UUID id){
 public ArrayList<Shelter> getShelters() {
     return shelters;
 }
+
+public ArrayList<Shelter> findShelters(int groupSize, boolean needMedicalStaff, boolean hasPet, boolean limitedMobility){
+    boolean match = false;
+    ArrayList<Shelter> shelterMatches = new ArrayList<>();
+    for(Shelter shelter : shelters){
+        if(groupSize > shelter.getCapacity() - shelter.getOccupancy())
+            break;
+        boolean hasMedics = false;
+        boolean petFriendly = false;
+        boolean accessible = false;
+        for(ShelterType type : shelter.getShelterTypes()){
+            if(type == ShelterType.MEDICAL_STAFF)
+                hasMedics = true;
+            if(type == ShelterType.PET_FRIENDLY)
+                petFriendly = true;
+            if(type == ShelterType.DISABILITY_ACCESSIBLE)
+                accessible = true;
+        }
+        if(needMedicalStaff && !hasMedics)
+            break;
+        if(hasPet && !petFriendly)
+            break;
+        if(limitedMobility && !accessible)
+            break;
+
+        match = true;
+        shelterMatches.add(shelter);
+    }
+    return shelterMatches;
+}
 }

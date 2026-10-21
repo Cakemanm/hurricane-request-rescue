@@ -9,7 +9,6 @@ public class Shelter {
     private ArrayList<Resource> resources;
     private Location location;
     private ArrayList<ShelterType> shelterTypes;
-    private ArrayList<ShelterType> shelterTypes;
     private int occupancy;
     private int capacity;
     private UUID id;
@@ -28,6 +27,19 @@ public class Shelter {
         this.resources = (resources == null ? new ArrayList<>() : resources);
         this.petCapacity = petCapacity;
         this.petCount = petCount;
+    }
+
+        public Shelter(String name, boolean availability, Location location, ArrayList<Resource> resources, ArrayList<ShelterType> shelterTypes, int occupancy, int capacity, UUID id){
+        this.name = name;
+        this.resources = resources;
+        this.availability = availability;
+        this.location = location;
+        this.shelterTypes = (shelterTypes == null ? new ArrayList<>() : shelterTypes);
+        this.occupancy = occupancy;
+        this.capacity = capacity;
+        this.id = id;
+        this.resources = (resources == null ? new ArrayList<>() : resources);
+
     }
 
     /* Checks if the shelter has a type
@@ -85,6 +97,13 @@ public class Shelter {
     public void addOccupant() {
         if (!isAvailable()) return;
         occupancy++;
+    }
+
+    public void addOccupantGroup(int size){
+        if(this.getAvailableSpaces() > size)
+            occupancy += size;
+        else
+            System.out.println("This shelter doesn't have enough availability for this group");
     }
 
     public void removeOccupant() {

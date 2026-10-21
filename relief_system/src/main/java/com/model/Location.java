@@ -31,6 +31,13 @@ public class Location {
         this.longitude = longi;
     }
 
+    public Location(UUID id, String state, String city, int zipCode){
+        this.id = id;
+        this.state = state;
+        this.city = city;
+        this.zipcode = zipCode;
+    }
+
     public UUID getId() {
         return id;
     }

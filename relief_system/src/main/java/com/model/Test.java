@@ -4,22 +4,31 @@ import java.util.UUID;
 
 public class Test {
     public static void main(String[] args) {
+        
         ReliefFacade reliefFacade = new ReliefFacade();
         LocationList locationList = LocationList.getInstance();
         RequestFeed requestFeed = RequestFeed.getInstance();
+        ShelterList shelterList = ShelterList.getInstance();
+        UserList userList = UserList.getInstance();
+        User kyle = userList.getUser("kyled");
+        for(Skill skill : kyle.getSkills())
+            System.out.println(skill);
+        reliefFacade.findRequests(kyle);
+        /* 
         reliefFacade.displayRequests();
         reliefFacade.searchRequests("broken");
+
         Location l = locationList.locationUnknownID("MS", "Gulfport", 39503);
         reliefFacade.findRequestsByLocation(l);
 
         reliefFacade.getUnfulfilledRequests();
         
-        ShelterList shelterList = ShelterList.getInstance();
+        
         //RequestFeed requestFeed = RequestFeed.getInstance();
         HurricaneHandler hurricaneHandler = HurricaneHandler.getInstance();
         Hurricane hurricane = hurricaneHandler.getHurricane("Katrina");
 
-        UserList userList = UserList.getInstance();
+        
         System.out.println(userList.getUser("kyled").getAddress());
 
         reliefFacade.login("katKane", "brutus51");
@@ -54,5 +63,6 @@ public class Test {
 
         System.out.println(shelterList.getShelter("Caldwell Elementary School").toString());
         reliefFacade.browseShelters();
+        */
     }
 }

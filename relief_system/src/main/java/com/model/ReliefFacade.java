@@ -14,11 +14,8 @@ public class ReliefFacade {
         currentUser = null;
     }
 
-    public void submitRequest(User requester, Request request, Location loc, String comments) {
-        request.setRequester(requester);
-        request.setLocation(loc);
-        request.addComment(comments);
-        feed.getRequest(request);
+    public void submitRequest(Request request) {
+        feed.addRequest(request);
     }
 
     public void browseShelters(){
@@ -30,12 +27,16 @@ public class ReliefFacade {
 
     public Shelter signUpVictimForShelter(User user) {
     ArrayList<Shelter> shelters = ShelterList.getInstance().getShelters();
-    for (Shelter shelter : shelters) {
-        if (shelter.isAvailable() && shelter.getOccupancy() < shelter.getCapacity()) {
-            shelter.addOccupant();
-            user.setShelter(shelterList.getShelterById(shelter.getId()));
-            return shelter;
+        for (Shelter shelter : shelters) {
+            if (shelter.isAvailable() && shelter.getOccupancy() < shelter.getCapacity()) {
+                shelter.addOccupant();
+                user.setShelter(shelterList.getShelterById(shelter.getId()));
+                return shelter;
+            }
         }
+        return null;
+    }
+
     public ArrayList<Shelter> getShelters() {
         return ShelterList.getInstance().getShelters();
     }
@@ -97,17 +98,17 @@ public class ReliefFacade {
 
     public void createAccount(String username, String firstName, String lastName, 
         Location location, String phoneNumber, String address, String password,
-        ArrayList<String> familyMembers){
+        ArrayList<FamilyMember> familyMembers,boolean hasPet, int age, String petDescription){
             UserList userList = UserList.getInstance();
-            userList.addUser(new User(UUID.randomUUID(), username, firstName, lastName, location, phoneNumber, address, password, null, familyMembers));
+            userList.addUser(new User(UUID.randomUUID(), username, firstName, lastName, location, phoneNumber, address, password, null, familyMembers, hasPet, age, petDescription));
             login(username, password);
     }
 
     public void createAccount(String username, String firstName, String lastName, 
         Location location, String phoneNumber, String address, String password, Shelter shelter,
-        ArrayList<String> familyMembers){
+        ArrayList<FamilyMember> familyMembers,boolean hasPet, int age, String petDescription){
             UserList userList = UserList.getInstance();
-            userList.addUser(new User(UUID.randomUUID(), username, firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers));
+            userList.addUser(new User(UUID.randomUUID(), username, firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers, hasPet, age, petDescription));
             login(username, password);
     }
 
@@ -137,6 +138,14 @@ public class ReliefFacade {
     public ArrayList<Request> searchRequests(String key){
         System.out.println("\nSearch results for: " + key+"\n");
         ArrayList<Request> requests = feed.searchRequests(key);
+        for(Request request: requests)
+            System.out.println(request.toString() + "\n");
+        return requests;
+    }
+
+    public ArrayList<Request> findRequests(User user){
+        System.out.println("\n\nFindng relevant requests:\n");
+        ArrayList<Request> requests = feed.findRelevantRequests(user);
         for(Request request: requests)
             System.out.println(request.toString() + "\n");
         return requests;
