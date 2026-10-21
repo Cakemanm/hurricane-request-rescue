@@ -25,16 +25,28 @@ public class ReliefFacade {
     }
 
 
-    public Shelter signUpVictimForShelter(User user) {
-    ArrayList<Shelter> shelters = ShelterList.getInstance().getShelters();
-    for (Shelter shelter : shelters) {
-        if (shelter.isAvailable() && shelter.getOccupancy() < shelter.getCapacity()) {
-            shelter.addOccupant();
-            user.setShelter(shelter.getId());
-            return shelter;
+    // public Shelter signUpVictimForShelter(User user) {
+    // ArrayList<Shelter> shelters = ShelterList.getInstance().getShelters();
+    // for (Shelter shelter : shelters) {
+    //     if (shelter.isAvailable() && shelter.getOccupancy() < shelter.getCapacity()) {
+    //         shelter.addOccupant();
+    //         user.setShelter(shelter.getId());
+    //         return shelter;
+    //     }
+    // }
+    // return null;
+    // }
+
+    public Shelter signUpForShelter(String shelterName) {
+        if (currentUser == null) return null;
+        Shelter shelter = ShelterList.getInstance().getShelter(shelterName);
+        if (shelter == null) return null;
+        if (shelter == currentUser.getShelter()) return shelter;
+        if (currentUser.getShelter() != null) {
+            currentUser.getShelter().removeOccupant();
         }
-    }
-    return null;
+        currentUser.setShelter(shelter);
+        return shelter;
     }
 
 
