@@ -14,10 +14,10 @@ public class User {
     private String password;
     private Shelter shelter = null;
     private ArrayList<Skill> skills;
-    private ArrayList<String> familyMembers;
+    private ArrayList<FamilyMember> familyMembers;
 
     public User(String username, String firstName, String lastName, 
-        Location location, String phoneNumber, String address, String password, ArrayList<String> familyMembers){
+        Location location, String phoneNumber, String address, String password, ArrayList<FamilyMember> familyMembers){
             this.username = username;
             this.firstName = firstName;
             this.lastName = lastName;
@@ -30,7 +30,7 @@ public class User {
 
     public User(UUID id, String username, String firstName, String lastName, 
         Location location, String phoneNumber, String address, String password, Shelter shelter, 
-        ArrayList<String> familyMembers){
+        ArrayList<FamilyMember> familyMembers){
             this.id = id;
             this.username = username;
             this.firstName = firstName;
@@ -94,7 +94,7 @@ public class User {
         return this.skills;
     }
 
-    public ArrayList<String> getFamilyMembers(){
+    public ArrayList<FamilyMember> getFamilyMembers(){
         return this.familyMembers;
     }
 }

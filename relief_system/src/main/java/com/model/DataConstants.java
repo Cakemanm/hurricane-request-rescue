@@ -15,6 +15,8 @@ public class DataConstants {
     protected static final String USER_SKILLS = "skills";
     protected static final String USER_HAS_PET = "hasPet";
     protected static final String USER_FAMILY_MEMBERS = "familyMembers";
+    protected static final String FAMILY_MEMBER_NAME = "name";
+    protected static final String FAMILY_MEMBER_AGE = "age";
 
 
     //Shelter constants

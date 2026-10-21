@@ -10,7 +10,7 @@
         "password" : "topS$cr$t",
         "shelter" : "e522496a-9539-4c1e-b8a5-992aa48dde8c",
         "skills" : ["SHELTER_STAFF","LANGUAGE_TRANSLATOR"],
-        "familyMembers" : ["Joshua Wells"]
+        "familyMembers" : [{"name" : "Joshua Wells", "age" : 32}]
 
     },
 
@@ -39,6 +39,6 @@
         "password" : "brutus51",
         "shelter" : "68b7087c-d6ee-4c2b-8706-7a90ac62e5f5",
         "skills" : ["CAN_COOK"],
-        "familyMembers" : ["Alex Kane", "Rachel Kane", "Gretchen Kane"]
+        "familyMembers" : [{"name" : "Alex Kane", "age" : 54}, {"name" : "Rachel Kane", "age" : 20}, {"name" : "Gretchen Kane", "age" : 23}]
     }
 ]

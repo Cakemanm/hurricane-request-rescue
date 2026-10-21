@@ -7,7 +7,7 @@ public class ReliefFacade {
     private ArrayList<Hurricane> hurricane;
     private User currentUser;
     private RequestFeed feed = RequestFeed.getInstance();
-    private ShelterList shelters = ShelterList.getInstance();
+    private ShelterList shelterList = ShelterList.getInstance();
 
     public ReliefFacade() {
         hurricane = DataLoader.getHurricanes();
@@ -18,12 +18,12 @@ public class ReliefFacade {
         request.setRequester(requester);
         request.setLocation(loc);
         request.addComment(comments);
-        RequestFeed.getInstance().getRequest(request);
+        feed.getRequest(request);
     }
 
     public void browseShelters(){
         System.out.println("Shelters: ");
-        for(Shelter shelter : shelters.getShelters()){
+        for(Shelter shelter : shelterList.getShelters()){
             System.out.println(shelter.toString() + "\n");
         }
     }
@@ -33,12 +33,14 @@ public class ReliefFacade {
     for (Shelter shelter : shelters) {
         if (shelter.isAvailable() && shelter.getOccupancy() < shelter.getCapacity()) {
             shelter.addOccupant();
-            user.setShelter(shelter.getId());
+            user.setShelter(shelterList.getShelterById(shelter.getId()));
             return shelter;
         }
     }
     return null;
     }
+
+
 
 
     public void dispatchVolunteer(User user) {
@@ -72,7 +74,7 @@ public class ReliefFacade {
         Location location, String phoneNumber, String address, String password,
         ArrayList<String> familyMembers){
             UserList userList = UserList.getInstance();
-            userList.addUser(UUID.randomUUID(), username, firstName, lastName, location, phoneNumber, address, password, null, familyMembers);
+            userList.addUser(new User(UUID.randomUUID(), username, firstName, lastName, location, phoneNumber, address, password, null, familyMembers));
             login(username, password);
     }
 
@@ -80,7 +82,7 @@ public class ReliefFacade {
         Location location, String phoneNumber, String address, String password, Shelter shelter,
         ArrayList<String> familyMembers){
             UserList userList = UserList.getInstance();
-            userList.addUser(UUID.randomUUID(), username, firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers);
+            userList.addUser(new User(UUID.randomUUID(), username, firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers));
             login(username, password);
     }
 

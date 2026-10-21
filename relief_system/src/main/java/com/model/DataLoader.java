@@ -46,10 +46,12 @@ public class DataLoader extends DataConstants {
             }
 
             JSONArray familyJSON = (JSONArray)personJSON.get(USER_FAMILY_MEMBERS);
-            ArrayList<String> familyMembers = new ArrayList<>();
+            ArrayList<FamilyMember> familyMembers = new ArrayList<>();
             if(familyJSON != null){
                 for(Object member : familyJSON){
-                    familyMembers.add((String) member);
+                    String name = (String)personJSON.get(FAMILY_MEMBER_NAME);
+                    int age = Integer.parseInt(personJSON.get(FAMILY_MEMBER_AGE).toString());
+                    familyMembers.add(new FamilyMember(name, age));
                 }
             }
             

@@ -24,9 +24,9 @@ public class Test {
 
         reliefFacade.login("katKane", "brutus51");
         System.out.println(reliefFacade.getCurrentUser().getUsername());
-        ArrayList<String> family = reliefFacade.getCurrentUser().getFamilyMembers();
-        for(String member : family)
-            System.out.println(member);
+        ArrayList<FamilyMember> family = reliefFacade.getCurrentUser().getFamilyMembers();
+        for(FamilyMember member : family)
+            System.out.println(member.toString());
 
         ArrayList<String> fm = new ArrayList<>();
         reliefFacade.createAccount("hello","hell","o",null,"82983","unknown","jeniwde",shelterList.getShelter("Caldwell Elementary School"),fm);
