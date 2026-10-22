@@ -31,20 +31,8 @@ public class ReliefUI {
 
     public void scenario1() {
 
-<<<<<<< HEAD
         // login
         if (!reliefFacade.login("katKane", "brutus51")) {
-=======
-        if(!reliefFacade.login("hwells", "topS$cr$t")) {
-            System.out.println("Sorry, we couldn't log you in");
-            return;
-        }
-        System.out.println("Hannah Wells is now logged in!");
-    }
-
-    public void scenario2() {
-        if(!reliefFacade.login("kyled", "892EijL0Ws")) {
->>>>>>> carter-branch
             System.out.println("Sorry, we couldn't log you in.");
             return;
         }
@@ -88,7 +76,6 @@ public class ReliefUI {
         reliefFacade.logout();
     }
 
-<<<<<<< HEAD
         // public void scenario1() {
         //     System.out.println();
 
@@ -113,11 +100,4 @@ public class ReliefUI {
         ReliefUI facadeInterface = new ReliefUI();
         facadeInterface.run();
     }    
-=======
-    public static void main(String[] args){
-    ReliefUI facadeInterface = new ReliefUI();
-    facadeInterface.run();
-    
-}    
->>>>>>> carter-branch
 }

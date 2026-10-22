@@ -23,10 +23,6 @@ public class Resource {
     }
 
     public String toString(){
-<<<<<<< HEAD
-        return this.resourcetype.label + ", Quantity: " + this.quantity;
-=======
-        return "Resource: " + this.resourceType + "\tQuantity: " + this.quantity;
->>>>>>> carter-branch
+        return this.resourceType.label + ", Quantity: " + this.quantity;
     }
 }

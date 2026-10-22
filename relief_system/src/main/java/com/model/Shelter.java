@@ -20,11 +20,7 @@ public class Shelter {
         this.resources = resources;
         this.availability = availability;
         this.location = location;
-<<<<<<< HEAD
         this.shelterTypes = (shelterTypes == null ? new ArrayList<>() : shelterTypes);
-=======
-        this.shelterTypes = shelterTypes;
->>>>>>> carter-branch
         this.occupancy = occupancy;
         this.capacity = capacity;
         this.id = id;
