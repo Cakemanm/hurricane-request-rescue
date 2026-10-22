@@ -20,7 +20,11 @@ public class Shelter {
         this.resources = resources;
         this.availability = availability;
         this.location = location;
+<<<<<<< HEAD
         this.shelterTypes = (shelterTypes == null ? new ArrayList<>() : shelterTypes);
+=======
+        this.shelterTypes = shelterTypes;
+>>>>>>> carter-branch
         this.occupancy = occupancy;
         this.capacity = capacity;
         this.id = id;
@@ -114,7 +118,11 @@ public class Shelter {
         return this.location;
     }
 
+<<<<<<< HEAD
     public ArrayList<ShelterType> getShelterTypes() {
+=======
+    public ArrayList<ShelterType> getShelterType() {
+>>>>>>> carter-branch
         return this.shelterTypes;
     }
 
@@ -158,12 +166,8 @@ public class Shelter {
             System.out.println(resource);
     }
 
-    public void updateSupplyLevel(){
-
-    }
-
     public void addResource(Resource resource){
-
+        resources.add(resource);
     }
 
     public String toString(){

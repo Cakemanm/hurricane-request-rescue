@@ -122,6 +122,7 @@ public class Request {
         public void setId(UUID id) {
             this.id = id;
         }
+<<<<<<< HEAD
 
         public String requestTypeSpecific(ArrayList<RequestType> types){
             String finalString = this.toString();
@@ -142,4 +143,7 @@ public class Request {
             return finalString;
         }
 
+=======
+        
+>>>>>>> carter-branch
 }

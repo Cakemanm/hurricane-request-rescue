@@ -6,33 +6,26 @@
     "configurations": [
         {
             "type": "java",
-<<<<<<< HEAD
-=======
-            "name": "UUIDGenerator",
+            "name": "UI",
             "request": "launch",
-            "mainClass": "com.relief/json.UUIDGenerator",
-            "projectName": "hurricane-request-rescue_94594c8"
-        },
-        {
-            "type": "java",
->>>>>>> 1bf3563e1981bf10b13e97167309016a40969c49
-            "name": "ReliefUI",
-            "request": "launch",
-            "mainClass": "com.relief/com.model.ReliefUI",
+            "mainClass": "com.relief/com.model.UI",
             "projectName": "relief_system"
         },
         {
             "type": "java",
-            "name": "Test",
+            "name": "UI",
             "request": "launch",
-            "mainClass": "com.relief/com.model.Test",
-            "projectName": "relief_system"
+            "mainClass": "com.relief_system/com.model.UI",
+            "projectName": "relief_system",
+            "envFile": "${workspaceFolder}/.env"
         },
         {
-            "type": "editor-browser",
+            "type": "java",
+            "name": "Run Map App",
             "request": "launch",
-            "name": "Open 01.html",
-            "url": "file:///c%3A/Users/astal/AppData/Local/Temp/36e00592-77a1-4086-9fe4-588bdfbcbf91_ch05-site%283%29.zip.ch05-site%283%29.zip/site/slides/01.html"
+            "mainClass": "com.relief/com.relief.App",
+            "projectName": "relief_system",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
