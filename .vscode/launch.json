@@ -4,12 +4,18 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-
         {
             "type": "java",
             "name": "UI",
             "request": "launch",
             "mainClass": "com.relief/com.model.UI",
+            "projectName": "relief_system"
+        },
+        {
+            "type": "java",
+            "name": "UI",
+            "request": "launch",
+            "mainClass": "com.relief_system/com.model.UI",
             "projectName": "relief_system",
             "envFile": "${workspaceFolder}/.env"
         },
