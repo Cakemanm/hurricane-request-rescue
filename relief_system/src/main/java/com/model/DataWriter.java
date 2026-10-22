@@ -76,7 +76,10 @@ public class DataWriter extends DataConstants {
             personJSON.put(USER_SKILLS, skillsJSON);
 
             JSONArray familyJSON = new JSONArray();
-            for(String member : user.getFamilyMembers()){
+            for(FamilyMember member : user.getFamilyMembers()){
+                JSONObject memberJSON = new JSONObject();
+                memberJSON.put(FAMILY_MEMBER_NAME, member.getName());
+                memberJSON.put(FAMILY_MEMBER_AGE, member.getAge());
                 familyJSON.add(member);
             }
             personJSON.put(USER_FAMILY_MEMBERS, familyJSON);
@@ -90,13 +93,20 @@ public class DataWriter extends DataConstants {
         JSONArray sheltersJSON = new JSONArray();
         for (Shelter shelter : shelters) {
             JSONObject shelterJSON = new JSONObject();
-            shelterJSON.put(SHELTER_ID, shelter.getId());
+            shelterJSON.put(SHELTER_ID, idOf(shelter.getId()));
             shelterJSON.put(SHELTER_NAME, shelter.getName());
             shelterJSON.put(SHELTER_AVAILABILITY, shelter.getAvailability(shelter.getOccupancy(), shelter.getCapacity()));
-            shelterJSON.put(SHELTER_LOCATION, shelter.getLocation());
-            shelterJSON.put(SHELTER_SHELTER_TYPES, shelter.getShelterTypes());
+            shelterJSON.put(SHELTER_LOCATION, shelter.getLocation() == null ? null : idOf(shelter.getLocation().getId()));
             shelterJSON.put(SHELTER_OCCUPANCY, shelter.getOccupancy());
             shelterJSON.put(SHELTER_CAPACITY, shelter.getCapacity());
+            shelterJSON.put(SHELTER_PET_COUNT, shelter.getPetCount());
+            shelterJSON.put(SHELTER_PET_CAPACITY, shelter.getPetCapacity());
+
+            JSONArray typesJSON = new JSONArray();
+            for (ShelterType type : shelter.getShelterTypes()) {
+                typesJSON.add(type.toString());
+            }
+            shelterJSON.put(SHELTER_SHELTER_TYPES, typesJSON);
 
             JSONArray resourcesJSON = new JSONArray();
             for (Resource resource : shelter.getResources()) {
@@ -116,12 +126,14 @@ public class DataWriter extends DataConstants {
         JSONArray requestsJSON = new JSONArray();
         for (Request request : requests) {
             JSONObject requestJSON = new JSONObject();
-            requestJSON.put(REQUEST_ID, request.getId());
+            requestJSON.put(REQUEST_ID, idOf(request.getId()));
             requestJSON.put(REQUEST_PRIORITY, request.getRequestPriority());
-            requestJSON.put(REQUEST_STATUS, request.getStatus());
-            requestJSON.put(REQUEST_LOCATION, request.getLocation());
-            requestJSON.put(REQUEST_REQUESTER, request.getRequester());
-            requestJSON.put(REQUEST_RESPONDER, request.getResponder());
+            requestJSON.put(REQUEST_STATUS, request.getStatus().name());
+            requestJSON.put(REQUEST_LOCATION, request.getLocation() == null ? null : idOf(request.getLocation().getId()));
+            requestJSON.put(REQUEST_ADDRESS, request.getAddress());
+            requestJSON.put(REQUEST_REPORTED_URGENCY, request.getReportedUrgency());
+            requestJSON.put(REQUEST_REQUESTER, request.getRequester() == null ? null : idOf(request.getRequester().getID()));
+            requestJSON.put(REQUEST_RESPONDER, request.getResponder() == null ? null : idOf(request.getResponder().getID()));
 
             JSONArray commentsJSON = new JSONArray();
             for (String comment : request.getComments()) {
@@ -144,10 +156,13 @@ public class DataWriter extends DataConstants {
         JSONArray hurricanesJSON = new JSONArray();
         for (Hurricane hurricane : hurricanes) {
             JSONObject hurricaneJSON = new JSONObject();
+            hurricaneJSON.put(HURRICANE_ID, idOf(hurricane.getId()));
             hurricaneJSON.put(HURRICANE_NAME, hurricane.getName());
             hurricaneJSON.put(HURRICANE_CATEGORY, hurricane.getCategory());
             hurricaneJSON.put(HURRICANE_WIND_SPEED, hurricane.getWindSpeed());
-            hurricaneJSON.put(HURRICANE_AFFECTED_AREAS, hurricane.getAffectedAreas());
+            JSONArray areasJSON = new JSONArray();
+            areasJSON.addAll(hurricane.getAffectedAreas());
+            hurricaneJSON.put(HURRICANE_AFFECTED_AREAS, areasJSON);
             hurricaneJSON.put(HURRICANE_EXPECTED_CONDITIONS, hurricane.getConditions());
             hurricaneJSON.put(HURRICANE_SIZE, hurricane.getSize());
             hurricaneJSON.put(HURRICANE_IS_ACTIVE, hurricane.getActive());

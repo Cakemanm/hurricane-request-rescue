@@ -26,7 +26,7 @@ public class Request {
         this.requestTypes = requestTypes;
         this.id = (id == null ? UUID.randomUUID() : id);
         this.address = (address == null ? requester.getAddress() : address);
-        //calcPriority();
+        calcPriority();
     }
     
     public int calcPriority() {
@@ -86,6 +86,15 @@ public class Request {
         public void setLocation(Location location) {
             this.location = location;
         }
+
+        public String getAddress() {
+            return address;
+        }
+
+        public int getReportedUrgency() {
+            return reportedUrgency;
+        }
+
         public ArrayList<String> getComments() {
             return comments;
         }
