@@ -23,6 +23,6 @@ public class Resource {
     }
 
     public String toString(){
-        return "Resource: " + this.resourceType + "\tQuantity: " + this.quantity;
+        return this.resourceType.label + ", Quantity: " + this.quantity;
     }
 }

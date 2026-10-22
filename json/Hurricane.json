@@ -4,7 +4,7 @@
     "name": "Katrina",
     "category": 5,
     "windSpeed": 157,
-    "affectedAreas" : [20394, 31499, 20392],
+    "affectedAreas" : [20394, 31499, 20392, 39503, 39507],
     "expectedConditions": "Severe damage to buildings, uprooted trees, and widespread power outages. Flooding and storm surge expected.",
     "size": 300.0,
     "isActive": true

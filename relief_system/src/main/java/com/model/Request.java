@@ -26,19 +26,21 @@ public class Request {
         this.requestTypes = requestTypes;
         this.id = (id == null ? UUID.randomUUID() : id);
         this.address = (address == null ? requester.getAddress() : address);
+        //calcPriority();
     }
-        public int calcPriority(){
-            double averageOfTypes = 0;
-            int count = 0;
-            for(RequestType type : requestTypes){
-                averageOfTypes += type.urgency;
-                count++;
-            }
-            requestPriority = (int)Math.round(((averageOfTypes/count) + reportedUrgency)/2);
-            return requestPriority;
+    
+    public int calcPriority() {
+        double averageOfTypes = 0;
+        int count = 0;
+        for(RequestType type : requestTypes){
+            averageOfTypes += type.urgency;
+            count++;
         }
+        requestPriority = (int)Math.round(((averageOfTypes/count) + reportedUrgency)/2);
+        return requestPriority;
+    }
 
-        public void sendAlerts(){
+    public void sendAlerts() {
 
         }
         
@@ -59,10 +61,10 @@ public class Request {
             returnString += "Request for help with: ";
             for(RequestType type: requestTypes)
                 returnString += type.label + (requestTypes.indexOf(type) < requestTypes.size()-1 ? ", " : "");
-            returnString += "\nPriority Level: " + requestPriority + " \nRequested by: " + requester.getFullName() + " at " + address + " " + location.toString() + "\n";
+            returnString += "\nPriority Level: " + this.calcPriority() + " \nRequested by: " + requester.getFullName() + " at " + address + " " + location.toString() + "\n";
             for(String comment : comments)
                 returnString += comment + " ";
-            returnString += "\nRequest Status " + status + (responder == null ?  " | Currently Unfulfilled" : " | Responder: "+ responder.getFullName());
+            returnString += "\nRequest Status " + status + (responder == null ? " | Currently Unfulfilled" : " | Responder: "+ responder.getFullName());
             return returnString;
         }
 
@@ -86,6 +88,12 @@ public class Request {
         }
         public ArrayList<String> getComments() {
             return comments;
+        }
+        public void addComment(String comment) {
+            if (comments == null) {
+                comments = new ArrayList<>();
+            }
+            comments.add(comment);
         }
         public void setComments(ArrayList<String> comments) {
             this.comments = comments;
@@ -114,5 +122,24 @@ public class Request {
         public void setId(UUID id) {
             this.id = id;
         }
-        
+
+        public String requestTypeSpecific(ArrayList<RequestType> types){
+            String finalString = this.toString();
+            for(RequestType type : types){
+                if(type == RequestType.NO_SHELTER){
+                    int groupSize = (this.getRequester().getFamilyMembers() == null ? 1 : 1+ this.getRequester().getFamilyMembers().size());
+                    boolean needMedicalStaff = false;
+                    for(RequestType typeTemp : types){
+                        if(typeTemp == RequestType.BLEEDING || typeTemp == RequestType.BROKEN_BONE || typeTemp == RequestType.MEDICAL_ASSISTANCE)
+                            needMedicalStaff = true;
+                    }
+                    finalString += "\nShelter Request Details:\n" + "Group size: " + groupSize + (needMedicalStaff ? " | Medical Assistance Needed" : "")
+                        + (this.getRequester().hasPet() ? " | Must Accomodate Pets" : "");
+                }
+                if(type == RequestType.MEDICAL_ASSISTANCE)
+                    finalString = "Medical Request\n" + finalString;
+            }
+            return finalString;
+        }
+
 }

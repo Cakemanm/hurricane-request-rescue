@@ -42,18 +42,24 @@ public class DataLoader extends DataConstants {
             JSONArray skillsJSON = (JSONArray)personJSON.get(USER_SKILLS);
             ArrayList<Skill> skills = new ArrayList<>();
             for(Object skill : skillsJSON){
-                skills.add(Skill.valueOf((String) skill));
+                skills.add(Skill.valueOf((String)skill));
             }
 
             JSONArray familyJSON = (JSONArray)personJSON.get(USER_FAMILY_MEMBERS);
-            ArrayList<String> familyMembers = new ArrayList<>();
+            ArrayList<FamilyMember> familyMembers = new ArrayList<>();
             if(familyJSON != null){
                 for(Object member : familyJSON){
-                    familyMembers.add((String) member);
+                    JSONObject memberJSON = (JSONObject) member;
+                    String name = (String)memberJSON.get(FAMILY_MEMBER_NAME);
+                    int age = Integer.parseInt(memberJSON.get(FAMILY_MEMBER_AGE).toString());
+                    familyMembers.add(new FamilyMember(name, age));
                 }
             }
+
+            Boolean hasPet = (Boolean)personJSON.get(USER_HAS_PET);
+            int age = Integer.parseInt(personJSON.get(USER_AGE).toString());
             
-            users.add(new User(userId, username, firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers));
+            users.add(new User(userId, username, firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers, skills, hasPet, age));
 
         }
 
@@ -88,13 +94,15 @@ public class DataLoader extends DataConstants {
 
                 JSONArray resourcesJSON = (JSONArray)placeJSON.get(SHELTER_RESOURCES);
                 ArrayList<Resource> resources = new ArrayList<>();
-                if(resourcesJSON != null){
-                    for(Object resource : resourcesJSON)
-                        resources.add(null);
-                        //resources.add((Resource) resource);
-                        //TODO: figure out converting resource type to resource
+                for(Object resource : resourcesJSON){
+                    JSONObject resourceJSON = (JSONObject) resource;
+                    ResourceType type = ResourceType.valueOf((String)resourceJSON.get(SHELTER_RESOURCE_TYPE));
+                    int quantity = (Integer.parseInt(resourceJSON.get(SHELTER_RESOURCE_QUANTITY).toString()));
+                    resources.add(new Resource(type, quantity));
                 }
 
+
+    
                 shelters.add(new Shelter(name, availability, location, resources, shelterTypes, occupancy, capacity, id));
             }
 
@@ -139,8 +147,8 @@ public class DataLoader extends DataConstants {
 
                 User responder = null;
                 if(objectJSON.get(REQUEST_RESPONDER) != null){
-                UUID responderId = UUID.fromString((String)objectJSON.get(REQUEST_RESPONDER));
-                responder = UserList.getInstance().getUserById(responderId);
+                    UUID responderId = UUID.fromString((String)objectJSON.get(REQUEST_RESPONDER));
+                    responder = UserList.getInstance().getUserById(responderId);
                 }
         
 

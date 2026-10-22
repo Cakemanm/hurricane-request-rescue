@@ -1,75 +1,151 @@
 package com.model;
-
 import java.util.ArrayList;
+import java.util.UUID;
 
-public class ReliefFacade{
-    private Hurricane hurricane;
+
+public class ReliefFacade {
+    private ArrayList<Hurricane> hurricane;
     private User currentUser;
-    RequestFeed feed = RequestFeed.getInstance();
+    private RequestFeed feed = RequestFeed.getInstance();
+    private ShelterList shelterList = ShelterList.getInstance();
 
     public ReliefFacade() {
-        // TODO: implement later
+        hurricane = DataLoader.getHurricanes();
+        currentUser = null;
     }
 
-    public void submitRequest(User requester, Request request,
-            Location loc, String comments) {
-        // TODO: implement later
+    public void submitRequest(Request request) {
+        feed.addRequest(request);
+    }
+
+    public void browseShelters(){
+        System.out.println("Shelters: ");
+        for(Shelter shelter : shelterList.getShelters()){
+            System.out.println(shelter.toString() + "\n");
+        }
     }
 
     public Shelter signUpVictimForShelter(User user) {
-        // TODO: implement later
+    ArrayList<Shelter> shelters = ShelterList.getInstance().getShelters();
+        for (Shelter shelter : shelters) {
+            if (shelter.isAvailable() && shelter.getOccupancy() < shelter.getCapacity()) {
+                shelter.addOccupant();
+                user.setShelter(shelterList.getShelterById(shelter.getId()));
+                return shelter;
+            }
+        }
         return null;
     }
+
+    public ArrayList<Shelter> getShelters() {
+        return ShelterList.getInstance().getShelters();
+    }
+
+
+    // public Shelter signUpVictimForShelter(User user) {
+    // ArrayList<Shelter> shelters = ShelterList.getInstance().getShelters();
+    // for (Shelter shelter : shelters) {
+    //     if (shelter.isAvailable() && shelter.getOccupancy() < shelter.getCapacity()) {
+    //         shelter.addOccupant();
+    //         user.setShelter(shelter.getId());
+    //         return shelter;
+    //     }
+    // }
+    // return null;
+    // }
+
+    public Shelter signUpForShelter(String shelterName) {
+        if (currentUser == null) return null;
+        Shelter shelter = ShelterList.getInstance().getShelter(shelterName);
+        if (shelter == null) return null;
+        if (shelter == currentUser.getShelter()) return shelter;
+        if (currentUser.getShelter() != null) {
+            currentUser.getShelter().removeOccupant();
+        }
+        currentUser.setShelter(shelter);
+        return shelter;
+    }
+
+
+
 
     public void dispatchVolunteer(User user) {
-        // TODO: implement later
-    }
 
-    public void restockShelter(User user) {
-        // TODO: implement later
+        ArrayList<Request> requests = RequestFeed.getInstance().getRequests();   
+        for (Request request : requests) {
+        if (request.getStatus() == RequestStatus.PENDING) {
+            request.setResponder(user);
+            request.updateStatus(RequestStatus.HELP_ON_THE_WAY);
+            return;
+        }
     }
+}
 
-    public Hurricane getStormStatus() {
-        // TODO: implement later
-        return null;
+    public void restockShelter(Shelter shelter, ResourceType type, int quantity) {
+    if (shelter != null) {
+        shelter.restock(type, quantity);
     }
+}
 
-    public Hurricane getHurricane(){
+    public ArrayList<Hurricane> getStormStatus() {
         return hurricane;
     }
 
-    public boolean login(String username, String password) {
-        UserList userList = UserList.getInstance();
-        User user = userList.getUser(username, password);
-        if (user!=null){
-            currentUser = user;
-            return true;
-        }
-        else
-            return false;
+    public RequestFeed browseRequests() {
+        return RequestFeed.getInstance();
+
     }
 
-    public void createAccount(String username, String firstName,
-        String lastName, Location location, String phoneNumber,
-    String address, String password, Shelter shelter, ArrayList<String> familyMembers){
+    public void createAccount(String username, String firstName, String lastName, 
+        Location location, String phoneNumber, String address, String password,
+        ArrayList<FamilyMember> familyMembers,boolean hasPet, int age, String petDescription){
             UserList userList = UserList.getInstance();
-            userList.addUser(null,username,firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers);
+            userList.addUser(new User(UUID.randomUUID(), username, firstName, lastName, location, phoneNumber, address, password, null, familyMembers, hasPet, age, petDescription));
             login(username, password);
-       
     }
 
-    public void logout() {
-        currentUser = null;
-        System.out.println("Logout successful");
+    public void createAccount(String username, String firstName, String lastName, 
+        Location location, String phoneNumber, String address, String password, Shelter shelter,
+        ArrayList<FamilyMember> familyMembers,boolean hasPet, int age, String petDescription){
+            UserList userList = UserList.getInstance();
+            userList.addUser(new User(UUID.randomUUID(), username, firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers, hasPet, age, petDescription));
+            login(username, password);
     }
 
-    public User getCurrentUser(){
-        return currentUser;
+    public boolean login(String username, String password) {
+    UserList userList = UserList.getInstance();
+    User user = userList.getUser(username, password);
+    if (user != null) {
+        currentUser = user;
+        return true;
+    }
+    return false;
+    }
+
+    public Request createRequest(ArrayList<RequestType> requestTypes, Location location, String address,
+        int reportedUrgency, ArrayList<String> comments) {
+            if (currentUser == null || requestTypes == null || requestTypes.isEmpty()) {
+                return null;
+            }
+            Location where = (location == null ? currentUser.getLocation() : location);
+            Request request = new Request(null, RequestStatus.PENDING, where, address, reportedUrgency,
+                comments, currentUser, null, requestTypes);
+            request.calcPriority();
+            feed.addRequest(request);
+            return request;
     }
 
     public ArrayList<Request> searchRequests(String key){
         System.out.println("\nSearch results for: " + key+"\n");
         ArrayList<Request> requests = feed.searchRequests(key);
+        for(Request request: requests)
+            System.out.println(request.toString() + "\n");
+        return requests;
+    }
+
+    public ArrayList<Request> findRequests(User user){
+        System.out.println("\n\nFindng relevant requests:\n");
+        ArrayList<Request> requests = feed.findRelevantRequests(user);
         for(Request request: requests)
             System.out.println(request.toString() + "\n");
         return requests;
@@ -100,5 +176,14 @@ public class ReliefFacade{
             if(request.getResponder() == null)
                 System.out.println(request.toString() + "\n");
         }
+    }
+
+    public void logout() {
+        currentUser = null;
+        System.out.println("Logout successful");
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
     }
 }

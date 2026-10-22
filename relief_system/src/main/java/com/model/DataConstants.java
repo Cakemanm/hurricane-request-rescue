@@ -7,6 +7,7 @@ public class DataConstants {
     protected static final String USER_USERNAME = "username";
     protected static final String USER_FIRST_NAME = "firstName";
     protected static final String USER_LAST_NAME = "lastName";
+    protected static final String USER_AGE = "age";
     protected static final String USER_LOCATION = "location";
     protected static final String USER_PHONE_NUMBER = "phoneNumber";
     protected static final String USER_ADDRESS = "address";
@@ -14,8 +15,10 @@ public class DataConstants {
     protected static final String USER_SHELTER = "shelter";
     protected static final String USER_SKILLS = "skills";
     protected static final String USER_HAS_PET = "hasPet";
+    protected static final String USER_PET_DESCRIPTION = "petDescription";
     protected static final String USER_FAMILY_MEMBERS = "familyMembers";
-
+    protected static final String FAMILY_MEMBER_NAME = "name";
+    protected static final String FAMILY_MEMBER_AGE = "age";
 
     //Shelter constants
     protected static final String SHELTER_FILE_NAME = "json\\Shelters.json";
@@ -29,6 +32,10 @@ public class DataConstants {
     protected static final String SHELTER_SHELTER_TYPES = "shelterTypes";
     protected static final String SHELTER_OCCUPANCY = "occupancy";
     protected static final String SHELTER_CAPACITY = "capacity";
+    protected static final String SHELTER_PET_CAPACITY = "petCapacity";
+    protected static final String SHELTER_PET_COUNT = "petCount";
+    protected static final String SHELTER_RESOURCE_TYPE = "type";
+    protected static final String SHELTER_RESOURCE_QUANTITY = "quantity";
 
     //Request constants
     protected static final String REQUEST_FILE_NAME = "json\\Requests.json";
@@ -49,6 +56,9 @@ public class DataConstants {
     protected static final String LOCATION_STATE = "state";
     protected static final String LOCATION_CITY = "city";
     protected static final String LOCATION_ZIPCODE = "zipcode";
+    protected static final String LOCATION_ADDRESS = "address";
+    protected static final String LOCATION_LATITUDE = "latitude";
+    protected static final String LOCATION_LONGITUDE = "longitude";
 
     //Hurricane constants
     protected static final String HURRICANE_FILE_NAME = "json\\Hurricane.json";
@@ -60,5 +70,4 @@ public class DataConstants {
     protected static final String HURRICANE_EXPECTED_CONDITIONS = "expectedConditions";
     protected static final String HURRICANE_SIZE = "size";
     protected static final String HURRICANE_IS_ACTIVE = "isActive";
-
 }

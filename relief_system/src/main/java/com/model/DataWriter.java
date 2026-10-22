@@ -59,7 +59,6 @@ public class DataWriter extends DataConstants {
             personJSON.put(USER_ADDRESS, user.getAddress());
             personJSON.put(USER_PASSWORD, user.getPassword());
             personJSON.put(USER_SHELTER, user.getShelter().toString());
-            personJSON.put(USER_HAS_PET, user.hasPet());
 
             JSONArray skillsJSON = new JSONArray();
             for(Skill skill : user.getSkills()){
@@ -86,7 +85,11 @@ public class DataWriter extends DataConstants {
             shelterJSON.put(SHELTER_NAME, shelter.getName());
             shelterJSON.put(SHELTER_AVAILABILITY, shelter.getAvailability(shelter.getOccupancy(), shelter.getCapacity()));
             shelterJSON.put(SHELTER_LOCATION, shelter.getLocation());
+<<<<<<< HEAD
+            shelterJSON.put(SHELTER_SHELTER_TYPES, shelter.getShelterTypes());
+=======
             shelterJSON.put(SHELTER_SHELTER_TYPES, shelter.getShelterType());
+>>>>>>> carter-branch
             shelterJSON.put(SHELTER_OCCUPANCY, shelter.getOccupancy());
             shelterJSON.put(SHELTER_CAPACITY, shelter.getCapacity());
 
