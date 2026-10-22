@@ -48,6 +48,18 @@ public class LocationList {
         return locations;
     }
 
+    public Location findOrCreateLocation(String address, String city, String state, int zipcode,
+        double latitude, double longitude) {
+            for (Location l : locations) {
+                if (address.equalsIgnoreCase(l.getAddress()) && l.getCity().equalsIgnoreCase(city) && l.getZipcode() == zipcode)
+                    return l;
+            }
+            Location location = new Location(UUID.randomUUID(), state, city, zipcode, address, latitude, longitude);
+            locations.add(location);
+            return location;
+        }
     
-
+    public void save() {
+        DataWriter.saveLocations(locations);
+    }
 }

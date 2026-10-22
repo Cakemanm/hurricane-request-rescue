@@ -8,6 +8,8 @@ import org.json.simple.JSONObject;
 
 public class DataWriter extends DataConstants {
 
+    private static final String INDENT = "      ";
+
     private static void writeFile(String fileName, JSONArray json) {
         try (FileWriter writer = new FileWriter(fileName)) {
             writer.write(jsonPrint(json.toJSONString()));
@@ -46,6 +48,10 @@ public class DataWriter extends DataConstants {
         return out.toString().replaceAll("\\[\\s+\\]", "[]");
     }
 
+    private static String idOf(Object id) {
+        return id == null ? null : id.toString();
+    }
+
     public static void saveUsers(ArrayList<User> users) {
         JSONArray peopleJSON = new JSONArray();
         for(User user : users){
@@ -54,11 +60,14 @@ public class DataWriter extends DataConstants {
             personJSON.put(USER_USERNAME, user.getUsername());
             personJSON.put(USER_FIRST_NAME, user.getFirstName());
             personJSON.put(USER_LAST_NAME, user.getLastName());
-            personJSON.put(USER_LOCATION, user.getLocation());
+            personJSON.put(USER_AGE, user.getAge());
+            personJSON.put(USER_LOCATION, user.getLocation() == null ? null : idOf(user.getLocation().getId()));
             personJSON.put(USER_PHONE_NUMBER, user.getPhoneNumber());
             personJSON.put(USER_ADDRESS, user.getAddress());
             personJSON.put(USER_PASSWORD, user.getPassword());
-            personJSON.put(USER_SHELTER, user.getShelter().toString());
+            personJSON.put(USER_SHELTER, user.getShelter() == null ? null : idOf(user.getShelter().getId()));
+            personJSON.put(USER_HAS_PET, user.hasPet());
+            personJSON.put(USER_PET_DESCRIPTION, user.getPetDescription());
 
             JSONArray skillsJSON = new JSONArray();
             for(Skill skill : user.getSkills()){
@@ -85,19 +94,15 @@ public class DataWriter extends DataConstants {
             shelterJSON.put(SHELTER_NAME, shelter.getName());
             shelterJSON.put(SHELTER_AVAILABILITY, shelter.getAvailability(shelter.getOccupancy(), shelter.getCapacity()));
             shelterJSON.put(SHELTER_LOCATION, shelter.getLocation());
-<<<<<<< HEAD
             shelterJSON.put(SHELTER_SHELTER_TYPES, shelter.getShelterTypes());
-=======
-            shelterJSON.put(SHELTER_SHELTER_TYPES, shelter.getShelterType());
->>>>>>> carter-branch
             shelterJSON.put(SHELTER_OCCUPANCY, shelter.getOccupancy());
             shelterJSON.put(SHELTER_CAPACITY, shelter.getCapacity());
 
             JSONArray resourcesJSON = new JSONArray();
             for (Resource resource : shelter.getResources()) {
                 JSONObject resourceJSON = new JSONObject();
-                resourceJSON.put(SHELTER_RESOURCES_TYPE, resource.getResourceType().toString());
-                resourceJSON.put(SHELTER_RESOURCES_QUANTITY, resource.getQuantity());
+                resourceJSON.put(SHELTER_RESOURCE_TYPE, resource.getResourceType().toString());
+                resourceJSON.put(SHELTER_RESOURCE_QUANTITY, resource.getQuantity());
                 resourcesJSON.add(resourceJSON);
             }
             shelterJSON.put(SHELTER_RESOURCES, resourcesJSON);
@@ -149,5 +154,21 @@ public class DataWriter extends DataConstants {
             hurricanesJSON.add(hurricaneJSON);
         }
         writeFile(HURRICANE_FILE_NAME, hurricanesJSON);
+    }
+
+    public static void saveLocations(ArrayList<Location> locations) {
+        JSONArray locationsJSON = new JSONArray();
+        for (Location location : locations) {
+            JSONObject locationJSON = new JSONObject();
+            locationJSON.put(LOCATION_ID, idOf(location.getId()));
+            locationJSON.put(LOCATION_STATE, location.getState());
+            locationJSON.put(LOCATION_CITY, location.getCity());
+            locationJSON.put(LOCATION_ZIPCODE, location.getZipcode());
+            locationJSON.put(LOCATION_ADDRESS, location.getAddress());
+            locationJSON.put(LOCATION_LATITUDE, location.getLatitude());
+            locationJSON.put(LOCATION_LONGITUDE, location.getLongitude());
+            locationsJSON.add(locationJSON);
+        }
+        writeFile(LOCATION_FILE_NAME, locationsJSON);
     }
 }
