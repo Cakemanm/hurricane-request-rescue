@@ -11,6 +11,7 @@ public class Test {
         ShelterList shelterList = ShelterList.getInstance();
         UserList userList = UserList.getInstance();
         User kyle = userList.getUser("kyled");
+        System.out.println(kyle.volunteerToString());
 
         reliefFacade.findRequests(kyle);
 
