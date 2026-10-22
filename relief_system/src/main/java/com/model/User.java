@@ -31,9 +31,7 @@ public class User {
     //         this.familyMembers = familyMembers;
     //     }
 
-    public User(UUID id, String username, String firstName, String lastName, 
-        Location location, String phoneNumber, String address, String password, Shelter shelter, 
-        ArrayList<FamilyMember> familyMembers, ArrayList<Skill> skills, boolean hasPet, int age, String petDescription) {
+    public User(UUID id, String username, String firstName, String lastName, Location location, String phoneNumber, String address, String password, Shelter shelter, ArrayList<FamilyMember> familyMembers, boolean hasPet, int age, String petDescription) {
             this.id = (id == null ? UUID.randomUUID() : id);
             this.username = username;
             this.firstName = firstName;
