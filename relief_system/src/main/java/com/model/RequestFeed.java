@@ -81,4 +81,8 @@ public class RequestFeed {
             System.out.println(request.toString());
         }
     }
+
+    public void save() {
+        DataWriter.saveRequests(requests);
+    }
 }

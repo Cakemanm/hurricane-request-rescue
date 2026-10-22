@@ -114,11 +114,7 @@ public class Shelter {
         return this.location;
     }
 
-<<<<<<< HEAD
     public ArrayList<ShelterType> getShelterTypes() {
-=======
-    public ArrayList<ShelterType> getShelterType() {
->>>>>>> carter-branch
         return this.shelterTypes;
     }
 
