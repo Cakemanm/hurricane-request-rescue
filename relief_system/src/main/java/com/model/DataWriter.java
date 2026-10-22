@@ -8,6 +8,8 @@ import org.json.simple.JSONObject;
 
 public class DataWriter extends DataConstants {
 
+    private static final String INDENT = "      ";
+
     private static void writeFile(String fileName, JSONArray json) {
         try (FileWriter writer = new FileWriter(fileName)) {
             writer.write(jsonPrint(json.toJSONString()));
@@ -44,6 +46,10 @@ public class DataWriter extends DataConstants {
             }
         }
         return out.toString().replaceAll("\\[\\s+\\]", "[]");
+    }
+
+    private static String idOf(Object id) {
+        return id == null ? null : id.toString();
     }
 
     public static void saveUsers(ArrayList<User> users) {
@@ -149,5 +155,21 @@ public class DataWriter extends DataConstants {
             hurricanesJSON.add(hurricaneJSON);
         }
         writeFile(HURRICANE_FILE_NAME, hurricanesJSON);
+    }
+
+    public static void saveLocations(ArrayList<Location> locations) {
+        JSONArray locationsJSON = new JSONArray();
+        for (Location location : locations) {
+            JSONObject locationJSON = new JSONObject();
+            locationJSON.put(LOCATION_ID, idOf(location.getId()));
+            locationJSON.put(LOCATION_STATE, location.getState());
+            locationJSON.put(LOCATION_CITY, location.getCity());
+            locationJSON.put(LOCATION_ZIPCODE, location.getZipcode());
+            locationJSON.put(LOCATION_ADDRESS, location.getAddress());
+            locationJSON.put(LOCATION_LATITUDE, location.getLatitude());
+            locationJSON.put(LOCATION_LONGITUDE, location.getLongitude());
+            locationsJSON.add(locationJSON);
+        }
+        writeFile(LOCATION_FILE_NAME, locationsJSON);
     }
 }

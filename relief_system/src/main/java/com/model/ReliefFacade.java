@@ -6,15 +6,25 @@ import java.util.UUID;
 public class ReliefFacade {
     private ArrayList<Hurricane> hurricane;
     private User currentUser;
-    private RequestFeed feed = RequestFeed.getInstance();
-    private ShelterList shelterList = ShelterList.getInstance();
+    private RequestFeed feed;
+    // private ShelterList shelterList = ShelterList.getInstance();
+
+    public static final double NEARBY_MILES = 10.0;
 
     public ReliefFacade() {
         hurricane = DataLoader.getHurricanes();
+        feed = RequestFeed.getInstance();
         currentUser = null;
     }
 
-    public void submitRequest(Request request) {
+    // public void submitRequest(Request request) {
+    //     feed.addRequest(request);
+    // }
+
+    public void submitRequest(User requester, Request request, Location loc, String comments) {
+        request.setRequester(requester);
+        request.setLocation(loc);
+        request.addComment(comments);
         feed.addRequest(request);
     }
 
@@ -62,6 +72,7 @@ public class ReliefFacade {
         if (currentUser.getShelter() != null) {
             currentUser.getShelter().removeOccupant();
         }
+        shelter.addOccupant();
         currentUser.setShelter(shelter);
         return shelter;
     }
@@ -71,11 +82,10 @@ public class ReliefFacade {
 
     public void dispatchVolunteer(User user) {
 
-        ArrayList<Request> requests = RequestFeed.getInstance().getRequests();   
+        ArrayList<Request> requests = feed.getRequests();   
         for (Request request : requests) {
         if (request.getStatus() == RequestStatus.PENDING) {
-            request.setResponder(user);
-            request.updateStatus(RequestStatus.HELP_ON_THE_WAY);
+            request.updateStatus(RequestStatus.HELP_ON_THE_WAY, user);
             return;
         }
     }
@@ -92,8 +102,12 @@ public class ReliefFacade {
     }
 
     public RequestFeed browseRequests() {
-        return RequestFeed.getInstance();
+        return feed;
 
+    }
+
+    public Location createLocation(String address, String city, String state, int zipcode, double latitude, double longitude) {
+        return LocationList.getInstance().findOnCreateLocation(address, city, state, zipcode, latitude, longitude);
     }
 
     public void createAccount(String username, String firstName, String lastName, 
