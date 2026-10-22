@@ -114,7 +114,11 @@ public class Shelter {
         return this.location;
     }
 
+<<<<<<< HEAD
     public ArrayList<ShelterType> getShelterTypes() {
+=======
+    public ArrayList<ShelterType> getShelterType() {
+>>>>>>> carter-branch
         return this.shelterTypes;
     }
 
@@ -158,12 +162,8 @@ public class Shelter {
             System.out.println(resource);
     }
 
-    public void updateSupplyLevel(){
-
-    }
-
     public void addResource(Resource resource){
-
+        resources.add(resource);
     }
 
     public String toString(){
