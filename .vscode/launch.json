@@ -9,13 +9,6 @@
             "name": "UI",
             "request": "launch",
             "mainClass": "com.relief/com.model.UI",
-            "projectName": "relief_system"
-        },
-        {
-            "type": "java",
-            "name": "UI",
-            "request": "launch",
-            "mainClass": "com.relief_system/com.model.UI",
             "projectName": "relief_system",
             "envFile": "${workspaceFolder}/.env"
         },
