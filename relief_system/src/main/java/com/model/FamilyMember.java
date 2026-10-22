@@ -8,6 +8,14 @@ public class FamilyMember {
         this.age = age;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
+    public int getAge() {
+        return this.age;
+    }
+
     public String toString(){
         return this.name + ", " + this.age;
     }

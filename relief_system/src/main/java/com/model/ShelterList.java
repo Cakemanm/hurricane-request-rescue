@@ -76,4 +76,8 @@ public ArrayList<Shelter> findShelters(int groupSize, boolean needMedicalStaff, 
     }
     return shelterMatches;
 }
+
+    public void save() {
+        DataWriter.saveShelters(shelters);
+    }
 }
