@@ -11,9 +11,12 @@ public class Test {
         ShelterList shelterList = ShelterList.getInstance();
         UserList userList = UserList.getInstance();
         User kyle = userList.getUser("kyled");
-        for(Skill skill : kyle.getSkills())
-            System.out.println(skill);
+
         reliefFacade.findRequests(kyle);
+
+        ArrayList<Shelter> shelters = shelterList.findShelters(2,false,true,false);
+        for(Shelter shelter : shelters)
+            System.out.println(shelter.toString());
         /* 
         reliefFacade.displayRequests();
         reliefFacade.searchRequests("broken");

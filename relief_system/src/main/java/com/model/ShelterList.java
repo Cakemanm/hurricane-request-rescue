@@ -52,7 +52,7 @@ public ArrayList<Shelter> findShelters(int groupSize, boolean needMedicalStaff, 
     ArrayList<Shelter> shelterMatches = new ArrayList<>();
     for(Shelter shelter : shelters){
         if(groupSize > shelter.getCapacity() - shelter.getOccupancy())
-            break;
+            continue;
         boolean hasMedics = false;
         boolean petFriendly = false;
         boolean accessible = false;
@@ -65,11 +65,11 @@ public ArrayList<Shelter> findShelters(int groupSize, boolean needMedicalStaff, 
                 accessible = true;
         }
         if(needMedicalStaff && !hasMedics)
-            break;
+            continue;
         if(hasPet && !petFriendly)
-            break;
+            continue;
         if(limitedMobility && !accessible)
-            break;
+            continue;
 
         match = true;
         shelterMatches.add(shelter);

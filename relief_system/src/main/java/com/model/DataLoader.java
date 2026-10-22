@@ -43,7 +43,6 @@ public class DataLoader extends DataConstants {
             ArrayList<Skill> skills = new ArrayList<>();
             for(Object skill : skillsJSON){
                 skills.add(Skill.valueOf((String)skill));
-                System.out.println(Skill.valueOf((String)skill));
             }
 
             JSONArray familyJSON = (JSONArray)personJSON.get(USER_FAMILY_MEMBERS);

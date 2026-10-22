@@ -29,7 +29,7 @@
     {
         "id" : "68b7087c-d6ee-4c2b-8706-7a90ac62e5f5",
         "name" : "Saint Jude's Church",
-        "availability" : false,
+        "availability" : true,
         "resources" : [
             {
                 "type" : "WATER",
@@ -50,7 +50,7 @@
         ],
         "location" : "baa5f8b6-2e90-4084-8376-50e9e3b6ac6f",
         "shelterTypes" : ["PET_FRIENDLY"],
-        "occupancy" : 115,
+        "occupancy" : 110,
         "capacity" : 115
     }
 
