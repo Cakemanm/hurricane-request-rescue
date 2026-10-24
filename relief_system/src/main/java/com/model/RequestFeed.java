@@ -1,5 +1,5 @@
 package com.model;
-
+import com.location.Address;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -26,9 +26,9 @@ public class RequestFeed {
         return null;
     }
 
-    public void addRequest(UUID id, RequestStatus status, Location location, String address, int reportedUrgency,
+    public void addRequest(UUID id, RequestStatus status, Address address, int reportedUrgency,
         ArrayList<String> comments, User requester, User responder, ArrayList<RequestType> requestTypes){
-            requests.add(new Request(id, status, location, address, reportedUrgency, comments, requester, responder, requestTypes));
+            requests.add(new Request(id, status, address, reportedUrgency, comments, requester, responder, requestTypes));
         }
     
     public void addRequest(Request request) {

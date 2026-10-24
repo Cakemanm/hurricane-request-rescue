@@ -1,12 +1,12 @@
 package com.model;
 import java.util.ArrayList;
 import java.util.UUID;
+import com.location.Address;
 
 public class Request {
     private int requestPriority;
     private RequestStatus status;
-    private Location location;
-    private String address;
+    private Address address;
     private int reportedUrgency;
     private ArrayList<String> comments;
     private ArrayList<RequestType> requestTypes;
@@ -14,11 +14,10 @@ public class Request {
     private User responder;
     private UUID id;
 
-    public Request(UUID id, RequestStatus status, Location location, String address, int reportedUrgency,
+    public Request(UUID id, RequestStatus status, Address address, int reportedUrgency,
         ArrayList<String> comments, User requester, User responder, ArrayList<RequestType> requestTypes){
         //this.requestPriority = priority;
         this.status = status;
-        this.location = location;
         this.reportedUrgency = reportedUrgency;
         this.comments = comments;
         this.requester = requester;
@@ -61,7 +60,7 @@ public class Request {
             returnString += "Request for help with: ";
             for(RequestType type: requestTypes)
                 returnString += type.label + (requestTypes.indexOf(type) < requestTypes.size()-1 ? ", " : "");
-            returnString += "\nPriority Level: " + this.calcPriority() + " \nRequested by: " + requester.getFullName() + " at " + address + " " + (location == null? "" : location.toString()) + "\n";
+            returnString += "\nPriority Level: " + this.calcPriority() + " \nRequested by: " + requester.getFullName() + " at " + address + " " + (address == null? "" : address.toString()) + "\n";
             for(String comment : comments)
                 returnString += comment + " ";
             returnString += "\nRequest Status: " + status + (responder == null ? " | Currently Unfulfilled" : " | Responder: "+ responder.getFullName());
@@ -80,17 +79,12 @@ public class Request {
         public void setStatus(RequestStatus status) {
             this.status = status;
         }
-        public Location getLocation() {
-            return location;
-        }
-        public void setLocation(Location location) {
-            this.location = location;
-        }
-
-        public String getAddress() {
+        public Address getAddress() {
             return address;
         }
-
+        public void setAddress(Address address){
+            this.address = address;
+        }
         public int getReportedUrgency() {
             return reportedUrgency;
         }

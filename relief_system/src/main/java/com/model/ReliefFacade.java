@@ -4,7 +4,7 @@ import java.util.UUID;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
+import com.location.Address;
 
 public class ReliefFacade {
     private ArrayList<Hurricane> hurricane;
@@ -24,9 +24,9 @@ public class ReliefFacade {
     //     feed.addRequest(request);
     // }
 
-    public void submitRequest(User requester, Request request, Location loc, String comments) {
+    public void submitRequest(User requester, Request request, Address address, String comments) {
         request.setRequester(requester);
-        request.setLocation(loc);
+        request.setAddress(address);
         request.addComment(comments);
         feed.addRequest(request);
     }
@@ -114,22 +114,22 @@ public class ReliefFacade {
     }
 
     public void createAccount(String username, String firstName, String lastName, 
-        Location location, String phoneNumber, String address, String password,
+        String phoneNumber, Address address, String password,
         ArrayList<FamilyMember> familyMembers,boolean hasPet, int age, String petDescription){
             UserList userList = UserList.getInstance();
             if (userList.getUser(username) != null) {
                 System.out.println("That username is already taken");
                 return;
             }
-            userList.addUser(new User(UUID.randomUUID(), username, firstName, lastName, location, phoneNumber, address, password, null, familyMembers, hasPet, age, petDescription));
+            userList.addUser(new User(UUID.randomUUID(), username, firstName, lastName, phoneNumber, address, password, null, familyMembers, hasPet, age, petDescription));
             login(username, password);
     }
 
     public User createAccount(String username, String firstName, String lastName, 
-        Location location, String phoneNumber, String address, String password, Shelter shelter,
+        String phoneNumber, Address address, String password, Shelter shelter,
         ArrayList<FamilyMember> familyMembers,boolean hasPet, int age, String petDescription){
             UserList userList = UserList.getInstance();
-            User user = new User(UUID.randomUUID(), username, firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers, hasPet, age, petDescription);
+            User user = new User(UUID.randomUUID(), username, firstName, lastName, phoneNumber, address, password, shelter, familyMembers, hasPet, age, petDescription);
             userList.addUser(user);
             login(username, password);
             return user;
@@ -145,13 +145,12 @@ public class ReliefFacade {
     return false;
     }
 
-    public Request createRequest(ArrayList<RequestType> requestTypes, Location location, String address,
+    public Request createRequest(ArrayList<RequestType> requestTypes, Address address,
         int reportedUrgency, ArrayList<String> comments) {
             if (currentUser == null || requestTypes == null || requestTypes.isEmpty()) {
                 return null;
             }
-            Location where = (location == null ? currentUser.getLocation() : location);
-            Request request = new Request(null, RequestStatus.PENDING, where, address, reportedUrgency,
+            Request request = new Request(null, RequestStatus.PENDING, address, reportedUrgency,
                 comments, currentUser, null, requestTypes);
             request.calcPriority();
             feed.addRequest(request);
@@ -180,11 +179,11 @@ public class ReliefFacade {
             System.out.println(request.toString() + "\n");
     }
 
-    public void findRequestsByLocation(Location location){
-        System.out.println("\n\nRequests for: "+ location.toString() +"\n");
+    public void findRequestsByLocation(Address address){
+        System.out.println("\n\nRequests for: "+ address.toString() +"\n");
         boolean match = false;
         for(Request request : feed.getRequests()){
-            if(request.getLocation().getId() == location.getId()){
+            if(request.getAddress() == address){
                 System.out.println(request.toString() + "\n");
                 match = true;
             }

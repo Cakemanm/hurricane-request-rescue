@@ -2,15 +2,15 @@ package com.model;
 
 import java.util.ArrayList;
 import java.util.UUID;
+import com.location.Address;
 public class User {
     
     private UUID id;
     private String username;
     private String firstName;
     private String lastName;
-    private Location location;
     private String phoneNumber;
-    private String address;
+    private Address address;
     private String password;
     private Shelter shelter = null;
     private ArrayList<Skill> skills;
@@ -19,13 +19,12 @@ public class User {
     private int age;
     private String petDescription;
 
-    public User(UUID id, String username, String firstName, String lastName, Location location, String phoneNumber, String address, String password, Shelter shelter, ArrayList<FamilyMember> familyMembers, boolean hasPet, int age, String petDescription) {
+    public User(UUID id, String username, String firstName, String lastName, String phoneNumber, Address address, String password, Shelter shelter, ArrayList<FamilyMember> familyMembers, boolean hasPet, int age, String petDescription) {
             this.id = (id == null ? UUID.randomUUID() : id);
             this.username = username;
             this.firstName = firstName;
             this.lastName = lastName;
             this.age = age;
-            this.location = location;
             this.phoneNumber = phoneNumber;
             this.address = address;
             this.password = password;
@@ -37,14 +36,13 @@ public class User {
         }
 
     public User(UUID id, String username, String firstName, String lastName, 
-    Location location, String phoneNumber, String address, String password, Shelter shelter, 
+    String phoneNumber, Address address, String password, Shelter shelter, 
     ArrayList<FamilyMember> familyMembers, ArrayList<Skill> skills, boolean hasPet, int age) {
         this.id = (id == null ? UUID.randomUUID() : id);
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
-        this.location = location;
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.password = password;
@@ -118,15 +116,11 @@ public class User {
         return this.firstName + " " + this.lastName;
     }
 
-    public Location getLocation(){
-        return this.location;
-    }
-
     public String getPhoneNumber(){
         return this.phoneNumber;
     }
 
-    public String getAddress(){
+    public Address getAddress(){
         return this.address;
     }
 
