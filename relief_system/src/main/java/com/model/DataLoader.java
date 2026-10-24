@@ -9,7 +9,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 public class DataLoader extends DataConstants {
-    public static ArrayList<User> users = new ArrayList<User>();
 
     public static ArrayList<User> getUsers(){
     ArrayList<User> users = new ArrayList<User>();
@@ -30,9 +29,11 @@ public class DataLoader extends DataConstants {
             String address = (String)personJSON.get(USER_ADDRESS);
             String password = (String)personJSON.get(USER_PASSWORD);
 
-            UUID locationId = UUID.fromString((String)personJSON.get(USER_LOCATION));
-            Location location = (locationId == null ? null : LocationList.getInstance().getLocationById(locationId));
-            
+            String locationIdString = (String) personJSON.get(USER_LOCATION);
+            UUID locationId = locationIdString == null ? null : UUID.fromString(locationIdString);
+
+            Location location = locationId == null ? null : LocationList.getInstance().getLocationById(locationId);
+                    
             String shelterIdString = (String) personJSON.get(USER_SHELTER);
 
             UUID shelterId = shelterIdString == null ? null : UUID.fromString(shelterIdString);
@@ -63,14 +64,14 @@ public class DataLoader extends DataConstants {
 
         }
 
-    }   catch (Exception e){
-        e.printStackTrace();
+    }catch (Exception e) {
+        throw new IllegalStateException( "Could not load users; refusing to use an incomplete list.", e);
     }
     return users;
     }
 
-    public static ArrayList<Shelter> shelters = new ArrayList();
-    public static ArrayList<Shelter> getShelters(){
+    public static ArrayList<Shelter> getShelters(){             
+        ArrayList<Shelter> shelters = new ArrayList();
         try{
             FileReader reader = new FileReader(SHELTER_FILE_NAME);
             JSONArray placesJSON = (JSONArray) new JSONParser().parse(reader);
@@ -83,8 +84,10 @@ public class DataLoader extends DataConstants {
                 int occupancy = Integer.parseInt(placeJSON.get(SHELTER_OCCUPANCY).toString());
                 int capacity = Integer.parseInt(placeJSON.get(SHELTER_CAPACITY).toString());
 
-                UUID locationId = UUID.fromString((String)placeJSON.get(SHELTER_LOCATION));
-                Location location = (locationId == null ? null : LocationList.getInstance().getLocationById(locationId));
+                String locationIdString = (String) placeJSON.get(USER_LOCATION);
+                UUID locationId = locationIdString == null ? null : UUID.fromString(locationIdString);
+
+                Location location = locationId == null ? null : LocationList.getInstance().getLocationById(locationId);
 
                 JSONArray shelterTypesJSON = (JSONArray)placeJSON.get(SHELTER_SHELTER_TYPES);
                 ArrayList<ShelterType> shelterTypes = new ArrayList<>();
@@ -107,8 +110,8 @@ public class DataLoader extends DataConstants {
             }
 
 
-        }   catch (Exception e){
-        e.printStackTrace();
+        }catch (Exception e) {
+        throw new IllegalStateException( "Could not load shelters; refusing to use an incomplete list.", e);
         }
         return shelters;
     }
@@ -126,8 +129,10 @@ public class DataLoader extends DataConstants {
                 int reportedUrgency = Integer.parseInt(objectJSON.get(REQUEST_REPORTED_URGENCY).toString());
                 String address = (String)objectJSON.get(REQUEST_ADDRESS);
 
-                UUID locationId = UUID.fromString((String)objectJSON.get(REQUEST_LOCATION));
-                Location location = (locationId == null ? null : LocationList.getInstance().getLocationById(locationId));
+                String locationIdString = (String) objectJSON.get(USER_LOCATION);
+                UUID locationId = locationIdString == null ? null : UUID.fromString(locationIdString);
+
+                Location location = locationId == null ? null : LocationList.getInstance().getLocationById(locationId);
 
                 JSONArray commentsJSON = (JSONArray)objectJSON.get(REQUEST_COMMENTS);
                 ArrayList<String> comments = new ArrayList<>();

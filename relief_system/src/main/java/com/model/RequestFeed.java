@@ -72,15 +72,21 @@ public class RequestFeed {
         ArrayList<Request> results = new ArrayList<>();
         ArrayList<Request> others = new ArrayList<>();
         for(Request request : requests){
+            if(request.getStatus()!= RequestStatus.PENDING)
+                continue;
+            boolean matches = false;
             for(RequestType type : request.getRequestTypes()){
-            skillsLoop: for(Skill skill : user.getSkills()){
+                for(Skill skill : user.getSkills()){
                     if(skill.equals(type.skill)){
-                        results.add(request);
-                        break skillsLoop;
+                        matches = true;
+                        break;
                     }
                 }   
-                others.add(request);
             }
+            if (matches)
+                results.add(request);
+            else
+                others.add(request);
         }
         System.out.println("\nRelevant Requests:\n");
         for(Request request: results)

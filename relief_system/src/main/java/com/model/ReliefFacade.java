@@ -44,6 +44,8 @@ public class ReliefFacade {
             if (shelter.isAvailable() && shelter.getOccupancy() < shelter.getCapacity()) {
                 shelter.addOccupant();
                 user.setShelter(shelterList.getShelterById(shelter.getId()));
+                shelterList.save();
+                UserList.getInstance().save();
                 return shelter;
             }
         }
@@ -77,6 +79,8 @@ public class ReliefFacade {
         }
         shelter.addOccupant();
         currentUser.setShelter(shelter);
+        shelterList.save();
+        UserList.getInstance().save();
         return shelter;
     }
 
@@ -119,6 +123,7 @@ public class ReliefFacade {
                 return;
             }
             userList.addUser(new User(UUID.randomUUID(), username, firstName, lastName, location, phoneNumber, address, password, null, familyMembers, hasPet, age, petDescription));
+            userList.save();
             login(username, password);
     }
 
@@ -128,6 +133,7 @@ public class ReliefFacade {
             UserList userList = UserList.getInstance();
             User user = new User(UUID.randomUUID(), username, firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers, hasPet, age, petDescription);
             userList.addUser(user);
+            userList.save();
             login(username, password);
             return user;
     }
