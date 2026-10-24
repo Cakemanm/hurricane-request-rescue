@@ -28,7 +28,7 @@ public class DataConstants {
     protected static final String SHELTER_RESOURCES = "resources";
     protected static final String SHELTER_RESOURCES_QUANTITY = "quantity";
     protected static final String SHELTER_RESOURCES_TYPE = "type";
-    protected static final String SHELTER_LOCATION = "location";
+    protected static final String SHELTER_ADDRESS = "address";
     protected static final String SHELTER_SHELTER_TYPES = "shelterTypes";
     protected static final String SHELTER_OCCUPANCY = "occupancy";
     protected static final String SHELTER_CAPACITY = "capacity";

@@ -2,7 +2,7 @@ package com.model;
 
 import java.util.ArrayList;
 import java.util.UUID;
-
+import com.location.Address;
 public class ShelterList {
 
 private static ShelterList shelterList;
@@ -20,9 +20,9 @@ public static ShelterList getInstance() {
     return shelterList;
 }
 
-public void addShelter(String name, boolean availability, Location location, ArrayList<Resource> resources, 
+public void addShelter(String name, boolean availability, Address address, ArrayList<Resource> resources, 
     ArrayList<ShelterType> type, int occupancy, int capacity, UUID id) {
-    Shelter shelter = new Shelter(name, availability, location, resources, type, occupancy, capacity, (id == null ? UUID.randomUUID() : id));
+    Shelter shelter = new Shelter(name, availability, address, resources, type, occupancy, capacity, (id == null ? UUID.randomUUID() : id));
     shelters.add(shelter);
 }
 

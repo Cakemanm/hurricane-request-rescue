@@ -3,7 +3,7 @@ package com.model;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Arrays;
-
+import com.location.Address;
 public class ReliefUI {
     private ReliefFacade reliefFacade;
 
@@ -111,7 +111,7 @@ public class ReliefUI {
         // view shelters
         System.out.println("\nShelters");
         for (Shelter s : reliefFacade.getShelters()) {
-            System.out.println(" " + s.getName() + " | " + s.getLocation() + " | "
+            System.out.println(" " + s.getName() + " | " + s.getAddress() + " | "
                 + s.getOccupancy() + "/" + s.getCapacity() + (s.isAvailable() ? " | Open" : " | FULL"));
         }
 
