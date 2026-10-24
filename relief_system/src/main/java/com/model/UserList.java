@@ -10,6 +10,7 @@ public class UserList {
 
     private UserList(){
         users = DataLoader.getUsers();
+        System.out.println("Users loaded: " + users.size());
     }
 
     public static UserList getInstance(){

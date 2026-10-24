@@ -72,24 +72,10 @@
     "address" : "812 Drive Rd",
     "password" : "F350Rosa!trk",
     "shelter" : null,
-    "skills" : ["CAN_DRIVE", "HEAVY_LIFTER"],
+    "skills" : ["CAN_DRIVE", "HEAVY_LIFTER","TRANSPORTATION"],
     "familyMembers" : [],
     "hasPet" : false,
     "age" : 45
-    },  
-    {
-    "id" : "7c3e9a14-5d28-4b6f-a1e0-8f2b4d6c9e35",
-    "username" : "sophiesdad",
-    "firstName" : "Michael",
-    "lastName" : "Carter",
-    "location" : "2b8d4f61-9a37-4c05-b3e8-6d1a7c5f0e92",
-    "phoneNumber" : "000-843-2271",
-    "address" : "67 Somewhere Ave",
-    "password" : "Buddy&Sophie09",
-    "shelter" : null,
-    "skills" : [],
-    "familyMembers" : [{"name" : "Laura Carter", "age" : 39}, {"name" : "Sophie Carter", "age" : 9}],
-    "hasPet" : true,
-    "age" : 41
-}
+    }
+
 ]

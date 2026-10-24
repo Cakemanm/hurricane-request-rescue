@@ -62,16 +62,24 @@ public class RequestFeed {
     //currently only uses skills and not location
     public ArrayList<Request> findRelevantRequests(User user){
         ArrayList<Request> results = new ArrayList<>();
+        ArrayList<Request> others = new ArrayList<>();
         for(Request request : requests){
-            typesLoop: for(RequestType type : request.getRequestTypes()){
-                for(Skill skill : user.getSkills()){
+            for(RequestType type : request.getRequestTypes()){
+            skillsLoop: for(Skill skill : user.getSkills()){
                     if(skill.equals(type.skill)){
                         results.add(request);
-                        break typesLoop;
+                        break skillsLoop;
                     }
                 }   
+                others.add(request);
             }
         }
+        System.out.println("\nRelevant Requests:\n");
+        for(Request request: results)
+            System.out.println(request.toString() + "\n");
+        System.out.println("\nOther requests:\n");
+        for(Request request: others)
+            System.out.println(request.toString() + "\n");
         return results;
     }
     

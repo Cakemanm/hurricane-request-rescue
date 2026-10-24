@@ -125,12 +125,14 @@ public class ReliefFacade {
             login(username, password);
     }
 
-    public void createAccount(String username, String firstName, String lastName, 
+    public User createAccount(String username, String firstName, String lastName, 
         Location location, String phoneNumber, String address, String password, Shelter shelter,
         ArrayList<FamilyMember> familyMembers,boolean hasPet, int age, String petDescription){
             UserList userList = UserList.getInstance();
-            userList.addUser(new User(UUID.randomUUID(), username, firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers, hasPet, age, petDescription));
+            User user = new User(UUID.randomUUID(), username, firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers, hasPet, age, petDescription);
+            userList.addUser(user);
             login(username, password);
+            return user;
     }
 
     public boolean login(String username, String password) {

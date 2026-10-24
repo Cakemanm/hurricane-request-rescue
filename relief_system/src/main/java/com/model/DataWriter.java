@@ -80,7 +80,7 @@ public class DataWriter extends DataConstants {
                 JSONObject memberJSON = new JSONObject();
                 memberJSON.put(FAMILY_MEMBER_NAME, member.getName());
                 memberJSON.put(FAMILY_MEMBER_AGE, member.getAge());
-                familyJSON.add(member);
+                familyJSON.add(memberJSON);
             }
             personJSON.put(USER_FAMILY_MEMBERS, familyJSON);
 
