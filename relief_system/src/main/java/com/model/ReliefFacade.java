@@ -32,7 +32,7 @@ public class ReliefFacade {
     }
 
     public void browseShelters(){
-        System.out.println("Shelters: ");
+        System.out.println("Recommended Shelters: ");
         for(Shelter shelter : shelterList.getShelters()){
             System.out.println(shelter.toString() + "\n");
         }
@@ -83,22 +83,19 @@ public class ReliefFacade {
 
 
 
-    public void dispatchVolunteer(User user) {
-
-        ArrayList<Request> requests = feed.getRequests();   
-        for (Request request : requests) {
+    public boolean dispatchVolunteer(Request request, User user) {
         if (request.getStatus() == RequestStatus.PENDING) {
             request.updateStatus(RequestStatus.HELP_ON_THE_WAY, user);
-            return;
+            return true;
         }
+        return false;
     }
-}
 
     public void restockShelter(Shelter shelter, ResourceType type, int quantity) {
     if (shelter != null) {
         shelter.restock(type, quantity);
     }
-}
+    }
 
     public ArrayList<Hurricane> getStormStatus() {
         return hurricane;

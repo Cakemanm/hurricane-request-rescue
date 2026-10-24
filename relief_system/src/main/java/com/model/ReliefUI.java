@@ -43,6 +43,7 @@ public class ReliefUI {
 
     public void scenarioPortia() {
         RequestFeed requestFeed = RequestFeed.getInstance();
+        ShelterList shelterList = ShelterList.getInstance();
 
         //Michael Carter creates an account
         System.out.println("Creating an account for Michael Carter...\n");
@@ -92,6 +93,19 @@ public class ReliefUI {
 
         System.out.println("\nFinding requests for Rosa...\n\nThe top requests are nearby and match your specialties:");
         requestFeed.findRelevantRequests(user);
+
+        //Rosa claims the request
+        if(reliefFacade.dispatchVolunteer(request, user))
+            System.out.println("\n\n" + user.getFullName() + " is now the assigned volunteer for the following request:\n" + request.toString());
+        else
+            System.out.println("This request claim was unsuccessful.");
+
+        //Rosa finds a relevant shelter
+        System.out.println("\nSearching for shelter's matching the family's criteria...\n\n");
+        ArrayList<Shelter> matchingShelters = shelterList.findShelters(3, true, true, false);
+        for(Shelter shelter : matchingShelters)
+            System.out.println(shelter.toString()+"\n");
+
     }
 
     // login, view shelters, sign up for shelter, view shelter resources, create request

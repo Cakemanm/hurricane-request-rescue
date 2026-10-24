@@ -1,5 +1,4 @@
-[
-    {
+[     {
         "id" : "14dd40d2-476b-4239-8fa9-1c09c4b5c86e",
         "username" : "hwells",
         "firstName" : "Hannah",
@@ -63,19 +62,20 @@
         "age" : 31
     },
     {
-    "id" : "e9a2c7d5-3b16-4f84-8d0a-1c6e5b9f7a43",
-    "username" : "rosad",
-    "firstName" : "Rosa",
-    "lastName" : "Delgado",
-    "location" : "2b8d4f61-9a37-4c05-b3e8-6d1a7c5f0e92",
-    "phoneNumber" : "000-843-5590",
-    "address" : "812 Drive Rd",
-    "password" : "F350Rosa!trk",
-    "shelter" : null,
-    "skills" : ["CAN_DRIVE", "HEAVY_LIFTER","TRANSPORTATION"],
-    "familyMembers" : [],
-    "hasPet" : false,
-    "age" : 45
+        "id" : "e9a2c7d5-3b16-4f84-8d0a-1c6e5b9f7a43",
+        "username" : "rosad",
+        "firstName" : "Rosa",
+        "lastName" : "Delgado",
+        "location" : "2b8d4f61-9a37-4c05-b3e8-6d1a7c5f0e92",
+        "phoneNumber" : "000-843-5590",
+        "address" : "812 Drive Rd",
+        "password" : "F350Rosa!trk",
+        "shelter" : null,
+        "skills" : ["CAN_DRIVE", "HEAVY_LIFTER","TRANSPORTATION"],
+        "familyMembers" : null,
+        "hasPet" : false,
+        "age" : 45
     }
+
 
 ]

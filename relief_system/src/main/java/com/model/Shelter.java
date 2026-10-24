@@ -164,13 +164,13 @@ public class Shelter {
 
     public String toString(){
         String returnString = "";
-        returnString += this.name + "\nLocated in " + location.toString() + " with " + (this.availability ? (capacity-occupancy) + " open spots" : "no open spots");
+        returnString += this.name + "\nLocated in " + (location == null ? "" : location.toString()) + " with " + (this.availability ? (capacity-occupancy) + " open spots" : "no open spots");
         returnString += "\nAvailable resources: ";
         for(Resource resource : resources)
             returnString += "\n" + resource.toString();
         returnString += "\nShelter Types: ";
-        for(ShelterType type : shelterTypes)
-            returnString += type;
+        for(int i = 0; i < shelterTypes.size(); i++)
+            returnString += shelterTypes.get(i) + (i < shelterTypes.size() - 1 ? ", " : "");
         return returnString;
     }
 }

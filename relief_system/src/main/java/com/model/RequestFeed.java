@@ -26,6 +26,14 @@ public class RequestFeed {
         return null;
     }
 
+    public Request getRequest(User requester){
+        for(Request request : requests){
+            if(request.getRequester().equals(requester))
+                return request;
+        }
+        return null;
+    }
+
     public void addRequest(UUID id, RequestStatus status, Location location, String address, int reportedUrgency,
         ArrayList<String> comments, User requester, User responder, ArrayList<RequestType> requestTypes){
             requests.add(new Request(id, status, location, address, reportedUrgency, comments, requester, responder, requestTypes));
