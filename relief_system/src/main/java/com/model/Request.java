@@ -26,7 +26,7 @@ public class Request {
         this.requestTypes = requestTypes;
         this.id = (id == null ? UUID.randomUUID() : id);
         this.address = (address == null ? requester.getAddress() : address);
-        //calcPriority();
+        calcPriority();
     }
     
     public int calcPriority() {
@@ -61,10 +61,10 @@ public class Request {
             returnString += "Request for help with: ";
             for(RequestType type: requestTypes)
                 returnString += type.label + (requestTypes.indexOf(type) < requestTypes.size()-1 ? ", " : "");
-            returnString += "\nPriority Level: " + this.calcPriority() + " \nRequested by: " + requester.getFullName() + " at " + address + " " + location.toString() + "\n";
+            returnString += "\nPriority Level: " + this.calcPriority() + " \nRequested by: " + requester.getFullName() + " at " + address + " " + (location == null? "" : location.toString()) + "\n";
             for(String comment : comments)
                 returnString += comment + " ";
-            returnString += "\nRequest Status " + status + (responder == null ? " | Currently Unfulfilled" : " | Responder: "+ responder.getFullName());
+            returnString += "\nRequest Status: " + status + (responder == null ? " | Currently Unfulfilled" : " | Responder: "+ responder.getFullName());
             return returnString;
         }
 
@@ -86,6 +86,15 @@ public class Request {
         public void setLocation(Location location) {
             this.location = location;
         }
+
+        public String getAddress() {
+            return address;
+        }
+
+        public int getReportedUrgency() {
+            return reportedUrgency;
+        }
+
         public ArrayList<String> getComments() {
             return comments;
         }

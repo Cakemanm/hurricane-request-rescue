@@ -1,13 +1,16 @@
 package com.model;
 import java.util.ArrayList;
 import java.util.UUID;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 
 public class ReliefFacade {
     private ArrayList<Hurricane> hurricane;
     private User currentUser;
     private RequestFeed feed;
-    // private ShelterList shelterList = ShelterList.getInstance();
+    private ShelterList shelterList = ShelterList.getInstance();
 
     public static final double NEARBY_MILES = 10.0;
 
@@ -107,23 +110,29 @@ public class ReliefFacade {
     }
 
     public Location createLocation(String address, String city, String state, int zipcode, double latitude, double longitude) {
-        return LocationList.getInstance().findOnCreateLocation(address, city, state, zipcode, latitude, longitude);
+        return LocationList.getInstance().findOrCreateLocation(address, city, state, zipcode, latitude, longitude);
     }
 
     public void createAccount(String username, String firstName, String lastName, 
         Location location, String phoneNumber, String address, String password,
         ArrayList<FamilyMember> familyMembers,boolean hasPet, int age, String petDescription){
             UserList userList = UserList.getInstance();
+            if (userList.getUser(username) != null) {
+                System.out.println("That username is already taken");
+                return;
+            }
             userList.addUser(new User(UUID.randomUUID(), username, firstName, lastName, location, phoneNumber, address, password, null, familyMembers, hasPet, age, petDescription));
             login(username, password);
     }
 
-    public void createAccount(String username, String firstName, String lastName, 
+    public User createAccount(String username, String firstName, String lastName, 
         Location location, String phoneNumber, String address, String password, Shelter shelter,
         ArrayList<FamilyMember> familyMembers,boolean hasPet, int age, String petDescription){
             UserList userList = UserList.getInstance();
-            userList.addUser(new User(UUID.randomUUID(), username, firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers, hasPet, age, petDescription));
+            User user = new User(UUID.randomUUID(), username, firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers, hasPet, age, petDescription);
+            userList.addUser(user);
             login(username, password);
+            return user;
     }
 
     public boolean login(String username, String password) {
@@ -193,6 +202,10 @@ public class ReliefFacade {
     }
 
     public void logout() {
+        LocationList.getInstance().save();
+        ShelterList.getInstance().save();
+        UserList.getInstance().save();
+        feed.save();
         currentUser = null;
         System.out.println("Logout successful");
     }
@@ -200,4 +213,40 @@ public class ReliefFacade {
     public User getCurrentUser() {
         return currentUser;
     }
+
+    /* Finds user by username
+    @param username = the username
+    @return the user or null if none */
+    public User getUser(String username) {
+        return UserList.getInstance().getUser(username);
+    }
+
+    // --------------- match volunteers to request
+
+    /* Gets driving distance between two locations
+    @param from = where to start
+    @param to = where to end
+    @return the driving distance in miles */
+    // public double getDrivingMiles(Location from, Location to) {
+    //     return;
+    // }
+
+    /* Checks whether a request needs a current user's skills
+    @param request = the request
+    @return true if request matches user's skills */
+    public boolean matchesSkill(Request request) {
+        for (RequestType type : request.getRequestTypes()) {
+            if (currentUser.getSkills().contains(type.skill)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /* a request is recomended when it matches the user's skills and is within nearby miles
+    @param request = the request
+    @return true if request fits skills and is within miles */
+    // public boolean isRecomended(Request request) {
+    //     return matchesSkill(request) && getDrivingMiles(currentUser.getLocation(), request.getLocation()) <= NEARBY_MILES;
+    // }
 }

@@ -19,18 +19,6 @@ public class User {
     private int age;
     private String petDescription;
 
-    // public User(String username, String firstName, String lastName, 
-    //     Location location, String phoneNumber, String address, String password, ArrayList<FamilyMember> familyMembers){
-    //         this.username = username;
-    //         this.firstName = firstName;
-    //         this.lastName = lastName;
-    //         this.location = location;
-    //         this.phoneNumber = phoneNumber;
-    //         this.address = address;
-    //         this.password = password;
-    //         this.familyMembers = familyMembers;
-    //     }
-
     public User(UUID id, String username, String firstName, String lastName, Location location, String phoneNumber, String address, String password, Shelter shelter, ArrayList<FamilyMember> familyMembers, boolean hasPet, int age, String petDescription) {
             this.id = (id == null ? UUID.randomUUID() : id);
             this.username = username;
@@ -48,23 +36,37 @@ public class User {
             this.familyMembers = (familyMembers == null ? new ArrayList<>() : familyMembers);
         }
 
-        public User(UUID id, String username, String firstName, String lastName, 
-        Location location, String phoneNumber, String address, String password, Shelter shelter, 
-        ArrayList<FamilyMember> familyMembers, ArrayList<Skill> skills, boolean hasPet, int age) {
-            this.id = (id == null ? UUID.randomUUID() : id);
-            this.username = username;
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.age = age;
-            this.location = location;
-            this.phoneNumber = phoneNumber;
-            this.address = address;
-            this.password = password;
-            this.shelter = shelter;
-            this.skills = (skills == null ? new ArrayList<>() : skills);
-            this.hasPet = hasPet;
-            this.familyMembers = (familyMembers == null ? new ArrayList<>() : familyMembers);
-        }
+    public User(UUID id, String username, String firstName, String lastName, 
+    Location location, String phoneNumber, String address, String password, Shelter shelter, 
+    ArrayList<FamilyMember> familyMembers, ArrayList<Skill> skills, boolean hasPet, int age) {
+        this.id = (id == null ? UUID.randomUUID() : id);
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.location = location;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.password = password;
+        this.shelter = shelter;
+        this.skills = (skills == null ? new ArrayList<>() : skills);
+        this.hasPet = hasPet;
+        this.familyMembers = (familyMembers == null ? new ArrayList<>() : familyMembers);
+    }
+
+    public String volunteerToString(){
+        String skillsString = "";
+        for(int i = 0; i < skills.size(); i++)
+            skillsString += skills.get(i).label + (i < skills.size()-1 ? ", " : "");
+        return this.getFullName() + " (@" + this.username + ")\n" + this.phoneNumber + "\nSpecialties: " + skillsString;
+    }
+
+    public String victimToString(){
+        String family = "";
+        for(int i = 0; i < familyMembers.size();i++)
+            family += familyMembers.get(i).getName() + (i < familyMembers.size()-1 ? ", " : "");
+        return this.getFullName() + " (@" + this.username + ")\nFamily Members: " + family + (hasPet ? " | " + petDescription : "");
+    }
 
     public boolean hasPet() {
         return hasPet;

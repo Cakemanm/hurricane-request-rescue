@@ -2,12 +2,14 @@ package com.model;
 
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ReliefUI {
     private ReliefFacade reliefFacade;
 
     public ReliefUI() {
         reliefFacade = new ReliefFacade();
+        scenarioPortia();
     
     }
 
@@ -23,12 +25,76 @@ public class ReliefUI {
     // check family into shelter: felix log into system, see shelter name, location, total capcity, currenct occupancy, available spaces, and lsit of occupants
     // 
 
-    public void scenarioPortia() {
+/*
+    "id" : "7c3e9a14-5d28-4b6f-a1e0-8f2b4d6c9e35",
+    "username" : "sophiesdad",
+    "firstName" : "Michael",
+    "lastName" : "Carter",
+    "location" : "2b8d4f61-9a37-4c05-b3e8-6d1a7c5f0e92",
+    "phoneNumber" : "000-843-2271",
+    "address" : "67 Somewhere Ave",
+    "password" : "Buddy&Sophie09",
+    "shelter" : null,
+    "skills" : [],
+    "familyMembers" : [{"name" : "Laura Carter", "age" : 39}, {"name" : "Sophie Carter", "age" : 9}],
+    "hasPet" : true,
+    "age" : 41
+} */
 
+    public void scenarioPortia() {
+        RequestFeed requestFeed = RequestFeed.getInstance();
+
+        //Michael Carter creates an account
+        System.out.println("Creating an account for Michael Carter...\n");
+        ArrayList<FamilyMember> family = new ArrayList<>();
+        family.add(new FamilyMember("Laura Carter",39));
+        family.add(new FamilyMember("Sophie Carter",9));
+        User michael = reliefFacade.createAccount("sophiesdad","Michael","Carter",null,"000-843-2271","67 Somwhere Ave","Buddy&Sophie09",null,family,true, 41, "Dog named Buddy");
+
+        //Michael Carter logs in
+        System.out.println(michael.victimToString());
+        System.out.println("\nLogging Michael in...");
+        if (!reliefFacade.login("sophiesdad", "Buddy&Sophie09")) {
+            System.out.println("Sorry, we couldn't log you in.");
+            return;
+        }
+
+        User user = reliefFacade.getCurrentUser();
+        System.out.println(user.getFullName() + " is now logged in!");
+        if (user.getShelter() != null) {
+            System.out.println(user.getFullName() + "is currently staying at " + user.getShelter().getName());
+        }
+
+        //Michael creates a relief request
+        System.out.println("\nCreating a relief request...\n");
+        ArrayList<RequestType> types = new ArrayList<>(Arrays.asList(RequestType.TRANSPORTATION, RequestType.NO_SHELTER, RequestType.MEDICAL_ASSISTANCE));
+        ArrayList<String> comments = new ArrayList<>(Arrays.asList("My family needs to go to a shelter because our power is out and conditions in our home are worsening my daughter's asthma.","The shelter needs to have medical supplies and staff.","We need transporation to the shelter.","Our dog, Buddy, must come with us."));
+        Request request = reliefFacade.createRequest(types,null,"lol",8,comments);
+        System.out.println(request.toString());
+        reliefFacade.logout();
+
+        //Rosa Delgado logs in
+        /*
+         * find a way to make (the lines printing when) logging in less repetitive here
+         */
+        System.out.println("\nRosa Delgado is logging in...");
+
+        if (!reliefFacade.login("rosad", "F350Rosa!trk")) {
+            System.out.println("Sorry, we couldn't log you in.");
+            return;
+        }
+
+        user = reliefFacade.getCurrentUser();
+        System.out.println(user.getFullName() + " is now logged in!");
+        if (user.getShelter() != null) {
+            System.out.println(user.getFullName() + "is currently staying at " + user.getShelter().getName());
+        }
+
+        System.out.println("\nFinding requests for Rosa...\n\nThe top requests are nearby and match your specialties:");
+        requestFeed.findRelevantRequests(user);
     }
 
     // login, view shelters, sign up for shelter, view shelter resources, create request
-
     public void scenario1() {
 
         // login

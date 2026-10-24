@@ -10,6 +10,7 @@ public class UserList {
 
     private UserList(){
         users = DataLoader.getUsers();
+        System.out.println("Users loaded: " + users.size());
     }
 
     public static UserList getInstance(){
@@ -45,5 +46,13 @@ public class UserList {
 
     public void addUser(User user){
             users.add(user);
+    }
+
+    public ArrayList<User> getUsers() {
+        return users;
+    }
+
+    public void save() {
+        DataWriter.saveUsers(users);
     }
 }
