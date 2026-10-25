@@ -150,7 +150,11 @@ public class DataLoader extends DataConstants {
 
 
     
-                shelters.add(new Shelter(name, availability, resources, address, shelterTypes, occupancy, capacity, id));
+                int petCapacity = Integer.parseInt(placeJSON.get(SHELTER_PET_CAPACITY).toString());
+                int petCount = Integer.parseInt(placeJSON.get(SHELTER_PET_COUNT).toString());
+
+                shelters.add(new Shelter(name, availability, resources, address,
+                shelterTypes, occupancy, capacity, id, petCapacity, petCount));
             }
 
 

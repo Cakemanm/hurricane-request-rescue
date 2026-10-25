@@ -116,14 +116,59 @@ public class ReliefUI {
         }
         // demo role permissions
         System.out.println(BLUE + "Rosa tries to mark the request as complete..." + RESET);
-        if(user.getSkills().contains(Skill.SHELTER_STAFF))
+        if(user.getSkills().contains(Skill.SHELTER_STAFF)){
             System.out.println("The current request has been completed!");
-        else
+            request.setStatus(RequestStatus.COMPLETED);
+        } else
             System.out.println("Volunteers are unable to mark this request as complete. See a shelter administrator.");
         reliefFacade.logout();
 
         //check into shelter
+        System.out.println(GREEN + "----CHECKING FAMILY INTO SHELTER----" + RESET);
+        System.out.println(BLUE + "\nFelix Reyes is logging in..." + RESET);
 
+        if (!reliefFacade.login("freyes", "FReyesSh3lt3r$")) {
+            System.out.println("Sorry, something went wrong! We couldn't log you in.");
+            return;
+        }
+
+        user = reliefFacade.getCurrentUser();
+        System.out.println(user.getFullName() + " is now logged in!");
+        if (user.getShelter() != null) {
+            System.out.println(user.getFullName() + "is currently staying at " + user.getShelter().getName());
+        }
+
+        Shelter shelter = user.getShelter();
+
+        if (shelter == null) {
+            System.out.println("Felix has no assigned shelter.");
+            return;
+        }
+
+        if (shelter.getAvailableSpaces() < 3
+            || shelter.getAvailablePetSpaces() < 1) {
+            System.out.println("Not enough room for the family and Buddy.");
+            return;
+        }
+
+        shelter.addOccupants(3, 1);
+        ShelterList.getInstance().save();
+
+        System.out.println("The Carter Family and Buddy have been checked into "
+             + shelter.getName() + "!");
+        System.out.println("Occupancy: " + shelter.getOccupancy()
+              + "/" + shelter.getCapacity());
+        System.out.println("Remaining spaces: " + shelter.getAvailableSpaces());
+        System.out.println("Pets: " + shelter.getPetCount()
+             + "/" + shelter.getPetCapacity());
+
+        System.out.println(BLUE + "Felix tries to mark the request as complete..." + RESET);
+        if(user.getSkills().contains(Skill.SHELTER_STAFF)){
+            System.out.println("The current request has been completed!");
+            request.setStatus(RequestStatus.COMPLETED);
+        } else
+            System.out.println("Volunteers are unable to mark this request as complete. See a shelter administrator.");
+        reliefFacade.logout();
     }
 
     // login, view shelters, sign up for shelter, view shelter resources, create request

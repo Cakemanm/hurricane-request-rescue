@@ -6,15 +6,18 @@
     "configurations": [
         {
             "type": "java",
+            "name": "UUIDGenerator",
+            "request": "launch",
+            "mainClass": "json.UUIDGenerator",
+            "projectName": ""
+        },
+        {
+            "type": "java",
             "name": "ReliefUI",
             "request": "launch",
             "mainClass": "com.relief/com.model.ReliefUI",
             "projectName": "relief_system",
-<<<<<<< HEAD
             "envFile": "${workspaceFolder}/.env"
-=======
-            "envFile": "${workspaceFolder}/.env",
->>>>>>> main
         },
         {
             "type": "java",
@@ -22,11 +25,7 @@
             "request": "launch",
             "mainClass": "com.relief/com.model.UI",
             "projectName": "relief_system",
-<<<<<<< HEAD
             "envFile": "${workspaceFolder}/.env"
-=======
-            "envFile": "${workspaceFolder}/.env",
->>>>>>> main
         },
         {
             "type": "java",
@@ -34,11 +33,7 @@
             "request": "launch",
             "mainClass": "com.relief_system/com.model.UI",
             "projectName": "relief_system",
-<<<<<<< HEAD
             "envFile": "${workspaceFolder}/.env"
-=======
-            "envFile": "${workspaceFolder}/.env",
->>>>>>> main
         },
         {
             "type": "java",
@@ -46,11 +41,7 @@
             "request": "launch",
             "mainClass": "com.relief/com.relief.App",
             "projectName": "relief_system",
-<<<<<<< HEAD
             "envFile": "${workspaceFolder}/.env"
-=======
-            "envFile": "${workspaceFolder}/.env",
->>>>>>> main
         }
     ]
 }
