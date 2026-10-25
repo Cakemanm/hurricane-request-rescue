@@ -99,7 +99,6 @@ public class ShelterList {
         Address[] shelterAddresses = new Address[specificShelters.size()];
         for(int i = 0; i < specificShelters.size(); i++)
             shelterAddresses[i] = specificShelters.get(i).getAddress();
-        System.out.println(shelterAddresses.length);
         return shelterAddresses;
     }
 
