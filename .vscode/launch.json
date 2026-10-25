@@ -4,19 +4,14 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        {
-            "type": "java",
-            "name": "UUIDGenerator",
-            "request": "launch",
-            "mainClass": "json.UUIDGenerator",
-            "projectName": ""
-        },
+
         {
             "type": "java",
             "name": "ReliefUI",
             "request": "launch",
             "mainClass": "com.relief/com.model.ReliefUI",
             "projectName": "relief_system",
+            "envFile": "${workspaceFolder}/.env",
             "javaExec": "C:\\Program Files\\Java\\jdk-22\\bin\\java.exe"
         },
         {
@@ -25,6 +20,7 @@
             "request": "launch",
             "mainClass": "com.relief/com.model.UI",
             "projectName": "relief_system",
+            "envFile": "${workspaceFolder}/.env",
             "javaExec": "C:\\Program Files\\Java\\jdk-22\\bin\\java.exe"
         },
         {

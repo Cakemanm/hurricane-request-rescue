@@ -63,7 +63,7 @@ public class User {
         String family = "";
         for(int i = 0; i < familyMembers.size();i++)
             family += familyMembers.get(i).getName() + (i < familyMembers.size()-1 ? ", " : "");
-        return this.getFullName() + " (@" + this.username + ")\n" + address.toString() + "Family Members: " + family + (hasPet ? " | " + petDescription : "");
+        return this.getFullName() + " (@" + this.username + ")\n" + address.toString() + "\nFamily Members: " + family + (hasPet ? " | " + petDescription : "");
     }
 
     public boolean hasPet() {

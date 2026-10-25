@@ -236,7 +236,7 @@ public class ReliefFacade {
             }
 
         } catch (Exception e) {
-            System.out.println("There was a problem finding a shelter.");
+            System.out.println("There was a problem finding a request.");
             e.printStackTrace();
         }
         return null;

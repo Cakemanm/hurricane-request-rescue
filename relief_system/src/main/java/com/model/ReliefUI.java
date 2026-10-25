@@ -103,7 +103,7 @@ public class ReliefUI {
 
         System.out.println(BLUE + "\nRosa selects " + matchingShelters.get(0).getName() + " for the Carter family\n" + RESET);
 
-        System.out.println(BLUE + "Rosa is exporting the file...\n" + RESET);
+        System.out.println(BLUE + "Rosa is exporting a file with the request information...\n" + RESET);
 
                 // export info to txt file
         try {
