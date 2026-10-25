@@ -3,8 +3,17 @@ package com.model;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Arrays;
+import com.location.Address;
+/*    "address": {
+      "street": "68 Calhoun Street",
+      "city": "Charleston",
+      "state": "SC",
+      "zipCode": "29401"
+    }
+ */
 
 public class ReliefUI {
+    Address address = new Address("68 Calhoun Street","Charleston","SC","29041");
     private ReliefFacade reliefFacade;
     public static final String YELLOW = "\u001B[33m";
     public static final String RESET = "\u001B[0m";
@@ -33,7 +42,8 @@ public class ReliefUI {
         ArrayList<FamilyMember> family = new ArrayList<>();
         family.add(new FamilyMember("Laura Carter",39));
         family.add(new FamilyMember("Sophie Carter",9));
-        User michael = reliefFacade.createAccount("sophiesdad","Michael","Carter",null,"000-843-2271","67 Somwhere Ave","Buddy&Sophie09",null,family,true, 41, "Dog named Buddy");
+        Address address = new Address("68 Calhoun Street","Charleston","SC","29401");
+        User michael = reliefFacade.createAccount("sophiesdad","Michael","Carter","000-843-2271",address,"Buddy&Sophie09",null,family,true, 41, "Dog named Buddy");
 
         //Michael Carter logs in
         System.out.println(michael.victimToString());
@@ -53,7 +63,7 @@ public class ReliefUI {
         System.out.println(BLUE + "\nCreating a relief request...\n" + RESET);
         ArrayList<RequestType> types = new ArrayList<>(Arrays.asList(RequestType.TRANSPORTATION, RequestType.NO_SHELTER, RequestType.MEDICAL_ASSISTANCE));
         ArrayList<String> comments = new ArrayList<>(Arrays.asList("My family needs to go to a shelter because our power is out and conditions in our home are worsening my daughter's asthma.","The shelter needs to have medical supplies and staff.","We need transporation to the shelter.","Our dog, Buddy, must come with us."));
-        Request request = reliefFacade.createRequest(types,null,"lol",8,comments);
+        Request request = reliefFacade.createRequest(types,address,8,comments);
         System.out.println(request.toString());
         reliefFacade.logout();
 
@@ -110,8 +120,8 @@ public class ReliefUI {
         // view shelters
         System.out.println("\nShelters");
         for (Shelter s : reliefFacade.getShelters()) {
-            System.out.println(" " + s.getName() + " | " + s.getLocation() + " | "
-                + s.getOccupancy() + "/" + s.getCapacity() + (s.isAvailable() ? " | Open" : " | FULL"));
+            //System.out.println(" " + s.getName() + " | " + s.getLocation() + " | "
+            //    + s.getOccupancy() + "/" + s.getCapacity() + (s.isAvailable() ? " | Open" : " | FULL"));
         }
 
         // sign up for shelter
@@ -134,22 +144,13 @@ public class ReliefUI {
         types.add(RequestType.RESOURCE);
         ArrayList<String> comments = new ArrayList<>();
         comments.add("My mother is ill and needs medicine. Our family also needs blankets for the cold");
-        Request request = reliefFacade.createRequest(types, null, shelter.getName(), 4, comments);
+        //Request request = reliefFacade.createRequest(types, null, shelter.getName(), 4, comments);
         System.out.println("\nRequest created:");
-        System.out.println(request);
+        //System.out.println(request);
 
         reliefFacade.logout();
     }
 
-        // public void scenario1() {
-        //     System.out.println();
-
-        //     if(!reliefFacade.login("hwells", "topS$cr$t")) {
-        //         System.out.println("Sorry, we couldn't log you in");
-        //         return;
-        //     }
-        //     System.out.println("Hannah Wells is now logged in!");
-        // }
 
         // create new account, login user to account, search for requests using "medical" keyword, view unfulfilled requests, claim request
         public void scenario2() {

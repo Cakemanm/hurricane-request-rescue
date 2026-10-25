@@ -8,6 +8,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import com.location.Address;
+
 public class DataLoader extends DataConstants {
 
     public static ArrayList<User> getUsers(){
@@ -26,14 +28,15 @@ public class DataLoader extends DataConstants {
             String firstName = (String)personJSON.get(USER_FIRST_NAME);
             String lastName = (String)personJSON.get(USER_LAST_NAME);
             String phoneNumber = (String)personJSON.get(USER_PHONE_NUMBER);
-            String address = (String)personJSON.get(USER_ADDRESS);
             String password = (String)personJSON.get(USER_PASSWORD);
 
-            String locationIdString = (String) personJSON.get(USER_LOCATION);
-            UUID locationId = locationIdString == null ? null : UUID.fromString(locationIdString);
+            JSONObject addressJSON = (JSONObject) personJSON.get(USER_ADDRESS);
+            String street = (String)addressJSON.get(USER_ADDRESS_STREET);
+            String city = (String)addressJSON.get(USER_ADDRESS_CITY);
+            String state = (String)addressJSON.get(USER_ADDRESS_STATE);
+            String zipcode = (String)addressJSON.get(USER_ADDRESS_ZIPCODE);
+            Address address = new Address(street,city,state,zipcode);
 
-            Location location = locationId == null ? null : LocationList.getInstance().getLocationById(locationId);
-                    
             String shelterIdString = (String) personJSON.get(USER_SHELTER);
 
             UUID shelterId = shelterIdString == null ? null : UUID.fromString(shelterIdString);
@@ -60,7 +63,7 @@ public class DataLoader extends DataConstants {
             Boolean hasPet = (Boolean)personJSON.get(USER_HAS_PET);
             int age = Integer.parseInt(personJSON.get(USER_AGE).toString());
             
-            users.add(new User(userId, username, firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers, skills, hasPet, age));
+            users.add(new User(userId, username, firstName, lastName, phoneNumber, address, password, shelter, familyMembers, skills, hasPet, age));
 
         }
 
@@ -84,10 +87,12 @@ public class DataLoader extends DataConstants {
                 int occupancy = Integer.parseInt(placeJSON.get(SHELTER_OCCUPANCY).toString());
                 int capacity = Integer.parseInt(placeJSON.get(SHELTER_CAPACITY).toString());
 
-                String locationIdString = (String) placeJSON.get(USER_LOCATION);
-                UUID locationId = locationIdString == null ? null : UUID.fromString(locationIdString);
-
-                Location location = locationId == null ? null : LocationList.getInstance().getLocationById(locationId);
+                JSONObject addressJSON = (JSONObject) placeJSON.get(SHELTER_ADDRESS);
+                String street = (String)addressJSON.get(SHELTER_ADDRESS_STREET);
+                String city = (String)addressJSON.get(SHELTER_ADDRESS_CITY);
+                String state = (String)addressJSON.get(SHELTER_ADDRESS_STATE);
+                String zipcode = (String)addressJSON.get(SHELTER_ADDRESS_ZIPCODE);
+                Address address = new Address(street,city,state,zipcode);
 
                 JSONArray shelterTypesJSON = (JSONArray)placeJSON.get(SHELTER_SHELTER_TYPES);
                 ArrayList<ShelterType> shelterTypes = new ArrayList<>();
@@ -106,7 +111,7 @@ public class DataLoader extends DataConstants {
 
 
     
-                shelters.add(new Shelter(name, availability, location, resources, shelterTypes, occupancy, capacity, id));
+                shelters.add(new Shelter(name, availability, resources, address, shelterTypes, occupancy, capacity, id));
             }
 
 
@@ -127,13 +132,15 @@ public class DataLoader extends DataConstants {
                 //int priority = Integer.parseInt(objectJSON.get(REQUEST_PRIORITY).toString());
                 RequestStatus status = RequestStatus.valueOf((String)objectJSON.get(REQUEST_STATUS));
                 int reportedUrgency = Integer.parseInt(objectJSON.get(REQUEST_REPORTED_URGENCY).toString());
-                String address = (String)objectJSON.get(REQUEST_ADDRESS);
+                
+                JSONObject addressJSON = (JSONObject) objectJSON.get(REQUEST_ADDRESS);
+                String street = (String)addressJSON.get(REQUEST_ADDRESS_STREET);
+                String city = (String)addressJSON.get(REQUEST_ADDRESS_CITY);
+                String state = (String)addressJSON.get(REQUEST_ADDRESS_STATE);
+                String zipcode = (String)addressJSON.get(REQUEST_ADDRESS_ZIPCODE);
+                Address address = new Address(street,city,state,zipcode);
 
-                String locationIdString = (String) objectJSON.get(USER_LOCATION);
-                UUID locationId = locationIdString == null ? null : UUID.fromString(locationIdString);
-
-                Location location = locationId == null ? null : LocationList.getInstance().getLocationById(locationId);
-
+                
                 JSONArray commentsJSON = (JSONArray)objectJSON.get(REQUEST_COMMENTS);
                 ArrayList<String> comments = new ArrayList<>();
                 if(commentsJSON != null){
@@ -157,7 +164,7 @@ public class DataLoader extends DataConstants {
                 }
         
 
-                requests.add(new Request(id, status, location, address, reportedUrgency, comments, requester, responder, types));
+                requests.add(new Request(id, status, address, reportedUrgency, comments, requester, responder, types));
 
             }
 

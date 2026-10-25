@@ -1,6 +1,10 @@
 package com.model;
 import java.util.ArrayList;
 import java.util.UUID;
+
+import com.location.Address;
+import com.location.MapTools;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -26,7 +30,6 @@ public class ReliefFacade {
 
     public void submitRequest(User requester, Request request, Location loc, String comments) {
         request.setRequester(requester);
-        request.setLocation(loc);
         request.addComment(comments);
         feed.addRequest(request);
     }
@@ -114,24 +117,22 @@ public class ReliefFacade {
         return LocationList.getInstance().findOrCreateLocation(address, city, state, zipcode, latitude, longitude);
     }
 
-    public void createAccount(String username, String firstName, String lastName, 
-        Location location, String phoneNumber, String address, String password,
+    public void createAccount(String username, String firstName, String lastName, String phoneNumber, Address address, String password,
         ArrayList<FamilyMember> familyMembers,boolean hasPet, int age, String petDescription){
             UserList userList = UserList.getInstance();
             if (userList.getUser(username) != null) {
                 System.out.println("That username is already taken");
                 return;
             }
-            userList.addUser(new User(UUID.randomUUID(), username, firstName, lastName, location, phoneNumber, address, password, null, familyMembers, hasPet, age, petDescription));
+            userList.addUser(new User(UUID.randomUUID(), username, firstName, lastName, phoneNumber, address, password, null, familyMembers, hasPet, age, petDescription));
             userList.save();
             login(username, password);
     }
 
-    public User createAccount(String username, String firstName, String lastName, 
-        Location location, String phoneNumber, String address, String password, Shelter shelter,
+    public User createAccount(String username, String firstName, String lastName, String phoneNumber, Address address, String password, Shelter shelter,
         ArrayList<FamilyMember> familyMembers,boolean hasPet, int age, String petDescription){
             UserList userList = UserList.getInstance();
-            User user = new User(UUID.randomUUID(), username, firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers, hasPet, age, petDescription);
+            User user = new User(UUID.randomUUID(), username, firstName, lastName, phoneNumber, address, password, shelter, familyMembers, hasPet, age, petDescription);
             userList.addUser(user);
             userList.save();
             login(username, password);
@@ -148,13 +149,12 @@ public class ReliefFacade {
     return false;
     }
 
-    public Request createRequest(ArrayList<RequestType> requestTypes, Location location, String address,
+    public Request createRequest(ArrayList<RequestType> requestTypes, Address address,
         int reportedUrgency, ArrayList<String> comments) {
             if (currentUser == null || requestTypes == null || requestTypes.isEmpty()) {
                 return null;
             }
-            Location where = (location == null ? currentUser.getLocation() : location);
-            Request request = new Request(null, RequestStatus.PENDING, where, address, reportedUrgency,
+            Request request = new Request(null, RequestStatus.PENDING, address, reportedUrgency,
                 comments, currentUser, null, requestTypes);
             request.calcPriority();
             feed.addRequest(request);
@@ -183,17 +183,55 @@ public class ReliefFacade {
             System.out.println(request.toString() + "\n");
     }
 
-    public void findRequestsByLocation(Location location){
-        System.out.println("\n\nRequests for: "+ location.toString() +"\n");
-        boolean match = false;
-        for(Request request : feed.getRequests()){
-            if(request.getLocation().getId() == location.getId()){
-                System.out.println(request.toString() + "\n");
-                match = true;
+    public Request findClosestRequest(User user){
+        try{
+            Address address = MapTools.getInstance().findClosestAddress(user.getAddress(),shelterList.getAddresses());
+            for(Request request : feed.getRequests()){
+                if(address.equals(request.getAddress())){
+                    return request;
+                }
             }
+
+        } catch (Exception e) {
+            System.out.println("There was a problem finding a shelter.");
+            e.printStackTrace();
         }
-        if(match) return;
-        System.out.println("There are no requests for your location. Try another zipcode.");
+        return null;
+    }
+
+        public Shelter findClosestShelter(User user){
+        try{
+            Address address = MapTools.getInstance().findClosestAddress(user.getAddress(),shelterList.getAddresses());
+            for(Shelter shelter : shelterList.getShelters()){
+                if(address.equals(shelter.getAddress())){
+                    return shelter;
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("There was a problem finding a shelter.");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Request findClosestRequest(User user, ArrayList<Request> requests){
+        try{
+            Address[] addresses = new Address[requests.size()];
+            for(int i = 0; i < requests.size(); i++)
+                addresses[i] = requests.get(i).getAddress();
+            Address address = MapTools.getInstance().findClosestAddress(user.getAddress(),addresses);
+            for(Request request : feed.getRequests()){
+                if(address.equals(request.getAddress())){
+                    return request;
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("There was a problem finding a shelter.");
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public void getUnfulfilledRequests(){

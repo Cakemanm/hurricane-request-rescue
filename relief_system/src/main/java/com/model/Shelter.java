@@ -2,12 +2,14 @@ package com.model;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import com.location.Address;
+
 public class Shelter {
 
     private String name;
     private boolean availability;
     private ArrayList<Resource> resources;
-    private Location location;
+    private Address address;
     private ArrayList<ShelterType> shelterTypes;
     private int occupancy;
     private int capacity;
@@ -15,11 +17,11 @@ public class Shelter {
     private int petCapacity;
     private int petCount;
 
-    public Shelter(String name, boolean availability, Location location, ArrayList<Resource> resources, ArrayList<ShelterType> shelterTypes, int occupancy, int capacity, UUID id, int petCapacity, int petCount){
+    public Shelter(String name, boolean availability, ArrayList<Resource> resources, Address address, ArrayList<ShelterType> shelterTypes, int occupancy, int capacity, UUID id, int petCapacity, int petCount){
         this.name = name;
         this.resources = resources;
+        this.address = address;
         this.availability = availability;
-        this.location = location;
         this.shelterTypes = (shelterTypes == null ? new ArrayList<>() : shelterTypes);
         this.occupancy = occupancy;
         this.capacity = capacity;
@@ -29,11 +31,11 @@ public class Shelter {
         this.petCount = petCount;
     }
 
-        public Shelter(String name, boolean availability, Location location, ArrayList<Resource> resources, ArrayList<ShelterType> shelterTypes, int occupancy, int capacity, UUID id){
+        public Shelter(String name, boolean availability, ArrayList<Resource> resources, Address address, ArrayList<ShelterType> shelterTypes, int occupancy, int capacity, UUID id){
         this.name = name;
         this.resources = resources;
+        this.address = address;
         this.availability = availability;
-        this.location = location;
         this.shelterTypes = (shelterTypes == null ? new ArrayList<>() : shelterTypes);
         this.occupancy = occupancy;
         this.capacity = capacity;
@@ -110,8 +112,8 @@ public class Shelter {
         if (occupancy > 0) occupancy--;
     }
 
-    public Location getLocation() {
-        return this.location;
+    public Address getAddress() {
+        return this.address;
     }
 
     public ArrayList<ShelterType> getShelterTypes() {
@@ -164,7 +166,7 @@ public class Shelter {
 
     public String toString(){
         String returnString = "";
-        returnString += this.name + "\nLocated in " + (location == null ? "" : location.toString()) + " with " + (this.availability ? (capacity-occupancy) + " open spots" : "no open spots");
+        returnString += this.name + "\nLocated at "+ address.toString() + " with " + (this.availability ? (capacity-occupancy) + " open spots" : "no open spots");
         returnString += "\nAvailable resources: ";
         for(Resource resource : resources)
             returnString += "\n" + resource.toString();

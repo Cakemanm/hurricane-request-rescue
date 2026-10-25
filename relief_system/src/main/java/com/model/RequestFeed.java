@@ -3,6 +3,9 @@ package com.model;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import com.location.Address;
+import com.location.MapTools;
+
 public class RequestFeed {
     private static RequestFeed requestFeed;
     private ArrayList<Request> requests;
@@ -34,9 +37,9 @@ public class RequestFeed {
         return null;
     }
 
-    public void addRequest(UUID id, RequestStatus status, Location location, String address, int reportedUrgency,
+    public void addRequest(UUID id, RequestStatus status, Address address, int reportedUrgency,
         ArrayList<String> comments, User requester, User responder, ArrayList<RequestType> requestTypes){
-            requests.add(new Request(id, status, location, address, reportedUrgency, comments, requester, responder, requestTypes));
+            requests.add(new Request(id, status, address, reportedUrgency, comments, requester, responder, requestTypes));
         }
     
     public void addRequest(Request request) {
@@ -69,10 +72,10 @@ public class RequestFeed {
 
     //currently only uses skills and not location
     public ArrayList<Request> findRelevantRequests(User user){
-        ArrayList<Request> results = new ArrayList<>();
+        ArrayList<Request> resultsTemp = new ArrayList<>();
         ArrayList<Request> others = new ArrayList<>();
         for(Request request : requests){
-            if(request.getStatus()!= RequestStatus.PENDING)
+            if(request.getStatus()!= RequestStatus.PENDING && request.getStatus() != RequestStatus.BACKUP_REQUESTED)
                 continue;
             boolean matches = false;
             for(RequestType type : request.getRequestTypes()){
@@ -84,10 +87,18 @@ public class RequestFeed {
                 }   
             }
             if (matches)
-                results.add(request);
+                resultsTemp.add(request);
             else
                 others.add(request);
         }
+        ReliefFacade reliefFacade = new ReliefFacade();
+        ArrayList<Request> results = new ArrayList<>();
+        while(resultsTemp.size()>=1){
+            Request r = reliefFacade.findClosestRequest(user,resultsTemp);
+            results.add(r);
+            resultsTemp.remove(r);
+        }
+
         System.out.println("\nRelevant Requests:\n");
         for(Request request: results)
             System.out.println(request.toString() + "\n");
