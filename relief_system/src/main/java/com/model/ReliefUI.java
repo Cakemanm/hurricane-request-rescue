@@ -47,7 +47,7 @@ public class ReliefUI {
         }
 
         User user = reliefFacade.getCurrentUser();
-        System.out.println(user.getFullName() + " is now logged in!");
+        System.out.println(BLUE+ user.getFullName() + " is now logged in!" + RESET);
         if (user.getShelter() != null) {
             System.out.println(user.getFullName() + "is currently staying at " + user.getShelter().getName());
         }
@@ -58,6 +58,7 @@ public class ReliefUI {
         ArrayList<String> comments = new ArrayList<>(Arrays.asList("My family needs to go to a shelter because our power is out and conditions in our home are worsening my daughter's asthma.","The shelter needs to have medical supplies and staff.","We need transporation to the shelter.","Our dog, Buddy, must come with us."));
         Request request = reliefFacade.createRequest(types,address,8,comments);
         System.out.println(request.toString());
+        System.out.println(BLUE);
         reliefFacade.logout();
 
         //Rosa Delgado logs in
@@ -78,13 +79,13 @@ public class ReliefUI {
             System.out.println(user.getFullName() + "is currently staying at " + user.getShelter().getName());
         }
 
-        System.out.println(BLUE + "\nFinding requests for Rosa...\n"+RESET+"\nThe top requests are nearby and match your specialties:");
+        System.out.println(BLUE + "\nFinding requests for Rosa...\n"+RESET+"\n\nThe top requests are nearby and match your specialties:");
         requestFeed.findRelevantRequests(user);
 
         System.out.println(GREEN + "----CLAIMING THE REQUEST AND FINDING A SHELTER----" + RESET);
         //Rosa claims the request
         if(reliefFacade.dispatchVolunteer(request, user))
-            System.out.println("\n" + user.getFullName() + " is now the assigned volunteer for the following request:\n" + request.toString());
+            System.out.println(BLUE + "\n" + user.getFullName() + " is now the assigned volunteer for the following request:\n" + RESET + request.toString());
         else
             System.out.println("This request claim was unsuccessful.");
 
