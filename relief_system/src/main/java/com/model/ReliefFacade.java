@@ -1,6 +1,10 @@
 package com.model;
 import java.util.ArrayList;
 import java.util.UUID;
+
+import com.location.Address;
+import com.location.MapTools;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -24,15 +28,20 @@ public class ReliefFacade {
     //     feed.addRequest(request);
     // }
 
+<<<<<<< HEAD
     public void submitRequest(User requester, Request request, Address address, String comments) {
         request.setRequester(requester);
         request.setAddress(address);
+=======
+    public void submitRequest(User requester, Request request, String comments) {
+        request.setRequester(requester);
+>>>>>>> 765be3eb74fb6c01b3fa454d7155211f11e5236b
         request.addComment(comments);
         feed.addRequest(request);
     }
 
     public void browseShelters(){
-        System.out.println("Shelters: ");
+        System.out.println("Recommended Shelters: ");
         for(Shelter shelter : shelterList.getShelters()){
             System.out.println(shelter.toString() + "\n");
         }
@@ -44,6 +53,8 @@ public class ReliefFacade {
             if (shelter.isAvailable() && shelter.getOccupancy() < shelter.getCapacity()) {
                 shelter.addOccupant();
                 user.setShelter(shelterList.getShelterById(shelter.getId()));
+                shelterList.save();
+                UserList.getInstance().save();
                 return shelter;
             }
         }
@@ -77,28 +88,27 @@ public class ReliefFacade {
         }
         shelter.addOccupant();
         currentUser.setShelter(shelter);
+        shelterList.save();
+        UserList.getInstance().save();
         return shelter;
     }
 
 
 
 
-    public void dispatchVolunteer(User user) {
-
-        ArrayList<Request> requests = feed.getRequests();   
-        for (Request request : requests) {
+    public boolean dispatchVolunteer(Request request, User user) {
         if (request.getStatus() == RequestStatus.PENDING) {
             request.updateStatus(RequestStatus.HELP_ON_THE_WAY, user);
-            return;
+            return true;
         }
+        return false;
     }
-}
 
     public void restockShelter(Shelter shelter, ResourceType type, int quantity) {
     if (shelter != null) {
         shelter.restock(type, quantity);
     }
-}
+    }
 
     public ArrayList<Hurricane> getStormStatus() {
         return hurricane;
@@ -109,12 +119,16 @@ public class ReliefFacade {
 
     }
 
+<<<<<<< HEAD
     public Location createLocation(String address, String city, String state, int zipcode, double latitude, double longitude) {
         return LocationList.getInstance().findOrCreateLocation(address, city, state, zipcode, latitude, longitude);
     }
 
     public void createAccount(String username, String firstName, String lastName, 
         String phoneNumber, Address address, String password,
+=======
+    public void createAccount(String username, String firstName, String lastName, String phoneNumber, Address address, String password,
+>>>>>>> 765be3eb74fb6c01b3fa454d7155211f11e5236b
         ArrayList<FamilyMember> familyMembers,boolean hasPet, int age, String petDescription){
             UserList userList = UserList.getInstance();
             if (userList.getUser(username) != null) {
@@ -122,15 +136,24 @@ public class ReliefFacade {
                 return;
             }
             userList.addUser(new User(UUID.randomUUID(), username, firstName, lastName, phoneNumber, address, password, null, familyMembers, hasPet, age, petDescription));
+<<<<<<< HEAD
             login(username, password);
     }
 
     public User createAccount(String username, String firstName, String lastName, 
         String phoneNumber, Address address, String password, Shelter shelter,
+=======
+            userList.save();
+            login(username, password);
+    }
+
+    public User createAccount(String username, String firstName, String lastName, String phoneNumber, Address address, String password, Shelter shelter,
+>>>>>>> 765be3eb74fb6c01b3fa454d7155211f11e5236b
         ArrayList<FamilyMember> familyMembers,boolean hasPet, int age, String petDescription){
             UserList userList = UserList.getInstance();
             User user = new User(UUID.randomUUID(), username, firstName, lastName, phoneNumber, address, password, shelter, familyMembers, hasPet, age, petDescription);
             userList.addUser(user);
+            userList.save();
             login(username, password);
             return user;
     }
@@ -179,6 +202,7 @@ public class ReliefFacade {
             System.out.println(request.toString() + "\n");
     }
 
+<<<<<<< HEAD
     public void findRequestsByLocation(Address address){
         System.out.println("\n\nRequests for: "+ address.toString() +"\n");
         boolean match = false;
@@ -186,10 +210,57 @@ public class ReliefFacade {
             if(request.getAddress() == address){
                 System.out.println(request.toString() + "\n");
                 match = true;
+=======
+    public Request findClosestRequest(User user){
+        try{
+            Address address = MapTools.getInstance().findClosestAddress(user.getAddress(),shelterList.getAddresses());
+            for(Request request : feed.getRequests()){
+                if(address.equals(request.getAddress())){
+                    return request;
+                }
+>>>>>>> 765be3eb74fb6c01b3fa454d7155211f11e5236b
             }
+
+        } catch (Exception e) {
+            System.out.println("There was a problem finding a shelter.");
+            e.printStackTrace();
         }
-        if(match) return;
-        System.out.println("There are no requests for your location. Try another zipcode.");
+        return null;
+    }
+
+        public Shelter findClosestShelter(User user){
+        try{
+            Address address = MapTools.getInstance().findClosestAddress(user.getAddress(),shelterList.getAddresses());
+            for(Shelter shelter : shelterList.getShelters()){
+                if(address.equals(shelter.getAddress())){
+                    return shelter;
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("There was a problem finding a shelter.");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Request findClosestRequest(User user, ArrayList<Request> requests){
+        try{
+            Address[] addresses = new Address[requests.size()];
+            for(int i = 0; i < requests.size(); i++)
+                addresses[i] = requests.get(i).getAddress();
+            Address address = MapTools.getInstance().findClosestAddress(user.getAddress(),addresses);
+            for(Request request : feed.getRequests()){
+                if(address.equals(request.getAddress())){
+                    return request;
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("There was a problem finding a shelter.");
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public void getUnfulfilledRequests(){
@@ -201,7 +272,6 @@ public class ReliefFacade {
     }
 
     public void logout() {
-        LocationList.getInstance().save();
         ShelterList.getInstance().save();
         UserList.getInstance().save();
         feed.save();

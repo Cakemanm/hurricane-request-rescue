@@ -1,81 +1,135 @@
 [
-    {
-        "id" : "14dd40d2-476b-4239-8fa9-1c09c4b5c86e",
-        "username" : "hwells",
-        "firstName" : "Hannah",
-        "lastName" : "Wells",
-        "location" : "bdc1366f-ba6e-4b7d-9c73-009770b70d0b",
-        "phoneNumber" : "000-867-5309",
-        "address" : "468 Glenwood Blvd.",
-        "password" : "topS$cr$t",
-        "shelter" : "e522496a-9539-4c1e-b8a5-992aa48dde8c",
-        "skills" : ["SHELTER_STAFF","LANGUAGE_TRANSLATOR"],
-        "familyMembers" : [{"name" : "Joshua Wells", "age" : 32}],
-        "hasPet" : false,
-        "age" : 33
-
-    },
-
-    {
-        "id" : "531452be-95eb-4b2f-8450-7208fb0787ba",
-        "username" : "kyled",
-        "firstName" : "Kyle",
-        "lastName" : "Donaldson",
-        "location" : "baa5f8b6-2e90-4084-8376-50e9e3b6ac6f",
-        "phoneNumber" : "000-9035-768",
-        "address" : "2301 High St.",
-        "password" : "892EijL0Ws",
-        "shelter" : null,
-        "skills" : ["CAN_PROVIDE_MEDICAL_ASSISTANCE", "HEAVY_LIFTER"],
-        "familyMembers": null,
-        "hasPet" : false,
-        "age" : 31
-    },
-
-    {
-        "id" : "1a1b7554-1c8b-48e0-9962-5c7c6599ca3b",
-        "username" : "katKane",
-        "firstName" : "Katrina",
-        "lastName" : "Kane",
-        "location" : "baa5f8b6-2e90-4084-8376-50e9e3b6ac6f",
-        "phoneNumber" : "000-835-4628",
-        "address" : "1234 Generic Ave.",
-        "password" : "brutus51",
-        "shelter" : "68b7087c-d6ee-4c2b-8706-7a90ac62e5f5",
-        "skills" : ["CAN_COOK"],
-        "familyMembers" : [{"name" : "Alex Kane", "age" : 54}, {"name" : "Rachel Kane", "age" : 20}, {"name" : "Gretchen Kane", "age" : 23}],
-        "hasPet" : true,
-        "age" : 53
-    },
-    {
-        "id" : "1a1b7554-1c8b-48e0-9962-5c7c6599ca3b",
-        "username" : "j-doe",
-        "firstName" : "Jane",
-        "lastName" : "Doe",
-        "location" : "baa5f8b6-2e90-4084-8376-50e9e3b6ac6f",
-        "phoneNumber" : "000-124-8103",
-        "address" : "1234 Low Circle.",
-        "password" : "mysterry404",
-        "shelter" : "68b7087c-d6ee-4c2b-8706-7a90ac62e5f5",
-        "skills" : ["CAN_COOK", "CAN_DRIVE", "BOAT_OPERATOR"],
-        "familyMembers" : [],
-        "hasPet" : false,
-        "age" : 31
-    },
-    {
-    "id" : "e9a2c7d5-3b16-4f84-8d0a-1c6e5b9f7a43",
-    "username" : "rosad",
-    "firstName" : "Rosa",
+  {
+    "lastName" : "Wells",
+  "hasPet" : false,
+  "address" : {
+      "zipcode" : "29479",
+   "city" : "St. Stephen",
+   "street" : "1053 Russellville Road",
+   "state" : "SC"
+      },
+  "shelter" : "e522496a-9539-4c1e-b8a5-992aa48dde8c",
+  "petDescription" : null,
+  "familyMembers" : [
+      {
+        "name" : "Joshua Wells",
+    "age" : 32
+         }
+      ],
+  "skills" : [
+      "SHELTER_STAFF",
+   "LANGUAGE_TRANSLATOR"
+      ],
+  "firstName" : "Hannah",
+  "password" : "topS$cr$t",
+  "phoneNumber" : "000-867-5309",
+  "id" : "14dd40d2-476b-4239-8fa9-1c09c4b5c86e",
+  "age" : 33,
+  "username" : "hwells"
+   },
+ {
+    "lastName" : "Donaldson",
+  "hasPet" : false,
+  "address" : {
+      "zipcode" : "29479",
+   "city" : "St. Stephen",
+   "street" : "200 Macedonia Foxes Circle",
+   "state" : "SC"
+      },
+  "shelter" : null,
+  "petDescription" : null,
+  "familyMembers" : [],
+  "skills" : [
+      "CAN_PROVIDE_MEDICAL_ASSISTANCE",
+   "HEAVY_LIFTER"
+      ],
+  "firstName" : "Kyle",
+  "password" : "892EijL0Ws",
+  "phoneNumber" : "000-9035-768",
+  "id" : "531452be-95eb-4b2f-8450-7208fb0787ba",
+  "age" : 31,
+  "username" : "kyled"
+   },
+ {
+    "lastName" : "Kane",
+  "hasPet" : true,
+  "address" : {
+      "zipcode" : "29483",
+   "city" : "Summerville",
+   "street" : "1101 Boone Hill Road",
+   "state" : "SC"
+      },
+  "shelter" : "68b7087c-d6ee-4c2b-8706-7a90ac62e5f5",
+  "petDescription" : null,
+  "familyMembers" : [
+      {
+        "name" : "Alex Kane",
+    "age" : 54
+         },
+   {
+        "name" : "Rachel Kane",
+    "age" : 20
+         },
+   {
+        "name" : "Gretchen Kane",
+    "age" : 23
+         }
+      ],
+  "skills" : [
+      "CAN_COOK"
+      ],
+  "firstName" : "Katrina",
+  "password" : "brutus51",
+  "phoneNumber" : "000-835-4628",
+  "id" : "1a1b7554-1c8b-48e0-9962-5c7c6599ca3b",
+  "age" : 53,
+  "username" : "katKane"
+   },
+ {
+    "lastName" : "Doe",
+  "hasPet" : false,
+  "address" : {
+      "zipcode" : "29445",
+   "city" : "Goose Creek",
+   "street" : "101 Westview Boulevard",
+   "state" : "SC"
+      },
+  "shelter" : "68b7087c-d6ee-4c2b-8706-7a90ac62e5f5",
+  "petDescription" : null,
+  "familyMembers" : [],
+  "skills" : [
+      "CAN_COOK",
+   "CAN_DRIVE",
+   "BOAT_OPERATOR"
+      ],
+  "firstName" : "Jane",
+  "password" : "mysterry404",
+  "phoneNumber" : "000-124-8103",
+  "id" : "1a1b7554-1c8b-48e0-9962-5c7c6599ca3b",
+  "age" : 31,
+  "username" : "j-doe"
+   },
+ {
     "lastName" : "Delgado",
-    "location" : "2b8d4f61-9a37-4c05-b3e8-6d1a7c5f0e92",
-    "phoneNumber" : "000-843-5590",
-    "address" : "812 Drive Rd",
-    "password" : "F350Rosa!trk",
-    "shelter" : null,
-    "skills" : ["CAN_DRIVE", "HEAVY_LIFTER","TRANSPORTATION"],
-    "familyMembers" : [],
-    "hasPet" : false,
-    "age" : 45
-    }
-
+  "hasPet" : false,
+  "address" : {
+      "zipcode" : "29401",
+   "city" : "Charleston",
+   "street" : "100 Aquarium Wharf",
+   "state" : "SC"
+      },
+  "shelter" : null,
+  "petDescription" : null,
+  "familyMembers" : [],
+  "skills" : [
+      "CAN_DRIVE",
+   "TRANSPORTATION"
+      ],
+  "firstName" : "Rosa",
+  "password" : "F350Rosa!trk",
+  "phoneNumber" : "000-843-5590",
+  "id" : "e9a2c7d5-3b16-4f84-8d0a-1c6e5b9f7a43",
+  "age" : 45,
+  "username" : "rosad"
+   }
 ]

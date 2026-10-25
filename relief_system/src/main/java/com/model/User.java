@@ -3,6 +3,10 @@ package com.model;
 import java.util.ArrayList;
 import java.util.UUID;
 import com.location.Address;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 765be3eb74fb6c01b3fa454d7155211f11e5236b
 public class User {
     
     private UUID id;
@@ -35,8 +39,12 @@ public class User {
             this.familyMembers = (familyMembers == null ? new ArrayList<>() : familyMembers);
         }
 
+<<<<<<< HEAD
     public User(UUID id, String username, String firstName, String lastName, 
     String phoneNumber, Address address, String password, Shelter shelter, 
+=======
+    public User(UUID id, String username, String firstName, String lastName, String phoneNumber, Address address, String password, Shelter shelter, 
+>>>>>>> 765be3eb74fb6c01b3fa454d7155211f11e5236b
     ArrayList<FamilyMember> familyMembers, ArrayList<Skill> skills, boolean hasPet, int age) {
         this.id = (id == null ? UUID.randomUUID() : id);
         this.username = username;
@@ -63,7 +71,7 @@ public class User {
         String family = "";
         for(int i = 0; i < familyMembers.size();i++)
             family += familyMembers.get(i).getName() + (i < familyMembers.size()-1 ? ", " : "");
-        return this.getFullName() + " (@" + this.username + ")\nFamily Members: " + family + (hasPet ? " | " + petDescription : "");
+        return this.getFullName() + " (@" + this.username + ")\n" + address.toString() + "Family Members: " + family + (hasPet ? " | " + petDescription : "");
     }
 
     public boolean hasPet() {

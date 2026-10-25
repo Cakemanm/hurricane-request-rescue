@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import com.location.Address;
+
 public class DataWriter extends DataConstants {
 
     private static final String INDENT = "      ";
@@ -61,9 +63,18 @@ public class DataWriter extends DataConstants {
             personJSON.put(USER_FIRST_NAME, user.getFirstName());
             personJSON.put(USER_LAST_NAME, user.getLastName());
             personJSON.put(USER_AGE, user.getAge());
-            personJSON.put(USER_LOCATION, user.getLocation() == null ? null : idOf(user.getLocation().getId()));
-            personJSON.put(USER_PHONE_NUMBER, user.getPhoneNumber());
             personJSON.put(USER_ADDRESS, user.getAddress());
+            //personJSON.put(USER_LOCATION, user.getLocation() == null ? null : idOf(user.getLocation().getId()));
+            personJSON.put(USER_PHONE_NUMBER, user.getPhoneNumber());
+
+            Address address = user.getAddress();
+            JSONObject addressJSON = new JSONObject();
+            addressJSON.put(USER_ADDRESS_STREET, address.getStreet());
+            addressJSON.put(USER_ADDRESS_CITY, address.getCity());
+            addressJSON.put(USER_ADDRESS_STATE, address.getState());
+            addressJSON.put(USER_ADDRESS_ZIPCODE, address.getZip());
+            personJSON.put(USER_ADDRESS, addressJSON);
+
             personJSON.put(USER_PASSWORD, user.getPassword());
             personJSON.put(USER_SHELTER, user.getShelter() == null ? null : idOf(user.getShelter().getId()));
             personJSON.put(USER_HAS_PET, user.hasPet());
@@ -96,7 +107,19 @@ public class DataWriter extends DataConstants {
             shelterJSON.put(SHELTER_ID, idOf(shelter.getId()));
             shelterJSON.put(SHELTER_NAME, shelter.getName());
             shelterJSON.put(SHELTER_AVAILABILITY, shelter.getAvailability(shelter.getOccupancy(), shelter.getCapacity()));
+<<<<<<< HEAD
             shelterJSON.put(SHELTER_LOCATION, shelter.getAddress() == null ? null : idOf(shelter.getAddress().getId()));
+=======
+
+            Address address = shelter.getAddress();
+            JSONObject addressJSON = new JSONObject();
+            addressJSON.put(SHELTER_ADDRESS_STREET, address.getStreet());
+            addressJSON.put(SHELTER_ADDRESS_CITY, address.getCity());
+            addressJSON.put(SHELTER_ADDRESS_STATE, address.getState());
+            addressJSON.put(SHELTER_ADDRESS_ZIPCODE, address.getZip());
+            shelterJSON.put(SHELTER_ADDRESS,addressJSON);
+
+>>>>>>> 765be3eb74fb6c01b3fa454d7155211f11e5236b
             shelterJSON.put(SHELTER_OCCUPANCY, shelter.getOccupancy());
             shelterJSON.put(SHELTER_CAPACITY, shelter.getCapacity());
             shelterJSON.put(SHELTER_PET_COUNT, shelter.getPetCount());
@@ -129,8 +152,15 @@ public class DataWriter extends DataConstants {
             requestJSON.put(REQUEST_ID, idOf(request.getId()));
             requestJSON.put(REQUEST_PRIORITY, request.getRequestPriority());
             requestJSON.put(REQUEST_STATUS, request.getStatus().name());
-            requestJSON.put(REQUEST_LOCATION, request.getLocation() == null ? null : idOf(request.getLocation().getId()));
-            requestJSON.put(REQUEST_ADDRESS, request.getAddress());
+
+            Address address = request.getAddress();
+            JSONObject addressJSON = new JSONObject();
+            addressJSON.put(REQUEST_ADDRESS_STREET, address.getStreet());
+            addressJSON.put(REQUEST_ADDRESS_CITY, address.getCity());
+            addressJSON.put(REQUEST_ADDRESS_STATE, address.getState());
+            addressJSON.put(REQUEST_ADDRESS_ZIPCODE, address.getZip());
+            requestJSON.put(REQUEST_ADDRESS,addressJSON);
+
             requestJSON.put(REQUEST_REPORTED_URGENCY, request.getReportedUrgency());
             requestJSON.put(REQUEST_REQUESTER, request.getRequester() == null ? null : idOf(request.getRequester().getID()));
             requestJSON.put(REQUEST_RESPONDER, request.getResponder() == null ? null : idOf(request.getResponder().getID()));
@@ -171,19 +201,4 @@ public class DataWriter extends DataConstants {
         writeFile(HURRICANE_FILE_NAME, hurricanesJSON);
     }
 
-    public static void saveLocations(ArrayList<Location> locations) {
-        JSONArray locationsJSON = new JSONArray();
-        for (Location location : locations) {
-            JSONObject locationJSON = new JSONObject();
-            locationJSON.put(LOCATION_ID, idOf(location.getId()));
-            locationJSON.put(LOCATION_STATE, location.getState());
-            locationJSON.put(LOCATION_CITY, location.getCity());
-            locationJSON.put(LOCATION_ZIPCODE, location.getZipcode());
-            locationJSON.put(LOCATION_ADDRESS, location.getAddress());
-            locationJSON.put(LOCATION_LATITUDE, location.getLatitude());
-            locationJSON.put(LOCATION_LONGITUDE, location.getLongitude());
-            locationsJSON.add(locationJSON);
-        }
-        writeFile(LOCATION_FILE_NAME, locationsJSON);
-    }
 }

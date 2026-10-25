@@ -8,9 +8,37 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-public class DataLoader extends DataConstants {
-    public static ArrayList<User> users = new ArrayList<User>();
+import com.location.Address;
 
+/**
+ * @author Abigail Stalker
+ * 
+ * Loads application model objects from the JSON files specified in
+ * {@link DataConstants}.
+ *
+ * Converts JSON values into model objects, UUIDs, and enum values.
+ * User shelter assignments and request user references are resolved
+ * through their respective singleton lists.
+ *
+ * User and shelter loading failures throw an
+ * {@link IllegalStateException}. Request, location, and hurricane loading
+ * failures print a stack trace and return the current shared list,
+ * which may be incomplete.
+ */
+public class DataLoader extends DataConstants {
+    /**
+     * Loads users from the configured user JSON file.
+     *
+     * <p>Each user includes an address, skills, family members, pet ownership,
+     * and account information. Shelter references are resolved by ID through
+     * {@link ShelterList}. A missing shelter ID results in no assigned shelter.
+     * A missing family member array produces an empty family member list.</p>
+     *
+     * <p>Each invocation creates a new user list.</p>
+     *
+     * @return the users loaded from the file
+     * @throws IllegalStateException if reading, parsing, or converting any user record fails
+     */
     public static ArrayList<User> getUsers(){
     ArrayList<User> users = new ArrayList<User>();
     try{
@@ -27,12 +55,15 @@ public class DataLoader extends DataConstants {
             String firstName = (String)personJSON.get(USER_FIRST_NAME);
             String lastName = (String)personJSON.get(USER_LAST_NAME);
             String phoneNumber = (String)personJSON.get(USER_PHONE_NUMBER);
-            String address = (String)personJSON.get(USER_ADDRESS);
             String password = (String)personJSON.get(USER_PASSWORD);
 
-            UUID locationId = UUID.fromString((String)personJSON.get(USER_LOCATION));
-            Location location = (locationId == null ? null : LocationList.getInstance().getLocationById(locationId));
-            
+            JSONObject addressJSON = (JSONObject) personJSON.get(USER_ADDRESS);
+            String street = (String)addressJSON.get(USER_ADDRESS_STREET);
+            String city = (String)addressJSON.get(USER_ADDRESS_CITY);
+            String state = (String)addressJSON.get(USER_ADDRESS_STATE);
+            String zipcode = (String)addressJSON.get(USER_ADDRESS_ZIPCODE);
+            Address address = new Address(street,city,state,zipcode);
+
             String shelterIdString = (String) personJSON.get(USER_SHELTER);
 
             UUID shelterId = shelterIdString == null ? null : UUID.fromString(shelterIdString);
@@ -59,18 +90,30 @@ public class DataLoader extends DataConstants {
             Boolean hasPet = (Boolean)personJSON.get(USER_HAS_PET);
             int age = Integer.parseInt(personJSON.get(USER_AGE).toString());
             
-            users.add(new User(userId, username, firstName, lastName, location, phoneNumber, address, password, shelter, familyMembers, skills, hasPet, age));
+            users.add(new User(userId, username, firstName, lastName, phoneNumber, address, password, shelter, familyMembers, skills, hasPet, age));
 
         }
 
-    }   catch (Exception e){
-        e.printStackTrace();
+    }catch (Exception e) {
+        throw new IllegalStateException( "Could not load users; refusing to use an incomplete list.", e);
     }
     return users;
     }
 
-    public static ArrayList<Shelter> shelters = new ArrayList();
-    public static ArrayList<Shelter> getShelters(){
+    /**
+     * Loads shelters from the configured shelter JSON file.
+     *
+     * <p>Each shelter includes its identifier, name, availability, occupancy,
+     * capacity, address, shelter types, and resource inventory. Shelter and
+     * resource type names are converted to their corresponding enum values.</p>
+     *
+     * <p>Each invocation creates a new shelter list.</p>
+     *
+     * @return the shelters loaded from the file
+     * @throws IllegalStateException if reading, parsing, or converting any shelter record fails
+     */
+    public static ArrayList<Shelter> getShelters(){             
+        ArrayList<Shelter> shelters = new ArrayList();
         try{
             FileReader reader = new FileReader(SHELTER_FILE_NAME);
             JSONArray placesJSON = (JSONArray) new JSONParser().parse(reader);
@@ -83,8 +126,12 @@ public class DataLoader extends DataConstants {
                 int occupancy = Integer.parseInt(placeJSON.get(SHELTER_OCCUPANCY).toString());
                 int capacity = Integer.parseInt(placeJSON.get(SHELTER_CAPACITY).toString());
 
-                UUID locationId = UUID.fromString((String)placeJSON.get(SHELTER_LOCATION));
-                Location location = (locationId == null ? null : LocationList.getInstance().getLocationById(locationId));
+                JSONObject addressJSON = (JSONObject) placeJSON.get(SHELTER_ADDRESS);
+                String street = (String)addressJSON.get(SHELTER_ADDRESS_STREET);
+                String city = (String)addressJSON.get(SHELTER_ADDRESS_CITY);
+                String state = (String)addressJSON.get(SHELTER_ADDRESS_STATE);
+                String zipcode = (String)addressJSON.get(SHELTER_ADDRESS_ZIPCODE);
+                Address address = new Address(street,city,state,zipcode);
 
                 JSONArray shelterTypesJSON = (JSONArray)placeJSON.get(SHELTER_SHELTER_TYPES);
                 ArrayList<ShelterType> shelterTypes = new ArrayList<>();
@@ -103,18 +150,29 @@ public class DataLoader extends DataConstants {
 
 
     
-                shelters.add(new Shelter(name, availability, location, resources, shelterTypes, occupancy, capacity, id));
+                shelters.add(new Shelter(name, availability, resources, address, shelterTypes, occupancy, capacity, id));
             }
 
 
-        }   catch (Exception e){
-        e.printStackTrace();
+        }catch (Exception e) {
+        throw new IllegalStateException( "Could not load shelters; refusing to use an incomplete list.", e);
         }
         return shelters;
     }
 
-    public static ArrayList<Request> requests = new ArrayList();
+    /**
+     * Loads requests from the configured request JSON file and appends them
+     * to requests.
+     *
+     * <p>Each request includes its identifier, status, reported urgency,
+     * address, comments, assistance types, requester, and optional responder.
+     * User references are resolved by ID through {@link UserList}. A missing
+     * comments array produces an empty comment list.</p>
+     *
+     * @return the requests loaded
+     */
     public static ArrayList<Request> getRequests(){
+        ArrayList<Request> requests = new ArrayList();
         try{
             FileReader reader = new FileReader(REQUEST_FILE_NAME);
             JSONArray objectsJSON = (JSONArray) new JSONParser().parse(reader);
@@ -124,11 +182,15 @@ public class DataLoader extends DataConstants {
                 //int priority = Integer.parseInt(objectJSON.get(REQUEST_PRIORITY).toString());
                 RequestStatus status = RequestStatus.valueOf((String)objectJSON.get(REQUEST_STATUS));
                 int reportedUrgency = Integer.parseInt(objectJSON.get(REQUEST_REPORTED_URGENCY).toString());
-                String address = (String)objectJSON.get(REQUEST_ADDRESS);
+                
+                JSONObject addressJSON = (JSONObject) objectJSON.get(REQUEST_ADDRESS);
+                String street = (String)addressJSON.get(REQUEST_ADDRESS_STREET);
+                String city = (String)addressJSON.get(REQUEST_ADDRESS_CITY);
+                String state = (String)addressJSON.get(REQUEST_ADDRESS_STATE);
+                String zipcode = (String)addressJSON.get(REQUEST_ADDRESS_ZIPCODE);
+                Address address = new Address(street,city,state,zipcode);
 
-                UUID locationId = UUID.fromString((String)objectJSON.get(REQUEST_LOCATION));
-                Location location = (locationId == null ? null : LocationList.getInstance().getLocationById(locationId));
-
+                
                 JSONArray commentsJSON = (JSONArray)objectJSON.get(REQUEST_COMMENTS);
                 ArrayList<String> comments = new ArrayList<>();
                 if(commentsJSON != null){
@@ -152,7 +214,7 @@ public class DataLoader extends DataConstants {
                 }
         
 
-                requests.add(new Request(id, status, location, address, reportedUrgency, comments, requester, responder, types));
+                requests.add(new Request(id, status, address, reportedUrgency, comments, requester, responder, types));
 
             }
 
@@ -162,29 +224,16 @@ public class DataLoader extends DataConstants {
         return requests;
     }
 
-
-    public static ArrayList<Location> locations = new ArrayList();
-    public static ArrayList<Location> getLocations(){
-        try{
-            FileReader reader = new FileReader(LOCATION_FILE_NAME);
-            JSONArray placesJSON = (JSONArray) new JSONParser().parse(reader);
-            for(int i = 0; i < placesJSON.size(); i++){
-                JSONObject placeJSON = (JSONObject)placesJSON.get(i);
-                UUID id = UUID.fromString((String)placeJSON.get(LOCATION_ID));
-                String state = (String)placeJSON.get(LOCATION_STATE);
-                String city = (String)placeJSON.get(LOCATION_CITY);
-                int zipcode = Integer.parseInt(placeJSON.get(LOCATION_ZIPCODE).toString());
-
-                locations.add(new Location(id, state, city, zipcode));
-            }
-        
-        }   catch (Exception e){
-        e.printStackTrace();
-        }
-        return locations;
-
-    }
-    
+    /**
+     * Loads the first hurricane record from the configured hurricane JSON
+     * file and appends it to {@link #hurricanes}.
+     *
+     * <p>The record includes its identifier, name, category, wind speed,
+     * affected ZIP codes, expected conditions, size, and active status.
+     * Any additional hurricane records in the file are ignored.</p>
+     *
+     * @return the hurricane list
+     */
     public static ArrayList<Hurricane> hurricanes = new ArrayList();
     public static ArrayList<Hurricane> getHurricanes(){
         try{
@@ -214,6 +263,5 @@ public class DataLoader extends DataConstants {
         return hurricanes;
 
     }
-
 
 }

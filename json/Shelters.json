@@ -1,10 +1,17 @@
 [
   {
     "petCapacity" : 0,
+  "address" : {
+      "zipcode" : "29405",
+   "city" : "North Charleston",
+   "street" : "2950 Carner Avenue",
+   "state" : "SC"
+      },
   "occupancy" : 207,
   "name" : "Caldwell Elementary School",
   "shelterTypes" : [
-      "DISABILITY_ACCESSIBLE"
+      "DISABILITY_ACCESSIBLE",
+   "MEDICAL_STAFF"
       ],
   "resources" : [
       {
@@ -24,7 +31,6 @@
     "type" : "CHARGERS"
          }
       ],
-  "location" : "bdc1366f-ba6e-4b7d-9c73-009770b70d0b",
   "id" : "e522496a-9539-4c1e-b8a5-992aa48dde8c",
   "availability" : false,
   "capacity" : 250,
@@ -32,6 +38,12 @@
    },
  {
     "petCapacity" : 0,
+  "address" : {
+      "zipcode" : "29405",
+   "city" : "North Charleston",
+   "street" : "5200 Lackawanna Boulevard",
+   "state" : "SC"
+      },
   "occupancy" : 110,
   "name" : "Saint Jude's Church",
   "shelterTypes" : [
@@ -55,10 +67,285 @@
     "type" : "CLOTHES"
          }
       ],
-  "location" : "baa5f8b6-2e90-4084-8376-50e9e3b6ac6f",
   "id" : "68b7087c-d6ee-4c2b-8706-7a90ac62e5f5",
   "availability" : false,
   "capacity" : 115,
+  "petCount" : 0
+   },
+ {
+    "petCapacity" : 0,
+  "address" : {
+      "zipcode" : "29405",
+   "city" : "North Charleston",
+   "street" : "3841 Leeds Avenue",
+   "state" : "SC"
+      },
+  "occupancy" : 140,
+  "name" : "Riverside Community Center",
+  "shelterTypes" : [
+      "DISABILITY_ACCESSIBLE",
+   "PET_FRIENDLY",
+   "MEDICAL_STAFF"
+      ],
+  "resources" : [
+      {
+        "quantity" : 12,
+    "type" : "WATER"
+         },
+   {
+        "quantity" : 8,
+    "type" : "FOOD"
+         },
+   {
+        "quantity" : 6,
+    "type" : "FIRST_AID"
+         },
+   {
+        "quantity" : 10,
+    "type" : "CHARGERS"
+         }
+      ],
+  "id" : "3f9a1c52-7d84-4e1b-a6c3-2b5e8f0d9a41",
+  "availability" : false,
+  "capacity" : 300,
+  "petCount" : 0
+   },
+ {
+    "petCapacity" : 0,
+  "address" : {
+      "zipcode" : "29418",
+   "city" : "North Charleston",
+   "street" : "6325 Dorchester Road",
+   "state" : "SC"
+      },
+  "occupancy" : 400,
+  "name" : "Lincoln High School Gymnasium",
+  "shelterTypes" : [
+      "DISABILITY_ACCESSIBLE",
+   "MEDICAL_STAFF"
+      ],
+  "resources" : [
+      {
+        "quantity" : 2,
+    "type" : "WATER"
+         },
+   {
+        "quantity" : 1,
+    "type" : "FOOD"
+         },
+   {
+        "quantity" : 3,
+    "type" : "CLOTHES"
+         }
+      ],
+  "id" : "9b2d6e84-1a73-4c05-8f9d-4e6a0c3b7d12",
+  "availability" : false,
+  "capacity" : 400,
+  "petCount" : 0
+   },
+ {
+    "petCapacity" : 0,
+  "address" : {
+      "zipcode" : "29407",
+   "city" : "Charleston",
+   "street" : "45 Windermere Boulevard",
+   "state" : "SC"
+      },
+  "occupancy" : 62,
+  "name" : "First Baptist Fellowship Hall",
+  "shelterTypes" : [
+      "PET_FRIENDLY"
+      ],
+  "resources" : [
+      {
+        "quantity" : 7,
+    "type" : "WATER"
+         },
+   {
+        "quantity" : 9,
+    "type" : "FOOD"
+         },
+   {
+        "quantity" : 6,
+    "type" : "CLOTHES"
+         },
+   {
+        "quantity" : 4,
+    "type" : "FIREWOOD"
+         }
+      ],
+  "id" : "5c8e3a17-9f24-4b60-a1d8-6e0b2f7c5a39",
+  "availability" : false,
+  "capacity" : 120,
+  "petCount" : 0
+   },
+ {
+    "petCapacity" : 0,
+  "address" : {
+      "zipcode" : "29418",
+   "city" : "North Charleston",
+   "street" : "3625 Ashley Phosphate Road",
+   "state" : "SC"
+      },
+  "occupancy" : 185,
+  "name" : "Oak Grove Recreation Center",
+  "shelterTypes" : [
+      "DISABILITY_ACCESSIBLE"
+      ],
+  "resources" : [
+      {
+        "quantity" : 10,
+    "type" : "WATER"
+         },
+   {
+        "quantity" : 10,
+    "type" : "FOOD"
+         },
+   {
+        "quantity" : 4,
+    "type" : "FIRST_AID"
+         },
+   {
+        "quantity" : 8,
+    "type" : "CHARGERS"
+         }
+      ],
+  "id" : "a7d4b290-3e51-4c8f-9b16-0f5a8e2d6c74",
+  "availability" : false,
+  "capacity" : 200,
+  "petCount" : 0
+   },
+ {
+    "petCapacity" : 0,
+  "address" : {
+      "zipcode" : "29483",
+   "city" : "Summerville",
+   "street" : "1624 State Road",
+   "state" : "SC"
+      },
+  "occupancy" : 95,
+  "name" : "Mount Pleasant Middle School",
+  "shelterTypes" : [
+      "DISABILITY_ACCESSIBLE"
+      ],
+  "resources" : [
+      {
+        "quantity" : 6,
+    "type" : "WATER"
+         },
+   {
+        "quantity" : 4,
+    "type" : "FOOD"
+         },
+   {
+        "quantity" : 3,
+    "type" : "FIRST_AID"
+         }
+      ],
+  "id" : "1e6f9c43-b8a2-4d70-95e1-7c3d0a4b8f26",
+  "availability" : false,
+  "capacity" : 180,
+  "petCount" : 0
+   },
+ {
+    "petCapacity" : 0,
+  "address" : {
+      "zipcode" : "29455",
+   "city" : "Johns Island",
+   "street" : "3531 Maybank Highway",
+   "state" : "SC"
+      },
+  "occupancy" : 48,
+  "name" : "Harbor Street Animal-Friendly Shelter",
+  "shelterTypes" : [
+      "PET_FRIENDLY",
+   "MEDICAL_STAFF"
+      ],
+  "resources" : [
+      {
+        "quantity" : 15,
+    "type" : "WATER"
+         },
+   {
+        "quantity" : 12,
+    "type" : "FOOD"
+         },
+   {
+        "quantity" : 2,
+    "type" : "CLOTHES"
+         },
+   {
+        "quantity" : 5,
+    "type" : "CHARGERS"
+         }
+      ],
+  "id" : "d03b7a65-4c19-4e82-a5f7-9b1e6c8d2a50",
+  "availability" : false,
+  "capacity" : 90,
+  "petCount" : 0
+   },
+ {
+    "petCapacity" : 0,
+  "address" : {
+      "zipcode" : "29455",
+   "city" : "Johns Island",
+   "street" : "3531 Maybank Highway",
+   "state" : "SC"
+      },
+  "occupancy" : 75,
+  "name" : "St. Mary's Parish Hall",
+  "shelterTypes" : [
+      "PET_FRIENDLY"
+      ],
+  "resources" : [
+      {
+        "quantity" : 1,
+    "type" : "WATER"
+         },
+   {
+        "quantity" : 2,
+    "type" : "FIREWOOD"
+         }
+      ],
+  "id" : "8a5e2d91-6f03-4b7c-b4a8-3d9c1e7f0b62",
+  "availability" : false,
+  "capacity" : 75,
+  "petCount" : 0
+   },
+ {
+    "petCapacity" : 0,
+  "address" : {
+      "zipcode" : "29455",
+   "city" : "Johns Island",
+   "street" : "3531 Maybank Highway",
+   "state" : "SC"
+      },
+  "occupancy" : 30,
+  "name" : "Westside Public Library",
+  "shelterTypes" : [
+      "DISABILITY_ACCESSIBLE"
+      ],
+  "resources" : [
+      {
+        "quantity" : 8,
+    "type" : "WATER"
+         },
+   {
+        "quantity" : 6,
+    "type" : "FOOD"
+         },
+   {
+        "quantity" : 5,
+    "type" : "FIRST_AID"
+         },
+   {
+        "quantity" : 15,
+    "type" : "CHARGERS"
+         }
+      ],
+  "id" : "f2c9d6b3-0e85-4a41-8d7f-5b3a9e1c4d98",
+  "availability" : false,
+  "capacity" : 60,
   "petCount" : 0
    }
 ]

@@ -1,5 +1,9 @@
 package com.model;
 
+/**
+ * DataConstants
+ * Constants to be used by the DataLoader and DataWriter
+ */
 public class DataConstants {
     //User constants
     protected static final String USER_FILE_NAME = "json\\Users.json";
@@ -10,6 +14,10 @@ public class DataConstants {
     protected static final String USER_AGE = "age";
     protected static final String USER_PHONE_NUMBER = "phoneNumber";
     protected static final String USER_ADDRESS = "address";
+    protected static final String USER_ADDRESS_STREET = "street";
+    protected static final String USER_ADDRESS_CITY = "city";
+    protected static final String USER_ADDRESS_STATE = "state";
+    protected static final String USER_ADDRESS_ZIPCODE = "zipcode";
     protected static final String USER_PASSWORD = "password";
     protected static final String USER_SHELTER = "shelter";
     protected static final String USER_SKILLS = "skills";
@@ -25,9 +33,17 @@ public class DataConstants {
     protected static final String SHELTER_NAME = "name";
     protected static final String SHELTER_AVAILABILITY = "availability";
     protected static final String SHELTER_RESOURCES = "resources";
+<<<<<<< HEAD
     protected static final String SHELTER_RESOURCES_QUANTITY = "quantity";
     protected static final String SHELTER_RESOURCES_TYPE = "type";
     protected static final String SHELTER_ADDRESS = "address";
+=======
+    protected static final String SHELTER_ADDRESS = "address";
+    protected static final String SHELTER_ADDRESS_STREET = "street";
+    protected static final String SHELTER_ADDRESS_CITY = "city";
+    protected static final String SHELTER_ADDRESS_STATE = "state";
+    protected static final String SHELTER_ADDRESS_ZIPCODE = "zipcode";
+>>>>>>> 765be3eb74fb6c01b3fa454d7155211f11e5236b
     protected static final String SHELTER_SHELTER_TYPES = "shelterTypes";
     protected static final String SHELTER_OCCUPANCY = "occupancy";
     protected static final String SHELTER_CAPACITY = "capacity";
@@ -41,6 +57,10 @@ public class DataConstants {
     protected static final String REQUEST_PRIORITY = "requestPriority";
     protected static final String REQUEST_STATUS = "status";
     protected static final String REQUEST_ADDRESS = "address";
+    protected static final String REQUEST_ADDRESS_STREET = "street";
+    protected static final String REQUEST_ADDRESS_CITY = "city";
+    protected static final String REQUEST_ADDRESS_STATE = "state";
+    protected static final String REQUEST_ADDRESS_ZIPCODE = "zipcode";
     protected static final String REQUEST_REPORTED_URGENCY = "reportedUrgency";
     protected static final String REQUEST_COMMENTS = "comments";
     protected static final String REQUEST_REQUEST_TYPES = "requestTypes";

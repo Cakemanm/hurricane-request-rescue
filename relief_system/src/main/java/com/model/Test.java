@@ -6,7 +6,6 @@ public class Test {
     public static void main(String[] args) {
         
         ReliefFacade reliefFacade = new ReliefFacade();
-        LocationList locationList = LocationList.getInstance();
         RequestFeed requestFeed = RequestFeed.getInstance();
         ShelterList shelterList = ShelterList.getInstance();
         UserList userList = UserList.getInstance();
