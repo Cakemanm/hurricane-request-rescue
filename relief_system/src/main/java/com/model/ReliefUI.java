@@ -4,6 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+
 import com.location.Address;
 
 public class ReliefUI {
@@ -47,7 +48,7 @@ public class ReliefUI {
         System.out.println(michael.victimToString());
         System.out.println(BLUE + "\nLogging Michael in..." + RESET);
         if (!reliefFacade.login("sophiesdad", "Buddy&Sophie09")) {
-            System.out.println("Sorry, we couldn't log you in.");
+            System.out.println("Sorry, something went wrong! We couldn't log you in.");
             return;
         }
 
@@ -60,7 +61,7 @@ public class ReliefUI {
         //Michael creates a relief request
         System.out.println(BLUE + "\nCreating a relief request...\n" + RESET);
         ArrayList<RequestType> types = new ArrayList<>(Arrays.asList(RequestType.TRANSPORTATION, RequestType.NO_SHELTER, RequestType.MEDICAL_ASSISTANCE));
-        ArrayList<String> comments = new ArrayList<>(Arrays.asList("My family needs to go to a shelter because our power is out and conditions in our home are worsening my daughter's asthma.","The shelter needs to have medical supplies and staff.","We need transporation to the shelter.","Our dog, Buddy, must come with us."));
+        ArrayList<String> comments = new ArrayList<>(Arrays.asList("My family needs to go to a shelter because our power is out and conditions in our home are worsening my daughter's asthma.","The shelter needs to have medical supplies and staff.","We need transportation to the shelter.","Our dog, Buddy, must come with us."));
         Request request = reliefFacade.createRequest(types,address,8,comments);
         System.out.println(request.toString());
         System.out.println(BLUE);
@@ -74,7 +75,7 @@ public class ReliefUI {
         System.out.println(BLUE + "\nRosa Delgado is logging in..." + RESET);
 
         if (!reliefFacade.login("rosad", "F350Rosa!trk")) {
-            System.out.println("Sorry, we couldn't log you in.");
+            System.out.println("Sorry, something went wrong! We couldn't log you in.");
             return;
         }
 
@@ -84,7 +85,7 @@ public class ReliefUI {
             System.out.println(user.getFullName() + "is currently staying at " + user.getShelter().getName());
         }
 
-        System.out.println(BLUE + "\nFinding requests for Rosa...\n"+RESET+"\n\nThe top requests are nearby and match your specialties:");
+        System.out.println(BLUE + "\nFinding requests for Rosa...\n"+RESET+"\n\n Here are the top requests nearby that match your specialties:");
         requestFeed.findRelevantRequests(user);
 
         // find shelter and assign request
@@ -93,7 +94,7 @@ public class ReliefUI {
         if(reliefFacade.dispatchVolunteer(request, user))
             System.out.println(BLUE + "\n" + user.getFullName() + " is now the assigned volunteer for the following request:\n" + RESET + request.toString());
         else
-            System.out.println("This request claim was unsuccessful.");
+            System.out.println("This request claim was unsuccessful.Try again.");
 
         //Rosa finds a relevant shelter
         System.out.println(BLUE + "\nSearching for shelter's matching the family's criteria...\n\n" + RESET);
@@ -117,7 +118,7 @@ public class ReliefUI {
         // demo role permissions
         System.out.println(BLUE + "Rosa tries to mark the request as complete..." + RESET);
         if(user.getSkills().contains(Skill.SHELTER_STAFF))
-            System.out.println("The current request has been completed.");
+            System.out.println("The current request has been completed!");
         else
             System.out.println("Volunteers are unable to mark this request as complete. See a shelter administrator.");
         reliefFacade.logout();
