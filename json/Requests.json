@@ -87,5 +87,30 @@
       "FALLEN_TREE",
    "ROADBLOCK"
       ]
+   },
+ {
+    "requester" : "3a69a9b8-90b4-4f1e-9c63-60d0a8c7b07c",
+  "address" : {
+      "zipcode" : "29401",
+   "city" : "Charleston",
+   "street" : "68 Calhoun Street",
+   "state" : "SC"
+      },
+  "comments" : [
+      "My family needs to go to a shelter because our power is out and conditions in our home are worsening my daughter's asthma.",
+   "The shelter needs to have medical supplies and staff.",
+   "We need transporation to the shelter.",
+   "Our dog, Buddy, must come with us."
+      ],
+  "responder" : "e9a2c7d5-3b16-4f84-8d0a-1c6e5b9f7a43",
+  "requestPriority" : 8,
+  "id" : "c440bfc8-7709-4528-8208-93cbde9b0569",
+  "reportedUrgency" : 8,
+  "status" : "HELP_ON_THE_WAY",
+  "requestTypes" : [
+      "TRANSPORTATION",
+   "NO_SHELTER",
+   "MEDICAL_ASSISTANCE"
+      ]
    }
 ]

@@ -101,15 +101,21 @@ public class ReliefUI {
         for(Shelter shelter : matchingShelters)
             System.out.println(shelter.toString()+"\n");
 
+        System.out.println(BLUE + "\nRosa selects " + matchingShelters.get(0).getName() + " for the Carter family\n" + RESET);
+
+        System.out.println(BLUE + "Rosa is exporting the file...\n" + RESET);
+
                 // export info to txt file
         try {
             FileWriter io = new FileWriter("scenario.txt");
+            System.out.println("File successfully created");
             
         } catch (IOException e){
             System.out.println("An error occurred exporting the data.");
             e.printStackTrace();
         }
         // demo role permissions
+        System.out.println(BLUE + "Rosa tries to mark the request as complete..." + RESET);
         if(user.getSkills().contains(Skill.SHELTER_STAFF))
             System.out.println("The current request has been completed.");
         else
