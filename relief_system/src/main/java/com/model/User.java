@@ -3,10 +3,7 @@ package com.model;
 import java.util.ArrayList;
 import java.util.UUID;
 import com.location.Address;
-<<<<<<< HEAD
-=======
 
->>>>>>> 765be3eb74fb6c01b3fa454d7155211f11e5236b
 public class User {
     
     private UUID id;
@@ -38,13 +35,8 @@ public class User {
             this.petDescription = petDescription;
             this.familyMembers = (familyMembers == null ? new ArrayList<>() : familyMembers);
         }
-
-<<<<<<< HEAD
-    public User(UUID id, String username, String firstName, String lastName, 
-    String phoneNumber, Address address, String password, Shelter shelter, 
-=======
+        
     public User(UUID id, String username, String firstName, String lastName, String phoneNumber, Address address, String password, Shelter shelter, 
->>>>>>> 765be3eb74fb6c01b3fa454d7155211f11e5236b
     ArrayList<FamilyMember> familyMembers, ArrayList<Skill> skills, boolean hasPet, int age) {
         this.id = (id == null ? UUID.randomUUID() : id);
         this.username = username;

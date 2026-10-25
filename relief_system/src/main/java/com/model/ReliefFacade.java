@@ -28,14 +28,9 @@ public class ReliefFacade {
     //     feed.addRequest(request);
     // }
 
-<<<<<<< HEAD
-    public void submitRequest(User requester, Request request, Address address, String comments) {
-        request.setRequester(requester);
-        request.setAddress(address);
-=======
+
     public void submitRequest(User requester, Request request, String comments) {
         request.setRequester(requester);
->>>>>>> 765be3eb74fb6c01b3fa454d7155211f11e5236b
         request.addComment(comments);
         feed.addRequest(request);
     }
@@ -119,16 +114,8 @@ public class ReliefFacade {
 
     }
 
-<<<<<<< HEAD
-    public Location createLocation(String address, String city, String state, int zipcode, double latitude, double longitude) {
-        return LocationList.getInstance().findOrCreateLocation(address, city, state, zipcode, latitude, longitude);
-    }
 
-    public void createAccount(String username, String firstName, String lastName, 
-        String phoneNumber, Address address, String password,
-=======
     public void createAccount(String username, String firstName, String lastName, String phoneNumber, Address address, String password,
->>>>>>> 765be3eb74fb6c01b3fa454d7155211f11e5236b
         ArrayList<FamilyMember> familyMembers,boolean hasPet, int age, String petDescription){
             UserList userList = UserList.getInstance();
             if (userList.getUser(username) != null) {
@@ -136,19 +123,11 @@ public class ReliefFacade {
                 return;
             }
             userList.addUser(new User(UUID.randomUUID(), username, firstName, lastName, phoneNumber, address, password, null, familyMembers, hasPet, age, petDescription));
-<<<<<<< HEAD
             login(username, password);
     }
 
-    public User createAccount(String username, String firstName, String lastName, 
-        String phoneNumber, Address address, String password, Shelter shelter,
-=======
-            userList.save();
-            login(username, password);
-    }
 
     public User createAccount(String username, String firstName, String lastName, String phoneNumber, Address address, String password, Shelter shelter,
->>>>>>> 765be3eb74fb6c01b3fa454d7155211f11e5236b
         ArrayList<FamilyMember> familyMembers,boolean hasPet, int age, String petDescription){
             UserList userList = UserList.getInstance();
             User user = new User(UUID.randomUUID(), username, firstName, lastName, phoneNumber, address, password, shelter, familyMembers, hasPet, age, petDescription);
@@ -202,7 +181,6 @@ public class ReliefFacade {
             System.out.println(request.toString() + "\n");
     }
 
-<<<<<<< HEAD
     public void findRequestsByLocation(Address address){
         System.out.println("\n\nRequests for: "+ address.toString() +"\n");
         boolean match = false;
@@ -210,7 +188,9 @@ public class ReliefFacade {
             if(request.getAddress() == address){
                 System.out.println(request.toString() + "\n");
                 match = true;
-=======
+            }
+        }
+    }
     public Request findClosestRequest(User user){
         try{
             Address address = MapTools.getInstance().findClosestAddress(user.getAddress(),shelterList.getAddresses());
@@ -218,7 +198,6 @@ public class ReliefFacade {
                 if(address.equals(request.getAddress())){
                     return request;
                 }
->>>>>>> 765be3eb74fb6c01b3fa454d7155211f11e5236b
             }
 
         } catch (Exception e) {

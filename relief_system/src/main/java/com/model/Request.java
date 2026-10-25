@@ -26,11 +26,6 @@ public class Request {
     private User responder;
     private UUID id;
 
-<<<<<<< HEAD
-    public Request(UUID id, RequestStatus status, Address address, int reportedUrgency,
-        ArrayList<String> comments, User requester, User responder, ArrayList<RequestType> requestTypes){
-        //this.requestPriority = priority;
-=======
     /**
      * Creates a request and calculates its initial priority.
      *
@@ -48,7 +43,6 @@ public class Request {
      */
     public Request(UUID id, RequestStatus status, Address address, int reportedUrgency,
             ArrayList<String> comments, User requester, User responder, ArrayList<RequestType> requestTypes) {
->>>>>>> 765be3eb74fb6c01b3fa454d7155211f11e5236b
         this.status = status;
         this.reportedUrgency = reportedUrgency;
         this.comments = comments;
@@ -81,86 +75,6 @@ public class Request {
         return requestPriority;
     }
 
-<<<<<<< HEAD
-    public void sendAlerts() {
-
-        }
-        
-        public void updateStatus(RequestStatus status, User responder){  
-            this.status = status;
-            if(status == RequestStatus.HELP_ON_THE_WAY || status == RequestStatus.AT_SITE || status == RequestStatus.COMPLETED)
-                this.responder = responder;
-            else
-                this.responder = null;
-        }
-
-        public void updateStatus(RequestStatus status){
-            updateStatus(status, null);
-        }
-
-        public String toString(){
-            String returnString = "";
-            returnString += "Request for help with: ";
-            for(RequestType type: requestTypes)
-                returnString += type.label + (requestTypes.indexOf(type) < requestTypes.size()-1 ? ", " : "");
-            returnString += "\nPriority Level: " + this.calcPriority() + " \nRequested by: " + requester.getFullName() + " at " + address + " " + (address == null? "" : address.toString()) + "\n";
-            for(String comment : comments)
-                returnString += comment + " ";
-            returnString += "\nRequest Status: " + status + (responder == null ? " | Currently Unfulfilled" : " | Responder: "+ responder.getFullName());
-            return returnString;
-        }
-
-        public int getRequestPriority() {
-            return requestPriority;
-        }
-        public void setRequestPriority(int requestPriority) {
-            this.requestPriority = requestPriority;
-        }
-        public RequestStatus getStatus() {
-            return status;
-        }
-        public void setStatus(RequestStatus status) {
-            this.status = status;
-        }
-        public Address getAddress() {
-            return address;
-        }
-        public void setAddress(Address address){
-            this.address = address;
-        }
-        public int getReportedUrgency() {
-            return reportedUrgency;
-        }
-
-        public ArrayList<String> getComments() {
-            return comments;
-        }
-        public void addComment(String comment) {
-            if (comments == null) {
-                comments = new ArrayList<>();
-            }
-            comments.add(comment);
-        }
-        public void setComments(ArrayList<String> comments) {
-            this.comments = comments;
-        }
-        public ArrayList<RequestType> getRequestTypes() {
-            return requestTypes;
-        }
-        public void setRequestTypes(ArrayList<RequestType> requestTypes) {
-            this.requestTypes = requestTypes;
-        }
-        public User getRequester() {
-            return requester;
-        }
-        public void setRequester(User requester) {
-            this.requester = requester;
-        }
-        public User getResponder() {
-            return responder;
-        }
-        public void setResponder(User responder) {
-=======
     /**
      * Updates the request's status and responder assignment.
      *
@@ -177,7 +91,6 @@ public class Request {
         this.status = status;
         if (status == RequestStatus.HELP_ON_THE_WAY || status == RequestStatus.AT_SITE
                 || status == RequestStatus.COMPLETED)
->>>>>>> 765be3eb74fb6c01b3fa454d7155211f11e5236b
             this.responder = responder;
         else
             this.responder = null;
