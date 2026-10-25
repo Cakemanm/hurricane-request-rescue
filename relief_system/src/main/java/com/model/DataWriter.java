@@ -8,10 +8,25 @@ import org.json.simple.JSONObject;
 
 import com.location.Address;
 
+/**
+ * Saves info to JSON file using {@link DataConstants}
+ * in the same format that {@link DataLoader} is able to read
+ * @author Gracie Bergman
+ * @author Jake McNulty
+ * @author Carter Medlin
+ * @author Abigail Stalker
+ */
+
 public class DataWriter extends DataConstants {
 
     private static final String INDENT = "      ";
+    private static final String NEWLINE = "\r\n";
 
+    /**
+     * Writes a JSON array to a file
+     * @param fileName the path to write to
+     * @param json the records to write
+     */
     private static void writeFile(String fileName, JSONArray json) {
         try (FileWriter writer = new FileWriter(fileName)) {
             writer.write(jsonPrint(json.toJSONString()));
@@ -20,6 +35,11 @@ public class DataWriter extends DataConstants {
         }
     }
 
+    /**
+     * Indents a one-line JSON string so each value is on its own line
+     * @param json the JSON text
+     * @return the indented JSON text
+     */
     private static String jsonPrint(String json) {
         StringBuilder out = new StringBuilder();
         int indent = 0;
@@ -35,12 +55,12 @@ public class DataWriter extends DataConstants {
             }
             if (c == '{' || c == '[') {
                 indent++;
-                out.append(c).append('\n').append("  ".repeat(indent));
+                out.append(c).append(NEWLINE).append(INDENT.repeat(indent));
             } else if (c == '}' || c == ']') {
                 indent--;
-                out.append('\n').append("   ".repeat(indent)).append(c);
+                out.append(NEWLINE).append(INDENT.repeat(indent)).append(c);
             } else if (c == ',') {
-                out.append(c).append('\n').append(" ".repeat(indent));
+                out.append(c).append(NEWLINE).append(INDENT.repeat(indent));
             } else if (c == ':') {
                 out.append(" : ");
             } else {
@@ -50,10 +70,19 @@ public class DataWriter extends DataConstants {
         return out.toString().replaceAll("\\[\\s+\\]", "[]");
     }
 
+    /**
+     * Converts an ID to the string stored in the files
+     * @param id the ID
+     * @return the ID as a string
+     */
     private static String idOf(Object id) {
         return id == null ? null : id.toString();
     }
 
+    /**
+     * Saves every user to the user's file
+     * @param users the users to save
+     */
     public static void saveUsers(ArrayList<User> users) {
         JSONArray peopleJSON = new JSONArray();
         for(User user : users){
@@ -100,6 +129,10 @@ public class DataWriter extends DataConstants {
         writeFile(USER_FILE_NAME, peopleJSON);
     }
 
+    /**
+     * Saves every shelter to the shelters file
+     * @param shelters the shelters to save
+     */
     public static void saveShelters(ArrayList<Shelter> shelters) {
         JSONArray sheltersJSON = new JSONArray();
         for (Shelter shelter : shelters) {
@@ -141,6 +174,10 @@ public class DataWriter extends DataConstants {
         writeFile(SHELTER_FILE_NAME, sheltersJSON);
     }
 
+    /**
+     * Saves every request to the requests file
+     * @param requests the requests to save
+     */
     public static void saveRequests(ArrayList<Request> requests) {
         JSONArray requestsJSON = new JSONArray();
         for (Request request : requests) {
@@ -178,6 +215,10 @@ public class DataWriter extends DataConstants {
         writeFile(REQUEST_FILE_NAME, requestsJSON);
     }
 
+    /**
+     * Saves every hurricane to the hurricanes file
+     * @param hurricanes the hurricanes to save
+     */
     public static void saveHurricane(ArrayList<Hurricane> hurricanes) {
         JSONArray hurricanesJSON = new JSONArray();
         for (Hurricane hurricane : hurricanes) {
