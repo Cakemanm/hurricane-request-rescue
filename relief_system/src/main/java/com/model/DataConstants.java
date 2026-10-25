@@ -3,6 +3,11 @@ package com.model;
 /**
  * DataConstants
  * Constants to be used by the DataLoader and DataWriter
+ * 
+ * @author Gracie Bergmann
+ * @author Jake McNulty
+ * @author Carter Medlin
+ * @author Abigail Stalker
  */
 public class DataConstants {
     //User constants
