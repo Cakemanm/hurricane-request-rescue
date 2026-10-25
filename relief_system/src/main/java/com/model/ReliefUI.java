@@ -97,7 +97,7 @@ public class ReliefUI {
 
         //Rosa finds a relevant shelter
         System.out.println(BLUE + "\nSearching for shelter's matching the family's criteria...\n\n" + RESET);
-        ArrayList<Shelter> matchingShelters = shelterList.findShelters(3, true, true, false);
+        ArrayList<Shelter> matchingShelters = shelterList.findShelters(user,3, true, true, false);
         for(Shelter shelter : matchingShelters)
             System.out.println(shelter.toString()+"\n");
 

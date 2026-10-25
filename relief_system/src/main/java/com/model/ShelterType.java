@@ -1,11 +1,9 @@
 package com.model;
 
 public enum ShelterType {
-    COMMUNITY_CENTRAL,
+    COMMUNITY_CENTER,
     SCHOOL,
     HOSPITAL,
-    BUNKER,
-    HOME,
     PET_FRIENDLY,
     DISABILITY_ACCESSIBLE,
     NO_PETS,

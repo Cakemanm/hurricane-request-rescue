@@ -132,12 +132,12 @@
    },
  {
     "requester" : "a54b910e-82c7-463d-bf08-19e6d32a7c45",
-  "address": {
-  "zipcode": "29445",
-  "city": "Goose Creek",
-  "street": "325 Old Moncks Corner Road",
-  "state": "SC"
-},
+  "address" : {
+      "zipcode" : "29445",
+   "city" : "Goose Creek",
+   "street" : "325 Old Moncks Corner Road",
+   "state" : "SC"
+      },
   "comments" : [
       "Major roadway collapsed and rushing water has created a natural blockade."
       ],
@@ -151,6 +151,31 @@
    "ROADBLOCK",
    "LANDSLIDE",
    "TRANSPORTATION"
+      ]
+   },
+ {
+    "requester" : "0eecf711-bf39-4983-80ce-83cf6e414186",
+  "address" : {
+      "zipcode" : "29401",
+   "city" : "Charleston",
+   "street" : "68 Calhoun Street",
+   "state" : "SC"
+      },
+  "comments" : [
+      "My family needs to go to a shelter because our power is out and conditions in our home are worsening my daughter's asthma.",
+   "The shelter needs to have medical supplies and staff.",
+   "We need transporation to the shelter.",
+   "Our dog, Buddy, must come with us."
+      ],
+  "responder" : "e9a2c7d5-3b16-4f84-8d0a-1c6e5b9f7a43",
+  "requestPriority" : 8,
+  "id" : "182e2fb2-58a4-4b9a-a3da-26afcf48fc79",
+  "reportedUrgency" : 8,
+  "status" : "HELP_ON_THE_WAY",
+  "requestTypes" : [
+      "TRANSPORTATION",
+   "NO_SHELTER",
+   "MEDICAL_ASSISTANCE"
       ]
    }
 ]

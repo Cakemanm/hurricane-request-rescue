@@ -7,7 +7,6 @@ public enum Skill {
     SHELTER_STAFF("Shelter staff"),
     BOAT_OPERATOR("Boat operator"),
     HEAVY_MACHINERY_OPERATOR("Heavy machinery operator"),
-    CAN_SWIM("Can swim"),
     HEAVY_LIFTER("Heavy lifter"),
     CAN_PROVIDE_MEDICAL_ASSISTANCE("Medical assistance"),
     LANGUAGE_TRANSLATOR("Language translator"),
