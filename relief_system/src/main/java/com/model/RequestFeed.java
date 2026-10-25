@@ -52,11 +52,6 @@ public class RequestFeed {
         return null;
     }
 
-<<<<<<< HEAD
-    public void addRequest(UUID id, RequestStatus status, Address address, int reportedUrgency,
-        ArrayList<String> comments, User requester, User responder, ArrayList<RequestType> requestTypes){
-            requests.add(new Request(id, status, address, reportedUrgency, comments, requester, responder, requestTypes));
-=======
     /**
      * Finds the first request whose requester equals the specified user.
      * @param requester the user whose request should be retrieved
@@ -89,7 +84,6 @@ public class RequestFeed {
         ArrayList<String> comments, User requester, User responder, ArrayList<RequestType> requestTypes){
             requests.add(new Request(id, status, address, reportedUrgency, comments, requester, responder, requestTypes));
             requestFeed.save();
->>>>>>> 765be3eb74fb6c01b3fa454d7155211f11e5236b
         }
     
     /**

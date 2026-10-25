@@ -2,13 +2,9 @@ package com.model;
 
 import java.util.ArrayList;
 import java.util.UUID;
-<<<<<<< HEAD
-import com.location.Address;
-=======
 
 import com.location.Address;
 
->>>>>>> 765be3eb74fb6c01b3fa454d7155211f11e5236b
 public class ShelterList {
 
 private static ShelterList shelterList;
@@ -28,11 +24,7 @@ public static ShelterList getInstance() {
 
 public void addShelter(String name, boolean availability, Address address, ArrayList<Resource> resources, 
     ArrayList<ShelterType> type, int occupancy, int capacity, UUID id) {
-<<<<<<< HEAD
-    Shelter shelter = new Shelter(name, availability, address, resources, type, occupancy, capacity, (id == null ? UUID.randomUUID() : id));
-=======
     Shelter shelter = new Shelter(name, availability, resources, address, type, occupancy, capacity, (id == null ? UUID.randomUUID() : id));
->>>>>>> 765be3eb74fb6c01b3fa454d7155211f11e5236b
     shelters.add(shelter);
 }
 
