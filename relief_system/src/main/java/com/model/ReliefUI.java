@@ -35,6 +35,10 @@ public class ReliefUI {
         ArrayList<FamilyMember> family = new ArrayList<>();
         family.add(new FamilyMember("Laura Carter",39));
         family.add(new FamilyMember("Sophie Carter",9));
+        /* 
+        Address cAddress = new Address("1 Vendue Range", "Charleston", "SC", "29401");
+        User michael = reliefFacade.createAccount("sophiesdad","Michael","Carter","000-843-2271", cAddress,"Buddy&Sophie09",null,family,true, 41, "Dog named Buddy");
+*/
         Address address = new Address("68 Calhoun Street","Charleston","SC","29401");
         User michael = reliefFacade.createAccount("sophiesdad","Michael","Carter","000-843-2271",address,"Buddy&Sophie09",null,family,true, 41, "Dog named Buddy");
 
@@ -47,7 +51,7 @@ public class ReliefUI {
         }
 
         User user = reliefFacade.getCurrentUser();
-        System.out.println(user.getFullName() + " is now logged in!");
+        System.out.println(BLUE+ user.getFullName() + " is now logged in!" + RESET);
         if (user.getShelter() != null) {
             System.out.println(user.getFullName() + "is currently staying at " + user.getShelter().getName());
         }
@@ -58,6 +62,7 @@ public class ReliefUI {
         ArrayList<String> comments = new ArrayList<>(Arrays.asList("My family needs to go to a shelter because our power is out and conditions in our home are worsening my daughter's asthma.","The shelter needs to have medical supplies and staff.","We need transporation to the shelter.","Our dog, Buddy, must come with us."));
         Request request = reliefFacade.createRequest(types,address,8,comments);
         System.out.println(request.toString());
+        System.out.println(BLUE);
         reliefFacade.logout();
 
         //Rosa Delgado logs in
@@ -78,30 +83,14 @@ public class ReliefUI {
             System.out.println(user.getFullName() + "is currently staying at " + user.getShelter().getName());
         }
 
-        System.out.println(BLUE + "\nFinding requests for Rosa...\n"+RESET+"\nThe top requests are nearby and match your specialties:");
+        System.out.println(BLUE + "\nFinding requests for Rosa...\n"+RESET+"\n\nThe top requests are nearby and match your specialties:");
         requestFeed.findRelevantRequests(user);
 
         // find shelter and assign request
-
-        // export info to txt file
-        try {
-            FileWriter io = new FileWriter("scenario.txt");
-            
-        } catch (IOException e){
-            System.out.println("An error occurred exporting the data.");
-            e.printStackTrace();
-        }
-        // demo role permissions
-        if(user.getSkills().contains(Skill.SHELTER_STAFF))
-            System.out.println("The current request has been completed.");
-        else
-            System.out.println("Volunteers are unable to mark this request as complete. See a shelter administrator.");
-        reliefFacade.logout();
-        // check into shelter
         System.out.println(GREEN + "----CLAIMING THE REQUEST AND FINDING A SHELTER----" + RESET);
         //Rosa claims the request
         if(reliefFacade.dispatchVolunteer(request, user))
-            System.out.println("\n" + user.getFullName() + " is now the assigned volunteer for the following request:\n" + request.toString());
+            System.out.println(BLUE + "\n" + user.getFullName() + " is now the assigned volunteer for the following request:\n" + RESET + request.toString());
         else
             System.out.println("This request claim was unsuccessful.");
 
@@ -110,6 +99,29 @@ public class ReliefUI {
         ArrayList<Shelter> matchingShelters = shelterList.findShelters(3, true, true, false);
         for(Shelter shelter : matchingShelters)
             System.out.println(shelter.toString()+"\n");
+
+        System.out.println(BLUE + "\nRosa selects " + matchingShelters.get(0).getName() + " for the Carter family\n" + RESET);
+
+        System.out.println(BLUE + "Rosa is exporting a file with the request information...\n" + RESET);
+
+                // export info to txt file
+        try {
+            FileWriter io = new FileWriter("scenario.txt");
+            System.out.println("File successfully created");
+            
+        } catch (IOException e){
+            System.out.println("An error occurred exporting the data.");
+            e.printStackTrace();
+        }
+        // demo role permissions
+        System.out.println(BLUE + "Rosa tries to mark the request as complete..." + RESET);
+        if(user.getSkills().contains(Skill.SHELTER_STAFF))
+            System.out.println("The current request has been completed.");
+        else
+            System.out.println("Volunteers are unable to mark this request as complete. See a shelter administrator.");
+        reliefFacade.logout();
+
+        //check into shelter
 
     }
 

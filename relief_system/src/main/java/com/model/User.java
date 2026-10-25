@@ -34,7 +34,7 @@ public class User {
             this.petDescription = petDescription;
             this.familyMembers = (familyMembers == null ? new ArrayList<>() : familyMembers);
         }
-
+        
     public User(UUID id, String username, String firstName, String lastName, String phoneNumber, Address address, String password, Shelter shelter, 
     ArrayList<FamilyMember> familyMembers, ArrayList<Skill> skills, boolean hasPet, int age) {
         this.id = (id == null ? UUID.randomUUID() : id);
@@ -62,7 +62,7 @@ public class User {
         String family = "";
         for(int i = 0; i < familyMembers.size();i++)
             family += familyMembers.get(i).getName() + (i < familyMembers.size()-1 ? ", " : "");
-        return this.getFullName() + " (@" + this.username + ")\n" + address.toString() + "Family Members: " + family + (hasPet ? " | " + petDescription : "");
+        return this.getFullName() + " (@" + this.username + ")\n" + address.toString() + "\nFamily Members: " + family + (hasPet ? " | " + petDescription : "");
     }
 
     public boolean hasPet() {

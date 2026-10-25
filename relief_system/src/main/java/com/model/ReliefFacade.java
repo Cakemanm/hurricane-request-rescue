@@ -121,9 +121,9 @@ public class ReliefFacade {
                 return;
             }
             userList.addUser(new User(UUID.randomUUID(), username, firstName, lastName, phoneNumber, address, password, null, familyMembers, hasPet, age, petDescription));
-            userList.save();
             login(username, password);
     }
+
 
     public User createAccount(String username, String firstName, String lastName, String phoneNumber, Address address, String password, Shelter shelter,
         ArrayList<FamilyMember> familyMembers,boolean hasPet, int age, String petDescription){
@@ -179,6 +179,16 @@ public class ReliefFacade {
             System.out.println(request.toString() + "\n");
     }
 
+    public void findRequestsByLocation(Address address){
+        System.out.println("\n\nRequests for: "+ address.toString() +"\n");
+        boolean match = false;
+        for(Request request : feed.getRequests()){
+            if(request.getAddress() == address){
+                System.out.println(request.toString() + "\n");
+                match = true;
+            }
+        }
+    }
     public Request findClosestRequest(User user){
         try{
             Address address = MapTools.getInstance().findClosestAddress(user.getAddress(),shelterList.getAddresses());
@@ -224,7 +234,7 @@ public class ReliefFacade {
             }
 
         } catch (Exception e) {
-            System.out.println("There was a problem finding a shelter.");
+            System.out.println("There was a problem finding a request.");
             e.printStackTrace();
         }
         return null;
