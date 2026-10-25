@@ -302,5 +302,30 @@
                   "NO_SHELTER",
                   "MEDICAL_ASSISTANCE"
             ]
+      },
+      {
+            "requester" : "6ed32bc5-5021-44b5-96a6-401abaeb3ec8",
+            "address" : {
+                  "zipcode" : "29401",
+                  "city" : "Charleston",
+                  "street" : "68 Calhoun Street",
+                  "state" : "SC"
+            },
+            "comments" : [
+                  "My family needs to go to a shelter because our power is out and conditions in our home are worsening my daughter's asthma.",
+                  "The shelter needs to have medical supplies and staff.",
+                  "We need transportation to the shelter.",
+                  "Our dog, Buddy, must come with us."
+            ],
+            "responder" : "e9a2c7d5-3b16-4f84-8d0a-1c6e5b9f7a43",
+            "requestPriority" : 8,
+            "id" : "e427e318-f790-46a9-a359-06caf7960f64",
+            "reportedUrgency" : 8,
+            "status" : "COMPLETED",
+            "requestTypes" : [
+                  "TRANSPORTATION",
+                  "NO_SHELTER",
+                  "MEDICAL_ASSISTANCE"
+            ]
       }
 ]

@@ -80,7 +80,7 @@
                   "street" : "3841 Leeds Avenue",
                   "state" : "SC"
             },
-            "occupancy" : 143,
+            "occupancy" : 146,
             "name" : "Riverside Community Center",
             "shelterTypes" : [
                   "DISABILITY_ACCESSIBLE",
@@ -108,7 +108,7 @@
             "id" : "3f9a1c52-7d84-4e1b-a6c3-2b5e8f0d9a41",
             "availability" : false,
             "capacity" : 300,
-            "petCount" : 1
+            "petCount" : 2
       },
       {
             "petCapacity" : 0,

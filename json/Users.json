@@ -396,7 +396,7 @@
                   "state" : "SC"
             },
             "shelter" : null,
-            "petDescription" : "Dog named Buddy",
+            "petDescription" : null,
             "familyMembers" : [
                   {
                         "name" : "Laura Carter",
@@ -412,6 +412,35 @@
             "password" : "Buddy&Sophie09",
             "phoneNumber" : "000-843-2271",
             "id" : "60b996ea-d1d3-4b5c-bed3-3d7abf9e1712",
+            "age" : 41,
+            "username" : "sophiesdad"
+      },
+      {
+            "lastName" : "Carter",
+            "hasPet" : true,
+            "address" : {
+                  "zipcode" : "29401",
+                  "city" : "Charleston",
+                  "street" : "68 Calhoun Street",
+                  "state" : "SC"
+            },
+            "shelter" : null,
+            "petDescription" : "Dog named Buddy",
+            "familyMembers" : [
+                  {
+                        "name" : "Laura Carter",
+                        "age" : 39
+                  },
+                  {
+                        "name" : "Sophie Carter",
+                        "age" : 9
+                  }
+            ],
+            "skills" : [],
+            "firstName" : "Michael",
+            "password" : "Buddy&Sophie09",
+            "phoneNumber" : "000-843-2271",
+            "id" : "808ec4b5-dc4d-4c88-8591-71d063f4c0cf",
             "age" : 41,
             "username" : "sophiesdad"
       }
