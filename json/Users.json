@@ -31,8 +31,8 @@
     "lastName" : "Donaldson",
   "hasPet" : false,
   "address" : {
-      "zipcode" : "29479",
-   "city" : "St. Stephen",
+      "zipcode" : "29461",
+   "city" : "Moncks Corner",
    "street" : "200 Macedonia Foxes Circle",
    "state" : "SC"
       },
@@ -86,6 +86,92 @@
   "username" : "katKane"
    },
  {
+    "lastName" : "Bennett",
+  "hasPet" : false,
+  "address" : {
+      "zipcode" : "29479",
+   "city" : "St. Stephen",
+   "street" : "113 Ravenell Drive",
+   "state" : "SC"
+      },
+  "shelter" : "3f9a1c52-7d84-4e1b-a6c3-2b5e8f0d9a41",
+  "petDescription" : null,
+  "familyMembers" : [
+      {
+        "name" : "Oliver Bennett",
+    "age" : 9
+         }
+      ],
+  "skills" : [
+      "HAS_POWER_TOOLS",
+   "MECHANIC",
+   "HEAVY_LIFTER"
+      ],
+  "firstName" : "Marcus",
+  "password" : "Bennett72!tools",
+  "phoneNumber" : "843-555-0101",
+  "id" : "7d09e62a-f134-4f85-981c-2b6a03d7c459",
+  "age" : 38,
+  "username" : "mbennett"
+   },
+ {
+    "lastName" : "Nguyen",
+  "hasPet" : false,
+  "address" : {
+      "zipcode" : "29445",
+   "city" : "Goose Creek",
+   "street" : "325 Old Moncks Corner Road",
+   "state" : "SC"
+      },
+  "shelter" : "a7d4b290-3e51-4c8f-9b16-0f5a8e2d6c74",
+  "petDescription" : null,
+  "familyMembers" : [],
+  "skills" : [
+      "CAN_PROVIDE_MEDICAL_ASSISTANCE",
+   "LANGUAGE_TRANSLATOR",
+   "CAN_SWIM"
+      ],
+  "firstName" : "Emily",
+  "password" : "Emily48!rescue",
+  "phoneNumber" : "843-555-0102",
+  "id" : "c2f8a731-6d04-48be-a592-0e7b13f9d865",
+  "age" : 29,
+  "username" : "enguyen"
+   },
+ {
+    "lastName" : "Parker",
+  "hasPet" : true,
+  "address" : {
+      "zipcode" : "29485",
+   "city" : "Summerville",
+   "street" : "76 Old Trolley Road",
+   "state" : "SC"
+      },
+  "shelter" : null,
+  "petDescription" : null,
+  "familyMembers" : [
+      {
+        "name" : "Morgan Parker",
+    "age" : 42
+         },
+   {
+        "name" : "Sophie Parker",
+    "age" : 15
+         }
+      ],
+  "skills" : [
+      "CAN_DRIVE",
+   "TRANSPORTATION",
+   "RESOURCE_SUPPLIER"
+      ],
+  "firstName" : "Daniel",
+  "password" : "Cooper63!drive",
+  "phoneNumber" : "843-555-0103",
+  "id" : "a54b910e-82c7-463d-bf08-19e6d32a7c45",
+  "age" : 44,
+  "username" : "dparker"
+   },
+ {
     "lastName" : "Doe",
   "hasPet" : false,
   "address" : {
@@ -105,7 +191,7 @@
   "firstName" : "Jane",
   "password" : "mysterry404",
   "phoneNumber" : "000-124-8103",
-  "id" : "1a1b7554-1c8b-48e0-9962-5c7c6599ca3b",
+  "id" : "c8fd04d8-af4f-4162-80b0-da1d21ad2fcc",
   "age" : 31,
   "username" : "j-doe"
    },
