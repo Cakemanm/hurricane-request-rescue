@@ -107,6 +107,9 @@ public class DataWriter extends DataConstants {
             shelterJSON.put(SHELTER_ID, idOf(shelter.getId()));
             shelterJSON.put(SHELTER_NAME, shelter.getName());
             shelterJSON.put(SHELTER_AVAILABILITY, shelter.getAvailability(shelter.getOccupancy(), shelter.getCapacity()));
+<<<<<<< HEAD
+            shelterJSON.put(SHELTER_LOCATION, shelter.getAddress() == null ? null : idOf(shelter.getAddress().getId()));
+=======
 
             Address address = shelter.getAddress();
             JSONObject addressJSON = new JSONObject();
@@ -116,6 +119,7 @@ public class DataWriter extends DataConstants {
             addressJSON.put(SHELTER_ADDRESS_ZIPCODE, address.getZip());
             shelterJSON.put(SHELTER_ADDRESS,addressJSON);
 
+>>>>>>> 765be3eb74fb6c01b3fa454d7155211f11e5236b
             shelterJSON.put(SHELTER_OCCUPANCY, shelter.getOccupancy());
             shelterJSON.put(SHELTER_CAPACITY, shelter.getCapacity());
             shelterJSON.put(SHELTER_PET_COUNT, shelter.getPetCount());

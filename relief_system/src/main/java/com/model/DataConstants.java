@@ -33,11 +33,17 @@ public class DataConstants {
     protected static final String SHELTER_NAME = "name";
     protected static final String SHELTER_AVAILABILITY = "availability";
     protected static final String SHELTER_RESOURCES = "resources";
+<<<<<<< HEAD
+    protected static final String SHELTER_RESOURCES_QUANTITY = "quantity";
+    protected static final String SHELTER_RESOURCES_TYPE = "type";
+    protected static final String SHELTER_ADDRESS = "address";
+=======
     protected static final String SHELTER_ADDRESS = "address";
     protected static final String SHELTER_ADDRESS_STREET = "street";
     protected static final String SHELTER_ADDRESS_CITY = "city";
     protected static final String SHELTER_ADDRESS_STATE = "state";
     protected static final String SHELTER_ADDRESS_ZIPCODE = "zipcode";
+>>>>>>> 765be3eb74fb6c01b3fa454d7155211f11e5236b
     protected static final String SHELTER_SHELTER_TYPES = "shelterTypes";
     protected static final String SHELTER_OCCUPANCY = "occupancy";
     protected static final String SHELTER_CAPACITY = "capacity";

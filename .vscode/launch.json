@@ -9,18 +9,22 @@
             "name": "ReliefUI",
             "request": "launch",
             "mainClass": "com.relief/com.model.ReliefUI",
-            "projectName": "relief_system",
-            "envFile": "${workspaceFolder}/.env",
-            "javaExec": "C:/Program Files/Java/jdk-22/bin/java.exe"
+            "projectName": "relief_system"
         },
         {
             "type": "java",
             "name": "UI",
             "request": "launch",
             "mainClass": "com.relief/com.model.UI",
+            "projectName": "relief_system"
+        },
+        {
+            "type": "java",
+            "name": "UI",
+            "request": "launch",
+            "mainClass": "com.relief_system/com.model.UI",
             "projectName": "relief_system",
-            "envFile": "${workspaceFolder}/.env",
-            "javaExec": "C:/Program Files/Java/jdk-22/bin/java.exe"
+            "envFile": "${workspaceFolder}/.env"
         },
         {
             "type": "java",
@@ -28,8 +32,7 @@
             "request": "launch",
             "mainClass": "com.relief/com.relief.App",
             "projectName": "relief_system",
-            "envFile": "${workspaceFolder}/.env",
-            "javaExec": "C:/Program Files/Java/jdk-22/bin/java.exe"
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }

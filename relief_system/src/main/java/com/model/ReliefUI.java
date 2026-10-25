@@ -1,10 +1,14 @@
 package com.model;
 
-import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import com.location.Address;
+<<<<<<< HEAD
+=======
 
+>>>>>>> 765be3eb74fb6c01b3fa454d7155211f11e5236b
 public class ReliefUI {
     Address address = new Address("68 Calhoun Street","Charleston","SC","29041");
     private ReliefFacade reliefFacade;
@@ -35,8 +39,13 @@ public class ReliefUI {
         ArrayList<FamilyMember> family = new ArrayList<>();
         family.add(new FamilyMember("Laura Carter",39));
         family.add(new FamilyMember("Sophie Carter",9));
+<<<<<<< HEAD
+        Address cAddress = new Address("1 Vendue Range", "Charleston", "SC", "29401");
+        User michael = reliefFacade.createAccount("sophiesdad","Michael","Carter","000-843-2271", cAddress,"Buddy&Sophie09",null,family,true, 41, "Dog named Buddy");
+=======
         Address address = new Address("68 Calhoun Street","Charleston","SC","29401");
         User michael = reliefFacade.createAccount("sophiesdad","Michael","Carter","000-843-2271",address,"Buddy&Sophie09",null,family,true, 41, "Dog named Buddy");
+>>>>>>> 765be3eb74fb6c01b3fa454d7155211f11e5236b
 
         //Michael Carter logs in
         System.out.println(michael.victimToString());
@@ -56,7 +65,11 @@ public class ReliefUI {
         System.out.println(BLUE + "\nCreating a relief request...\n" + RESET);
         ArrayList<RequestType> types = new ArrayList<>(Arrays.asList(RequestType.TRANSPORTATION, RequestType.NO_SHELTER, RequestType.MEDICAL_ASSISTANCE));
         ArrayList<String> comments = new ArrayList<>(Arrays.asList("My family needs to go to a shelter because our power is out and conditions in our home are worsening my daughter's asthma.","The shelter needs to have medical supplies and staff.","We need transporation to the shelter.","Our dog, Buddy, must come with us."));
+<<<<<<< HEAD
+        Request request = reliefFacade.createRequest(types,cAddress,8,comments);
+=======
         Request request = reliefFacade.createRequest(types,address,8,comments);
+>>>>>>> 765be3eb74fb6c01b3fa454d7155211f11e5236b
         System.out.println(request.toString());
         System.out.println(BLUE);
         reliefFacade.logout();
@@ -82,6 +95,25 @@ public class ReliefUI {
         System.out.println(BLUE + "\nFinding requests for Rosa...\n"+RESET+"\n\nThe top requests are nearby and match your specialties:");
         requestFeed.findRelevantRequests(user);
 
+<<<<<<< HEAD
+        // find shelter and assign request
+
+        // export info to txt file
+        try {
+            FileWriter io = new FileWriter("scenario.txt");
+            
+        } catch (IOException e){
+            System.out.println("An error occurred exporting the data.");
+            e.printStackTrace();
+        }
+        // demo role permissions
+        if(user.getSkills().contains(Skill.SHELTER_STAFF))
+            System.out.println("The current request has been completed.");
+        else
+            System.out.println("Volunteers are unable to mark this request as complete. See a shelter administrator.");
+        reliefFacade.logout();
+        // check into shelter
+=======
         System.out.println(GREEN + "----CLAIMING THE REQUEST AND FINDING A SHELTER----" + RESET);
         //Rosa claims the request
         if(reliefFacade.dispatchVolunteer(request, user))
@@ -95,6 +127,7 @@ public class ReliefUI {
         for(Shelter shelter : matchingShelters)
             System.out.println(shelter.toString()+"\n");
 
+>>>>>>> 765be3eb74fb6c01b3fa454d7155211f11e5236b
     }
 
     // login, view shelters, sign up for shelter, view shelter resources, create request
@@ -114,8 +147,13 @@ public class ReliefUI {
         // view shelters
         System.out.println("\nShelters");
         for (Shelter s : reliefFacade.getShelters()) {
+<<<<<<< HEAD
+            System.out.println(" " + s.getName() + " | " + s.getAddress() + " | "
+                + s.getOccupancy() + "/" + s.getCapacity() + (s.isAvailable() ? " | Open" : " | FULL"));
+=======
             //System.out.println(" " + s.getName() + " | " + s.getLocation() + " | "
             //    + s.getOccupancy() + "/" + s.getCapacity() + (s.isAvailable() ? " | Open" : " | FULL"));
+>>>>>>> 765be3eb74fb6c01b3fa454d7155211f11e5236b
         }
 
         // sign up for shelter
@@ -138,7 +176,11 @@ public class ReliefUI {
         types.add(RequestType.RESOURCE);
         ArrayList<String> comments = new ArrayList<>();
         comments.add("My mother is ill and needs medicine. Our family also needs blankets for the cold");
+<<<<<<< HEAD
+        Request request = reliefFacade.createRequest(types, null, 4, comments);
+=======
         //Request request = reliefFacade.createRequest(types, null, shelter.getName(), 4, comments);
+>>>>>>> 765be3eb74fb6c01b3fa454d7155211f11e5236b
         System.out.println("\nRequest created:");
         //System.out.println(request);
 
