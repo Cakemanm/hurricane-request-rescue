@@ -96,7 +96,7 @@ public class DataWriter extends DataConstants {
             shelterJSON.put(SHELTER_ID, idOf(shelter.getId()));
             shelterJSON.put(SHELTER_NAME, shelter.getName());
             shelterJSON.put(SHELTER_AVAILABILITY, shelter.getAvailability(shelter.getOccupancy(), shelter.getCapacity()));
-            shelterJSON.put(SHELTER_LOCATION, shelter.getLocation() == null ? null : idOf(shelter.getLocation().getId()));
+            shelterJSON.put(SHELTER_LOCATION, shelter.getAddress() == null ? null : idOf(shelter.getAddress().getId()));
             shelterJSON.put(SHELTER_OCCUPANCY, shelter.getOccupancy());
             shelterJSON.put(SHELTER_CAPACITY, shelter.getCapacity());
             shelterJSON.put(SHELTER_PET_COUNT, shelter.getPetCount());

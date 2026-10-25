@@ -8,7 +8,6 @@ public class DataConstants {
     protected static final String USER_FIRST_NAME = "firstName";
     protected static final String USER_LAST_NAME = "lastName";
     protected static final String USER_AGE = "age";
-    protected static final String USER_LOCATION = "location";
     protected static final String USER_PHONE_NUMBER = "phoneNumber";
     protected static final String USER_ADDRESS = "address";
     protected static final String USER_PASSWORD = "password";
@@ -41,7 +40,6 @@ public class DataConstants {
     protected static final String REQUEST_FILE_NAME = "json\\Requests.json";
     protected static final String REQUEST_PRIORITY = "requestPriority";
     protected static final String REQUEST_STATUS = "status";
-    protected static final String REQUEST_LOCATION = "location";
     protected static final String REQUEST_ADDRESS = "address";
     protected static final String REQUEST_REPORTED_URGENCY = "reportedUrgency";
     protected static final String REQUEST_COMMENTS = "comments";

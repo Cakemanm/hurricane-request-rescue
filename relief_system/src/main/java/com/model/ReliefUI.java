@@ -1,6 +1,7 @@
 package com.model;
 
-import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import com.location.Address;
@@ -49,7 +50,8 @@ public class ReliefUI {
         ArrayList<FamilyMember> family = new ArrayList<>();
         family.add(new FamilyMember("Laura Carter",39));
         family.add(new FamilyMember("Sophie Carter",9));
-        User michael = reliefFacade.createAccount("sophiesdad","Michael","Carter",null,"000-843-2271","67 Somwhere Ave","Buddy&Sophie09",null,family,true, 41, "Dog named Buddy");
+        Address cAddress = new Address("1 Vendue Range", "Charleston", "SC", "29401");
+        User michael = reliefFacade.createAccount("sophiesdad","Michael","Carter","000-843-2271", cAddress,"Buddy&Sophie09",null,family,true, 41, "Dog named Buddy");
 
         //Michael Carter logs in
         System.out.println(michael.victimToString());
@@ -69,7 +71,7 @@ public class ReliefUI {
         System.out.println("\nCreating a relief request...\n");
         ArrayList<RequestType> types = new ArrayList<>(Arrays.asList(RequestType.TRANSPORTATION, RequestType.NO_SHELTER, RequestType.MEDICAL_ASSISTANCE));
         ArrayList<String> comments = new ArrayList<>(Arrays.asList("My family needs to go to a shelter because our power is out and conditions in our home are worsening my daughter's asthma.","The shelter needs to have medical supplies and staff.","We need transporation to the shelter.","Our dog, Buddy, must come with us."));
-        Request request = reliefFacade.createRequest(types,null,"lol",8,comments);
+        Request request = reliefFacade.createRequest(types,cAddress,8,comments);
         System.out.println(request.toString());
         reliefFacade.logout();
 
@@ -92,6 +94,24 @@ public class ReliefUI {
 
         System.out.println("\nFinding requests for Rosa...\n\nThe top requests are nearby and match your specialties:");
         requestFeed.findRelevantRequests(user);
+
+        // find shelter and assign request
+
+        // export info to txt file
+        try {
+            FileWriter io = new FileWriter("scenario.txt");
+            
+        } catch (IOException e){
+            System.out.println("An error occurred exporting the data.");
+            e.printStackTrace();
+        }
+        // demo role permissions
+        if(user.getSkills().contains(Skill.SHELTER_STAFF))
+            System.out.println("The current request has been completed.");
+        else
+            System.out.println("Volunteers are unable to mark this request as complete. See a shelter administrator.");
+        reliefFacade.logout();
+        // check into shelter
     }
 
     // login, view shelters, sign up for shelter, view shelter resources, create request
@@ -135,7 +155,7 @@ public class ReliefUI {
         types.add(RequestType.RESOURCE);
         ArrayList<String> comments = new ArrayList<>();
         comments.add("My mother is ill and needs medicine. Our family also needs blankets for the cold");
-        Request request = reliefFacade.createRequest(types, null, shelter.getName(), 4, comments);
+        Request request = reliefFacade.createRequest(types, null, 4, comments);
         System.out.println("\nRequest created:");
         System.out.println(request);
 
