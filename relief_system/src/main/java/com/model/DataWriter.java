@@ -197,19 +197,4 @@ public class DataWriter extends DataConstants {
         writeFile(HURRICANE_FILE_NAME, hurricanesJSON);
     }
 
-    public static void saveLocations(ArrayList<Location> locations) {
-        JSONArray locationsJSON = new JSONArray();
-        for (Location location : locations) {
-            JSONObject locationJSON = new JSONObject();
-            locationJSON.put(LOCATION_ID, idOf(location.getId()));
-            locationJSON.put(LOCATION_STATE, location.getState());
-            locationJSON.put(LOCATION_CITY, location.getCity());
-            locationJSON.put(LOCATION_ZIPCODE, location.getZipcode());
-            locationJSON.put(LOCATION_ADDRESS, location.getAddress());
-            locationJSON.put(LOCATION_LATITUDE, location.getLatitude());
-            locationJSON.put(LOCATION_LONGITUDE, location.getLongitude());
-            locationsJSON.add(locationJSON);
-        }
-        writeFile(LOCATION_FILE_NAME, locationsJSON);
-    }
 }

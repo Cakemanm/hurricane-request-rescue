@@ -1,5 +1,9 @@
 package com.model;
 
+/**
+ * DataConstants
+ * Constants to be used by the DataLoader and DataWriter
+ */
 public class DataConstants {
     //User constants
     protected static final String USER_FILE_NAME = "json\\Users.json";

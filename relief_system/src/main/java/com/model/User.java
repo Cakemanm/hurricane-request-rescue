@@ -10,7 +10,6 @@ public class User {
     private String username;
     private String firstName;
     private String lastName;
-    private Location location;
     private String phoneNumber;
     private Address address;
     private String password;
@@ -115,10 +114,6 @@ public class User {
 
     public String getFullName(){
         return this.firstName + " " + this.lastName;
-    }
-
-    public Location getLocation(){
-        return this.location;
     }
 
     public String getPhoneNumber(){

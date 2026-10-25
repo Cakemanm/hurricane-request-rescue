@@ -10,8 +10,35 @@ import org.json.simple.parser.JSONParser;
 
 import com.location.Address;
 
+/**
+ * @author Abigail Stalker
+ * 
+ * Loads application model objects from the JSON files specified in
+ * {@link DataConstants}.
+ *
+ * Converts JSON values into model objects, UUIDs, and enum values.
+ * User shelter assignments and request user references are resolved
+ * through their respective singleton lists.
+ *
+ * User and shelter loading failures throw an
+ * {@link IllegalStateException}. Request, location, and hurricane loading
+ * failures print a stack trace and return the current shared list,
+ * which may be incomplete.
+ */
 public class DataLoader extends DataConstants {
-
+    /**
+     * Loads users from the configured user JSON file.
+     *
+     * <p>Each user includes an address, skills, family members, pet ownership,
+     * and account information. Shelter references are resolved by ID through
+     * {@link ShelterList}. A missing shelter ID results in no assigned shelter.
+     * A missing family member array produces an empty family member list.</p>
+     *
+     * <p>Each invocation creates a new user list.</p>
+     *
+     * @return the users loaded from the file
+     * @throws IllegalStateException if reading, parsing, or converting any user record fails
+     */
     public static ArrayList<User> getUsers(){
     ArrayList<User> users = new ArrayList<User>();
     try{
@@ -73,6 +100,18 @@ public class DataLoader extends DataConstants {
     return users;
     }
 
+    /**
+     * Loads shelters from the configured shelter JSON file.
+     *
+     * <p>Each shelter includes its identifier, name, availability, occupancy,
+     * capacity, address, shelter types, and resource inventory. Shelter and
+     * resource type names are converted to their corresponding enum values.</p>
+     *
+     * <p>Each invocation creates a new shelter list.</p>
+     *
+     * @return the shelters loaded from the file
+     * @throws IllegalStateException if reading, parsing, or converting any shelter record fails
+     */
     public static ArrayList<Shelter> getShelters(){             
         ArrayList<Shelter> shelters = new ArrayList();
         try{
@@ -121,8 +160,19 @@ public class DataLoader extends DataConstants {
         return shelters;
     }
 
-    public static ArrayList<Request> requests = new ArrayList();
+    /**
+     * Loads requests from the configured request JSON file and appends them
+     * to requests.
+     *
+     * <p>Each request includes its identifier, status, reported urgency,
+     * address, comments, assistance types, requester, and optional responder.
+     * User references are resolved by ID through {@link UserList}. A missing
+     * comments array produces an empty comment list.</p>
+     *
+     * @return the requests loaded
+     */
     public static ArrayList<Request> getRequests(){
+        ArrayList<Request> requests = new ArrayList();
         try{
             FileReader reader = new FileReader(REQUEST_FILE_NAME);
             JSONArray objectsJSON = (JSONArray) new JSONParser().parse(reader);
@@ -174,29 +224,16 @@ public class DataLoader extends DataConstants {
         return requests;
     }
 
-
-    public static ArrayList<Location> locations = new ArrayList();
-    public static ArrayList<Location> getLocations(){
-        try{
-            FileReader reader = new FileReader(LOCATION_FILE_NAME);
-            JSONArray placesJSON = (JSONArray) new JSONParser().parse(reader);
-            for(int i = 0; i < placesJSON.size(); i++){
-                JSONObject placeJSON = (JSONObject)placesJSON.get(i);
-                UUID id = UUID.fromString((String)placeJSON.get(LOCATION_ID));
-                String state = (String)placeJSON.get(LOCATION_STATE);
-                String city = (String)placeJSON.get(LOCATION_CITY);
-                int zipcode = Integer.parseInt(placeJSON.get(LOCATION_ZIPCODE).toString());
-
-                locations.add(new Location(id, state, city, zipcode));
-            }
-        
-        }   catch (Exception e){
-        e.printStackTrace();
-        }
-        return locations;
-
-    }
-    
+    /**
+     * Loads the first hurricane record from the configured hurricane JSON
+     * file and appends it to {@link #hurricanes}.
+     *
+     * <p>The record includes its identifier, name, category, wind speed,
+     * affected ZIP codes, expected conditions, size, and active status.
+     * Any additional hurricane records in the file are ignored.</p>
+     *
+     * @return the hurricane list
+     */
     public static ArrayList<Hurricane> hurricanes = new ArrayList();
     public static ArrayList<Hurricane> getHurricanes(){
         try{
@@ -226,6 +263,5 @@ public class DataLoader extends DataConstants {
         return hurricanes;
 
     }
-
 
 }

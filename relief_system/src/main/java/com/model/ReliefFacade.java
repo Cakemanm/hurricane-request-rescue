@@ -28,7 +28,7 @@ public class ReliefFacade {
     //     feed.addRequest(request);
     // }
 
-    public void submitRequest(User requester, Request request, Location loc, String comments) {
+    public void submitRequest(User requester, Request request, String comments) {
         request.setRequester(requester);
         request.addComment(comments);
         feed.addRequest(request);
@@ -111,10 +111,6 @@ public class ReliefFacade {
     public RequestFeed browseRequests() {
         return feed;
 
-    }
-
-    public Location createLocation(String address, String city, String state, int zipcode, double latitude, double longitude) {
-        return LocationList.getInstance().findOrCreateLocation(address, city, state, zipcode, latitude, longitude);
     }
 
     public void createAccount(String username, String firstName, String lastName, String phoneNumber, Address address, String password,
@@ -243,7 +239,6 @@ public class ReliefFacade {
     }
 
     public void logout() {
-        LocationList.getInstance().save();
         ShelterList.getInstance().save();
         UserList.getInstance().save();
         feed.save();

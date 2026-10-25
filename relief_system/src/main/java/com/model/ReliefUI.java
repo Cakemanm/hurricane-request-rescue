@@ -4,13 +4,6 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import com.location.Address;
-/*    "address": {
-      "street": "68 Calhoun Street",
-      "city": "Charleston",
-      "state": "SC",
-      "zipCode": "29401"
-    }
- */
 
 public class ReliefUI {
     Address address = new Address("68 Calhoun Street","Charleston","SC","29041");
