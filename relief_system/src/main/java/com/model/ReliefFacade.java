@@ -10,14 +10,30 @@ import java.io.FileWriter;
 import java.io.IOException;
 import com.location.Address;
 
+/**
+ * How the UI interacts with the code, acting as an interface
+ * to pass work to singletons {@link UserList}, {@link ShelterList}, {@link RequestFeed}, {@link HurricaneHandler}
+ * @author Gracie Bergmann
+ * @author Jake McNulty
+ * @author Carter Medlin
+ * @author Abigail Stalker
+ */
+
 public class ReliefFacade {
     private ArrayList<Hurricane> hurricane;
     private User currentUser;
     private RequestFeed feed;
     private ShelterList shelterList = ShelterList.getInstance();
 
+    /** Requests within this many driving miles of volunteer to be recomended */
     public static final double NEARBY_MILES = 10.0;
 
+    /** Folder trip sheets are exported to */
+    public static final String EXPORT_FOLDER = "exports";
+
+    /**
+     * Creates facade with no one logged in
+     */
     public ReliefFacade() {
         hurricane = DataLoader.getHurricanes();
         feed = RequestFeed.getInstance();
@@ -136,13 +152,13 @@ public class ReliefFacade {
     }
 
     public boolean login(String username, String password) {
-    UserList userList = UserList.getInstance();
-    User user = userList.getUser(username, password);
-    if (user != null) {
-        currentUser = user;
-        return true;
-    }
-    return false;
+        UserList userList = UserList.getInstance();
+        User user = userList.getUser(username, password);
+        if (user != null) {
+            currentUser = user;
+            return true;
+        }
+        return false;
     }
 
     public Request createRequest(ArrayList<RequestType> requestTypes, Address address,
@@ -294,5 +310,56 @@ public class ReliefFacade {
     @return true if request fits skills and is within miles */
     // public boolean isRecomended(Request request) {
     //     return matchesSkill(request) && getDrivingMiles(currentUser.getLocation(), request.getLocation()) <= NEARBY_MILES;
+    // }
+
+
+
+    // -------------- export .txt
+
+    public File exportTripSheet(Request request, Shelter shelter) {
+        User family = request.getRequester();
+        User volunteer = request.getResponder() == null ? currentUser : request.getResponder();
+        String line = "=".repeat(60);
+        StringBuilder sheet = new StringBuilder();
+        sheet.append(line).append("\n Request Rescue Trip Sheet").append(line);
+        sheet.append("Volunteer: ").append(request.getStatus().label).append("\n\n");
+
+        sheet.append("WHO TO PICK UP (").append(family.getHouseholdSize()).append(" people").append(family.hasPet() ? " and has 1 pet" : "").append(")\n");
+        sheet.append("  - ").append(family.getFullName()).append(", age ").append(family.getAge()).append("\n");
+        for (FamilyMember member : family.getFamilyMembers())
+            sheet.append("  - ").append(member.getName()).append(", age ").append(member.getAge()).append("\n");
+        if (family.hasPet())
+            sheet.append("  - Pet: ").append(family.getPetDescription()).append("\n");
+
+        sheet.append("\nCONTAT\n  ").append(family.getFullName()).append(", ").append(family.getPhoneNumber()).append("\n");
+        sheet.append("\nPICKUP ADDRESS\n  ").append(request.getAddress()).append("\n");
+
+        if (request.getRequestTypes().contains(RequestType.MEDICAL_ASSISTANCE)) {
+            sheet.append("\nMEDICAL NOTE\n Medical assistance needed. Bring to a shelter with medical staff.\n");
+        }
+        if (!request.getComments().isEmpty()) {
+            sheet.append("\nNOTES FROM THE FAMILY\n");
+            for (String comment : request.getComments())
+                sheet.append("  - ").append(comment).append("\n");
+        }
+
+        //append directions here
+
+        File folder = new File(EXPORT_FOLDER);
+        folder.mkdir();
+        File file = new File(folder, family.getLastName() + "-trip-sheet.txt");
+        try (FileWriter writer = new FileWriter(file)) {
+            writer.write(sheet.toString());
+            return file;
+        } catch (IOException e) {
+            System.out.println("An error occured exporting the trip sheet");
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    // private void appendDirections(StribBuilder sheet, String title, Address from, Address to) {
+    //     sheet.append("\n").append(title).append(String.format(" (%.1f mi)", getDrivingMiles(from, to))).append("\n");
     // }
 }
