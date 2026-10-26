@@ -36,7 +36,7 @@ public class User {
         }
         
     public User(UUID id, String username, String firstName, String lastName, String phoneNumber, Address address, String password, Shelter shelter, 
-    ArrayList<FamilyMember> familyMembers, ArrayList<Skill> skills, boolean hasPet, int age) {
+    ArrayList<FamilyMember> familyMembers, ArrayList<Skill> skills, boolean hasPet, int age, String petDescription) {
         this.id = (id == null ? UUID.randomUUID() : id);
         this.username = username;
         this.firstName = firstName;
@@ -49,6 +49,7 @@ public class User {
         this.skills = (skills == null ? new ArrayList<>() : skills);
         this.hasPet = hasPet;
         this.familyMembers = (familyMembers == null ? new ArrayList<>() : familyMembers);
+        this.petDescription = petDescription;
     }
 
     public String volunteerToString(){

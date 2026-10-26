@@ -1,7 +1,9 @@
 package com.model;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -43,6 +45,9 @@ public class ReliefUI {
 */
         Address address = new Address("68 Calhoun Street","Charleston","SC","29401");
         User michael = reliefFacade.createAccount("sophiesdad","Michael","Carter","000-843-2271",address,"Buddy&Sophie09",null,family,true, 41, "Dog named Buddy");
+        if (michael == null) {
+            System.out.println("The scenario was already run. Reset the data first by typing: git restore json/");
+        }
 
         //Michael Carter logs in
         System.out.println(michael.victimToString());
@@ -61,7 +66,7 @@ public class ReliefUI {
         //Michael creates a relief request
         System.out.println(BLUE + "\nCreating a relief request...\n" + RESET);
         ArrayList<RequestType> types = new ArrayList<>(Arrays.asList(RequestType.TRANSPORTATION, RequestType.NO_SHELTER, RequestType.MEDICAL_ASSISTANCE));
-        ArrayList<String> comments = new ArrayList<>(Arrays.asList("My family needs to go to a shelter because our power is out and conditions in our home are worsening my daughter's asthma.","The shelter needs to have medical supplies and staff.","We need transportation to the shelter.","Our dog, Buddy, must come with us."));
+        ArrayList<String> comments = new ArrayList<>(Arrays.asList("My family needs to go to a shelter because our power is out and conditions in our home are worsening my daughter Sophie's asthma.","The shelter needs to have medical supplies and staff.","We need transportation to the shelter.","Our dog, Buddy, must come with us."));
         Request request = reliefFacade.createRequest(types,address,8,comments);
         System.out.println(request.toString());
         System.out.println(BLUE);
@@ -101,10 +106,8 @@ public class ReliefUI {
         ArrayList<Shelter> matchingShelters = shelterList.findShelters(user,3, true, true, false);
         for(Shelter shelter : matchingShelters)
             System.out.println(shelter.toString()+"\n");
-
-        Shelter chosenShelter = matchingShelters.get(0);
-        System.out.println(BLUE + "\nRosa selects " + chosenShelter.getName() + " for the Carter family\n" + RESET);
         
+        Shelter chosenShelter = matchingShelters.get(0);
          // export info to txt file
         try {
             reliefFacade.exportTransportationPlan(
@@ -156,6 +159,8 @@ public class ReliefUI {
         }
 
         shelter.addOccupants(3, 1);
+        request.getRequester().setShelter(shelter);
+        UserList.getInstance().save();
         ShelterList.getInstance().save();
 
         System.out.println("The Carter Family and Buddy have been checked into "
