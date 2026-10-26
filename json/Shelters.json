@@ -73,7 +73,7 @@
             "petCount" : 0
       },
       {
-            "petCapacity" : 0,
+            "petCapacity" : 10,
             "address" : {
                   "zipcode" : "29405",
                   "city" : "North Charleston",
@@ -108,7 +108,7 @@
             "id" : "3f9a1c52-7d84-4e1b-a6c3-2b5e8f0d9a41",
             "availability" : true,
             "capacity" : 300,
-            "petCount" : 0
+            "petCount" : 2
       },
       {
             "petCapacity" : 0,
