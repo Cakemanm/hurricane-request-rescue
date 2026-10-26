@@ -152,5 +152,50 @@
                   "LANDSLIDE",
                   "TRANSPORTATION"
             ]
+      },
+      {
+            "requester" : "e118433e-7979-4d7f-a777-4de37ab8be4b",
+            "address" : {
+                  "zipcode" : "29401",
+                  "city" : "Charleston",
+                  "street" : "68 Calhoun Street",
+                  "state" : "SC"
+            },
+            "comments" : [
+                  "My family needs to go to a shelter because our power is out and conditions in our home are worsening my daughter's asthma.",
+                  "The shelter needs to have medical supplies and staff.",
+                  "We need transportation to the shelter.",
+                  "Our dog, Buddy, must come with us."
+            ],
+            "responder" : "e9a2c7d5-3b16-4f84-8d0a-1c6e5b9f7a43",
+            "requestPriority" : 8,
+            "id" : "84136063-d9a4-4fe1-8fca-cf9d4e9db15c",
+            "reportedUrgency" : 8,
+            "status" : "COMPLETED",
+            "requestTypes" : [
+                  "TRANSPORTATION",
+                  "NO_SHELTER",
+                  "MEDICAL_ASSISTANCE"
+            ]
+      },
+      {
+            "requester" : "7975fbe6-77a0-433e-bbd8-c87633432267",
+            "address" : {
+                  "zipcode" : "29445",
+                  "city" : "Goost Creek",
+                  "street" : "325 Old Moncks Corner Road",
+                  "state" : "SC"
+            },
+            "comments" : [
+                  "Our neighbors are only able to speak spanish and need help understanind the directions for evacuation"
+            ],
+            "responder" : null,
+            "requestPriority" : 6,
+            "id" : "145c1343-adf2-4493-8479-77d748fc2a3e",
+            "reportedUrgency" : 5,
+            "status" : "PENDING",
+            "requestTypes" : [
+                  "NO_TRANSLATOR"
+            ]
       }
 ]

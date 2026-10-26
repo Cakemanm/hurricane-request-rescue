@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import com.location.Address;
-
+import com.location.MapTools;
 /**
  * How the UI interacts with the code, acting as an interface
  * to pass work to singletons {@link UserList}, {@link ShelterList}, {@link RequestFeed}, {@link HurricaneHandler}
@@ -40,16 +40,21 @@ public class ReliefFacade {
         currentUser = null;
     }
 
-    // public void submitRequest(Request request) {
-    //     feed.addRequest(request);
-    // }
-
+    /**
+     * Submits a relief request
+     * @param requester - user submitting
+     * @param request - request to submit
+     * @param comments - additional comments
+     */
     public void submitRequest(User requester, Request request, String comments) {
         request.setRequester(requester);
         request.addComment(comments);
         feed.addRequest(request);
     }
 
+    /**
+     * Prints list of shelters
+     */
     public void browseShelters(){
         System.out.println("Recommended Shelters: ");
         for(Shelter shelter : shelterList.getShelters()){
@@ -57,6 +62,11 @@ public class ReliefFacade {
         }
     }
 
+    /**
+     * Allows a victim to sign up as a occupant of a shelter
+     * @param user - user to be signed up
+     * @return
+     */
     public Shelter signUpVictimForShelter(User user) {
     ArrayList<Shelter> shelters = ShelterList.getInstance().getShelters();
         for (Shelter shelter : shelters) {
@@ -71,22 +81,13 @@ public class ReliefFacade {
         return null;
     }
 
+    /**
+     * Retrieves list of shelters
+     * @return
+     */
     public ArrayList<Shelter> getShelters() {
         return ShelterList.getInstance().getShelters();
     }
-
-
-    // public Shelter signUpVictimForShelter(User user) {
-    // ArrayList<Shelter> shelters = ShelterList.getInstance().getShelters();
-    // for (Shelter shelter : shelters) {
-    //     if (shelter.isAvailable() && shelter.getOccupancy() < shelter.getCapacity()) {
-    //         shelter.addOccupant();
-    //         user.setShelter(shelter.getId());
-    //         return shelter;
-    //     }
-    // }
-    // return null;
-    // }
 
     public Shelter signUpForShelter(String shelterName) {
         if (currentUser == null) return null;
@@ -264,7 +265,7 @@ public class ReliefFacade {
         return currentUser;
     }
 
-    /* Finds user by username
+    /** Finds user by username
     @param username = the username
     @return the user or null if none */
     public User getUser(String username) {
@@ -273,15 +274,7 @@ public class ReliefFacade {
 
     // --------------- match volunteers to request
 
-    /* Gets driving distance between two locations
-    @param from = where to start
-    @param to = where to end
-    @return the driving distance in miles */
-    // public double getDrivingMiles(Location from, Location to) {
-    //     return;
-    // }
-
-    /* Checks whether a request needs a current user's skills
+    /** Checks whether a request needs a current user's skills
     @param request = the request
     @return true if request matches user's skills */
     public boolean matchesSkill(Request request) {
@@ -293,16 +286,7 @@ public class ReliefFacade {
         return false;
     }
 
-    /* a request is recomended when it matches the user's skills and is within nearby miles
-    @param request = the request
-    @return true if request fits skills and is within miles */
-    // public boolean isRecomended(Request request) {
-    //     return matchesSkill(request) && getDrivingMiles(currentUser.getLocation(), request.getLocation()) <= NEARBY_MILES;
-    // }
-
-
-
-    // -------------- export .txt
+    // --------export to txt
 
     public File exportTripSheet(Request request, Shelter shelter) {
         User family = request.getRequester();
@@ -351,7 +335,14 @@ public class ReliefFacade {
     //     sheet.append("\n").append(title).append(String.format(" (%.1f mi)", getDrivingMiles(from, to))).append("\n");
     // }
 
-    // export for scenario
+    /**
+     * Exports transportation information regarding a certain request to a txt file
+     * @param request - request being referenced
+     * @param shelter - shelter to get directions to
+     * @param startingAddress - starting location
+     * @param filename - file to export to
+     * @throws Exception - thrown if any issues
+     */
     public void exportTransportationPlan(Request request, Shelter shelter,
         Address startingAddress, String filename)
         throws Exception {

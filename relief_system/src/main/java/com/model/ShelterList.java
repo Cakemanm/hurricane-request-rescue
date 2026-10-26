@@ -155,7 +155,7 @@ public class ShelterList {
             }
             if(needMedicalStaff && !hasMedics)
                 continue;
-            if(hasPet && !petFriendly)
+            if(hasPet && (!petFriendly || shelter.getAvailablePetSpaces() < 1))
                 continue;
             if(limitedMobility && !accessible)
                 continue;
@@ -168,6 +168,10 @@ public class ShelterList {
         int e = sheltersTemp.size();
         for(int i = 0; i < e; i++){
             Shelter shelter = findClosestShelter(searcher, sheltersTemp);
+            if (shelter == null) {
+                shelterMatches.addAll(sheltersTemp);
+                break;
+            }
             shelterMatches.add(shelter);
             sheltersTemp.remove(shelter);
         }
