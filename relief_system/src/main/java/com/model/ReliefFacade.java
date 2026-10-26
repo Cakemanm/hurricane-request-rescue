@@ -350,4 +350,76 @@ public class ReliefFacade {
     // private void appendDirections(StribBuilder sheet, String title, Address from, Address to) {
     //     sheet.append("\n").append(title).append(String.format(" (%.1f mi)", getDrivingMiles(from, to))).append("\n");
     // }
+
+    // export for scenario
+    public void exportTransportationPlan(Request request, Shelter shelter,
+        Address startingAddress, String filename)
+        throws Exception {
+
+    if (request == null || shelter == null || startingAddress == null) {
+        throw new IllegalArgumentException(
+                "A request, shelter, and starting address are required.");
+    }
+
+    User requester = request.getRequester();
+
+    if (requester == null || request.getAddress() == null) {
+        throw new IllegalArgumentException(
+                "The request must have a requester and pickup address.");
+    }
+
+    MapTools maps = MapTools.getInstance();
+
+    String toPickup = String.join("\n",
+            maps.getDrivingDirections(startingAddress, request.getAddress()));
+
+    String toShelter = String.join("\n",
+            maps.getDrivingDirections(request.getAddress(), shelter.getAddress()));
+
+    try (FileWriter writer = new FileWriter(filename)) {
+        writer.write("TRANSPORTATION PLAN\n\n");
+
+        writer.write("HOUSEHOLD MEMBERS\n");
+        writer.write(requester.getFullName()
+                + ", age " + requester.getAge() + "\n");
+
+        for (FamilyMember member : requester.getFamilyMembers()) {
+            writer.write(member + "\n");
+        }
+
+        if (requester.hasPet()) {
+            String pet = requester.getPetDescription();
+            writer.write("Pet: "
+                    + (pet == null || pet.isBlank()
+                            ? "Description not provided" : pet)
+                    + "\n");
+        }
+
+        writer.write("\nCONTACT AND PICKUP\n");
+        writer.write("Contact: " + requester.getFullName() + "\n");
+        writer.write("Phone: " + requester.getPhoneNumber() + "\n");
+        writer.write("Pickup: " + request.getAddress() + "\n");
+
+        writer.write("\nASSISTANCE NOTES\n");
+        if (request.getComments() != null) {
+            for (String comment : request.getComments()) {
+                writer.write(comment + "\n");
+            }
+        }
+
+        writer.write("\nDIRECTIONS TO PICKUP\n");
+        writer.write("From: " + startingAddress + "\n");
+        writer.write("To: " + request.getAddress() + "\n");
+        writer.write(toPickup + "\n");
+
+        writer.write("\nDIRECTIONS TO SHELTER\n");
+        writer.write("From: " + request.getAddress() + "\n");
+        writer.write("To: " + shelter.getAddress() + "\n");
+        writer.write(toShelter + "\n");
+
+        writer.write("\nSELECTED SHELTER\n");
+        writer.write(shelter.getName() + "\n");
+        writer.write(shelter.getAddress() + "\n");
+    }
+}
 }

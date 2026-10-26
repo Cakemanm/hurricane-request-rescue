@@ -17,8 +17,7 @@
             "request": "launch",
             "mainClass": "com.relief/com.model.ReliefUI",
             "projectName": "relief_system",
-            "envFile": "${workspaceFolder}/.env",
-            "javaExec": "C:\\Program Files\\Java\\jdk-22\\bin\\java.exe"
+            "envFile": "${workspaceFolder}/.env"
         },
         {
             "type": "java",

@@ -106,56 +106,17 @@ public class ReliefUI {
         System.out.println(BLUE + "\nRosa selects " + chosenShelter.getName() + " for the Carter family\n" + RESET);
         
          // export info to txt file
-        if (matchingShelters.isEmpty()) {
-            System.out.println("No suitable shelter found.");
-            return;
-        }
-        User requester = request.getRequester();
-
         try {
-            MapTools maps = MapTools.getInstance();
+            reliefFacade.exportTransportationPlan(
+            request,
+            chosenShelter,
+            user.getAddress(),
+            "scenario.txt");
 
-    // user is Rosa here; use her address as her starting location.
-            String toHome = String.join("\n", maps.getDrivingDirections(
-             user.getAddress(), request.getAddress()));
-
-            String toShelter = String.join("\n", maps.getDrivingDirections(
-             request.getAddress(), chosenShelter.getAddress()));
-
-        try (FileWriter writer = new FileWriter("scenario.txt")) {
-            writer.write("CARTER FAMILY TRANSPORTATION PLAN\n\n");
-
-            writer.write("FAMILY\n" + requester.getFullName()
-                + ", age " + requester.getAge() + "\n");
-
-            for (FamilyMember member : requester.getFamilyMembers()) {
-                writer.write(member + "\n");
-            }
-
-            writer.write("Pet: " + requester.getPetDescription() + "\n\n");
-
-            writer.write("CONTACT AND PICKUP\n"
-                + requester.getPhoneNumber() + "\n"
-                + request.getAddress() + "\n\n");
-
-            writer.write("ASSISTANCE NOTES\n"
-                + String.join("\n", request.getComments()) + "\n\n");
-
-            writer.write("ROSA TO CARTER HOME\n" + toHome + "\n\n");
-
-            writer.write("CARTER HOME TO SHELTER\n" + toShelter + "\n\n");
-
-            writer.write("SHELTER\n" + chosenShelter.getName()
-                + "\n" + chosenShelter.getAddress() + "\n");
+            System.out.println("Transportation plan exported.");
+        } catch (Exception e) {
+          System.out.println("Export failed: " + e.getMessage());
         }
-
-        System.out.println("Exported to scenario.txt.");
-    } catch (InterruptedException e) {
-        Thread.currentThread().interrupt();
-     System.out.println("Export interrupted.");
-    } catch (IOException | IllegalStateException e) {
-     System.out.println("Export failed: " + e.getMessage());
-    }
         // demo role permissions
         System.out.println(BLUE + "Rosa tries to mark the request as complete..." + RESET);
         if(user.getSkills().contains(Skill.SHELTER_STAFF)){
