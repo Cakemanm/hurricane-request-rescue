@@ -18,5 +18,15 @@
     "expectedConditions": "Flying debris, howling winds, structural damage, uprooted trees and powerlines.",
     "size": 200.0,
     "isActive": true
-}
+    },
+    {
+    "id" : "890e84e7-4971-4268-b1cb-9f01da19f05e",
+    "name": "Scarlet",
+    "category": 3,
+    "windSpeed": 125,
+    "affectedAreas" : [29401],
+    "expectedConditions": "Flying debris, howling winds, structural damage, uprooted trees and powerlines.",
+    "size": 200.0,
+    "isActive": true
+    }
 ]
