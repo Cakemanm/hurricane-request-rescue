@@ -351,7 +351,14 @@ public class ReliefFacade {
     //     sheet.append("\n").append(title).append(String.format(" (%.1f mi)", getDrivingMiles(from, to))).append("\n");
     // }
 
-    // export for scenario
+    /**
+     * Exports transportation information regarding a certain request to a txt file
+     * @param request - request being referenced
+     * @param shelter - shelter to get directions to
+     * @param startingAddress - starting location
+     * @param filename - file to export to
+     * @throws Exception - thrown if any issues
+     */
     public void exportTransportationPlan(Request request, Shelter shelter,
         Address startingAddress, String filename)
         throws Exception {
