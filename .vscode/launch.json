@@ -17,7 +17,11 @@
             "request": "launch",
             "mainClass": "com.relief/com.model.ReliefUI",
             "projectName": "relief_system",
+<<<<<<< HEAD
+            "envFile": "${workspaceFolder}/.env"
+=======
             "envFile": "${workspaceFolder}/.env",
+>>>>>>> ce8f4e8769fc45638a5f6ccd8fc2f64bc24d1a9d
         },
         {
             "type": "java",

@@ -239,34 +239,5 @@
             "id" : "e9a2c7d5-3b16-4f84-8d0a-1c6e5b9f7a43",
             "age" : 45,
             "username" : "rosad"
-      },
-      {
-            "lastName" : "Carter",
-            "hasPet" : true,
-            "address" : {
-                  "zipcode" : "29401",
-                  "city" : "Charleston",
-                  "street" : "68 Calhoun Street",
-                  "state" : "SC"
-            },
-            "shelter" : null,
-            "petDescription" : "Dog named Buddy",
-            "familyMembers" : [
-                  {
-                        "name" : "Laura Carter",
-                        "age" : 39
-                  },
-                  {
-                        "name" : "Sophie Carter",
-                        "age" : 9
-                  }
-            ],
-            "skills" : [],
-            "firstName" : "Michael",
-            "password" : "Buddy&Sophie09",
-            "phoneNumber" : "000-843-2271",
-            "id" : "e118433e-7979-4d7f-a777-4de37ab8be4b",
-            "age" : 41,
-            "username" : "sophiesdad"
       }
 ]

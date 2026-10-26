@@ -10,7 +10,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import com.location.Address;
 import com.location.MapTools;
-
 /**
  * How the UI interacts with the code, acting as an interface
  * to pass work to singletons {@link UserList}, {@link ShelterList}, {@link RequestFeed}, {@link HurricaneHandler}
@@ -41,16 +40,21 @@ public class ReliefFacade {
         currentUser = null;
     }
 
-    // public void submitRequest(Request request) {
-    //     feed.addRequest(request);
-    // }
-
+    /**
+     * Submits a relief request
+     * @param requester - user submitting
+     * @param request - request to submit
+     * @param comments - additional comments
+     */
     public void submitRequest(User requester, Request request, String comments) {
         request.setRequester(requester);
         request.addComment(comments);
         feed.addRequest(request);
     }
 
+    /**
+     * Prints list of shelters
+     */
     public void browseShelters(){
         System.out.println("Recommended Shelters: ");
         for(Shelter shelter : shelterList.getShelters()){
@@ -58,6 +62,11 @@ public class ReliefFacade {
         }
     }
 
+    /**
+     * Allows a victim to sign up as a occupant of a shelter
+     * @param user - user to be signed up
+     * @return
+     */
     public Shelter signUpVictimForShelter(User user) {
     ArrayList<Shelter> shelters = ShelterList.getInstance().getShelters();
         for (Shelter shelter : shelters) {
@@ -72,22 +81,13 @@ public class ReliefFacade {
         return null;
     }
 
+    /**
+     * Retrieves list of shelters
+     * @return
+     */
     public ArrayList<Shelter> getShelters() {
         return ShelterList.getInstance().getShelters();
     }
-
-
-    // public Shelter signUpVictimForShelter(User user) {
-    // ArrayList<Shelter> shelters = ShelterList.getInstance().getShelters();
-    // for (Shelter shelter : shelters) {
-    //     if (shelter.isAvailable() && shelter.getOccupancy() < shelter.getCapacity()) {
-    //         shelter.addOccupant();
-    //         user.setShelter(shelter.getId());
-    //         return shelter;
-    //     }
-    // }
-    // return null;
-    // }
 
     public Shelter signUpForShelter(String shelterName) {
         if (currentUser == null) return null;
@@ -109,7 +109,7 @@ public class ReliefFacade {
 
     public boolean dispatchVolunteer(Request request, User user) {
         if (request.getStatus() == RequestStatus.PENDING) {
-            request.updateStatus(RequestStatus.ASSIGNED, user);
+            request.updateStatus(RequestStatus.HELP_ON_THE_WAY, user);
             return true;
         }
         return false;
@@ -265,7 +265,7 @@ public class ReliefFacade {
         return currentUser;
     }
 
-    /* Finds user by username
+    /** Finds user by username
     @param username = the username
     @return the user or null if none */
     public User getUser(String username) {
@@ -274,15 +274,7 @@ public class ReliefFacade {
 
     // --------------- match volunteers to request
 
-    /* Gets driving distance between two locations
-    @param from = where to start
-    @param to = where to end
-    @return the driving distance in miles */
-    // public double getDrivingMiles(Location from, Location to) {
-    //     return;
-    // }
-
-    /* Checks whether a request needs a current user's skills
+    /** Checks whether a request needs a current user's skills
     @param request = the request
     @return true if request matches user's skills */
     public boolean matchesSkill(Request request) {
@@ -294,33 +286,17 @@ public class ReliefFacade {
         return false;
     }
 
-    /* a request is recomended when it matches the user's skills and is within nearby miles
-    @param request = the request
-    @return true if request fits skills and is within miles */
-    // public boolean isRecomended(Request request) {
-    //     return matchesSkill(request) && getDrivingMiles(currentUser.getLocation(), request.getLocation()) <= NEARBY_MILES;
-    // }
+    // --------export to txt
 
-
-
-    // -------------- export .txt
-
-    /**
-     * Writes printable trip sheet for volunteer handling a request
-     * @param request the request being handled
-     * @param shelter the shelter the family is going to
-     * @return the file written
-     */
     public File exportTripSheet(Request request, Shelter shelter) {
         User family = request.getRequester();
         User volunteer = request.getResponder() == null ? currentUser : request.getResponder();
         String line = "=".repeat(60);
         StringBuilder sheet = new StringBuilder();
-        sheet.append(line).append("\n REQUEST RESCUE TRIP SHEET\n").append(line);
-        sheet.append("Volunteer: ").append(volunteer.getFullName()).append(", ").append(volunteer.getPhoneNumber()).append("\n");
-        sheet.append("Request Status: ").append(request.getStatus().label).append("\n\n");
+        sheet.append(line).append("\n Request Rescue Trip Sheet").append(line);
+        sheet.append("Volunteer: ").append(request.getStatus().label).append("\n\n");
 
-        sheet.append("WHO TO PICK UP (").append(family.getHouseholdSize()).append(" people").append(family.hasPet() ? " and 1 pet" : "").append(")\n");
+        sheet.append("WHO TO PICK UP (").append(family.getHouseholdSize()).append(" people").append(family.hasPet() ? " and has 1 pet" : "").append(")\n");
         sheet.append("  - ").append(family.getFullName()).append(", age ").append(family.getAge()).append("\n");
         for (FamilyMember member : family.getFamilyMembers())
             sheet.append("  - ").append(member.getName()).append(", age ").append(member.getAge()).append("\n");
@@ -330,8 +306,7 @@ public class ReliefFacade {
         sheet.append("\nCONTACT\n  ").append(family.getFullName()).append(", ").append(family.getPhoneNumber()).append("\n");
         sheet.append("\nPICKUP ADDRESS\n  ").append(request.getAddress()).append("\n");
 
-        boolean medical = request.getRequestTypes().contains(RequestType.MEDICAL_ASSISTANCE);
-        if (medical) {
+        if (request.getRequestTypes().contains(RequestType.MEDICAL_ASSISTANCE)) {
             sheet.append("\nMEDICAL NOTE\n Medical assistance needed. Bring to a shelter with medical staff.\n");
         }
         if (!request.getComments().isEmpty()) {
@@ -340,14 +315,8 @@ public class ReliefFacade {
                 sheet.append("  - ").append(comment).append("\n");
         }
 
-        appendDirections(sheet, "DIRECTIONS 1: " + volunteer.getFirstName() + " to the pickup address",
-                volunteer.getAddress(), request.getAddress());
-        appendDirections(sheet, "DIRECTIONS 2: Pickup address to " + shelter.getName(),
-                request.getAddress(), shelter.getAddress());
-        
-        sheet.append("\nSHELTER\n  ").append(shelter.getName()).append("\n  ").append(shelter.getAddress()).append("\n");
-        sheet.append("\n(Route assumed safe and passable)\n");
-        
+        //append directions here
+
         File folder = new File(EXPORT_FOLDER);
         folder.mkdir();
         File file = new File(folder, family.getLastName() + "-trip-sheet.txt");
@@ -362,22 +331,86 @@ public class ReliefFacade {
 
     }
 
+    // private void appendDirections(StribBuilder sheet, String title, Address from, Address to) {
+    //     sheet.append("\n").append(title).append(String.format(" (%.1f mi)", getDrivingMiles(from, to))).append("\n");
+    // }
+
     /**
-     * Adds a numbered set of driving instructions to trip sheet
-     * @param sheet trip sheet being built
-     * @param title heading for this set of directions
-     * @param from where the drive starts
-     * @param to where the drive ends
+     * Exports transportation information regarding a certain request to a txt file
+     * @param request - request being referenced
+     * @param shelter - shelter to get directions to
+     * @param startingAddress - starting location
+     * @param filename - file to export to
+     * @throws Exception - thrown if any issues
      */
-    private void appendDirections(StringBuilder sheet, String title, Address from, Address to) {
-        sheet.append("\n").append(title).append("\n");
-        sheet.append("  From: ").append(from).append("\n  To:  ").append(to).append("\n");
-        try {
-            String[] steps = MapTools.getInstance().getDrivingDirections(from, to);
-            for (int i = 0; i < steps.length; i ++)
-                sheet.append(String.format("  %2d. %s%n", i + 1, steps[i]));
-        } catch (Exception e) {
-            sheet.append("  Directions Unavilable: ").append(e.getMessage()).append("\n");
-        }
+    public void exportTransportationPlan(Request request, Shelter shelter,
+        Address startingAddress, String filename)
+        throws Exception {
+
+    if (request == null || shelter == null || startingAddress == null) {
+        throw new IllegalArgumentException(
+                "A request, shelter, and starting address are required.");
     }
+
+    User requester = request.getRequester();
+
+    if (requester == null || request.getAddress() == null) {
+        throw new IllegalArgumentException(
+                "The request must have a requester and pickup address.");
+    }
+
+    MapTools maps = MapTools.getInstance();
+
+    String toPickup = String.join("\n",
+            maps.getDrivingDirections(startingAddress, request.getAddress()));
+
+    String toShelter = String.join("\n",
+            maps.getDrivingDirections(request.getAddress(), shelter.getAddress()));
+
+    try (FileWriter writer = new FileWriter(filename)) {
+        writer.write("TRANSPORTATION PLAN\n\n");
+
+        writer.write("HOUSEHOLD MEMBERS\n");
+        writer.write(requester.getFullName()
+                + ", age " + requester.getAge() + "\n");
+
+        for (FamilyMember member : requester.getFamilyMembers()) {
+            writer.write(member + "\n");
+        }
+
+        if (requester.hasPet()) {
+            String pet = requester.getPetDescription();
+            writer.write("Pet: "
+                    + (pet == null || pet.isBlank()
+                            ? "Description not provided" : pet)
+                    + "\n");
+        }
+
+        writer.write("\nCONTACT AND PICKUP\n");
+        writer.write("Contact: " + requester.getFullName() + "\n");
+        writer.write("Phone: " + requester.getPhoneNumber() + "\n");
+        writer.write("Pickup: " + request.getAddress() + "\n");
+
+        writer.write("\nASSISTANCE NOTES\n");
+        if (request.getComments() != null) {
+            for (String comment : request.getComments()) {
+                writer.write(comment + "\n");
+            }
+        }
+
+        writer.write("\nDIRECTIONS TO PICKUP\n");
+        writer.write("From: " + startingAddress + "\n");
+        writer.write("To: " + request.getAddress() + "\n");
+        writer.write(toPickup + "\n");
+
+        writer.write("\nDIRECTIONS TO SHELTER\n");
+        writer.write("From: " + request.getAddress() + "\n");
+        writer.write("To: " + shelter.getAddress() + "\n");
+        writer.write(toShelter + "\n");
+
+        writer.write("\nSELECTED SHELTER\n");
+        writer.write(shelter.getName() + "\n");
+        writer.write(shelter.getAddress() + "\n");
+    }
+}
 }
