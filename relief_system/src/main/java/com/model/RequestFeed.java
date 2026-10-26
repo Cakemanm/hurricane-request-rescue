@@ -190,7 +190,7 @@ public class RequestFeed {
             resultsTemp.remove(r);
         }
 
-        System.out.println("\nRelevant Requests:\n");
+        System.out.println("\nRecommended Requests:\n");
         for(Request request: results)
             System.out.println(request.toString() + "\n");
         System.out.println("\nOther requests:\n");
