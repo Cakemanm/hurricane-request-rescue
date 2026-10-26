@@ -107,70 +107,19 @@ public class ReliefUI {
         for(Shelter shelter : matchingShelters)
             System.out.println(shelter.toString()+"\n");
         
-        if (matchingShelters.isEmpty()) {
-            System.out.println("No suitable shelter found.");
-            return;
-        }
-
         Shelter chosenShelter = matchingShelters.get(0);
-        System.out.println(BLUE + "\nRosa selects " + chosenShelter.getName() + " for the Carter family\n" + RESET);
+         // export info to txt file
+        try {
+            reliefFacade.exportTransportationPlan(
+            request,
+            chosenShelter,
+            user.getAddress(),
+            "exports\\scenario.txt");
 
-        // export info to txt file
-        File tripSheet = reliefFacade.exportTripSheet(request, chosenShelter);
-        if (tripSheet != null) {
-            System.out.println("Exported to " + tripSheet.getPath() + ":\n");
-            try {
-                System.out.println(new String(Files.readAllBytes(tripSheet.toPath())));
-            } catch (IOException e) {
-                System.out.println("Could not read the trip sheet back: " + e.getMessage());
-            }
+            System.out.println("Transportation plan exported.");
+        } catch (Exception e) {
+          System.out.println("Export failed: " + e.getMessage());
         }
-
-    //     try {
-    //         MapTools maps = MapTools.getInstance();
-
-    // // user is Rosa here; use her address as her starting location.
-    //         String toHome = String.join("\n", maps.getDrivingDirections(
-    //          user.getAddress(), request.getAddress()));
-
-    //         String toShelter = String.join("\n", maps.getDrivingDirections(
-    //          request.getAddress(), chosenShelter.getAddress()));
-
-    //     try (FileWriter writer = new FileWriter("scenario.txt")) {
-    //         writer.write("CARTER FAMILY TRANSPORTATION PLAN\n\n");
-
-    //         writer.write("FAMILY\n" + requester.getFullName()
-    //             + ", age " + requester.getAge() + "\n");
-
-    //         for (FamilyMember member : requester.getFamilyMembers()) {
-    //             writer.write(member + "\n");
-    //         }
-
-    //         writer.write("Pet: " + requester.getPetDescription() + "\n\n");
-
-    //         writer.write("CONTACT AND PICKUP\n"
-    //             + requester.getPhoneNumber() + "\n"
-    //             + request.getAddress() + "\n\n");
-
-    //         writer.write("ASSISTANCE NOTES\n"
-    //             + String.join("\n", request.getComments()) + "\n\n");
-
-    //         writer.write("ROSA TO CARTER HOME\n" + toHome + "\n\n");
-
-    //         writer.write("CARTER HOME TO SHELTER\n" + toShelter + "\n\n");
-
-    //         writer.write("SHELTER\n" + chosenShelter.getName()
-    //             + "\n" + chosenShelter.getAddress() + "\n");
-    //     }
-
-    //     System.out.println("Exported to scenario.txt.");
-    // } catch (InterruptedException e) {
-    //     Thread.currentThread().interrupt();
-    //  System.out.println("Export interrupted.");
-    // } catch (IOException | IllegalStateException e) {
-    //  System.out.println("Export failed: " + e.getMessage());
-    // }
-
         // demo role permissions
         System.out.println(BLUE + "Rosa tries to mark the request as complete..." + RESET);
         if(user.getSkills().contains(Skill.SHELTER_STAFF)){
@@ -230,65 +179,6 @@ public class ReliefUI {
             System.out.println("Volunteers are unable to mark this request as complete. See a shelter administrator.");
         reliefFacade.logout();
     }
-
-    // login, view shelters, sign up for shelter, view shelter resources, create request
-    public void scenario1() {
-
-        // login
-        if (!reliefFacade.login("katKane", "brutus51")) {
-            System.out.println("Sorry, we couldn't log you in.");
-            return;
-        }
-        User user = reliefFacade.getCurrentUser();
-        System.out.println(user.getFullName() + "is now logged in!");
-        if (user.getShelter() != null) {
-            System.out.println(user.getFullName() + "is currently staying at " + user.getShelter().getName());
-        }
-
-        // view shelters
-        System.out.println("\nShelters");
-        for (Shelter s : reliefFacade.getShelters()) {
-            //System.out.println(" " + s.getName() + " | " + s.getLocation() + " | "
-            //    + s.getOccupancy() + "/" + s.getCapacity() + (s.isAvailable() ? " | Open" : " | FULL"));
-        }
-
-        // sign up for shelter
-        Shelter shelter = reliefFacade.signUpForShelter("Caldwell Elementary School");
-        if (shelter == null) {
-            System.out.println("\nSorry, that shelter is full or does not exist");
-            return;
-        }
-        System.out.println("\n" + user.getFirstName() + " signed up for " + shelter.getName()
-                + ". Occupancy is now " + shelter.getOccupancy() + "/" + shelter.getCapacity());
-
-        // view shelter resources
-        System.out.println("\nResources at " + shelter.getName() + ":");
-        for (Resource resouce : shelter.getResources()) {
-            System.out.println(" " + resouce);
-        }
-
-        // create request
-        ArrayList<RequestType> types = new ArrayList<>();
-        types.add(RequestType.RESOURCE);
-        ArrayList<String> comments = new ArrayList<>();
-        comments.add("My mother is ill and needs medicine. Our family also needs blankets for the cold");
-        //Request request = reliefFacade.createRequest(types, null, shelter.getName(), 4, comments);
-        System.out.println("\nRequest created:");
-        //System.out.println(request);
-
-        reliefFacade.logout();
-    }
-
-
-        // create new account, login user to account, search for requests using "medical" keyword, view unfulfilled requests, claim request
-        public void scenario2() {
-            System.out.println();
-            if(!reliefFacade.login("kyled","892EijL0Ws")) {
-                System.out.println("Sorry, we couldn't log you in.");
-                return;
-            }
-            System.out.println("Kyle Donaldson is now logged in!");
-        }
 
         public static void main(String[] args){
         ReliefUI facadeInterface = new ReliefUI();
