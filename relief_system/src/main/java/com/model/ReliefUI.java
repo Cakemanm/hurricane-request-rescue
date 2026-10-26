@@ -45,6 +45,9 @@ public class ReliefUI {
 */
         Address address = new Address("68 Calhoun Street","Charleston","SC","29401");
         User michael = reliefFacade.createAccount("sophiesdad","Michael","Carter","000-843-2271",address,"Buddy&Sophie09",null,family,true, 41, "Dog named Buddy");
+        if (michael == null) {
+            System.out.println("The scenario was already run. Reset the data first by typing: git restore json/");
+        }
 
         //Michael Carter logs in
         System.out.println(michael.victimToString());
@@ -207,6 +210,8 @@ public class ReliefUI {
         }
 
         shelter.addOccupants(3, 1);
+        request.getRequester().setShelter(shelter);
+        UserList.getInstance().save();
         ShelterList.getInstance().save();
 
         System.out.println("The Carter Family and Buddy have been checked into "

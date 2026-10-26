@@ -109,7 +109,7 @@ public class ReliefFacade {
 
     public boolean dispatchVolunteer(Request request, User user) {
         if (request.getStatus() == RequestStatus.PENDING) {
-            request.updateStatus(RequestStatus.HELP_ON_THE_WAY, user);
+            request.updateStatus(RequestStatus.ASSIGNED, user);
             return true;
         }
         return false;
@@ -316,8 +316,8 @@ public class ReliefFacade {
         User volunteer = request.getResponder() == null ? currentUser : request.getResponder();
         String line = "=".repeat(60);
         StringBuilder sheet = new StringBuilder();
-        sheet.append(line).append("\n Request Rescue Trip Sheet").append(line);
-        sheet.append("Volunteer: ").append(request.getStatus().label).append("\n\n");
+        sheet.append(line).append("\n REQUEST RESCUE TRIP SHEET").append(line);
+        sheet.append("Volunteer: ").append(volunteer.getFullName()).append(", ").append(volunteer.getPhoneNumber()).append("\n");
         sheet.append("Request Status: ").append(request.getStatus().label).append("\n\n");
 
         sheet.append("WHO TO PICK UP (").append(family.getHouseholdSize()).append(" people").append(family.hasPet() ? " and has 1 pet" : "").append(")\n");
@@ -327,7 +327,7 @@ public class ReliefFacade {
         if (family.hasPet())
             sheet.append("  - Pet: ").append(family.getPetDescription()).append("\n");
 
-        sheet.append("\nCONTAT\n  ").append(family.getFullName()).append(", ").append(family.getPhoneNumber()).append("\n");
+        sheet.append("\nCONTACT\n  ").append(family.getFullName()).append(", ").append(family.getPhoneNumber()).append("\n");
         sheet.append("\nPICKUP ADDRESS\n  ").append(request.getAddress()).append("\n");
 
         boolean medical = request.getRequestTypes().contains(RequestType.MEDICAL_ASSISTANCE);
@@ -377,7 +377,7 @@ public class ReliefFacade {
             for (int i = 0; i < steps.length; i ++)
                 sheet.append(String.format("  %2d. %s%n", i + 1, steps[i]));
         } catch (Exception e) {
-            sheet.append("  Diretions Unavilable: ").append(e.getMessage()).append("\n");
+            sheet.append("  Directions Unavilable: ").append(e.getMessage()).append("\n");
         }
     }
 }

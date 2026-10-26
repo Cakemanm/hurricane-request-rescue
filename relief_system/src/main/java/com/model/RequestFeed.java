@@ -186,6 +186,10 @@ public class RequestFeed {
         ArrayList<Request> results = new ArrayList<>();
         while(resultsTemp.size()>=1){
             Request r = reliefFacade.findClosestRequest(user,resultsTemp);
+            if (r == null) {
+                results.addAll(resultsTemp);
+                break;
+            }
             results.add(r);
             resultsTemp.remove(r);
         }

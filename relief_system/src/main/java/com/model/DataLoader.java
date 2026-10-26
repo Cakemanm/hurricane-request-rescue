@@ -90,7 +90,8 @@ public class DataLoader extends DataConstants {
             Boolean hasPet = (Boolean)personJSON.get(USER_HAS_PET);
             int age = Integer.parseInt(personJSON.get(USER_AGE).toString());
             
-            users.add(new User(userId, username, firstName, lastName, phoneNumber, address, password, shelter, familyMembers, skills, hasPet, age));
+            String petDescription = (String)personJSON.get(USER_PET_DESCRIPTION);
+            users.add(new User(userId, username, firstName, lastName, phoneNumber, address, password, shelter, familyMembers, skills, hasPet, age, petDescription));
 
         }
 
