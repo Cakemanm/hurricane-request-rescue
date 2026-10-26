@@ -89,7 +89,7 @@ public class Request {
      */
     public void updateStatus(RequestStatus status, User responder) {
         this.status = status;
-        if (status == RequestStatus.HELP_ON_THE_WAY || status == RequestStatus.AT_SITE
+        if (status == RequestStatus.ASSIGNED || status == RequestStatus.HELP_ON_THE_WAY || status == RequestStatus.AT_SITE
                 || status == RequestStatus.COMPLETED)
             this.responder = responder;
         else
@@ -113,7 +113,7 @@ public class Request {
                 + " at " + address.toString() + "\n";
         for (String comment : comments)
             returnString += comment + " ";
-        returnString += "\nRequest Status: " + status
+        returnString += "\nRequest Status: " + status.label
                 + (responder == null ? " | Currently Unfulfilled" : " | Responder: " + responder.getFullName());
         return returnString;
     }

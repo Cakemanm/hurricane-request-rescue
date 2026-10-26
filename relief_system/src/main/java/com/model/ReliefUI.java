@@ -1,7 +1,9 @@
 package com.model;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -43,6 +45,9 @@ public class ReliefUI {
 */
         Address address = new Address("68 Calhoun Street","Charleston","SC","29401");
         User michael = reliefFacade.createAccount("sophiesdad","Michael","Carter","000-843-2271",address,"Buddy&Sophie09",null,family,true, 41, "Dog named Buddy");
+        if (michael == null) {
+            System.out.println("The scenario was already run. Reset the data first by typing: git restore json/");
+        }
 
         //Michael Carter logs in
         System.out.println(michael.victimToString());
@@ -61,7 +66,7 @@ public class ReliefUI {
         //Michael creates a relief request
         System.out.println(BLUE + "\nCreating a relief request...\n" + RESET);
         ArrayList<RequestType> types = new ArrayList<>(Arrays.asList(RequestType.TRANSPORTATION, RequestType.NO_SHELTER, RequestType.MEDICAL_ASSISTANCE));
-        ArrayList<String> comments = new ArrayList<>(Arrays.asList("My family needs to go to a shelter because our power is out and conditions in our home are worsening my daughter's asthma.","The shelter needs to have medical supplies and staff.","We need transportation to the shelter.","Our dog, Buddy, must come with us."));
+        ArrayList<String> comments = new ArrayList<>(Arrays.asList("My family needs to go to a shelter because our power is out and conditions in our home are worsening my daughter Sophie's asthma.","The shelter needs to have medical supplies and staff.","We need transportation to the shelter.","Our dog, Buddy, must come with us."));
         Request request = reliefFacade.createRequest(types,address,8,comments);
         System.out.println(request.toString());
         System.out.println(BLUE);
@@ -101,61 +106,71 @@ public class ReliefUI {
         ArrayList<Shelter> matchingShelters = shelterList.findShelters(user,3, true, true, false);
         for(Shelter shelter : matchingShelters)
             System.out.println(shelter.toString()+"\n");
-
-        Shelter chosenShelter = matchingShelters.get(0);
-        System.out.println(BLUE + "\nRosa selects " + chosenShelter.getName() + " for the Carter family\n" + RESET);
         
-         // export info to txt file
         if (matchingShelters.isEmpty()) {
             System.out.println("No suitable shelter found.");
             return;
         }
-        User requester = request.getRequester();
 
-        try {
-            MapTools maps = MapTools.getInstance();
+        Shelter chosenShelter = matchingShelters.get(0);
+        System.out.println(BLUE + "\nRosa selects " + chosenShelter.getName() + " for the Carter family\n" + RESET);
 
-    // user is Rosa here; use her address as her starting location.
-            String toHome = String.join("\n", maps.getDrivingDirections(
-             user.getAddress(), request.getAddress()));
-
-            String toShelter = String.join("\n", maps.getDrivingDirections(
-             request.getAddress(), chosenShelter.getAddress()));
-
-        try (FileWriter writer = new FileWriter("scenario.txt")) {
-            writer.write("CARTER FAMILY TRANSPORTATION PLAN\n\n");
-
-            writer.write("FAMILY\n" + requester.getFullName()
-                + ", age " + requester.getAge() + "\n");
-
-            for (FamilyMember member : requester.getFamilyMembers()) {
-                writer.write(member + "\n");
+        // export info to txt file
+        File tripSheet = reliefFacade.exportTripSheet(request, chosenShelter);
+        if (tripSheet != null) {
+            System.out.println("Exported to " + tripSheet.getPath() + ":\n");
+            try {
+                System.out.println(new String(Files.readAllBytes(tripSheet.toPath())));
+            } catch (IOException e) {
+                System.out.println("Could not read the trip sheet back: " + e.getMessage());
             }
-
-            writer.write("Pet: " + requester.getPetDescription() + "\n\n");
-
-            writer.write("CONTACT AND PICKUP\n"
-                + requester.getPhoneNumber() + "\n"
-                + request.getAddress() + "\n\n");
-
-            writer.write("ASSISTANCE NOTES\n"
-                + String.join("\n", request.getComments()) + "\n\n");
-
-            writer.write("ROSA TO CARTER HOME\n" + toHome + "\n\n");
-
-            writer.write("CARTER HOME TO SHELTER\n" + toShelter + "\n\n");
-
-            writer.write("SHELTER\n" + chosenShelter.getName()
-                + "\n" + chosenShelter.getAddress() + "\n");
         }
 
-        System.out.println("Exported to scenario.txt.");
-    } catch (InterruptedException e) {
-        Thread.currentThread().interrupt();
-     System.out.println("Export interrupted.");
-    } catch (IOException | IllegalStateException e) {
-     System.out.println("Export failed: " + e.getMessage());
-    }
+    //     try {
+    //         MapTools maps = MapTools.getInstance();
+
+    // // user is Rosa here; use her address as her starting location.
+    //         String toHome = String.join("\n", maps.getDrivingDirections(
+    //          user.getAddress(), request.getAddress()));
+
+    //         String toShelter = String.join("\n", maps.getDrivingDirections(
+    //          request.getAddress(), chosenShelter.getAddress()));
+
+    //     try (FileWriter writer = new FileWriter("scenario.txt")) {
+    //         writer.write("CARTER FAMILY TRANSPORTATION PLAN\n\n");
+
+    //         writer.write("FAMILY\n" + requester.getFullName()
+    //             + ", age " + requester.getAge() + "\n");
+
+    //         for (FamilyMember member : requester.getFamilyMembers()) {
+    //             writer.write(member + "\n");
+    //         }
+
+    //         writer.write("Pet: " + requester.getPetDescription() + "\n\n");
+
+    //         writer.write("CONTACT AND PICKUP\n"
+    //             + requester.getPhoneNumber() + "\n"
+    //             + request.getAddress() + "\n\n");
+
+    //         writer.write("ASSISTANCE NOTES\n"
+    //             + String.join("\n", request.getComments()) + "\n\n");
+
+    //         writer.write("ROSA TO CARTER HOME\n" + toHome + "\n\n");
+
+    //         writer.write("CARTER HOME TO SHELTER\n" + toShelter + "\n\n");
+
+    //         writer.write("SHELTER\n" + chosenShelter.getName()
+    //             + "\n" + chosenShelter.getAddress() + "\n");
+    //     }
+
+    //     System.out.println("Exported to scenario.txt.");
+    // } catch (InterruptedException e) {
+    //     Thread.currentThread().interrupt();
+    //  System.out.println("Export interrupted.");
+    // } catch (IOException | IllegalStateException e) {
+    //  System.out.println("Export failed: " + e.getMessage());
+    // }
+
         // demo role permissions
         System.out.println(BLUE + "Rosa tries to mark the request as complete..." + RESET);
         if(user.getSkills().contains(Skill.SHELTER_STAFF)){
@@ -195,6 +210,8 @@ public class ReliefUI {
         }
 
         shelter.addOccupants(3, 1);
+        request.getRequester().setShelter(shelter);
+        UserList.getInstance().save();
         ShelterList.getInstance().save();
 
         System.out.println("The Carter Family and Buddy have been checked into "

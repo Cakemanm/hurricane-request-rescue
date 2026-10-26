@@ -93,7 +93,8 @@ public class DataLoader extends DataConstants {
             Boolean hasPet = (Boolean)personJSON.get(USER_HAS_PET);
             int age = Integer.parseInt(personJSON.get(USER_AGE).toString());
             
-            users.add(new User(userId, username, firstName, lastName, phoneNumber, address, password, shelter, familyMembers, skills, hasPet, age));
+            String petDescription = (String)personJSON.get(USER_PET_DESCRIPTION);
+            users.add(new User(userId, username, firstName, lastName, phoneNumber, address, password, shelter, familyMembers, skills, hasPet, age, petDescription));
 
         }
 
@@ -213,6 +214,10 @@ public class DataLoader extends DataConstants {
 
                 UUID requesterId = UUID.fromString((String)objectJSON.get(REQUEST_REQUESTER));
                 User requester = UserList.getInstance().getUserById(requesterId);
+                if (requester == null) {
+                    System.out.println("Skipping request " + id + ": requester " + requesterId + " is not in User.json");
+                    continue;
+                }
 
                 User responder = null;
                 if(objectJSON.get(REQUEST_RESPONDER) != null){
