@@ -211,6 +211,10 @@ public class DataLoader extends DataConstants {
 
                 UUID requesterId = UUID.fromString((String)objectJSON.get(REQUEST_REQUESTER));
                 User requester = UserList.getInstance().getUserById(requesterId);
+                if (requester == null) {
+                    System.out.println("Skipping request " + id + ": requester " + requesterId + " is not in User.json");
+                    continue;
+                }
 
                 User responder = null;
                 if(objectJSON.get(REQUEST_RESPONDER) != null){
