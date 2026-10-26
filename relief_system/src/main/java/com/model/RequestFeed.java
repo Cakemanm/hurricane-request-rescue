@@ -52,6 +52,13 @@ public class RequestFeed {
         return null;
     }
 
+    public Address[] getAddresses(){
+        Address[] addresses = new Address[requests.size()];
+        for(int i = 0; i < requests.size(); i++)
+            addresses[i] = requests.get(i).getAddress();
+        return addresses;
+    }
+
     /**
      * Finds the first request whose requester equals the specified user.
      * @param requester the user whose request should be retrieved

@@ -32,7 +32,7 @@
                   }
             ],
             "id" : "e522496a-9539-4c1e-b8a5-992aa48dde8c",
-            "availability" : false,
+            "availability" : true,
             "capacity" : 250,
             "petCount" : 0
       },
@@ -68,7 +68,7 @@
                   }
             ],
             "id" : "68b7087c-d6ee-4c2b-8706-7a90ac62e5f5",
-            "availability" : false,
+            "availability" : true,
             "capacity" : 115,
             "petCount" : 0
       },
@@ -80,7 +80,7 @@
                   "street" : "3841 Leeds Avenue",
                   "state" : "SC"
             },
-            "occupancy" : 146,
+            "occupancy" : 140,
             "name" : "Riverside Community Center",
             "shelterTypes" : [
                   "DISABILITY_ACCESSIBLE",
@@ -106,7 +106,7 @@
                   }
             ],
             "id" : "3f9a1c52-7d84-4e1b-a6c3-2b5e8f0d9a41",
-            "availability" : false,
+            "availability" : true,
             "capacity" : 300,
             "petCount" : 2
       },
@@ -175,7 +175,7 @@
                   }
             ],
             "id" : "5c8e3a17-9f24-4b60-a1d8-6e0b2f7c5a39",
-            "availability" : false,
+            "availability" : true,
             "capacity" : 120,
             "petCount" : 0
       },
@@ -211,7 +211,7 @@
                   }
             ],
             "id" : "a7d4b290-3e51-4c8f-9b16-0f5a8e2d6c74",
-            "availability" : false,
+            "availability" : true,
             "capacity" : 200,
             "petCount" : 0
       },
@@ -243,7 +243,7 @@
                   }
             ],
             "id" : "1e6f9c43-b8a2-4d70-95e1-7c3d0a4b8f26",
-            "availability" : false,
+            "availability" : true,
             "capacity" : 180,
             "petCount" : 0
       },
@@ -280,7 +280,7 @@
                   }
             ],
             "id" : "d03b7a65-4c19-4e82-a5f7-9b1e6c8d2a50",
-            "availability" : false,
+            "availability" : true,
             "capacity" : 90,
             "petCount" : 0
       },
@@ -344,7 +344,7 @@
                   }
             ],
             "id" : "f2c9d6b3-0e85-4a41-8d7f-5b3a9e1c4d98",
-            "availability" : false,
+            "availability" : true,
             "capacity" : 60,
             "petCount" : 0
       }

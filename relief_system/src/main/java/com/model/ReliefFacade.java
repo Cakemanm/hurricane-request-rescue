@@ -207,7 +207,7 @@ public class ReliefFacade {
     }
     public Request findClosestRequest(User user){
         try{
-            Address address = MapTools.getInstance().findClosestAddress(user.getAddress(),shelterList.getAddresses());
+            Address address = MapTools.getInstance().findClosestAddress(user.getAddress(),feed.getAddresses());
             for(Request request : feed.getRequests()){
                 if(address.equals(request.getAddress())){
                     return request;
@@ -221,20 +221,8 @@ public class ReliefFacade {
         return null;
     }
 
-        public Shelter findClosestShelter(User user){
-        try{
-            Address address = MapTools.getInstance().findClosestAddress(user.getAddress(),shelterList.getAddresses());
-            for(Shelter shelter : shelterList.getShelters()){
-                if(address.equals(shelter.getAddress())){
-                    return shelter;
-                }
-            }
-
-        } catch (Exception e) {
-            System.out.println("There was a problem finding a shelter.");
-            e.printStackTrace();
-        }
-        return null;
+    public Shelter findClosestShelter(User user){
+        return shelterList.findClosestShelter(user, shelterList.getShelters());
     }
 
     public Request findClosestRequest(User user, ArrayList<Request> requests){
@@ -331,7 +319,7 @@ public class ReliefFacade {
         if (family.hasPet())
             sheet.append("  - Pet: ").append(family.getPetDescription()).append("\n");
 
-        sheet.append("\nCONTAT\n  ").append(family.getFullName()).append(", ").append(family.getPhoneNumber()).append("\n");
+        sheet.append("\nCONTACT\n  ").append(family.getFullName()).append(", ").append(family.getPhoneNumber()).append("\n");
         sheet.append("\nPICKUP ADDRESS\n  ").append(request.getAddress()).append("\n");
 
         if (request.getRequestTypes().contains(RequestType.MEDICAL_ASSISTANCE)) {

@@ -98,16 +98,14 @@ public class ReliefUI {
 
         //Rosa finds a relevant shelter
         System.out.println(BLUE + "\nSearching for shelter's matching the family's criteria...\n\n" + RESET);
-        ArrayList<Shelter> matchingShelters = shelterList.findShelters(3, true, true, false);
+        ArrayList<Shelter> matchingShelters = shelterList.findShelters(user,3, true, true, false);
         for(Shelter shelter : matchingShelters)
             System.out.println(shelter.toString()+"\n");
 
         Shelter chosenShelter = matchingShelters.get(0);
         System.out.println(BLUE + "\nRosa selects " + chosenShelter.getName() + " for the Carter family\n" + RESET);
-
-        System.out.println(BLUE + "Rosa is exporting a file with the request information...\n" + RESET);
-
-        // export info to txt file
+        
+         // export info to txt file
         if (matchingShelters.isEmpty()) {
             System.out.println("No suitable shelter found.");
             return;
@@ -182,6 +180,7 @@ public class ReliefUI {
             System.out.println(user.getFullName() + "is currently staying at " + user.getShelter().getName());
         }
 
+    
         Shelter shelter = user.getShelter();
 
         if (shelter == null) {

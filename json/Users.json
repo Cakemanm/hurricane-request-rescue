@@ -51,29 +51,6 @@
             "username" : "kyled"
       },
       {
-            "lastName" : "Reyes",
-            "hasPet" : false,
-            "address" : {
-                  "zipcode" : "29405",
-                  "city" : "North Charleston",
-                  "street" : "3841 Leeds Avenue",
-                  "state" : "SC"
-            },
-            "shelter" : "3f9a1c52-7d84-4e1b-a6c3-2b5e8f0d9a41",
-            "petDescription" : null,
-            "familyMembers" : [],
-            "skills" : [
-                  "SHELTER_STAFF",
-                  "RESOURCE_SUPPLIER"
-            ],
-            "firstName" : "Felix",
-            "password" : "FReyesSh3lt3r$",
-            "phoneNumber" : "000-486-9462",
-            "id" : "80f44ca0-d6d0-4c3e-a5b3-4ced91f6fa96",
-            "age" : 41,
-            "username" : "freyes"
-      },
-      {
             "lastName" : "Kane",
             "hasPet" : true,
             "address" : {
@@ -151,8 +128,7 @@
             "familyMembers" : [],
             "skills" : [
                   "CAN_PROVIDE_MEDICAL_ASSISTANCE",
-                  "LANGUAGE_TRANSLATOR",
-                  "CAN_SWIM"
+                  "LANGUAGE_TRANSLATOR"
             ],
             "firstName" : "Emily",
             "password" : "Emily48!rescue",
@@ -193,6 +169,29 @@
             "id" : "a54b910e-82c7-463d-bf08-19e6d32a7c45",
             "age" : 44,
             "username" : "dparker"
+      },      
+      {
+            "lastName" : "Reyes",
+            "hasPet" : false,
+            "address" : {
+                  "zipcode" : "29405",
+                  "city" : "North Charleston",
+                  "street" : "3841 Leeds Avenue",
+                  "state" : "SC"
+            },
+            "shelter" : "3f9a1c52-7d84-4e1b-a6c3-2b5e8f0d9a41",
+            "petDescription" : null,
+            "familyMembers" : [],
+            "skills" : [
+                  "SHELTER_STAFF",
+                  "RESOURCE_SUPPLIER"
+            ],
+            "firstName" : "Felix",
+            "password" : "FReyesSh3lt3r$",
+            "phoneNumber" : "000-486-9462",
+            "id" : "80f44ca0-d6d0-4c3e-a5b3-4ced91f6fa96",
+            "age" : 41,
+            "username" : "freyes"
       },
       {
             "lastName" : "Doe",
@@ -240,208 +239,5 @@
             "id" : "e9a2c7d5-3b16-4f84-8d0a-1c6e5b9f7a43",
             "age" : 45,
             "username" : "rosad"
-      },
-      {
-            "lastName" : "Carter",
-            "hasPet" : true,
-            "address" : {
-                  "zipcode" : "29401",
-                  "city" : "Charleston",
-                  "street" : "68 Calhoun Street",
-                  "state" : "SC"
-            },
-            "shelter" : null,
-            "petDescription" : null,
-            "familyMembers" : [
-                  {
-                        "name" : "Laura Carter",
-                        "age" : 39
-                  },
-                  {
-                        "name" : "Sophie Carter",
-                        "age" : 9
-                  }
-            ],
-            "skills" : [],
-            "firstName" : "Michael",
-            "password" : "Buddy&Sophie09",
-            "phoneNumber" : "000-843-2271",
-            "id" : "6ed32bc5-5021-44b5-96a6-401abaeb3ec8",
-            "age" : 41,
-            "username" : "sophiesdad"
-      },
-      {
-            "lastName" : "Carter",
-            "hasPet" : true,
-            "address" : {
-                  "zipcode" : "29401",
-                  "city" : "Charleston",
-                  "street" : "68 Calhoun Street",
-                  "state" : "SC"
-            },
-            "shelter" : null,
-            "petDescription" : null,
-            "familyMembers" : [
-                  {
-                        "name" : "Laura Carter",
-                        "age" : 39
-                  },
-                  {
-                        "name" : "Sophie Carter",
-                        "age" : 9
-                  }
-            ],
-            "skills" : [],
-            "firstName" : "Michael",
-            "password" : "Buddy&Sophie09",
-            "phoneNumber" : "000-843-2271",
-            "id" : "908b4a70-03c3-4a20-bcca-c5a2fe7fecb3",
-            "age" : 41,
-            "username" : "sophiesdad"
-      },
-      {
-            "lastName" : "Carter",
-            "hasPet" : true,
-            "address" : {
-                  "zipcode" : "29401",
-                  "city" : "Charleston",
-                  "street" : "68 Calhoun Street",
-                  "state" : "SC"
-            },
-            "shelter" : null,
-            "petDescription" : null,
-            "familyMembers" : [
-                  {
-                        "name" : "Laura Carter",
-                        "age" : 39
-                  },
-                  {
-                        "name" : "Sophie Carter",
-                        "age" : 9
-                  }
-            ],
-            "skills" : [],
-            "firstName" : "Michael",
-            "password" : "Buddy&Sophie09",
-            "phoneNumber" : "000-843-2271",
-            "id" : "420d8755-03bb-47d9-93d8-a71d5f70d715",
-            "age" : 41,
-            "username" : "sophiesdad"
-      },
-      {
-            "lastName" : "Carter",
-            "hasPet" : true,
-            "address" : {
-                  "zipcode" : "29401",
-                  "city" : "Charleston",
-                  "street" : "68 Calhoun Street",
-                  "state" : "SC"
-            },
-            "shelter" : null,
-            "petDescription" : null,
-            "familyMembers" : [
-                  {
-                        "name" : "Laura Carter",
-                        "age" : 39
-                  },
-                  {
-                        "name" : "Sophie Carter",
-                        "age" : 9
-                  }
-            ],
-            "skills" : [],
-            "firstName" : "Michael",
-            "password" : "Buddy&Sophie09",
-            "phoneNumber" : "000-843-2271",
-            "id" : "875d518e-a071-4693-aae7-84bcd03a8fff",
-            "age" : 41,
-            "username" : "sophiesdad"
-      },
-      {
-            "lastName" : "Carter",
-            "hasPet" : true,
-            "address" : {
-                  "zipcode" : "29401",
-                  "city" : "Charleston",
-                  "street" : "68 Calhoun Street",
-                  "state" : "SC"
-            },
-            "shelter" : null,
-            "petDescription" : null,
-            "familyMembers" : [
-                  {
-                        "name" : "Laura Carter",
-                        "age" : 39
-                  },
-                  {
-                        "name" : "Sophie Carter",
-                        "age" : 9
-                  }
-            ],
-            "skills" : [],
-            "firstName" : "Michael",
-            "password" : "Buddy&Sophie09",
-            "phoneNumber" : "000-843-2271",
-            "id" : "f99fcace-6430-4e5f-954d-1e168557f943",
-            "age" : 41,
-            "username" : "sophiesdad"
-      },
-      {
-            "lastName" : "Carter",
-            "hasPet" : true,
-            "address" : {
-                  "zipcode" : "29401",
-                  "city" : "Charleston",
-                  "street" : "68 Calhoun Street",
-                  "state" : "SC"
-            },
-            "shelter" : null,
-            "petDescription" : null,
-            "familyMembers" : [
-                  {
-                        "name" : "Laura Carter",
-                        "age" : 39
-                  },
-                  {
-                        "name" : "Sophie Carter",
-                        "age" : 9
-                  }
-            ],
-            "skills" : [],
-            "firstName" : "Michael",
-            "password" : "Buddy&Sophie09",
-            "phoneNumber" : "000-843-2271",
-            "id" : "60b996ea-d1d3-4b5c-bed3-3d7abf9e1712",
-            "age" : 41,
-            "username" : "sophiesdad"
-      },
-      {
-            "lastName" : "Carter",
-            "hasPet" : true,
-            "address" : {
-                  "zipcode" : "29401",
-                  "city" : "Charleston",
-                  "street" : "68 Calhoun Street",
-                  "state" : "SC"
-            },
-            "shelter" : null,
-            "petDescription" : "Dog named Buddy",
-            "familyMembers" : [
-                  {
-                        "name" : "Laura Carter",
-                        "age" : 39
-                  },
-                  {
-                        "name" : "Sophie Carter",
-                        "age" : 9
-                  }
-            ],
-            "skills" : [],
-            "firstName" : "Michael",
-            "password" : "Buddy&Sophie09",
-            "phoneNumber" : "000-843-2271",
-            "id" : "808ec4b5-dc4d-4c88-8591-71d063f4c0cf",
-            "age" : 41,
-            "username" : "sophiesdad"
       }
 ]

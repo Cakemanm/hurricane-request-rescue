@@ -144,7 +144,7 @@ public class Shelter {
      * @return true if occupancy is below capacity
      */
     public boolean getAvailability(int occupancy, int capacity) {
-        if (capacity >= occupancy) return false;
+        if (capacity <= occupancy) return false;
         return true;
     }
 

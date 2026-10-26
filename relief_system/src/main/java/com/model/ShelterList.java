@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import com.location.Address;
+import com.location.MapTools;
 
 /**
  * Singleton that holds every shelter in the system and searchs through them by
@@ -93,24 +94,51 @@ public class ShelterList {
      * returns every shelter's address
      * @return the shelter's addresses
      */
-    public Address[] getAddresses(){
-        Address[] shelterAddresses = new Address[shelters.size()];
-        for(int i = 0; i < shelters.size(); i++)
-            shelterAddresses[i] = shelters.get(i).getAddress();
+
+    public Address[] getAddresses(ArrayList<Shelter> specificShelters){
+        Address[] shelterAddresses = new Address[specificShelters.size()];
+        for(int i = 0; i < specificShelters.size(); i++)
+            shelterAddresses[i] = specificShelters.get(i).getAddress();
         return shelterAddresses;
     }
 
     /**
+     * Finds the closest shelter to a user
+     * @param user user searching
+     * @param shelters to search from (used because findShelters() needs to search a specific
+     * list it has already created)
+     * @return closest shelter
+     */
+    public Shelter findClosestShelter(User user, ArrayList<Shelter>shelters){
+        try{
+            Address address = MapTools.getInstance().findClosestAddress(user.getAddress(),shelterList.getAddresses(shelters));
+            for(Shelter shelter : shelterList.getShelters()){
+                if(address.equals(shelter.getAddress())){
+                    return shelter;
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("There was a problem finding a shelter.");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    /**
      * Finds the shelters that can take a group if all parameters are met
+     * and lists shelters in order of closest to farthest away from the user searching
      * @param groupSize how many people need space
      * @param needMedicalStaff whether the group needs medical space
      * @param hasPet whether the group has a pet
      * @param limitedMobility whether the group needs disability access
      * @return the shelters that meet every need
      */
-    public ArrayList<Shelter> findShelters(int groupSize, boolean needMedicalStaff, boolean hasPet, boolean limitedMobility){
+    public ArrayList<Shelter> findShelters(User searcher, int groupSize, boolean needMedicalStaff, boolean hasPet, boolean limitedMobility){
         boolean match = false;
-        ArrayList<Shelter> shelterMatches = new ArrayList<>();
+        ArrayList<Shelter> sheltersTemp = new ArrayList<>();
+        ReliefFacade reliefFacade = new ReliefFacade();
         for(Shelter shelter : shelters){
             if(groupSize > shelter.getCapacity() - shelter.getOccupancy())
                 continue;
@@ -133,13 +161,16 @@ public class ShelterList {
                 continue;
 
             match = true;
-            shelterMatches.add(shelter);
+            sheltersTemp.add(shelter);
         }
 
-        ArrayList<Shelter> sheltersTemp = shelterMatches;
-        /*for(int i = 0; i < sheltersTemp.size()){
-            
-        }*/
+        ArrayList<Shelter> shelterMatches = new ArrayList<>();
+        int e = sheltersTemp.size();
+        for(int i = 0; i < e; i++){
+            Shelter shelter = findClosestShelter(searcher, sheltersTemp);
+            shelterMatches.add(shelter);
+            sheltersTemp.remove(shelter);
+        }
         return shelterMatches;
     }
 
