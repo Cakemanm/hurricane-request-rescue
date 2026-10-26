@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import com.location.Address;
+import com.location.MapTools;
 
 /**
  * How the UI interacts with the code, acting as an interface
@@ -304,6 +305,12 @@ public class ReliefFacade {
 
     // -------------- export .txt
 
+    /**
+     * Writes printable trip sheet for volunteer handling a request
+     * @param request the request being handled
+     * @param shelter the shelter the family is going to
+     * @return the file written
+     */
     public File exportTripSheet(Request request, Shelter shelter) {
         User family = request.getRequester();
         User volunteer = request.getResponder() == null ? currentUser : request.getResponder();
@@ -311,6 +318,7 @@ public class ReliefFacade {
         StringBuilder sheet = new StringBuilder();
         sheet.append(line).append("\n Request Rescue Trip Sheet").append(line);
         sheet.append("Volunteer: ").append(request.getStatus().label).append("\n\n");
+        sheet.append("Request Status: ").append(request.getStatus().label).append("\n\n");
 
         sheet.append("WHO TO PICK UP (").append(family.getHouseholdSize()).append(" people").append(family.hasPet() ? " and has 1 pet" : "").append(")\n");
         sheet.append("  - ").append(family.getFullName()).append(", age ").append(family.getAge()).append("\n");
@@ -322,7 +330,8 @@ public class ReliefFacade {
         sheet.append("\nCONTAT\n  ").append(family.getFullName()).append(", ").append(family.getPhoneNumber()).append("\n");
         sheet.append("\nPICKUP ADDRESS\n  ").append(request.getAddress()).append("\n");
 
-        if (request.getRequestTypes().contains(RequestType.MEDICAL_ASSISTANCE)) {
+        boolean medical = request.getRequestTypes().contains(RequestType.MEDICAL_ASSISTANCE);
+        if (medical) {
             sheet.append("\nMEDICAL NOTE\n Medical assistance needed. Bring to a shelter with medical staff.\n");
         }
         if (!request.getComments().isEmpty()) {
@@ -331,8 +340,14 @@ public class ReliefFacade {
                 sheet.append("  - ").append(comment).append("\n");
         }
 
-        //append directions here
-
+        appendDirections(sheet, "DIRECTIONS 1: " + volunteer.getFirstName() + " to the pickup address",
+                volunteer.getAddress(), request.getAddress());
+        appendDirections(sheet, "DIRECTIONS 2: Pickup address to " + shelter.getName(),
+                request.getAddress(), shelter.getAddress());
+        
+        sheet.append("\nSHELTER\n  ").append(shelter.getName()).append("\n  ").append(shelter.getAddress()).append("\n");
+        sheet.append("\n(Route assumed safe and passable)\n");
+        
         File folder = new File(EXPORT_FOLDER);
         folder.mkdir();
         File file = new File(folder, family.getLastName() + "-trip-sheet.txt");
@@ -347,7 +362,22 @@ public class ReliefFacade {
 
     }
 
-    // private void appendDirections(StribBuilder sheet, String title, Address from, Address to) {
-    //     sheet.append("\n").append(title).append(String.format(" (%.1f mi)", getDrivingMiles(from, to))).append("\n");
-    // }
+    /**
+     * Adds a numbered set of driving instructions to trip sheet
+     * @param sheet trip sheet being built
+     * @param title heading for this set of directions
+     * @param from where the drive starts
+     * @param to where the drive ends
+     */
+    private void appendDirections(StringBuilder sheet, String title, Address from, Address to) {
+        sheet.append("\n").append(title).append("\n");
+        sheet.append("  From: ").append(from).append("\n  To:  ").append(to).append("\n");
+        try {
+            String[] steps = MapTools.getInstance().getDrivingDirections(from, to);
+            for (int i = 0; i < steps.length; i ++)
+                sheet.append(String.format("  %2d. %s%n", i + 1, steps[i]));
+        } catch (Exception e) {
+            sheet.append("  Diretions Unavilable: ").append(e.getMessage()).append("\n");
+        }
+    }
 }
