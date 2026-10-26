@@ -111,7 +111,7 @@ public class ReliefUI {
             request,
             chosenShelter,
             user.getAddress(),
-            "scenario.txt");
+            "exports\\scenario.txt");
 
             System.out.println("Transportation plan exported.");
         } catch (Exception e) {
