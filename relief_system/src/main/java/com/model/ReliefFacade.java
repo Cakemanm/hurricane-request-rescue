@@ -44,7 +44,6 @@ public class ReliefFacade {
     //     feed.addRequest(request);
     // }
 
-
     public void submitRequest(User requester, Request request, String comments) {
         request.setRequester(requester);
         request.addComment(comments);
@@ -129,7 +128,6 @@ public class ReliefFacade {
         return feed;
 
     }
-
 
     public void createAccount(String username, String firstName, String lastName, String phoneNumber, Address address, String password,
         ArrayList<FamilyMember> familyMembers,boolean hasPet, int age, String petDescription){

@@ -3,7 +3,6 @@ package com.model;
 import java.util.ArrayList;
 import java.util.UUID;
 import com.location.Address;
-
 public class User {
     
     private UUID id;
