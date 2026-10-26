@@ -113,7 +113,7 @@ public class Request {
                 + " at " + address.toString() + "\n";
         for (String comment : comments)
             returnString += comment + " ";
-        returnString += "\nRequest Status: " + status
+        returnString += "\nRequest Status: " + status.label
                 + (responder == null ? " | Currently Unfulfilled" : " | Responder: " + responder.getFullName());
         return returnString;
     }

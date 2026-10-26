@@ -316,11 +316,11 @@ public class ReliefFacade {
         User volunteer = request.getResponder() == null ? currentUser : request.getResponder();
         String line = "=".repeat(60);
         StringBuilder sheet = new StringBuilder();
-        sheet.append(line).append("\n REQUEST RESCUE TRIP SHEET").append(line);
+        sheet.append(line).append("\n REQUEST RESCUE TRIP SHEET\n").append(line);
         sheet.append("Volunteer: ").append(volunteer.getFullName()).append(", ").append(volunteer.getPhoneNumber()).append("\n");
         sheet.append("Request Status: ").append(request.getStatus().label).append("\n\n");
 
-        sheet.append("WHO TO PICK UP (").append(family.getHouseholdSize()).append(" people").append(family.hasPet() ? " and has 1 pet" : "").append(")\n");
+        sheet.append("WHO TO PICK UP (").append(family.getHouseholdSize()).append(" people").append(family.hasPet() ? " and 1 pet" : "").append(")\n");
         sheet.append("  - ").append(family.getFullName()).append(", age ").append(family.getAge()).append("\n");
         for (FamilyMember member : family.getFamilyMembers())
             sheet.append("  - ").append(member.getName()).append(", age ").append(member.getAge()).append("\n");
