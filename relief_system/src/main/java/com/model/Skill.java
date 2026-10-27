@@ -1,5 +1,13 @@
 package com.model;
 
+/**
+ * @author Gracie Bergmann
+ * @author Jake McNulty
+ * @author Carter Medlin
+ * @author Abigail Stalker
+ * Skill
+ * Enum for skills
+ */
 public enum Skill {
     CAN_COOK("Can cook"),
     HAS_POWER_TOOLS("Has power tools"),
@@ -14,6 +22,9 @@ public enum Skill {
     MECHANIC("Mechanic"),
     RESOURCE_SUPPLIER("Resource supplier");
 
+    /**
+     * Constructor with human-readable labels
+     */
     public final String label;
     private Skill(String label){
         this.label = label;

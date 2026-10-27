@@ -14,6 +14,9 @@ import org.json.simple.parser.JSONParser;
 import com.location.Address;
 
 /**
+ * @author Gracie Bergmann
+ * @author Jake McNulty
+ * @author Carter Medlin
  * @author Abigail Stalker
  * 
  * Loads application model objects from the JSON files specified in
