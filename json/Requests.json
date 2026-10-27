@@ -152,6 +152,7 @@
                   "LANDSLIDE",
                   "TRANSPORTATION"
             ]
+<<<<<<< HEAD
       },
       {
             "requester" : "7975fbe6-77a0-433e-bbd8-c87633432267",
@@ -172,5 +173,7 @@
             "requestTypes" : [
                   "NO_TRANSLATOR"
             ]
+=======
+>>>>>>> carter-branch
       }
 ]
