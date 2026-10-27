@@ -1,6 +1,7 @@
 package com.model;
 
 import java.io.FileWriter;
+import java.net.URI;
 import java.util.ArrayList;
 
 import org.json.simple.JSONArray;
@@ -237,5 +238,19 @@ public class DataWriter extends DataConstants {
         }
         writeFile(HURRICANE_FILE_NAME, hurricanesJSON);
     }
+
+    private static String getFileWritingPath(String PATH_NAME, String JUNIT_PATH_NAME) {
+		try {
+			if(isJUnitTest()){
+				URI url = Database.class.getResource(JUNIT_PATH_NAME).toURI();
+				return url.getPath();
+			} else {
+				return PATH_NAME;
+			}
+		} catch(Exception e){
+			System.out.println("Difficulty getting resource path");
+			return "";
+		}
+	}
 
 }

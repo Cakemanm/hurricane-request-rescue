@@ -152,5 +152,25 @@
                   "LANDSLIDE",
                   "TRANSPORTATION"
             ]
+      },
+      {
+            "requester" : "7975fbe6-77a0-433e-bbd8-c87633432267",
+            "address" : {
+                  "zipcode" : "29445",
+                  "city" : "Goost Creek",
+                  "street" : "325 Old Moncks Corner Road",
+                  "state" : "SC"
+            },
+            "comments" : [
+                  "Our neighbors are only able to speak spanish and need help understanind the directions for evacuation"
+            ],
+            "responder" : null,
+            "requestPriority" : 6,
+            "id" : "145c1343-adf2-4493-8479-77d748fc2a3e",
+            "reportedUrgency" : 5,
+            "status" : "PENDING",
+            "requestTypes" : [
+                  "NO_TRANSLATOR"
+            ]
       }
 ]

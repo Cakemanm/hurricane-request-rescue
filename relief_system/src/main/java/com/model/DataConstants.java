@@ -89,4 +89,13 @@ public class DataConstants {
     protected static final String HURRICANE_EXPECTED_CONDITIONS = "expectedConditions";
     protected static final String HURRICANE_SIZE = "size";
     protected static final String HURRICANE_IS_ACTIVE = "isActive";
+
+    public static boolean isJUnitTest() {  
+		for (StackTraceElement element : Thread.currentThread().getStackTrace()) {
+		  if (element.getClassName().startsWith("org.junit.")) {
+			return true;
+		  }           
+		}
+		return false;
+	  }
 }
