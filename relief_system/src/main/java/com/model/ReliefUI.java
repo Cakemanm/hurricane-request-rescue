@@ -39,10 +39,8 @@ public class ReliefUI {
         ArrayList<FamilyMember> family = new ArrayList<>();
         family.add(new FamilyMember("Laura Carter",39));
         family.add(new FamilyMember("Sophie Carter",9));
-        /* 
-        Address cAddress = new Address("1 Vendue Range", "Charleston", "SC", "29401");
-        User michael = reliefFacade.createAccount("sophiesdad","Michael","Carter","000-843-2271", cAddress,"Buddy&Sophie09",null,family,true, 41, "Dog named Buddy");
-*/
+
+
         Address address = new Address("68 Calhoun Street","Charleston","SC","29401");
         User michael = reliefFacade.createAccount("sophiesdad","Michael","Carter","000-843-2271",address,"Buddy&Sophie09",null,family,true, 41, "Dog named Buddy");
         if (michael == null) {

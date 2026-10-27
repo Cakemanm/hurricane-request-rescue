@@ -89,6 +89,12 @@ public class ReliefFacade {
         return ShelterList.getInstance().getShelters();
     }
 
+    /**
+     * Registers the current user at the named shelter and saves the shelter and user lists.
+     * If the user belongs to another shelter, removes them from that shelter first.
+     * @param shelterName the name of the shelter to join
+     * @return the selected shelter, or {@code null} if no user is logged in or the shelter is not found
+     */
     public Shelter signUpForShelter(String shelterName) {
         if (currentUser == null) return null;
         Shelter shelter = ShelterList.getInstance().getShelter(shelterName);
@@ -106,7 +112,12 @@ public class ReliefFacade {
 
 
 
-
+    /**
+     * Assigns a volunteer to a pending request and changes its status to help on the way.
+     * @param request the request to assign
+     * @param user the volunteer responding to the request
+     * @return {@code true} if the request was pending and was updated; {@code false} otherwise
+     */
     public boolean dispatchVolunteer(Request request, User user) {
         if (request.getStatus() == RequestStatus.PENDING) {
             request.updateStatus(RequestStatus.HELP_ON_THE_WAY, user);
@@ -115,21 +126,49 @@ public class ReliefFacade {
         return false;
     }
 
+    /**
+     * Restocks a shelter with the specified resource. Does nothing if the shelter is {@code null}.
+     * @param shelter the shelter to restock
+     * @param type the type of resource to add
+     * @param quantity the quantity to add
+     */
     public void restockShelter(Shelter shelter, ResourceType type, int quantity) {
     if (shelter != null) {
         shelter.restock(type, quantity);
     }
     }
 
+    /**
+     * Retrieves the hurricanes loaded by this facade.
+     * @return the list of hurricanes
+     */
     public ArrayList<Hurricane> getStormStatus() {
         return hurricane;
     }
 
+    /**
+     * Retrieves the relief request feed.
+     * @return the request feed used by this facade
+     */
     public RequestFeed browseRequests() {
         return feed;
 
     }
 
+    /**
+     * Creates an account without an assigned shelter and attempts to log the user in.
+     * Prints a message and returns without creating an account if the username is taken.
+     * @param username the username for the new account
+     * @param firstName the user's first name
+     * @param lastName the user's last name
+     * @param phoneNumber the user's phone number
+     * @param address the user's address
+     * @param password the password for the new account
+     * @param familyMembers the user's family members
+     * @param hasPet whether the user has a pet
+     * @param age the user's age
+     * @param petDescription a description of the user's pet
+     */
     public void createAccount(String username, String firstName, String lastName, String phoneNumber, Address address, String password,
         ArrayList<FamilyMember> familyMembers,boolean hasPet, int age, String petDescription){
             UserList userList = UserList.getInstance();
@@ -142,6 +181,21 @@ public class ReliefFacade {
     }
 
 
+        /**
+     * Creates and saves an account with the specified shelter, then attempts to log the user in.
+     * @param username the username for the new account
+     * @param firstName the user's first name
+     * @param lastName the user's last name
+     * @param phoneNumber the user's phone number
+     * @param address the user's address
+     * @param password the password for the new account
+     * @param shelter the shelter assigned to the user
+     * @param familyMembers the user's family members
+     * @param hasPet whether the user has a pet
+     * @param age the user's age
+     * @param petDescription a description of the user's pet
+     * @return the newly created user
+     */
     public User createAccount(String username, String firstName, String lastName, String phoneNumber, Address address, String password, Shelter shelter,
         ArrayList<FamilyMember> familyMembers,boolean hasPet, int age, String petDescription){
             UserList userList = UserList.getInstance();
@@ -152,6 +206,13 @@ public class ReliefFacade {
             return user;
     }
 
+    /**
+     * Attempts to log in using the supplied credentials.
+     * Sets the current user when a matching account is found.
+     * @param username the account username
+     * @param password the account password
+     * @return {@code true} if a matching account is found; {@code false} otherwise
+     */
     public boolean login(String username, String password) {
         UserList userList = UserList.getInstance();
         User user = userList.getUser(username, password);
@@ -162,6 +223,15 @@ public class ReliefFacade {
         return false;
     }
 
+
+    /**
+     * Creates a pending request for the current user, calculates its priority, and adds it to the feed.
+     * @param requestTypes the types of assistance requested
+     * @param address the address where assistance is needed
+     * @param reportedUrgency the urgency reported by the user
+     * @param comments additional information about the request
+     * @return the created request, or {@code null} if no user is logged in or no request types are provided
+     */
     public Request createRequest(ArrayList<RequestType> requestTypes, Address address,
         int reportedUrgency, ArrayList<String> comments) {
             if (currentUser == null || requestTypes == null || requestTypes.isEmpty()) {
@@ -174,6 +244,11 @@ public class ReliefFacade {
             return request;
     }
 
+    /**
+     * Searches the request feed and prints the matching requests.
+     * @param key the search term passed to the request feed
+     * @return the matching requests
+     */
     public ArrayList<Request> searchRequests(String key){
         System.out.println("\nSearch results for: " + key+"\n");
         ArrayList<Request> requests = feed.searchRequests(key);
@@ -182,6 +257,11 @@ public class ReliefFacade {
         return requests;
     }
 
+    /**
+     * Finds and prints requests relevant to the specified user.
+     * @param user the user for whom to find relevant requests
+     * @return the relevant requests returned by the feed
+     */
     public ArrayList<Request> findRequests(User user){
         System.out.println("\n\nFindng relevant requests:\n");
         ArrayList<Request> requests = feed.findRelevantRequests(user);
@@ -190,12 +270,19 @@ public class ReliefFacade {
         return requests;
     }
 
+    /**
+     * Prints all requests in the feed.
+     */
     public void displayRequests(){
         System.out.println("\n\nAll Requests:\n");
         for(Request request : feed.getRequests())
             System.out.println(request.toString() + "\n");
     }
 
+    /**
+     * Prints requests whose address is the same object as the specified address.
+     * @param address the address object to match
+     */
     public void findRequestsByLocation(Address address){
         System.out.println("\n\nRequests for: "+ address.toString() +"\n");
         boolean match = false;
@@ -206,6 +293,13 @@ public class ReliefFacade {
             }
         }
     }
+
+    /**
+     * Finds the closest request address to the user's address and returns a request at that address.
+     * Prints an error if the lookup fails.
+     * @param user the user whose address is the starting location
+     * @return a request at the closest address, or {@code null} if none is found or an error occurs
+     */
     public Request findClosestRequest(User user){
         try{
             Address address = MapTools.getInstance().findClosestAddress(user.getAddress(),feed.getAddresses());
@@ -222,10 +316,22 @@ public class ReliefFacade {
         return null;
     }
 
+    /**
+     * Finds the closest shelter to the specified user using the shelter list.
+     * @param user the user for whom to find a shelter
+     * @return the result of the shelter list's closest-shelter lookup
+     */
     public Shelter findClosestShelter(User user){
         return shelterList.findClosestShelter(user, shelterList.getShelters());
     }
 
+    /**
+     * Finds the closest address among the supplied requests and returns the first request in the feed at that address.
+     * Prints an error if the lookup fails.
+     * @param user the user whose address is the starting location
+     * @param requests the requests whose addresses are considered
+     * @return a request from the feed at the closest address, or {@code null} if none is found or an error occurs
+     */
     public Request findClosestRequest(User user, ArrayList<Request> requests){
         try{
             Address[] addresses = new Address[requests.size()];
@@ -245,6 +351,9 @@ public class ReliefFacade {
         return null;
     }
 
+    /**
+     * Prints all requests in the feed that have no assigned responder.
+     */
     public void getUnfulfilledRequests(){
         System.out.println("\n\nUnfulfilled Requests:\n");
         for(Request request : feed.getRequests()){
@@ -253,6 +362,9 @@ public class ReliefFacade {
         }
     }
 
+    /**
+     * Saves the shelter list, user list, and request feed, clears the current user, and prints a logout message.
+     */
     public void logout() {
         ShelterList.getInstance().save();
         UserList.getInstance().save();
@@ -261,6 +373,10 @@ public class ReliefFacade {
         System.out.println("Logout successful");
     }
 
+    /**
+     * Retrieves the user currently logged in.
+     * @return the current user, or {@code null} if no user is logged in
+     */
     public User getCurrentUser() {
         return currentUser;
     }
@@ -288,6 +404,13 @@ public class ReliefFacade {
 
     // --------export to txt
 
+    /**
+     * Exports the requester's household, contact information, pickup address, and assistance notes to a text trip sheet.
+     * Writes the file in {@link #EXPORT_FOLDER}, using the requester's last name in the filename.
+     * @param request the request to include in the trip sheet
+     * @param shelter the shelter parameter, currently unused
+     * @return the exported file, or {@code null} if an I/O error occurs
+     */
     public File exportTripSheet(Request request, Shelter shelter) {
         User family = request.getRequester();
         User volunteer = request.getResponder() == null ? currentUser : request.getResponder();
