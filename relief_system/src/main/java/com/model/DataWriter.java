@@ -28,8 +28,10 @@ public class DataWriter extends DataConstants {
      * @param fileName the path to write to
      * @param json the records to write
      */
-    private static void writeFile(String fileName, JSONArray json) {
-        try (FileWriter writer = new FileWriter(fileName)) {
+    private static void writeFile(String fileName, String jsonFileName, JSONArray json) {
+        try {
+            String path = getFileWritingPath(fileName, jsonFileName);
+            FileWriter writer = new FileWriter(path);
             writer.write(jsonPrint(json.toJSONString()));
         } catch (Exception e) {
             e.printStackTrace();
@@ -127,7 +129,7 @@ public class DataWriter extends DataConstants {
 
             peopleJSON.add(personJSON);
         }
-        writeFile(USER_FILE_NAME, peopleJSON);
+        writeFile(USER_FILE_NAME, USER_JSON_NAME ,peopleJSON);
     }
 
     /**
@@ -172,7 +174,7 @@ public class DataWriter extends DataConstants {
 
             sheltersJSON.add(shelterJSON);
         }
-        writeFile(SHELTER_FILE_NAME, sheltersJSON);
+        writeFile(SHELTER_FILE_NAME, SHELTER_JSON_NAME ,sheltersJSON);
     }
 
     /**
@@ -213,7 +215,7 @@ public class DataWriter extends DataConstants {
 
             requestsJSON.add(requestJSON);
         }
-        writeFile(REQUEST_FILE_NAME, requestsJSON);
+        writeFile(REQUEST_FILE_NAME, REQUEST_JSON_NAME,requestsJSON);
     }
 
     /**
@@ -236,7 +238,7 @@ public class DataWriter extends DataConstants {
             hurricaneJSON.put(HURRICANE_IS_ACTIVE, hurricane.getActive());
             hurricanesJSON.add(hurricaneJSON);
         }
-        writeFile(HURRICANE_FILE_NAME, hurricanesJSON);
+        writeFile(HURRICANE_FILE_NAME, HURRICANE_JSON_NAME,hurricanesJSON);
     }
 
     private static String getFileWritingPath(String PATH_NAME, String JUNIT_PATH_NAME) {
