@@ -48,7 +48,7 @@ public class DataLoader extends DataConstants {
     public static ArrayList<User> getUsers(){
     ArrayList<User> users = new ArrayList<User>();
     try{
-        FileReader reader = new FileReader(USER_FILE_NAME);
+        BufferedReader reader = getReaderFromFile(USER_FILE_NAME, USER_JSON_NAME);
         JSONArray peopleJSON = (JSONArray) new JSONParser().parse(reader);
 
         for(int i = 0; i < peopleJSON.size(); i++){
@@ -122,7 +122,7 @@ public class DataLoader extends DataConstants {
     public static ArrayList<Shelter> getShelters(){             
         ArrayList<Shelter> shelters = new ArrayList();
         try{
-            FileReader reader = new FileReader(SHELTER_FILE_NAME);
+            BufferedReader reader = getReaderFromFile(SHELTER_FILE_NAME, SHELTER_JSON_NAME);
             JSONArray placesJSON = (JSONArray) new JSONParser().parse(reader);
             for(int i = 0; i < placesJSON.size(); i++){
                 JSONObject placeJSON = (JSONObject)placesJSON.get(i);
@@ -185,7 +185,7 @@ public class DataLoader extends DataConstants {
     public static ArrayList<Request> getRequests(){
         ArrayList<Request> requests = new ArrayList();
         try{
-            FileReader reader = new FileReader(REQUEST_FILE_NAME);
+            BufferedReader reader = getReaderFromFile(REQUEST_FILE_NAME, REQUEST_JSON_NAME);
             JSONArray objectsJSON = (JSONArray) new JSONParser().parse(reader);
             for(int i = 0; i < objectsJSON.size(); i++){
                 JSONObject objectJSON = (JSONObject)objectsJSON.get(i);
@@ -252,7 +252,7 @@ public class DataLoader extends DataConstants {
     public static ArrayList<Hurricane> hurricanes = new ArrayList();
     public static ArrayList<Hurricane> getHurricanes(){
         try{
-            FileReader reader = new FileReader(HURRICANE_FILE_NAME);
+            BufferedReader reader = getReaderFromFile(HURRICANE_FILE_NAME, HURRICANE_JSON_NAME);
             JSONArray stormArrayJSON = (JSONArray) new JSONParser().parse(reader);
             JSONObject stormJSON = (JSONObject)stormArrayJSON.get(0);
 

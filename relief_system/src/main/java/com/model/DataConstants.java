@@ -12,6 +12,7 @@ package com.model;
 public class DataConstants {
     //User constants
     protected static final String USER_FILE_NAME = "json\\Users.json";
+    protected static final String USER_JSON_NAME = "Users.json";
     protected static final String USER_ID = "id";
     protected static final String USER_USERNAME = "username";
     protected static final String USER_FIRST_NAME = "firstName";
@@ -34,6 +35,7 @@ public class DataConstants {
 
     //Shelter constants
     protected static final String SHELTER_FILE_NAME = "json\\Shelters.json";
+    protected static final String SHELTER_JSON_NAME = "Shelters.json";
     protected static final String SHELTER_ID = "id";
     protected static final String SHELTER_NAME = "name";
     protected static final String SHELTER_AVAILABILITY = "availability";
@@ -55,6 +57,7 @@ public class DataConstants {
 
     //Request constants
     protected static final String REQUEST_FILE_NAME = "json\\Requests.json";
+    protected static final String REQUEST_JSON_NAME = "Requests.json";
     protected static final String REQUEST_PRIORITY = "requestPriority";
     protected static final String REQUEST_STATUS = "status";
     protected static final String REQUEST_ADDRESS = "address";
@@ -71,6 +74,7 @@ public class DataConstants {
 
     //Location constants
     protected static final String LOCATION_FILE_NAME = "json\\Locations.json";
+    protected static final String LOCATION_JSON_NAME = "Locations.json";
     protected static final String LOCATION_ID = "id";
     protected static final String LOCATION_STATE = "state";
     protected static final String LOCATION_CITY = "city";
@@ -81,6 +85,7 @@ public class DataConstants {
 
     //Hurricane constants
     protected static final String HURRICANE_FILE_NAME = "json\\Hurricane.json";
+    protected static final String HURRICANE_JSON_NAME = "Hurricane.json";
     protected static final String HURRICANE_ID = "id";
     protected static final String HURRICANE_NAME = "name";
     protected static final String HURRICANE_CATEGORY = "category";
