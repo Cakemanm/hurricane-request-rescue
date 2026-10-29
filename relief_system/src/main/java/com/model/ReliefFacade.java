@@ -63,25 +63,6 @@ public class ReliefFacade {
     }
 
     /**
-     * Allows a victim to sign up as a occupant of a shelter
-     * @param user - user to be signed up
-     * @return
-     */
-    public Shelter signUpVictimForShelter(User user) {
-    ArrayList<Shelter> shelters = ShelterList.getInstance().getShelters();
-        for (Shelter shelter : shelters) {
-            if (shelter.isAvailable() && shelter.getOccupancy() < shelter.getCapacity()) {
-                shelter.addOccupant();
-                user.setShelter(shelterList.getShelterById(shelter.getId()));
-                shelterList.save();
-                UserList.getInstance().save();
-                return shelter;
-            }
-        }
-        return null;
-    }
-
-    /**
      * Retrieves list of shelters
      * @return
      */
@@ -109,8 +90,6 @@ public class ReliefFacade {
         UserList.getInstance().save();
         return shelter;
     }
-
-
 
     /**
      * Assigns a volunteer to a pending request and changes its status to help on the way.
@@ -154,32 +133,6 @@ public class ReliefFacade {
         return feed;
 
     }
-
-    /**
-     * Creates an account without an assigned shelter and attempts to log the user in.
-     * Prints a message and returns without creating an account if the username is taken.
-     * @param username the username for the new account
-     * @param firstName the user's first name
-     * @param lastName the user's last name
-     * @param phoneNumber the user's phone number
-     * @param address the user's address
-     * @param password the password for the new account
-     * @param familyMembers the user's family members
-     * @param hasPet whether the user has a pet
-     * @param age the user's age
-     * @param petDescription a description of the user's pet
-     */
-    public void createAccount(String username, String firstName, String lastName, String phoneNumber, Address address, String password,
-        ArrayList<FamilyMember> familyMembers,boolean hasPet, int age, String petDescription){
-            UserList userList = UserList.getInstance();
-            if (userList.getUser(username) != null) {
-                System.out.println("That username is already taken");
-                return;
-            }
-            userList.addUser(new User(UUID.randomUUID(), username, firstName, lastName, phoneNumber, address, password, null, familyMembers, hasPet, age, petDescription));
-            login(username, password);
-    }
-
 
         /**
      * Creates and saves an account with the specified shelter, then attempts to log the user in.
@@ -277,21 +230,6 @@ public class ReliefFacade {
         System.out.println("\n\nAll Requests:\n");
         for(Request request : feed.getRequests())
             System.out.println(request.toString() + "\n");
-    }
-
-    /**
-     * Prints requests whose address is the same object as the specified address.
-     * @param address the address object to match
-     */
-    public void findRequestsByLocation(Address address){
-        System.out.println("\n\nRequests for: "+ address.toString() +"\n");
-        boolean match = false;
-        for(Request request : feed.getRequests()){
-            if(request.getAddress() == address){
-                System.out.println(request.toString() + "\n");
-                match = true;
-            }
-        }
     }
 
     /**
