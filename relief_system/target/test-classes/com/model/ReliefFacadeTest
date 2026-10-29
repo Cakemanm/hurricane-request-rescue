@@ -1,0 +1,55 @@
+package com.model;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+/** Test for ReliefFacade
+ * 
+ * Tested by: Gracie Bergmann
+ * team contributions:
+ * <Gracie>: wrote bulk of ReleifFacade/ finished issue #42-#47
+ * <Abbigail>:Fixed up Relieffacade
+ * 
+ * AI use:
+ * 
+ * +---------------------------+---------------------------+
+ * | Test                      | Reasoning                 |
+ * +---------------------------+---------------------------+
+ * |
+ * |
+ * |
+ * |
+ * |
+ * |
+ * |
+ * |
+ * |
+ * |
+ * |
+ * |
+ * |
+ * +---------------------------+---------------------------+
+ */
+
+
+public class ReliefFacadeTest {
+
+    private ReliefFacade facade;
+
+    @BeforeEach
+    public void setUp()
+    {
+        facade = new ReliefFacade();
+    }
+    @Test
+    public void login_withUnknownUsername_returnsFalse(){
+        boolean result = facade.login("noSuchUser", "WrongPassword123");
+        assertFalse(result);
+        assertNull(facade.getCurrentUser());
+    }
+
+
+    
+}
