@@ -1,0 +1,20 @@
+[
+  {
+    "zipcode" : 39507,
+  "address" : null,
+  "city" : "Gulfport",
+  "latitude" : 0.0,
+  "id" : "bdc1366f-ba6e-4b7d-9c73-009770b70d0b",
+  "state" : "MS",
+  "longitude" : 0.0
+   },
+ {
+    "zipcode" : 39503,
+  "address" : null,
+  "city" : "Gulfport",
+  "latitude" : 0.0,
+  "id" : "baa5f8b6-2e90-4084-8376-50e9e3b6ac6f",
+  "state" : "MS",
+  "longitude" : 0.0
+   }
+]

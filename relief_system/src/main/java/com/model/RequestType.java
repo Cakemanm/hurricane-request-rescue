@@ -1,5 +1,16 @@
 package com.model;
 
+/**
+ * @author Gracie Bergmann
+ * @author Jake McNulty
+ * @author Carter Medlin
+ * @author Abigail Stalker
+ * 
+ * Defines the types of assistance that can be requested.
+ *
+ * <p>Each type has a display label, an urgency value used to calculate
+ * request priority, and a skill used to match requests with responders.</p>
+ */
 public enum RequestType {
     BRUISED("Bruised",3,Skill.CAN_PROVIDE_MEDICAL_ASSISTANCE),
     BLEEDING("Bleeding",6,Skill.CAN_PROVIDE_MEDICAL_ASSISTANCE),
@@ -18,6 +29,13 @@ public enum RequestType {
     TRANSPORTATION("Transporation", 8,Skill.TRANSPORTATION),
     MEDICAL_ASSISTANCE("Medical Assistance", 9,Skill.CAN_PROVIDE_MEDICAL_ASSISTANCE);
 
+    /**
+     * Creates a request type with a label, urgency value, and matching skill.
+     *
+     * @param label the human-readable request type label
+     * @param urgency the urgency value used in priority calculations
+     * @param skill the skill used to identify suitable responders
+     */
     public final String label;
     public final int urgency;
     public final Skill skill;
