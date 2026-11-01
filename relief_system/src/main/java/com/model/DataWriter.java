@@ -29,9 +29,8 @@ public class DataWriter extends DataConstants {
      * @param json the records to write
      */
     private static void writeFile(String fileName, String jsonFileName, JSONArray json) {
-        try {
-            String path = getFileWritingPath(fileName, jsonFileName);
-            FileWriter writer = new FileWriter(path);
+        String path = getFileWritingPath(fileName, jsonFileName);
+        try (FileWriter writer = new FileWriter(path);) {
             writer.write(jsonPrint(json.toJSONString()));
         } catch (Exception e) {
             e.printStackTrace();
@@ -244,7 +243,7 @@ public class DataWriter extends DataConstants {
     private static String getFileWritingPath(String PATH_NAME, String JUNIT_PATH_NAME) {
 		try {
 			if(isJUnitTest()){
-				URI url = DataWriter.class.getResource(JUNIT_PATH_NAME).toURI();
+				URI url = DataWriter.class.getResource("/" + JUNIT_PATH_NAME).toURI();
 				return url.getPath();
 			} else {
 				return PATH_NAME;
