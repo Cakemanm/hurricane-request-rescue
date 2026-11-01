@@ -163,6 +163,9 @@ public class RequestFeed {
      * @return the matching requests ordered by proximity, or an empty list if no requests match
      */
     public ArrayList<Request> findRelevantRequests(User user){
+        if(user == null){
+            System.out.println("Please log in to find requests relevant to your profile.");
+        }
         ArrayList<Request> resultsTemp = new ArrayList<>();
         ArrayList<Request> others = new ArrayList<>();
         for(Request request : requests){
