@@ -100,4 +100,17 @@ public class DataLoaderTest {
         boolean availability = shelters.get(0).getAvailability(250, 300);
         assertTrue(availability);
     }
+
+    @Test 
+    public void testLoadingShelterWithMissingID(){
+        ArrayList<Shelter> invalidShelters = new ArrayList<>();
+        Address address = new Address("1250 Main St", "Columbia", "SC", "29205");
+
+        invalidShelters.add(new Shelter("Invalid Shelter", true, null, address, null, 10, 100, null));
+        DataWriter.saveShelters(invalidShelters);
+
+        assertThrows(IllegalStateException.class, () -> {
+            DataLoader.getShelters();
+        });
+    }
 }
