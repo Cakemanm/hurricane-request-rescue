@@ -112,15 +112,16 @@ public class ShelterList {
     public Shelter findClosestShelter(User user, ArrayList<Shelter>shelters){
         try{
             Address address = MapTools.getInstance().findClosestAddress(user.getAddress(),shelterList.getAddresses(shelters));
-            for(Shelter shelter : shelterList.getShelters()){
+            for(Shelter shelter : shelters){
                 if(address.equals(shelter.getAddress())){
                     return shelter;
                 }
             }
-
-        } catch (Exception e) {
-            System.out.println("There was a problem finding a shelter.");
-            e.printStackTrace();
+        }
+        catch (Exception e) {
+            throw new IllegalStateException(
+            "Unable to order requests by driving time", e
+        );
         }
         return null;
     }
@@ -136,9 +137,9 @@ public class ShelterList {
      * @return the shelters that meet every need
      */
     public ArrayList<Shelter> findShelters(User searcher, int groupSize, boolean needMedicalStaff, boolean hasPet, boolean limitedMobility){
-        boolean match = false;
         ArrayList<Shelter> sheltersTemp = new ArrayList<>();
-        ReliefFacade reliefFacade = new ReliefFacade();
+        if(groupSize <= 0)
+            return null;
         for(Shelter shelter : shelters){
             if(groupSize > shelter.getCapacity() - shelter.getOccupancy())
                 continue;
@@ -160,7 +161,6 @@ public class ShelterList {
             if(limitedMobility && !accessible)
                 continue;
 
-            match = true;
             sheltersTemp.add(shelter);
         }
 

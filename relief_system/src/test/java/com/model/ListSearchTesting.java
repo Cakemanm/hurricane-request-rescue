@@ -10,6 +10,20 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.UUID;
 
+/*
++-------------------------------------+-------------------------------------------------------------------+
+| Test                                | Reasoning                                                         |
++-------------------------------------+-------------------------------------------------------------------+
+| requestType matching                |     basic request matching using one matching request type        |
+| capitalization differences          |     a successful search should ignore capitalization              |
+| no duplicates                       |     if a request includes the keyword multiple times, there       |
+|                                     |     shouldn't be duplicates                                       |
+| excluding requests that don't match |     it shouldn't return requests without the keyword              |
+| matches disjointed keywords         |     words shouldn't have to be in the exact order they're searched|
+|                                     |     in if a request contains all keywords                         |
++-------------------------------------+-------------------------------------------------------------------+
+ */
+
 public class ListSearchTesting {
     private RequestFeed feed;
 
@@ -38,6 +52,17 @@ public class ListSearchTesting {
         assertTrue(countRequest(
                 results,
                 "6e39c420-7ba8-4f61-92d3-805ca1b74e96"
+        ) > 0);
+    }
+
+    @Test 
+    public void searchRequests_differentCapitalization(){
+        
+        ArrayList<Request> results = feed.searchRequests("transportation");
+        assertNotNull(results);
+        assertTrue(countRequest(
+            results,
+            "6e39c420-7ba8-4f61-92d3-805ca1b74e96"
         ) > 0);
     }
 

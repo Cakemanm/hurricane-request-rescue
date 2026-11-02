@@ -26,7 +26,7 @@ public enum RequestType {
     FLOOD("Flood",6,Skill.BOAT_OPERATOR),
     LANDSLIDE("Landslide",7,Skill.HEAVY_MACHINERY_OPERATOR),
     RESOURCE("Resource",5,Skill.RESOURCE_SUPPLIER),
-    TRANSPORTATION("Transporation", 8,Skill.TRANSPORTATION),
+    TRANSPORTATION("Transportation", 8,Skill.TRANSPORTATION),
     MEDICAL_ASSISTANCE("Medical Assistance", 9,Skill.CAN_PROVIDE_MEDICAL_ASSISTANCE);
 
     /**
