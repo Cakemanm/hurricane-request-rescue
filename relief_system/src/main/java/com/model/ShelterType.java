@@ -1,11 +1,17 @@
 package com.model;
 
+/**
+ * @author Gracie Bergmann
+ * @author Jake McNulty
+ * @author Carter Medlin
+ * @author Abigail Stalker
+ * ShelterType
+ * An enum for shelter types
+ */
 public enum ShelterType {
-    COMMUNITY_CENTRAL,
+    COMMUNITY_CENTER,
     SCHOOL,
     HOSPITAL,
-    BUNKER,
-    HOME,
     PET_FRIENDLY,
     DISABILITY_ACCESSIBLE,
     NO_PETS,
