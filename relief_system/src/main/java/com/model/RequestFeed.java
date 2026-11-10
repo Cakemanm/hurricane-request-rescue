@@ -124,26 +124,25 @@ public class RequestFeed {
     public ArrayList<Request> searchRequests(String key){
         ArrayList<Request> results = new ArrayList<>();
         String lower = key.toLowerCase();
-        for(Request request : requests){
+        request: for(Request request : requests){
             if(request.getStatus().equals(RequestStatus.COMPLETED) || request.getStatus().equals(RequestStatus.HELP_ON_THE_WAY))
                 continue;
             for(RequestType type : request.getRequestTypes()){
                 if(type.label.toLowerCase().contains(lower)){
                     results.add(request);
-                    continue;
+                    continue request;
                 }
                     
             }
             for(String comment : request.getComments()){
                 if(comment.toLowerCase().contains(lower)){
                     results.add(request);  
-                    continue;
+                    continue request;
                 }
                     
             }
         }
-        if(results.size() == 0)
-            return null;
+
         return results;
     }
 
@@ -165,6 +164,7 @@ public class RequestFeed {
     public ArrayList<Request> findRelevantRequests(User user){
         if(user == null){
             System.out.println("Please log in to find requests relevant to your profile.");
+            return null;
         }
         ArrayList<Request> resultsTemp = new ArrayList<>();
         ArrayList<Request> others = new ArrayList<>();

@@ -276,16 +276,20 @@ public class ReliefFacade {
             for(int i = 0; i < requests.size(); i++)
                 addresses[i] = requests.get(i).getAddress();
             Address address = MapTools.getInstance().findClosestAddress(user.getAddress(),addresses);
-            for(Request request : feed.getRequests()){
+            if(address == null)
+                return null;
+            for(Request request : requests){
                 if(address.equals(request.getAddress())){
                     return request;
                 }
             }
-
-        } catch (Exception e) {
-            System.out.println("There was a problem finding a request.");
-            e.printStackTrace();
         }
+
+        catch (Exception e) {
+            throw new IllegalStateException(
+            "Unable to order requests by driving time", e
+        );
+        }  
         return null;
     }
 
