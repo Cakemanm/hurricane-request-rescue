@@ -1,3 +1,139 @@
+/* =====================================================================
+   Relief Request: JavaFX button styles
+   ---------------------------------------------------------------------
+   Plain Button             -> primary (Relief Blue)
+   styleClass "cta"         -> urgent action (Signal Orange): Create / Submit
+   styleClass "secondary"   -> white with grey outline: Home, Cancel, etc.
+   styleClass "on-dark"     -> white button on the navy Welcome screen
+   styleClass "outline-on-dark" -> outlined button on the navy Welcome screen
+   styleClass "small"       -> shorter button used inside cards (46 px)
+   ===================================================================== */
+
+/* ---------- Palette (looked-up colors, reusable anywhere) ---------- */
+.root {
+    -rr-navy:        #0B2545;
+    -rr-blue:        #1D4E89;
+    -rr-blue-hover:  #173F70;
+    -rr-blue-press:  #12335B;
+    -rr-orange:      #C2410C;
+    -rr-orange-hover:#A8380A;
+    -rr-orange-press:#8F2F08;
+    -rr-input:       #8593A3;
+    -rr-subtle:      #EEF2F7;
+    -rr-focus:       #F59E0B;
+}
+
+/* ---------- Base button (= primary) ---------- */
 .button {
-    
+    /* per-variant colors, overridden below */
+    -rr-bg:        -rr-blue;
+    -rr-bg-hover:  -rr-blue-hover;
+    -rr-bg-press:  -rr-blue-press;
+    -rr-text:      white;
+    -rr-border:    -rr-blue;
+
+    -fx-background-color: -rr-bg;
+    -fx-background-radius: 12;
+    -fx-background-insets: 0;
+    -fx-border-color: -rr-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+
+    -fx-text-fill: -rr-text;
+    -fx-font-family: "Public Sans";
+    -fx-font-size: 16px;
+    -fx-font-weight: 600;
+
+    -fx-pref-height: 52;
+    -fx-min-height: 52;
+    -fx-padding: 0 16 0 16;
+
+    /* icon LEFT of the text (instructor feedback) */
+    -fx-content-display: left;
+    -fx-graphic-text-gap: 10;
+    -fx-alignment: center;
+
+    -fx-cursor: hand;
+    -fx-effect: null;
+}
+
+.button:hover {
+    -fx-background-color: -rr-bg-hover;
+}
+
+.button:pressed {
+    -fx-background-color: -rr-bg-press;
+}
+
+/* keyboard focus ring (outer orange ring, keeps the button color) */
+.button:focused {
+    -fx-background-color: -rr-focus, -rr-bg;
+    -fx-background-insets: -3, 0;
+    -fx-background-radius: 15, 12;
+}
+.button:focused:hover {
+    -fx-background-color: -rr-focus, -rr-bg-hover;
+}
+
+.button:disabled {
+    -fx-opacity: 0.45;
+}
+
+/* ---------- Variants ---------- */
+.button.cta {
+    -rr-bg:       -rr-orange;
+    -rr-bg-hover: -rr-orange-hover;
+    -rr-bg-press: -rr-orange-press;
+    -rr-text:     white;
+    -rr-border:   -rr-orange;
+}
+
+.button.secondary {
+    -rr-bg:       white;
+    -rr-bg-hover: -rr-subtle;
+    -rr-bg-press: #DDE4EC;
+    -rr-text:     -rr-navy;
+    -rr-border:   -rr-input;
+    -fx-border-width: 1.5;
+}
+
+.button.on-dark {
+    -rr-bg:       white;
+    -rr-bg-hover: #E3EAF4;
+    -rr-bg-press: #C9D6E8;
+    -rr-text:     -rr-navy;
+    -rr-border:   white;
+    -fx-pref-height: 56;
+    -fx-min-height: 56;
+    -fx-font-size: 17px;
+}
+
+.button.outline-on-dark {
+    -rr-bg:       transparent;
+    -rr-bg-hover: rgba(255, 255, 255, 0.10);
+    -rr-bg-press: rgba(255, 255, 255, 0.18);
+    -rr-text:     white;
+    -rr-border:   white;
+    -fx-border-width: 1.5;
+    -fx-pref-height: 56;
+    -fx-min-height: 56;
+    -fx-font-size: 17px;
+}
+
+/* ---------- Size modifier ---------- */
+.button.small {
+    -fx-pref-height: 46;
+    -fx-min-height: 46;
+    -fx-font-size: 15px;
+}
+
+/* ---------- Icon inside a button ----------
+   Use an SVGPath with styleClass "icon" as the button's graphic.
+   It takes the button's text color automatically. */
+.button .icon {
+    -fx-fill: transparent;
+    -fx-stroke: -rr-text;
+    -fx-stroke-width: 2;
+    -fx-stroke-line-cap: round;
+    -fx-stroke-line-join: round;
 }
