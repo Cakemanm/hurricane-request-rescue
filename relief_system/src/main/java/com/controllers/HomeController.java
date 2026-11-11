@@ -1,12 +1,13 @@
-package com.relief;
+package com.controllers;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
+import com.relief.App;
 
-public class SecondaryController {
+public class HomeController {
 
     @FXML
     private void switchToPrimary() throws IOException {
-        App.setRoot("primary");
+        App.setRoot("welcome");
     }
 }
