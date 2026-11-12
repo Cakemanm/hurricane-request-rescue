@@ -6,6 +6,7 @@ module com.relief {
     requires com.fasterxml.jackson.databind;
     requires javafx.web;
     requires junit;
+    requires javafx.base;
 
     opens com.relief to javafx.fxml;
     exports com.relief;

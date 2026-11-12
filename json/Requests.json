@@ -152,5 +152,30 @@
                   "LANDSLIDE",
                   "TRANSPORTATION"
             ]
+      },
+      {
+            "requester" : "1c185532-09ec-47c1-b6f7-6d1bff40e632",
+            "address" : {
+                  "zipcode" : "29401",
+                  "city" : "Charleston",
+                  "street" : "68 Calhoun Street",
+                  "state" : "SC"
+            },
+            "comments" : [
+                  "My family needs to go to a shelter because our power is out and conditions in our home are worsening my daughter Sophie's asthma.",
+                  "The shelter needs to have medical supplies and staff.",
+                  "We need transportation to the shelter.",
+                  "Our dog, Buddy, must come with us."
+            ],
+            "responder" : null,
+            "requestPriority" : 8,
+            "id" : "6905947a-aebf-4a87-b711-5c406ff6ab18",
+            "reportedUrgency" : 8,
+            "status" : "PENDING",
+            "requestTypes" : [
+                  "TRANSPORTATION",
+                  "NO_SHELTER",
+                  "MEDICAL_ASSISTANCE"
+            ]
       }
 ]
