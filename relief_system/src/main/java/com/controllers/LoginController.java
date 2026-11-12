@@ -22,7 +22,7 @@ public class LoginController {
     private TextField txt_username;
 
     @FXML
-    void back(ActionEvent event) throws IOException {
+    void backWelcome(ActionEvent event) throws IOException {
         App.setRoot("welcome");
     }
 
