@@ -43,9 +43,9 @@ public class SignUpController {
         ReliefFacade facade = new ReliefFacade();
         User newUser;
 
-        newUser = facade.createAccount(userName, firstName, lastName, null, null, password, null, null, false, 0, null);
-        System.out.println("New user created: " + newUser.getUsername() + ", " + newUser.getFirstName() + " " + newUser.getLastName());
-        System.out.println("Valid signup attempt for user: " + userName + " with password: " + password);
+        // newUser = facade.createAccount(userName, firstName, lastName, null, null, password, null, null, false, 0, null);
+        // System.out.println("New user created: " + newUser.getUsername() + ", " + newUser.getFirstName() + " " + newUser.getLastName());
+        System.out.println(firstName + " " + lastName + ": Valid signup attempt for user: " + userName + " with password: " + password);
 
         App.setRoot("home");
     }
