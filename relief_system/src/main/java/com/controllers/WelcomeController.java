@@ -8,6 +8,6 @@ public class WelcomeController {
 
     @FXML
     private void switchToSecondary() throws IOException {
-        App.setRoot("home");
+        App.setRoot("login");
     }
 }
