@@ -5,8 +5,8 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-
 import com.relief.App;
+import com.model.*;
 
 public class LoginController {
 
