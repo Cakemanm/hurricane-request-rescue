@@ -38,8 +38,8 @@ public class LoginController {
             // facade_error.setText("Invalid username or password");
             return;
         }
-        System.out.println("Your username is " +userName+ " and your password is " +password);
+        System.out.println("Valid login attempt for user: " + userName + " with password: " + password);
 
-        // App.setRoot("user_home");
+        App.setRoot("home");
     }
 }

@@ -40,13 +40,12 @@ public class SignUpController {
         String userName = txt_username.getText();
         String password = txt_password.getText();
 
-        // ReliefFacade facade = new ReliefFacade();
+        ReliefFacade facade = new ReliefFacade();
+        User newUser;
 
-        // if (!facade.login(userName, password)) {
-        //     // facade_error.setText("Invalid username or password");
-        //     return;
-        // }
-        System.out.println("Your name is " +firstName+ " " +lastName+ ", username is " +userName+ " and your password is " +password);
+        newUser = facade.createAccount(userName, firstName, lastName, null, null, password, null, null, false, 0, null);
+        System.out.println("New user created: " + newUser.getUsername() + ", " + newUser.getFirstName() + " " + newUser.getLastName());
+        System.out.println("Valid signup attempt for user: " + userName + " with password: " + password);
 
         App.setRoot("home");
     }
