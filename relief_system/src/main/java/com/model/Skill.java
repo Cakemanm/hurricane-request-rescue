@@ -1,17 +1,32 @@
 package com.model;
 
+/**
+ * @author Gracie Bergmann
+ * @author Jake McNulty
+ * @author Carter Medlin
+ * @author Abigail Stalker
+ * Skill
+ * Enum for skills
+ */
 public enum Skill {
-    CAN_COOK,
-    HAS_POWER_TOOLS,
-    CAN_DRIVE,
-    SHELTER_STAFF,
-    BOAT_OPERATOR,
-    HEAVY_MACHINERY_OPERATOR,
-    CAN_SWIM,
-    HEAVY_LIFTER,
-    CAN_PROVIDE_MEDICAL_ASSISTANCE,
-    LANGUAGE_TRANSLATOR,
-    TRANSPORTATION,
-    MECHANIC,
-    RESOURCE_SUPPLIER
+    CAN_COOK("Can cook"),
+    HAS_POWER_TOOLS("Has power tools"),
+    CAN_DRIVE("Can drive"),
+    SHELTER_STAFF("Shelter staff"),
+    BOAT_OPERATOR("Boat operator"),
+    HEAVY_MACHINERY_OPERATOR("Heavy machinery operator"),
+    HEAVY_LIFTER("Heavy lifter"),
+    CAN_PROVIDE_MEDICAL_ASSISTANCE("Medical assistance"),
+    LANGUAGE_TRANSLATOR("Language translator"),
+    TRANSPORTATION("Transportation"),
+    MECHANIC("Mechanic"),
+    RESOURCE_SUPPLIER("Resource supplier");
+
+    /**
+     * Constructor with human-readable labels
+     */
+    public final String label;
+    private Skill(String label){
+        this.label = label;
+    }
 }
