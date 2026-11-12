@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
 import com.relief.App;
+import com.model.*;
 
 public class LoginController {
 
@@ -27,9 +28,18 @@ public class LoginController {
     }
 
     @FXML 
-    void login(ActionEvent event) {
+    void login(ActionEvent event) throws IOException {
         String userName = txt_username.getText();
         String password = txt_password.getText();
+
+        ReliefFacade facade = new ReliefFacade();
+
+        if (!facade.login(userName, password)) {
+            // facade_error.setText("Invalid username or password");
+            return;
+        }
         System.out.println("Your username is " +userName+ " and your password is " +password);
+
+        // App.setRoot("user_home");
     }
 }
