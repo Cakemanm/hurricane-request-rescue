@@ -8,6 +8,7 @@
 - [Project Board](https://github.com/users/Cakemanm/projects/2)
 - [Youtube Video Presentation](https://youtu.be/08D5MtTqtgQ)
 - [Mock App Screens PDF](https://drive.google.com/file/d/1y0JIKgVuQRz_yypWpGbojaKne1AKb4qd/view?usp=sharing)
+- [Mock APp Screens PDF 2](https://drive.google.com/file/d/1com9xMs-noa7vp0Zn2PnB6-YVS2nragJ/view?usp=sharing)
 
 ## Basic Description
 Users will be able to submit requests detailing where they are, what they need, and how severe of an issue they have. Users with relevant resources and skills will receive notifications with the pertinent information about a request that they can accept if they wish to fulfill it. Users can also request to sign up for shelters where they will receive additional aid. Users with relevant privileges can edit shelter information. The app will provide live information on the area, listing nearby hazards and the path of the hurricane.
