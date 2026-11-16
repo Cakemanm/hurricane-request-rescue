@@ -27,9 +27,18 @@ public class LoginController {
     }
 
     @FXML 
-    void login(ActionEvent event) {
+    void login(ActionEvent event) throws IOException {
         String userName = txt_username.getText();
         String password = txt_password.getText();
-        System.out.println("Your username is " +userName+ " and your password is " +password);
+
+        ReliefFacade facade = new ReliefFacade();
+
+        if (!facade.login(userName, password)) {
+            // facade_error.setText("Invalid username or password");
+            return;
+        }
+        System.out.println("Valid login attempt for user: " + userName + " with password: " + password);
+
+        App.setRoot("home");
     }
 }

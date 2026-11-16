@@ -10,11 +10,6 @@ import javafx.scene.control.TextField;
 
 public class WelcomeController {
 
-    // @FXML
-    // private void switchToLogin() throws IOException {
-    //     App.setRoot("login");
-    // }
-
     @FXML
     void switchToLogin(ActionEvent event) throws IOException {
         App.setRoot("login");
