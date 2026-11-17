@@ -40,7 +40,7 @@ public class SignUpController {
         String userName = txt_username.getText();
         String password = txt_password.getText();
 
-        ReliefFacade facade = new ReliefFacade();
+        ReliefFacade facade = ReliefFacade.getInstance();
         User newUser;
 
         // newUser = facade.createAccount(userName, firstName, lastName, null, null, password, null, null, false, 0, null);

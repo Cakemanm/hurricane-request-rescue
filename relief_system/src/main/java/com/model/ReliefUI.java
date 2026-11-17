@@ -19,7 +19,7 @@ public class ReliefUI {
  
 
     public ReliefUI() {
-        reliefFacade = new ReliefFacade();
+        reliefFacade = ReliefFacade.getInstance();
         scenarioPortia();
     
     }
