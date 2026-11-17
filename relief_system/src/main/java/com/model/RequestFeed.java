@@ -185,7 +185,7 @@ public class RequestFeed {
             else
                 others.add(request);
         }
-        ReliefFacade reliefFacade = new ReliefFacade();
+        ReliefFacade reliefFacade = ReliefFacade.getInstance();
         ArrayList<Request> results = new ArrayList<>();
         while(resultsTemp.size()>=1){
             Request r = reliefFacade.findClosestRequest(user,resultsTemp);

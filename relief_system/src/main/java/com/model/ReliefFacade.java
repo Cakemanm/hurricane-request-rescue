@@ -8,8 +8,6 @@ import com.location.MapTools;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import com.location.Address;
-import com.location.MapTools;
 /**
  * How the UI interacts with the code, acting as an interface
  * to pass work to singletons {@link UserList}, {@link ShelterList}, {@link RequestFeed}, {@link HurricaneHandler}
@@ -24,6 +22,7 @@ public class ReliefFacade {
     private User currentUser;
     private RequestFeed feed;
     private ShelterList shelterList = ShelterList.getInstance();
+    private static ReliefFacade RELIEF_FACADE;  
 
     /** Requests within this many driving miles of volunteer to be recomended */
     public static final double NEARBY_MILES = 10.0;
@@ -34,10 +33,16 @@ public class ReliefFacade {
     /**
      * Creates facade with no one logged in
      */
-    public ReliefFacade() {
+    private ReliefFacade() {
         hurricane = DataLoader.getHurricanes();
         feed = RequestFeed.getInstance();
         currentUser = null;
+    }
+
+    public static ReliefFacade getInstance(){
+        if(RELIEF_FACADE == null)
+            RELIEF_FACADE = new ReliefFacade();
+        return RELIEF_FACADE;
     }
 
     /**
