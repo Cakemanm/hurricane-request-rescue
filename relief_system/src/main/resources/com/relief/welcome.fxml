@@ -2,20 +2,143 @@
 
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.SVGPath?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.WelcomeController">
-   <children>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Relief Request" />
-      <Button fx:id="loginScreenButton" onAction="#switchToLogin" text="Login" />
-      <Button fx:id="signupScreenButton" layoutX="30.0" layoutY="104.0" onAction="#switchToSignUp" text="Sign-Up" />
-   </children>
-   <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-   </padding>
-   <stylesheets>
-      <URL value="@styles.css" />
-   </stylesheets>
-</VBox>
+<AnchorPane prefWidth="400.0"
+            prefHeight="890.0"
+            xmlns="http://javafx.com/javafx/26"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.controllers.WelcomeController"
+            style="-fx-background-color: #122544;
+                   -fx-font-family: 'Arial';">
+
+    <stylesheets>
+        <URL value="@styles.css"/>
+    </stylesheets>
+
+    <children>
+
+        <!-- Logo and introductory text -->
+        <VBox alignment="TOP_CENTER"
+              spacing="14.0"
+              AnchorPane.topAnchor="168.0"
+              AnchorPane.leftAnchor="25.0"
+              AnchorPane.rightAnchor="25.0">
+
+            <ImageView fitWidth="150.0"
+                       fitHeight="120.0"
+                       preserveRatio="true"
+                       smooth="true">
+                <image>
+                    <Image url="@images/logo.png"/>
+                </image>
+            </ImageView>
+
+            <Label text="Relief Request"
+                   style="-fx-text-fill: white;
+                          -fx-font-size: 38px;
+                          -fx-font-weight: bold;"/>
+
+            <Label text="Request help, find open&#10;shelters, and track relief in your&#10;area after a hurricane."
+                   alignment="CENTER"
+                   textAlignment="CENTER"
+                   wrapText="true"
+                   maxWidth="350.0"
+                   style="-fx-text-fill: #B5C7DE;
+                          -fx-font-size: 21px;
+                          -fx-font-weight: bold;">
+                <VBox.margin>
+                    <Insets top="12.0"/>
+                </VBox.margin>
+            </Label>
+
+        </VBox>
+
+        <!-- Navigation buttons -->
+        <VBox spacing="14.0"
+              AnchorPane.leftAnchor="71.0"
+              AnchorPane.rightAnchor="62.0"
+              AnchorPane.bottomAnchor="104.0">
+
+            <Button fx:id="loginScreenButton"
+                    onAction="#switchToLogin"
+                    text="Login"
+                    graphicTextGap="40.0"
+                    prefHeight="44.0"
+                    minHeight="44.0"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: transparent;
+                           -fx-text-fill: white;
+                           -fx-font-size: 22px;
+                           -fx-border-color: #424D50;
+                           -fx-border-width: 2px;
+                           -fx-border-radius: 19px;
+                           -fx-background-radius: 19px;
+                           -fx-cursor: hand;">
+
+                <graphic>
+                    <SVGPath content="M 8 1
+                                      A 3.5 3.5 0 1 1 8 8
+                                      A 3.5 3.5 0 1 1 8 1
+                                      M 1 16
+                                      C 1 10, 15 10, 15 16 Z"
+                             fill="TRANSPARENT"
+                             stroke="#F1EADF"
+                             strokeWidth="2.0"/>
+                </graphic>
+
+            </Button>
+
+            <Button fx:id="signupScreenButton"
+                    onAction="#switchToSignUp"
+                    text="Sign-Up"
+                    graphicTextGap="32.0"
+                    prefHeight="44.0"
+                    minHeight="44.0"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: transparent;
+                           -fx-text-fill: white;
+                           -fx-font-size: 22px;
+                           -fx-border-color: #424D50;
+                           -fx-border-width: 2px;
+                           -fx-border-radius: 19px;
+                           -fx-background-radius: 19px;
+                           -fx-cursor: hand;">
+
+                <graphic>
+                    <SVGPath content="M 10 1 H 17 V 18 H 10
+                                      M 0 9.5 H 11
+                                      M 6 5 L 11 9.5 L 6 14"
+                             fill="TRANSPARENT"
+                             stroke="#F1EADF"
+                             strokeWidth="2.0"/>
+                </graphic>
+
+            </Button>
+
+        </VBox>
+
+        <!-- Emergency information -->
+        <HBox alignment="CENTER"
+              spacing="5.0"
+              AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0"
+              AnchorPane.bottomAnchor="8.0">
+
+            <Label text="In immediate danger?"
+                   style="-fx-text-fill: #B5C7DE;
+                          -fx-font-size: 21px;"/>
+
+            <Label text="CALL 911"
+                   underline="true"
+                   style="-fx-text-fill: white;
+                          -fx-font-size: 21px;
+                          -fx-font-weight: bold;"/>
+
+        </HBox>
+
+    </children>
+</AnchorPane>
