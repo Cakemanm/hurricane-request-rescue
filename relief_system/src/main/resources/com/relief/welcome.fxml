@@ -33,7 +33,7 @@
                        preserveRatio="true"
                        smooth="true">
                 <image>
-                    <Image url="@images/logo.png"/>
+                    <Image url="@images/relief-logo.png"/>
                 </image>
             </ImageView>
 
