@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.SignUpController">
+   <children>
+      <Button fx:id="backWelcome" mnemonicParsing="false" onAction="#backWelcome" text="Back" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Relief Request" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1. Basic Information" />
+      <TextField fx:id="txt_firstName" promptText="First Name" />
+      <TextField fx:id="txt_lastName" promptText="Last Name" />
+      <TextField fx:id="txt_age" promptText="Age" />
+      <TextField fx:id="txt_username" promptText="Username" />
+      <TextField fx:id="txt_password" promptText="Password" />
+      <TextField fx:id="txt_address" promptText="Home Address" />
+      <TextField fx:id="txt_phone_number" promptText="Phone Number" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="2. Skills" />
+      <ChoiceBox fx:id="choice_skills" prefWidth="150.0" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="3. Household" />
+      <CheckBox fx:id="check_family" mnemonicParsing="false" text="Add Family" />
+      <TextField fx:id="txt_family_name" promptText="Full Name" />
+      <TextField fx:id="txt_family_age" promptText="Age" />
+      <ChoiceBox fx:id="choice_relationship" prefWidth="150.0" />
+      <TextArea fx:id="txt_family_notes" prefHeight="200.0" prefWidth="219.0" promptText="Notes" />
+      <CheckBox fx:id="check_pet" mnemonicParsing="false" text="Add Pet" />
+      <TextField fx:id="txt_pet_name" promptText="Pet Name" />
+      <TextField fx:id="txt_pet_type" promptText="Pet Type" />
+      <TextArea fx:id="txt_pet_description" prefHeight="200.0" prefWidth="200.0" promptText="Pet Description" />
+      <Button fx:id="signupButton" layoutX="30.0" layoutY="104.0" onAction="#signup" text="Confirm Sign-Up" />
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+   <stylesheets>
+      <URL value="@styles.css" />
+   </stylesheets>
+</VBox>
