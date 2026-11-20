@@ -93,7 +93,7 @@ public class MapController {
     }
 
     private void loadMapPage() {
-        String mapPage = MapController.class
+        String mapPage =  App.class
                 .getResource("map.html")
                 .toExternalForm();
 

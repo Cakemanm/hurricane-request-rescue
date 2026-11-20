@@ -53,7 +53,7 @@ public class HomeController {
         String userName = txt_username.getText();
         String password = txt_password.getText();
 
-        ReliefFacade facade = new ReliefFacade();
+        ReliefFacade facade = ReliefFacade.getInstance();
 
         if (!facade.login(userName, password)) {
             // facade_error.setText("Invalid username or password");
