@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefWidth="381.0"
+            prefHeight="823.0"
+            xmlns="http://javafx.com/javafx/26"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.controllers.MenuController"
+            style="-fx-background-color: #132743;
+                   -fx-font-family: 'Arial';">
+
+    <fx:define>
+        <String fx:id="menuButtonStyle"
+                fx:value="-fx-background-color: transparent;
+                          -fx-text-fill: white;
+                          -fx-font-size: 20px;
+                          -fx-font-weight: bold;
+                          -fx-alignment: center-left;
+                          -fx-padding: 12;
+                          -fx-background-radius: 15;
+                          -fx-cursor: hand;"/>
+    </fx:define>
+
+    <children>
+
+        <!-- Close button: add an action when ready -->
+        <Button text="X"
+                mnemonicParsing="false"
+                AnchorPane.topAnchor="18.0"
+                AnchorPane.rightAnchor="15.0"
+                style="-fx-background-color: transparent;
+                       -fx-text-fill: white;
+                       -fx-font-size: 26px;
+                       -fx-padding: 0 4;
+                       -fx-cursor: hand;"/>
+
+        <!-- App logo and title -->
+        <HBox alignment="CENTER_LEFT"
+              spacing="15.0"
+              AnchorPane.topAnchor="66.0"
+              AnchorPane.leftAnchor="18.0"
+              AnchorPane.rightAnchor="18.0">
+
+            <ImageView fitWidth="76.0"
+                       fitHeight="60.0"
+                       preserveRatio="true"
+                       smooth="true">
+                <image>
+                    <Image url="@images/relief-logo.png"/>
+                </image>
+            </ImageView>
+
+            <Label text="Relief Request"
+                   style="-fx-text-fill: white;
+                          -fx-font-size: 36px;
+                          -fx-font-weight: bold;"/>
+
+        </HBox>
+
+        <!-- Divider above user information -->
+        <Region prefHeight="1.0"
+                minHeight="1.0"
+                maxHeight="1.0"
+                AnchorPane.topAnchor="155.0"
+                AnchorPane.leftAnchor="44.0"
+                AnchorPane.rightAnchor="43.0"
+                style="-fx-background-color: #AABBCD;"/>
+
+        <!-- User information -->
+        <HBox alignment="CENTER_LEFT"
+              spacing="27.0"
+              AnchorPane.topAnchor="176.0"
+              AnchorPane.leftAnchor="22.0"
+              AnchorPane.rightAnchor="22.0">
+
+            <!-- Generic avatar -->
+            <StackPane minWidth="45.0"
+                       prefWidth="45.0"
+                       maxWidth="45.0"
+                       minHeight="45.0"
+                       prefHeight="45.0"
+                       maxHeight="45.0">
+
+                <Circle radius="22.5" fill="#E87924"/>
+
+                <SVGPath content="M 12 1
+                                  A 5 5 0 1 1 12 11
+                                  A 5 5 0 1 1 12 1
+                                  M 2 25
+                                  C 2 13, 22 13, 22 25 Z"
+                         fill="TRANSPARENT"
+                         stroke="#132743"
+                         strokeWidth="2.0"/>
+
+            </StackPane>
+
+            <!-- Keep this as Text for your existing controller -->
+            <Text fx:id="nameOfUser"
+                  text="Text"
+                  fill="WHITE"
+                  style="-fx-font-size: 20px;
+                         -fx-font-weight: bold;"/>
+
+        </HBox>
+
+        <!-- Divider below user information -->
+        <Region prefHeight="1.0"
+                minHeight="1.0"
+                maxHeight="1.0"
+                AnchorPane.topAnchor="239.0"
+                AnchorPane.leftAnchor="44.0"
+                AnchorPane.rightAnchor="43.0"
+                style="-fx-background-color: #AABBCD;"/>
+
+        <!-- Menu options -->
+        <VBox spacing="2.0"
+              AnchorPane.topAnchor="276.0"
+              AnchorPane.leftAnchor="22.0"
+              AnchorPane.rightAnchor="27.0">
+
+            <Button text="Home"
+                    onAction="#home"
+                    mnemonicParsing="false"
+                    graphicTextGap="25.0"
+                    minHeight="60.0"
+                    prefHeight="60.0"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: #43566D;
+                           -fx-text-fill: white;
+                           -fx-font-size: 20px;
+                           -fx-font-weight: bold;
+                           -fx-alignment: center-left;
+                           -fx-padding: 12;
+                           -fx-background-radius: 15;
+                           -fx-cursor: hand;">
+
+                <VBox.margin>
+                    <Insets bottom="10.0"/>
+                </VBox.margin>
+
+                <graphic>
+                    <StackPane minWidth="40.0"
+                               prefWidth="40.0"
+                               maxWidth="40.0">
+                        <SVGPath content="M 3 14 L 16 3 L 29 14
+                                          V 32 H 20 V 21 H 12
+                                          V 32 H 3 Z"
+                                 fill="TRANSPARENT"
+                                 stroke="WHITE"
+                                 strokeWidth="3.0"/>
+                    </StackPane>
+                </graphic>
+            </Button>
+
+            <Button text="My Requests"
+                    onAction="#myRequests"
+                    mnemonicParsing="false"
+                    graphicTextGap="25.0"
+                    minHeight="60.0"
+                    prefHeight="60.0"
+                    maxWidth="Infinity"
+                    style="$menuButtonStyle">
+
+                <graphic>
+                    <StackPane minWidth="40.0"
+                               prefWidth="40.0"
+                               maxWidth="40.0">
+                        <SVGPath content="M 11 5 H 3 V 34 H 31 V 5 H 23
+                                          M 11 7 V 5
+                                          A 6 4 0 0 1 23 5
+                                          V 7 Z
+                                          M 8 14 H 26
+                                          M 8 21 H 26
+                                          M 8 28 H 21"
+                                 fill="TRANSPARENT"
+                                 stroke="WHITE"
+                                 strokeWidth="3.0"
+                                 strokeLineJoin="ROUND"/>
+                    </StackPane>
+                </graphic>
+            </Button>
+
+            <Button text="Shelters"
+                    mnemonicParsing="false"
+                    graphicTextGap="25.0"
+                    minHeight="60.0"
+                    prefHeight="60.0"
+                    maxWidth="Infinity"
+                    style="$menuButtonStyle">
+
+                <graphic>
+                    <StackPane minWidth="40.0"
+                               prefWidth="40.0"
+                               maxWidth="40.0">
+                        <SVGPath content="M 0 17 L 18 3 L 36 17
+                                          M 5 13 V 33 H 31 V 13
+                                          M 14 33 V 23 H 22 V 33
+                                          M 6 11 V 3 H 12"
+                                 fill="TRANSPARENT"
+                                 stroke="WHITE"
+                                 strokeWidth="3.0"/>
+                    </StackPane>
+                </graphic>
+            </Button>
+
+            <Button text="Create Request"
+                    mnemonicParsing="false"
+                    graphicTextGap="25.0"
+                    minHeight="60.0"
+                    prefHeight="60.0"
+                    maxWidth="Infinity"
+                    style="$menuButtonStyle">
+
+                <graphic>
+                    <StackPane minWidth="40.0"
+                               prefWidth="40.0"
+                               maxWidth="40.0">
+                        <Circle radius="16.5"
+                                fill="TRANSPARENT"
+                                stroke="WHITE"
+                                strokeWidth="3.0"/>
+
+                        <SVGPath content="M 0 10 H 20 M 10 0 V 20"
+                                 fill="TRANSPARENT"
+                                 stroke="WHITE"
+                                 strokeWidth="3.0"/>
+                    </StackPane>
+                </graphic>
+            </Button>
+
+            <Button text="Settings"
+                    mnemonicParsing="false"
+                    graphicTextGap="25.0"
+                    minHeight="60.0"
+                    prefHeight="60.0"
+                    maxWidth="Infinity"
+                    style="$menuButtonStyle">
+
+                <graphic>
+                    <StackPane minWidth="40.0"
+                               prefWidth="40.0"
+                               maxWidth="40.0">
+                        <SVGPath content="M 13 1 L 21 1 L 22 6
+                                          L 26 8 L 31 6 L 35 13
+                                          L 31 17 L 31 21 L 35 25
+                                          L 31 32 L 26 30 L 22 32
+                                          L 21 37 L 13 37 L 12 32
+                                          L 8 30 L 3 32 L -1 25
+                                          L 3 21 L 3 17 L -1 13
+                                          L 3 6 L 8 8 L 12 6 Z"
+                                 fill="TRANSPARENT"
+                                 stroke="WHITE"
+                                 strokeWidth="3.0"
+                                 strokeLineJoin="ROUND"/>
+
+                        <Circle radius="7.0"
+                                fill="TRANSPARENT"
+                                stroke="WHITE"
+                                strokeWidth="3.0"/>
+                    </StackPane>
+                </graphic>
+            </Button>
+
+        </VBox>
+
+        <!-- Footer -->
+        <VBox spacing="12.0"
+              AnchorPane.leftAnchor="44.0"
+              AnchorPane.rightAnchor="43.0"
+              AnchorPane.bottomAnchor="13.0">
+
+            <Region minHeight="1.0"
+                    prefHeight="1.0"
+                    maxHeight="1.0"
+                    style="-fx-background-color: #AABBCD;"/>
+
+            <Button text="Log Out"
+                    onAction="#logout"
+                    mnemonicParsing="false"
+                    graphicTextGap="14.0"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: transparent;
+                           -fx-text-fill: white;
+                           -fx-font-size: 20px;
+                           -fx-alignment: center-left;
+                           -fx-padding: 3 10;
+                           -fx-cursor: hand;">
+
+                <graphic>
+                    <SVGPath content="M 9 1 H 1 V 17 H 9
+                                      M 6 9 H 16
+                                      M 12 5 L 16 9 L 12 13"
+                             fill="TRANSPARENT"
+                             stroke="WHITE"
+                             strokeWidth="2.0"
+                             strokeLineJoin="ROUND"/>
+                </graphic>
+            </Button>
+
+        </VBox>
+
+    </children>
+</AnchorPane>

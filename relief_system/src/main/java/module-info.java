@@ -7,6 +7,7 @@ module com.relief {
     requires javafx.web;
     requires junit;
     requires javafx.base;
+    requires javafx.graphics;
 
     opens com.relief to javafx.fxml;
     exports com.relief;
