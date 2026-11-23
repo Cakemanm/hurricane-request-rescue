@@ -184,4 +184,13 @@ public class ShelterList {
     public void save() {
         DataWriter.saveShelters(shelters);
     }
+
+    public ArrayList<Shelter> searchSheltersByName(String key){
+        ArrayList<Shelter> results = new ArrayList<>();
+        for(Shelter shelter : shelters){
+            if(shelter.getName().toLowerCase().contains(key.toLowerCase()))
+                results.add(shelter);
+        }
+        return results;
+    }
 }

@@ -42,6 +42,11 @@ public class MenuController {
         reliefFacade.logout();
         App.setRoot("welcome");
     }
+    
+    @FXML
+    void shelters(ActionEvent event) throws IOException{
+        App.setRoot("browseshelters");
+    }
 
         /*@FXML 
     void login(ActionEvent event) throws IOException {

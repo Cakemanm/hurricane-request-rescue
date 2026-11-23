@@ -193,7 +193,8 @@
                     minHeight="60.0"
                     prefHeight="60.0"
                     maxWidth="Infinity"
-                    style="$menuButtonStyle">
+                    style="$menuButtonStyle"
+                    onAction="#shelters">
 
                 <graphic>
                     <StackPane minWidth="40.0"
