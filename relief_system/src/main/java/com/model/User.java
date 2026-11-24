@@ -27,6 +27,7 @@ public class User {
     private boolean hasPet;
     private int age;
     private String petDescription;
+    private ArrayList<Request> requests = new ArrayList<>();
 
         /**
      * Creates a user with the specified volunteer skills.
@@ -60,6 +61,7 @@ public class User {
         this.hasPet = hasPet;
         this.familyMembers = (familyMembers == null ? new ArrayList<>() : familyMembers);
         this.petDescription = petDescription;
+        this.requests = new ArrayList<Request>();
     }
 
     /**
@@ -92,6 +94,7 @@ public class User {
         this.hasPet = hasPet;
         this.familyMembers = (familyMembers == null ? new ArrayList<>() : familyMembers);
         this.petDescription = petDescription;
+        this.requests = new ArrayList<Request>();
     }
 
     /**
@@ -248,5 +251,13 @@ public class User {
      */
     public ArrayList<FamilyMember> getFamilyMembers(){
         return this.familyMembers;
+    }
+
+    public ArrayList<Request> getRequests() {
+        return requests;
+    }
+
+    public void addToListRequest(Request request) {
+        this.requests.add(request);
     }
 }

@@ -25,6 +25,7 @@ public class Request {
     private User requester;
     private User responder;
     private UUID id;
+    private String title;
 
     /**
      * Creates a request and calculates its initial priority.
@@ -41,9 +42,10 @@ public class Request {
      * @param responder the assigned responder, or {@code null} if unassigned
      * @param requestTypes the types of assistance requested
      */
-    public Request(UUID id, RequestStatus status, Address address, int reportedUrgency,
+    public Request(UUID id, String title, RequestStatus status, Address address, int reportedUrgency,
             ArrayList<String> comments, User requester, User responder, ArrayList<RequestType> requestTypes) {
         this.status = status;
+        this.title = title;
         this.reportedUrgency = reportedUrgency;
         this.comments = comments;
         this.requester = requester;
@@ -259,4 +261,11 @@ public class Request {
         this.id = id;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getTitle() {
+        return title;
+    }
 }

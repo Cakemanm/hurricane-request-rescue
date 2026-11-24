@@ -190,12 +190,12 @@ public class ReliefFacade {
      * @param comments additional information about the request
      * @return the created request, or {@code null} if no user is logged in or no request types are provided
      */
-    public Request createRequest(ArrayList<RequestType> requestTypes, Address address,
+    public Request createRequest(String title, ArrayList<RequestType> requestTypes, Address address,
         int reportedUrgency, ArrayList<String> comments) {
             if (currentUser == null || requestTypes == null || requestTypes.isEmpty()) {
                 return null;
             }
-            Request request = new Request(null, RequestStatus.PENDING, address, reportedUrgency,
+            Request request = new Request(null, title, RequestStatus.PENDING, address, reportedUrgency,
                 comments, currentUser, null, requestTypes);
             request.calcPriority();
             feed.addRequest(request);

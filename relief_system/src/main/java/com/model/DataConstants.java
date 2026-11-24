@@ -71,6 +71,7 @@ public class DataConstants {
     protected static final String REQUEST_REQUESTER = "requester";
     protected static final String REQUEST_RESPONDER = "responder";
     protected static final String REQUEST_ID = "id";
+    protected static final String REQUEST_TITLE = "title";
 
     //Location constants
     protected static final String LOCATION_FILE_NAME = "json\\Locations.json";

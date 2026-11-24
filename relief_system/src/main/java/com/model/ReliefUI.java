@@ -63,9 +63,10 @@ public class ReliefUI {
 
         //Michael creates a relief request
         System.out.println(BLUE + "\nCreating a relief request...\n" + RESET);
+        String title = "Transportation to Shelter";
         ArrayList<RequestType> types = new ArrayList<>(Arrays.asList(RequestType.TRANSPORTATION, RequestType.NO_SHELTER, RequestType.MEDICAL_ASSISTANCE));
         ArrayList<String> comments = new ArrayList<>(Arrays.asList("My family needs to go to a shelter because our power is out and conditions in our home are worsening my daughter Sophie's asthma.","The shelter needs to have medical supplies and staff.","We need transportation to the shelter.","Our dog, Buddy, must come with us."));
-        Request request = reliefFacade.createRequest(types,address,8,comments);
+        Request request = reliefFacade.createRequest(title, types,address,8,comments);
         System.out.println(request.toString());
         System.out.println(BLUE);
         reliefFacade.logout();

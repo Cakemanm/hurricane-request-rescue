@@ -227,9 +227,11 @@ public class DataLoader extends DataConstants {
                     UUID responderId = UUID.fromString((String)objectJSON.get(REQUEST_RESPONDER));
                     responder = UserList.getInstance().getUserById(responderId);
                 }
+
+                String title = (String)objectJSON.get(REQUEST_TITLE);
         
 
-                requests.add(new Request(id, status, address, reportedUrgency, comments, requester, responder, types));
+                requests.add(new Request(id, title, status, address, reportedUrgency, comments, requester, responder, types));
 
             }
 

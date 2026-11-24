@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="844.0" prefWidth="390.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <VBox prefHeight="844.0" prefWidth="390.0" control="com.controllers.ExpandRequestController">
+               <children>
+                  <Button mnemonicParsing="false" text="&lt; Back" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title" />
+                  <Text id="request-status" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" />
+                  <Text id="date-submitted" strokeType="OUTSIDE" strokeWidth="0.0" text="Submitted today, 9:12 AM" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="HELP NEEDED FOR" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PRIORITY" />
+                  <Text id="urgency-text" strokeType="OUTSIDE" strokeWidth="0.0" text="Urgency text" />
+                  <ProgressBar id="urgency-bar" prefWidth="200.0" progress="0.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PEOPLE" />
+               </children>
+            </VBox>
+         </children></AnchorPane>
+  </content>
+</ScrollPane>

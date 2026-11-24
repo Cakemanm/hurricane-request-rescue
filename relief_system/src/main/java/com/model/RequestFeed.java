@@ -87,10 +87,12 @@ public class RequestFeed {
      * @param responder the assigned responder, or {@code null} if unassigned
      * @param requestTypes the types of assistance requested
      */
-    public void addRequest(UUID id, RequestStatus status, Address address, int reportedUrgency,
+    public void addRequest(UUID id, String title, RequestStatus status, Address address, int reportedUrgency,
         ArrayList<String> comments, User requester, User responder, ArrayList<RequestType> requestTypes){
-            requests.add(new Request(id, status, address, reportedUrgency, comments, requester, responder, requestTypes));
+            Request request = new Request(id, title, status, address, reportedUrgency, comments, requester, responder, requestTypes);
+            requests.add(request);
             requestFeed.save();
+            requester.addToListRequest(request);
         }
     
     /**
