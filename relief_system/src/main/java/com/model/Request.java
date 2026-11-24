@@ -177,6 +177,13 @@ public class Request {
         return comments;
     }
 
+    public String getCommentsFull() {
+        String returnString = "";
+        for (String comment : comments)
+            returnString += comment + " ";
+        return returnString;
+    }
+
     /**
      * Adds a comment, initializing the comment list if necessary
      * @param comment the comment to add

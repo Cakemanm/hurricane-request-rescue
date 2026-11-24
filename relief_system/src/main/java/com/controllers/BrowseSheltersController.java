@@ -94,9 +94,6 @@ private void displayShelters(ArrayList<Shelter> shelters) throws IOException, In
         int drivingTime = (int)Math.round(mt.getDrivingTime(mt.getCoordinates(user.getAddress()), mt.getCoordinates(shelter.getAddress())));
         //only for testing purposes, delete once screens are all working together
 
-        
-        // Fill this card using the current shelter's information.
-        // Replace these example getter names with your actual methods.
         controller.setData(
             shelter.getName(),
             drivingTime + " min drive",

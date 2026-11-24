@@ -1,29 +1,156 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="844.0" prefWidth="390.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26">
-  <content>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
-         <children>
-            <VBox prefHeight="844.0" prefWidth="390.0" control="com.controllers.ExpandRequestController">
-               <children>
-                  <Button mnemonicParsing="false" text="&lt; Back" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title" />
-                  <Text id="request-status" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" />
-                  <Text id="date-submitted" strokeType="OUTSIDE" strokeWidth="0.0" text="Submitted today, 9:12 AM" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="HELP NEEDED FOR" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PRIORITY" />
-                  <Text id="urgency-text" strokeType="OUTSIDE" strokeWidth="0.0" text="Urgency text" />
-                  <ProgressBar id="urgency-bar" prefWidth="200.0" progress="0.0" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PEOPLE" />
-               </children>
-            </VBox>
-         </children></AnchorPane>
-  </content>
+<ScrollPane fitToWidth="true" fitToHeight="false" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+            minWidth="0.0" minHeight="0.0" maxWidth="Infinity" maxHeight="Infinity"
+            prefHeight="844.0" prefWidth="390.0"
+            style="-fx-background: #1e2221; -fx-background-color: #1e2221; -fx-padding: 0; -fx-font-family: 'System';"
+            xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.controllers.ExpandRequestController">
+    <content>
+        <VBox minWidth="0.0" minHeight="-Infinity" fillWidth="true" style="-fx-background-color: #1e2221;">
+            <children>
+                <HBox alignment="CENTER_LEFT" minHeight="48.0"
+                      style="-fx-background-color: #191b1c; -fx-border-color: transparent transparent #4b5050 transparent; -fx-border-width: 0 0 1 0;">
+                    <padding><Insets top="6" right="12" bottom="6" left="8"/></padding>
+                    <children>
+                        <Button text="&lt; Back" onAction="#backRequests" mnemonicParsing="false"
+                                style="-fx-background-color: transparent; -fx-text-fill: #91b9de; -fx-font-size: 13px; -fx-cursor: hand;"/>
+                    </children>
+                </HBox>
+
+                <VBox fx:id="pageContent" minWidth="0.0" minHeight="-Infinity" spacing="12.0" fillWidth="true">
+                    <padding><Insets top="18" right="24" bottom="20" left="24"/></padding>
+                    <children>
+                        <VBox minWidth="0.0" minHeight="-Infinity" spacing="8.0">
+                            <children>
+                                <HBox minWidth="0.0" minHeight="-Infinity" alignment="TOP_LEFT" spacing="10.0">
+                                    <children>
+                                        <VBox fx:id="titleContainer" minWidth="0.0" prefWidth="0.0" minHeight="-Infinity" HBox.hgrow="ALWAYS">
+                                            <children>
+                                                <Text fx:id="title" text="Transport to Medical Shelter"
+                                                      wrappingWidth="${titleContainer.width}"
+                                                      fill="#cccac6" style="-fx-font-size: 19px; -fx-font-weight: bold;"/>
+                                            </children>
+                                        </VBox>
+                                        <StackPane fx:id="statusContainer" minWidth="78.0" prefWidth="90.0" maxWidth="90.0"
+                                                   style="-fx-background-color: #d0d0cd; -fx-background-radius: 20;">
+                                            <padding><Insets top="5" right="9" bottom="5" left="9"/></padding>
+                                            <children>
+                                                <Text fx:id="status" text="Assigned" wrappingWidth="${statusContainer.width - 18}" fill="#244d8e"
+                                                      style="-fx-font-size: 12px; -fx-font-weight: bold;"/>
+                                            </children>
+                                        </StackPane>
+                                    </children>
+                                </HBox>
+                                <Text fx:id="dateSubmitted" text="Submitted today, 9:12 AM"
+                                      wrappingWidth="${pageContent.width - 48}"
+                                      fill="#87919d" style="-fx-font-size: 12px; -fx-font-weight: bold;"/>
+                            </children>
+                        </VBox>
+
+                        <Separator style="-fx-opacity: 0.65;"/>
+
+                        <VBox minWidth="0.0" minHeight="-Infinity" spacing="9.0">
+                            <children>
+                                <Text text="HELP NEEDED FOR" fill="#87919d"
+                                      style="-fx-font-size: 12px; -fx-font-weight: bold;"/>
+                                <!-- The controller replaces these preview badges with request data. -->
+                                <FlowPane fx:id="requestTypesPane" minWidth="0.0" minHeight="-Infinity"
+                                          hgap="8.0" vgap="8.0" prefWrapLength="${pageContent.width - 48}">
+                                    <children>
+                                        <Label minWidth="0.0" wrapText="true" maxWidth="${requestTypesPane.width}" text="Transportation" style="-fx-background-color: #223f70; -fx-background-radius: 10; -fx-border-color: #4269a2; -fx-border-radius: 10; -fx-padding: 6 9; -fx-text-fill: #edf2fc; -fx-font-size: 12px;"/>
+                                        <Label minWidth="0.0" wrapText="true" maxWidth="${requestTypesPane.width}" text="No shelter" style="-fx-background-color: #223f70; -fx-background-radius: 10; -fx-border-color: #4269a2; -fx-border-radius: 10; -fx-padding: 6 9; -fx-text-fill: #edf2fc; -fx-font-size: 12px;"/>
+                                        <Label minWidth="0.0" wrapText="true" maxWidth="${requestTypesPane.width}" text="Medical assistance" style="-fx-background-color: #223f70; -fx-background-radius: 10; -fx-border-color: #4269a2; -fx-border-radius: 10; -fx-padding: 6 9; -fx-text-fill: #edf2fc; -fx-font-size: 12px;"/>
+                                    </children>
+                                </FlowPane>
+                            </children>
+                        </VBox>
+
+                        <Separator style="-fx-opacity: 0.65;"/>
+
+                        <VBox minWidth="0.0" minHeight="-Infinity" spacing="9.0">
+                            <children>
+                                <Text text="PRIORITY" fill="#87919d" style="-fx-font-size: 12px; -fx-font-weight: bold;"/>
+                                <VBox minWidth="0.0" minHeight="-Infinity" spacing="7.0">
+                                    <children>
+                                        <Text fx:id="urgencyText" text="High Urgency - 8/10" wrappingWidth="${pageContent.width - 48}" fill="#e44436"
+                                              style="-fx-font-size: 12px; -fx-font-weight: bold;"/>
+                                        <ProgressBar fx:id="urgencyBar" progress="0.8" minWidth="30.0"
+                                                     maxWidth="Infinity" prefHeight="9.0"
+                                                     minHeight="9.0" maxHeight="9.0"
+                                                     style="-fx-accent: #bc2b21; -fx-padding: 0;"/>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </VBox>
+
+                        <Separator style="-fx-opacity: 0.65;"/>
+
+                        <VBox fx:id="addressContainer" minWidth="0.0" minHeight="-Infinity" spacing="9.0">
+                            <children>
+                                <Text text="PICKUP ADDRESS" fill="#87919d" style="-fx-font-size: 12px; -fx-font-weight: bold;"/>
+                                <Text fx:id="address" text="47 Bull St, Charleston, SC 29401"
+                                      wrappingWidth="${addressContainer.width}" fill="#91b9de"
+                                      style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                            </children>
+                        </VBox>
+
+                        <Separator style="-fx-opacity: 0.65;"/>
+
+                        <VBox fx:id="contactContainer" minWidth="0.0" minHeight="-Infinity" spacing="9.0">
+                            <children>
+                                <Text text="CONTACT" fill="#87919d" style="-fx-font-size: 12px; -fx-font-weight: bold;"/>
+                                <Text fx:id="phoneNumber" text="(843) 555-0187"
+                                      wrappingWidth="${contactContainer.width}" fill="#91b9de"
+                                      style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                            </children>
+                        </VBox>
+
+                        <Separator style="-fx-opacity: 0.65;"/>
+
+                        <VBox fx:id="volunteerContainer" minWidth="0.0" minHeight="-Infinity" spacing="9.0">
+                            <children>
+                                <Text text="VOLUNTEER" fill="#87919d" style="-fx-font-size: 12px; -fx-font-weight: bold;"/>
+                                <Text fx:id="volunteer" text="Rosa Delgado, (843) 555-9271"
+                                      wrappingWidth="${volunteerContainer.width}" fill="#91b9de"
+                                      style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                            </children>
+                        </VBox>
+
+                        <Separator style="-fx-opacity: 0.65;"/>
+
+                        <VBox minWidth="0.0" minHeight="-Infinity" spacing="9.0">
+                            <children>
+                                <Text text="DESCRIPTION" fill="#87919d" style="-fx-font-size: 12px; -fx-font-weight: bold;"/>
+                                <VBox fx:id="descriptionContainer" minWidth="0.0" minHeight="-Infinity" style="-fx-background-color: #191c1b; -fx-background-radius: 13;">
+                                    <padding><Insets top="14" right="14" bottom="14" left="14"/></padding>
+                                    <children>
+                                        <Text fx:id="description" wrappingWidth="${descriptionContainer.width - 28}"
+                                              text="Transportation for three people and one dog. Floodwater is rising around our house and the car can't get out. Our daughter Sophie's asthma is getting worse without power. We need a ride to a shelter with medical staff. We're bringing our dog, Buddy."
+                                              fill="#cccac6" lineSpacing="3.0" style="-fx-font-size: 12px;"/>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </VBox>
+
+                        <Button id="homeButton" text="⌂  Return home" onAction="#home" mnemonicParsing="false"
+                                minWidth="0.0" minHeight="48.0" maxWidth="Infinity" prefHeight="48.0" wrapText="true"
+                                style="-fx-background-color: #202020; -fx-border-color: #4b5050; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #cccac6; -fx-font-size: 18px; -fx-cursor: hand;"/>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </content>
 </ScrollPane>
