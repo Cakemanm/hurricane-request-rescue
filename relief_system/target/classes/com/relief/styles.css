@@ -137,3 +137,22 @@
     -fx-stroke-line-cap: round;
     -fx-stroke-line-join: round;
 }
+
+.urgency-bar {
+    -fx-padding: 0;
+    -fx-background-color: transparent;
+}
+
+.urgency-bar > .track {
+    -fx-background-color: #d6d6d6;
+    -fx-background-insets: 0;
+    -fx-background-radius: 5;
+    -fx-border-width: 0;
+}
+
+.urgency-bar > .bar {
+    -fx-background-color: #c32d23;
+    -fx-background-insets: 0;
+    -fx-background-radius: 5;
+    -fx-padding: 0;
+}

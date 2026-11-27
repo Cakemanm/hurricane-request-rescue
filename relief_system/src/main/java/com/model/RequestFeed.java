@@ -92,7 +92,7 @@ public class RequestFeed {
             Request request = new Request(id, title, status, address, reportedUrgency, comments, requester, responder, requestTypes);
             requests.add(request);
             requestFeed.save();
-            requester.addToListRequest(request);
+            requester.addToRequestList(request);
         }
     
     /**

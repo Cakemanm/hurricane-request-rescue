@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Text?>
+
+<VBox fx:id="card" minWidth="0.0" minHeight="-Infinity" prefWidth="350.0"
+      maxWidth="Infinity" spacing="14.0" fillWidth="true"
+      stylesheets="@request-card.css" styleClass="request-card"
+      xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.controllers.RequestCardController">
+    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+    <children>
+        <VBox minWidth="0.0" spacing="7.0">
+            <children>
+                <HBox minWidth="0.0" alignment="TOP_LEFT" fillHeight="false" spacing="10.0">
+                    <children>
+                        <VBox fx:id="titleContainer" minWidth="0.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Text fx:id="title" text="Transport to Medical Shelter"
+                                      wrappingWidth="${titleContainer.width}" styleClass="card-title"/>
+                            </children>
+                        </VBox>
+                        <StackPane minHeight="26.0" prefHeight="26.0" maxHeight="26.0"
+                                   alignment="CENTER" styleClass="status-badge">
+                            <padding><Insets left="9" right="9"/></padding>
+                            <children>
+                                <Text fx:id="status" text="Assigned" styleClass="status-text"/>
+                            </children>
+                        </StackPane>
+                    </children>
+                </HBox>
+                <Text fx:id="dateSubmitted" text="Submitted today, 9:12 AM"
+                      wrappingWidth="${card.width - 40}" styleClass="submitted-text"/>
+            </children>
+        </VBox>
+
+        <Separator/>
+
+        <VBox minWidth="0.0" spacing="9.0">
+            <children>
+                <Text text="HELP NEEDED FOR" styleClass="section-title"/>
+                <!-- Badges are added by RequestCardController.setRequest(). -->
+                <FlowPane fx:id="requestTypesPane" minWidth="0.0" minHeight="-Infinity"
+                          hgap="8.0" vgap="8.0" prefWrapLength="${card.width - 40}"/>
+            </children>
+        </VBox>
+
+        <Separator/>
+
+        <VBox minWidth="0.0" spacing="9.0">
+            <children>
+                <Text text="PRIORITY" styleClass="section-title"/>
+                <HBox minWidth="0.0" alignment="CENTER_LEFT" spacing="8.0">
+                    <children>
+                        <Text fx:id="urgencyText" text="Urgent - 8/10" styleClass="urgency-text"/>
+                        <ProgressBar fx:id="urgencyBar" progress="0.8" minWidth="24.0"
+                                     prefWidth="120.0" maxWidth="Infinity"
+                                     minHeight="10.0" prefHeight="10.0" maxHeight="10.0"
+                                     HBox.hgrow="ALWAYS" styleClass="urgency-bar"/>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+
+        <Separator/>
+
+        <Button fx:id="viewDetailsButton" text="View full details" onAction="#viewDetails"
+                disable="true" mnemonicParsing="false" graphicTextGap="9.0"
+                minWidth="0.0" maxWidth="Infinity" minHeight="44.0"
+                wrapText="true" styleClass="details-button">
+            <VBox.margin><Insets top="6.0"/></VBox.margin>
+            <graphic>
+                <SVGPath content="M 1 8 C 5 1 15 1 19 8 C 15 15 5 15 1 8 Z M 13 8 A 3 3 0 1 1 7 8 A 3 3 0 1 1 13 8 Z"
+                         fill="TRANSPARENT" stroke="#8db5da" strokeWidth="1.5"
+                         strokeLineCap="ROUND" strokeLineJoin="ROUND"/>
+            </graphic>
+        </Button>
+    </children>
+</VBox>

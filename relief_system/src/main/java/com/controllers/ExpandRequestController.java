@@ -6,6 +6,7 @@ import java.util.UUID;
 import com.model.ReliefFacade;
 import com.model.Request;
 import com.model.RequestFeed;
+import com.model.RequestStatus;
 import com.model.User;
 import com.relief.App;
 
@@ -20,6 +21,7 @@ public class ExpandRequestController {
     ReliefFacade reliefFacade = ReliefFacade.getInstance();
     RequestFeed requestFeed = RequestFeed.getInstance();
     Request request = requestFeed.getRequest(UUID.fromString("88eb85df-d238-4a83-a0f5-e5aa5948d6ff"));
+    User user = reliefFacade.getCurrentUser();;
 
     @FXML
     private Text title;
@@ -39,9 +41,13 @@ public class ExpandRequestController {
     private Text description;
     @FXML
     private FlowPane requestTypesPane;
+    @FXML private Label claimRequest;
 
     @FXML
     void initialize() throws IOException, InterruptedException {
+        if(user == null){
+            user = reliefFacade.getUser("kyled");
+        }
         title.setText(request.getTitle());
         status.setText(request.getStatus().label);
         address.setText(request.getAddress().toString());
@@ -96,6 +102,10 @@ public class ExpandRequestController {
                 requestTypesPane.getChildren().add(badge);
             }
         }
+        if(!user.isVolunteer()){
+            claimRequest.setVisible(false);
+            claimRequest.setManaged(false);
+        }
     }
 
     @FXML
@@ -106,6 +116,16 @@ public class ExpandRequestController {
     @FXML
     void backRequests(ActionEvent event) throws IOException {
         App.setRoot("my-requests");
+    }
+
+    @FXML 
+    void claimRequest(ActionEvent event) throws IOException {
+        if(user.isVolunteer()){
+            request.setResponder(user);
+            request.setStatus(RequestStatus.ASSIGNED);
+            user.addToRequestList(request);
+            App.setRoot("my-requests");
+        }
     }
 
 }

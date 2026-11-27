@@ -11,10 +11,11 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.shape.SVGPath?>
 
 <ScrollPane fitToWidth="true" fitToHeight="false" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
             minWidth="0.0" minHeight="0.0" maxWidth="Infinity" maxHeight="Infinity"
-            prefHeight="844.0" prefWidth="390.0"
+            prefHeight="844.0" prefWidth="390.0" stylesheets="@styles.css"
             style="-fx-background: #1e2221; -fx-background-color: #1e2221; -fx-padding: 0; -fx-font-family: 'System';"
             xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.controllers.ExpandRequestController">
@@ -35,7 +36,7 @@
                     <children>
                         <VBox minWidth="0.0" minHeight="-Infinity" spacing="8.0">
                             <children>
-                                <HBox minWidth="0.0" minHeight="-Infinity" alignment="TOP_LEFT" spacing="10.0">
+                                <HBox minWidth="0.0" minHeight="-Infinity" alignment="TOP_LEFT" fillHeight="false" spacing="10.0">
                                     <children>
                                         <VBox fx:id="titleContainer" minWidth="0.0" prefWidth="0.0" minHeight="-Infinity" HBox.hgrow="ALWAYS">
                                             <children>
@@ -44,14 +45,24 @@
                                                       fill="#cccac6" style="-fx-font-size: 19px; -fx-font-weight: bold;"/>
                                             </children>
                                         </VBox>
-                                        <StackPane fx:id="statusContainer" minWidth="78.0" prefWidth="90.0" maxWidth="90.0"
-                                                   style="-fx-background-color: #d0d0cd; -fx-background-radius: 20;">
-                                            <padding><Insets top="5" right="9" bottom="5" left="9"/></padding>
-                                            <children>
-                                                <Text fx:id="status" text="Assigned" wrappingWidth="${statusContainer.width - 18}" fill="#244d8e"
-                                                      style="-fx-font-size: 12px; -fx-font-weight: bold;"/>
-                                            </children>
-                                        </StackPane>
+                                        <StackPane minWidth="78.0"
+           minHeight="28.0"
+           prefHeight="28.0"
+           maxHeight="28.0"
+           alignment="CENTER"
+           style="-fx-background-color: #d0d0cd;
+                  -fx-background-radius: 14;">
+    <padding>
+        <Insets left="10.0" right="10.0" />
+    </padding>
+    <children>
+        <Text fx:id="status"
+              text="Assigned"
+              fill="#244d8e"
+              style="-fx-font-size: 12px;
+                     -fx-font-weight: bold;" />
+    </children>
+</StackPane>
                                     </children>
                                 </HBox>
                                 <Text fx:id="dateSubmitted" text="Submitted today, 9:12 AM"
@@ -60,7 +71,7 @@
                             </children>
                         </VBox>
 
-                        <Separator style="-fx-opacity: 0.65;"/>
+                        <Separator style="-fx-opacity: 0.15; -fx-background-color: #87919d;"/>
 
                         <VBox minWidth="0.0" minHeight="-Infinity" spacing="9.0">
                             <children>
@@ -78,25 +89,34 @@
                             </children>
                         </VBox>
 
-                        <Separator style="-fx-opacity: 0.65;"/>
+                        <Separator style="-fx-opacity: 0.15; -fx-background-color: #87919d;"/>
 
                         <VBox minWidth="0.0" minHeight="-Infinity" spacing="9.0">
                             <children>
                                 <Text text="PRIORITY" fill="#87919d" style="-fx-font-size: 12px; -fx-font-weight: bold;"/>
-                                <VBox minWidth="0.0" minHeight="-Infinity" spacing="7.0">
-                                    <children>
-                                        <Text fx:id="urgencyText" text="High Urgency - 8/10" wrappingWidth="${pageContent.width - 48}" fill="#e44436"
-                                              style="-fx-font-size: 12px; -fx-font-weight: bold;"/>
-                                        <ProgressBar fx:id="urgencyBar" progress="0.8" minWidth="30.0"
-                                                     maxWidth="Infinity" prefHeight="9.0"
-                                                     minHeight="9.0" maxHeight="9.0"
-                                                     style="-fx-accent: #bc2b21; -fx-padding: 0;"/>
-                                    </children>
-                                </VBox>
+                                <HBox alignment="CENTER_LEFT" spacing="10.0" minWidth="0.0">
+    <children>
+        <Text fx:id="urgencyText"
+              text="High Urgency - 8"
+              fill="#e44436"
+              style="-fx-font-size: 12px; -fx-font-weight: bold;" />
+
+        <ProgressBar fx:id="urgencyBar"
+                     progress="0.8"
+                     minWidth="40.0"
+                     prefWidth="120.0"
+                     maxWidth="Infinity"
+                     minHeight="7.0"
+                     prefHeight="7.0"
+                     maxHeight="7.0"
+                     HBox.hgrow="ALWAYS"
+                     styleClass="urgency-bar" />
+    </children>
+</HBox>
                             </children>
                         </VBox>
 
-                        <Separator style="-fx-opacity: 0.65;"/>
+                        <Separator style="-fx-opacity: 0.15; -fx-background-color: #87919d;"/>
 
                         <VBox fx:id="addressContainer" minWidth="0.0" minHeight="-Infinity" spacing="9.0">
                             <children>
@@ -107,7 +127,7 @@
                             </children>
                         </VBox>
 
-                        <Separator style="-fx-opacity: 0.65;"/>
+                        <Separator style="-fx-opacity: 0.15; -fx-background-color: #87919d;"/>
 
                         <VBox fx:id="contactContainer" minWidth="0.0" minHeight="-Infinity" spacing="9.0">
                             <children>
@@ -118,7 +138,7 @@
                             </children>
                         </VBox>
 
-                        <Separator style="-fx-opacity: 0.65;"/>
+                        <Separator style="-fx-opacity: 0.15; -fx-background-color: #87919d;"/>
 
                         <VBox fx:id="volunteerContainer" minWidth="0.0" minHeight="-Infinity" spacing="9.0">
                             <children>
@@ -129,7 +149,7 @@
                             </children>
                         </VBox>
 
-                        <Separator style="-fx-opacity: 0.65;"/>
+                        <Separator style="-fx-opacity: 0.15; -fx-background-color: #87919d;"/>
 
                         <VBox minWidth="0.0" minHeight="-Infinity" spacing="9.0">
                             <children>
@@ -145,9 +165,34 @@
                             </children>
                         </VBox>
 
-                        <Button id="homeButton" text="⌂  Return home" onAction="#home" mnemonicParsing="false"
-                                minWidth="0.0" minHeight="48.0" maxWidth="Infinity" prefHeight="48.0" wrapText="true"
-                                style="-fx-background-color: #202020; -fx-border-color: #4b5050; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #cccac6; -fx-font-size: 18px; -fx-cursor: hand;"/>
+                        <Button id="claimRequest" text="Claim Request" onAction="#claimRequest" mnemonicParsing="false"
+                                minWidth="0.0" minHeight="48.0" maxWidth="Infinity" prefHeight="48.0"
+                                style="-fx-background-color: #E5702B; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #FFFFFF; -fx-font-size: 18px; -fx-cursor: hand;"/>
+                        <Button id="homeButton"
+        text="Return home"
+        onAction="#home"
+        mnemonicParsing="false"
+        graphicTextGap="10.0"
+        minWidth="0.0"
+        minHeight="46.0"
+        prefHeight="46.0"
+        maxWidth="Infinity"
+        style="-fx-background-color: #202020;
+               -fx-border-color: #4b5050;
+               -fx-border-radius: 6;
+               -fx-background-radius: 6;
+               -fx-text-fill: #cccac6;
+               -fx-font-size: 17px;
+               -fx-cursor: hand;">
+    <graphic>
+        <SVGPath content="M 2 10 L 12 2 L 22 10 M 5 8 L 5 22 L 10 22 L 10 15 L 14 15 L 14 22 L 19 22 L 19 8"
+                 fill="TRANSPARENT"
+                 stroke="#cccac6"
+                 strokeWidth="1.7"
+                 strokeLineCap="ROUND"
+                 strokeLineJoin="ROUND" />
+    </graphic>
+</Button>
                     </children>
                 </VBox>
             </children>

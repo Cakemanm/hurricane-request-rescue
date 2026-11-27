@@ -254,10 +254,20 @@ public class User {
     }
 
     public ArrayList<Request> getRequests() {
+        RequestFeed requestFeed = RequestFeed.getInstance();
+        requests = new ArrayList<Request>();
+        for(Request request : requestFeed.getRequests()){
+            if(request.getRequester().equals(this))
+                requests.add(request);
+        }
         return requests;
     }
 
-    public void addToListRequest(Request request) {
+    public void addToRequestList(Request request) {
         this.requests.add(request);
+    }
+
+    public boolean isVolunteer(){
+        return skills.size() > 0;
     }
 }
